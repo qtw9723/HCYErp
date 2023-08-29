@@ -1,5 +1,6 @@
 package kr.co.HCY;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -23,12 +24,12 @@ import javax.swing.border.BevelBorder;
 
 @SuppressWarnings("serial")
 public class HCYErp extends JFrame {
-	private JLabel jlblMainImg;
-	private JLabel jlblEmpNo;
-	private JLabel jlblPass;
-	private JTextField jtfEmpNo;
-	private JPasswordField jpfPass;
-	private JButton jbtnLogIn;
+	private JLabel jlblMainImg;;
+	private JLabel jlblEmpNo;;
+	private JLabel jlblPass;;
+	private JTextField jtfEmpNo;;
+	private JPasswordField jpfPass;;
+	private JButton jbtnLogIn;;
 	private JLabel jlblFindPass;
 	private JLabel jlblQEmail;
 	private JTabbedPane tabbedPane;
@@ -95,45 +96,54 @@ public class HCYErp extends JFrame {
 		Font loginFont = new Font("맑은고딕",Font.BOLD,20);
 		//사원번호 입력
 		jlblEmpNo = new JLabel("사원번호");
-		jlblEmpNo.setBounds(330,300,180,60);
+		jlblEmpNo.setBounds(320,295,180,60);
 		jlblEmpNo.setFont(loginFont);
 		add(jlblEmpNo);
 		
 		jtfEmpNo = new JTextField();
-		jtfEmpNo.setBounds(420,310,300,40);
+		jtfEmpNo.setBounds(410,305,300,40);
 		jtfEmpNo.setFont(loginFont);
 		jtfEmpNo.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.LOWERED));
 		add(jtfEmpNo);
 		
 		//비밀번호 입력
 		jlblPass = new JLabel("비밀번호");
-		jlblPass.setBounds(330,350,180,60);
+		jlblPass.setBounds(320,370,180,60);
 		jlblPass.setFont(loginFont);
 		add(jlblPass);
 		
 		jpfPass = new JPasswordField();
-		jpfPass.setBounds(420,360,300,40);
+		jpfPass.setBounds(410,380,300,40);
 		jpfPass.setFont(loginFont);
 		jpfPass.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.LOWERED));
 		add(jpfPass);
 		
+		//로그인 버튼 폰트
+		Font loginBtnFont = new Font("맑은고딕",Font.BOLD,15); 
 		//로그인 버튼
 		jbtnLogIn = new JButton("로그인");
-		jbtnLogIn.setBounds(750,300,200,150);
+		jbtnLogIn.setBounds(728,302,80,120);
+		jbtnLogIn.setBackground(new Color(0x8244AD));
+		jbtnLogIn.setFont(loginBtnFont);
+		jbtnLogIn.setForeground(Color.white);
 		add(jbtnLogIn);
 
 		// 배경 설정
 		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
+		
+		// 비밀번호 찾기
+		jlblFindPass = new JLabel("비밀번호 찾기");
+		
 
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosed(WindowEvent e) {
+			public void windowClosing(WindowEvent e) {
 				dispose();
-			}// windowClosed
+			}//windowClosing
 		});
 	}// constructor
 
