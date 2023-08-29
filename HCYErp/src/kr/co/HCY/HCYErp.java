@@ -154,7 +154,7 @@ public class HCYErp extends JFrame {
 		jlblQEmail.setFont(findPWFont);
 		add(jlblQEmail);
 
-		// 배경 설정
+		// 배경 설정ㅇ
 		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
