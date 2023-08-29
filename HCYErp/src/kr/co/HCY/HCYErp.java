@@ -1,8 +1,10 @@
 package kr.co.HCY;
 
+import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -17,6 +19,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
 
 @SuppressWarnings("serial")
 public class HCYErp extends JFrame {
@@ -76,22 +79,64 @@ public class HCYErp extends JFrame {
 	private JCheckBox jcbAbsent;
 	private JCheckBox jcbDayOff;
 	private JList<String> jlLeaveProposal;
-	
+	private JLabel jlblBG;
+
 	public HCYErp() {
-		jlblMainImg.setIcon(new ImageIcon());
+		// 로고 설정
+		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/조선 홍찬영.jpg"));
+		jlblMainImg.setBounds(480, 20, 150, 150);
+		add(jlblMainImg);
+		// 텍스트 로고 설정
+		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErpTextLogo.png"));
+		jlblLogoTxt.setBounds(470,160,180,150);
+		add(jlblLogoTxt);
 		
+		// 로그인 폰트
+		Font loginFont = new Font("맑은고딕",Font.BOLD,20);
+		//사원번호 입력
+		jlblEmpNo = new JLabel("사원번호");
+		jlblEmpNo.setBounds(330,300,180,60);
+		jlblEmpNo.setFont(loginFont);
+		add(jlblEmpNo);
 		
+		jtfEmpNo = new JTextField();
+		jtfEmpNo.setBounds(420,310,300,40);
+		jtfEmpNo.setFont(loginFont);
+		jtfEmpNo.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.LOWERED));
+		add(jtfEmpNo);
 		
+		//비밀번호 입력
+		jlblPass = new JLabel("비밀번호");
+		jlblPass.setBounds(330,350,180,60);
+		jlblPass.setFont(loginFont);
+		add(jlblPass);
+		
+		jpfPass = new JPasswordField();
+		jpfPass.setBounds(420,360,300,40);
+		jpfPass.setFont(loginFont);
+		jpfPass.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.LOWERED));
+		add(jpfPass);
+		
+		//로그인 버튼
+		jbtnLogIn = new JButton("로그인");
+		jbtnLogIn.setBounds(750,300,200,150);
+		add(jbtnLogIn);
+
+		// 배경 설정
+		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
+		jlblBG.setBounds(0, 0, 1200, 700);
+		add(jlblBG);
+
 		setVisible(true);
-		setBounds(400,150,1200,700);
+		setBounds(400, 150, 1200, 700);
 		addWindowListener(new WindowAdapter() {
-		@Override
-		public void windowClosed(WindowEvent e) {
-			dispose();
-		}//windowClosed
+			@Override
+			public void windowClosed(WindowEvent e) {
+				dispose();
+			}// windowClosed
 		});
-	}//constructor
-	
+	}// constructor
+
 	public static void main(String[] args) {
 		new HCYErp();
 	}
@@ -319,7 +364,5 @@ public class HCYErp extends JFrame {
 	public JList<String> getJlLeaveProposal() {
 		return jlLeaveProposal;
 	}
-	
-	
-	
+
 }// class
