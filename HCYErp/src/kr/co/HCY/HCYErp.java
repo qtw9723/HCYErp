@@ -91,8 +91,8 @@ public class HCYErp extends JFrame {
 		HCYErpEvt event = new HCYErpEvt(this);
 
 		// 로고 설정
-		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/hcytravel_mainlogo.png"));
-		jlblMainImg.setBounds(480, 20, 150, 150);
+		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/hcytravel_mainlogo_3cm.png"));
+		jlblMainImg.setBounds(480, 20, 180, 150);
 		// 텍스트 로고 설정
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErpTextLogo.png"));
 		jlblLogoTxt.setBounds(470, 160, 180, 150);
