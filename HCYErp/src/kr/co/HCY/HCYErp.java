@@ -10,7 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -30,9 +32,9 @@ public class HCYErp extends JFrame {
 	private JTextField jtfEmpNo;;
 	private JPasswordField jpfPass;;
 	private JButton jbtnLogIn;;
-	private JLabel jlblFindPass;
-	private JLabel jlblQEmail;
-	private JTabbedPane tabbedPane;
+	private JLabel jlblFindPass;;
+	private JLabel jlblQEmail;;
+	private JTabbedPane tabbedPane;;
 	private JPanel jpAttendance;
 	private JPanel jpDoc;
 	private JPanel jpWriteReport;
@@ -81,71 +83,123 @@ public class HCYErp extends JFrame {
 	private JCheckBox jcbDayOff;
 	private JList<String> jlLeaveProposal;
 	private JLabel jlblBG;
+	private JDesktopPane desktopPane;
 
 	public HCYErp() {
+		desktopPane = new JDesktopPane();
+        add(desktopPane);
+		
+		// 이벤트 객체 생성
+		HCYErpEvt event = new HCYErpEvt(this);
+
 		// 로고 설정
 		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/조선 홍찬영.jpg"));
 		jlblMainImg.setBounds(480, 20, 150, 150);
 		add(jlblMainImg);
 		// 텍스트 로고 설정
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErpTextLogo.png"));
-		jlblLogoTxt.setBounds(470,160,180,150);
+		jlblLogoTxt.setBounds(470, 160, 180, 150);
 		add(jlblLogoTxt);
-		
+
 		// 로그인 폰트
-		Font loginFont = new Font("맑은고딕",Font.BOLD,20);
-		//사원번호 입력
+		Font loginFont = new Font("맑은고딕", Font.BOLD, 20);
+		// 사원번호 입력
 		jlblEmpNo = new JLabel("사원번호");
-		jlblEmpNo.setBounds(320,295,180,60);
+		jlblEmpNo.setBounds(320, 295, 180, 60);
 		jlblEmpNo.setFont(loginFont);
 		add(jlblEmpNo);
-		
+
 		jtfEmpNo = new JTextField();
-		jtfEmpNo.setBounds(410,305,300,40);
+		jtfEmpNo.setBounds(410, 305, 300, 40);
 		jtfEmpNo.setFont(loginFont);
 		jtfEmpNo.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.LOWERED));
 		add(jtfEmpNo);
-		
-		//비밀번호 입력
+
+		// 비밀번호 입력
 		jlblPass = new JLabel("비밀번호");
-		jlblPass.setBounds(320,370,180,60);
+		jlblPass.setBounds(320, 370, 180, 60);
 		jlblPass.setFont(loginFont);
 		add(jlblPass);
-		
+
 		jpfPass = new JPasswordField();
-		jpfPass.setBounds(410,380,300,40);
+		jpfPass.setBounds(410, 380, 300, 40);
 		jpfPass.setFont(loginFont);
 		jpfPass.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.LOWERED));
 		add(jpfPass);
-		
-		//로그인 버튼 폰트
-		Font loginBtnFont = new Font("맑은고딕",Font.BOLD,15); 
-		//로그인 버튼
+		jpfPass.addActionListener(event);
+
+		// 로그인 버튼 폰트
+		Font loginBtnFont = new Font("맑은고딕", Font.BOLD, 15);
+		// 로그인 버튼
 		jbtnLogIn = new JButton("로그인");
-		jbtnLogIn.setBounds(728,302,80,120);
+		jbtnLogIn.setBounds(728, 302, 80, 120);
 		jbtnLogIn.setBackground(new Color(0x8244AD));
 		jbtnLogIn.setFont(loginBtnFont);
 		jbtnLogIn.setForeground(Color.white);
 		add(jbtnLogIn);
+		jbtnLogIn.addActionListener(event);
+
+		// 비밀번호 찾기 폰트
+		Font findPWFont = new Font("맑은고딕", Font.BOLD, 15);
+		// 비밀번호 찾기
+		jlblFindPass = new JLabel("비밀번호 찾기");
+		jlblFindPass.setBounds(517, 430, 180, 60);
+		jlblFindPass.setFont(findPWFont);
+		add(jlblFindPass);
+		jlblFindPass.addMouseListener(event);
+
+		// 문의 메일
+		jlblQEmail = new JLabel("기타 문의: hcyadmin@travel.com");
+		jlblQEmail.setBounds(450, 500, 300, 60);
+		jlblQEmail.setFont(findPWFont);
+		add(jlblQEmail);
 
 		// 배경 설정
 		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 		
-		// 비밀번호 찾기
-		jlblFindPass = new JLabel("비밀번호 찾기");
+
 		
 
+      
+
+		// 근태 탭 설정
+		jpAttendance = new JPanel();
+		
+		
+		// 탭설정
+		tabbedPane = new JTabbedPane();
+		tabbedPane.setVisible(true);
+		tabbedPane.setBounds(100,100,100,100);
+		add(tabbedPane);
+		
+		tabbedPane.add(jpAttendance,"근태관리");
+		
+		
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				dispose();
-			}//windowClosing
+			}// windowClosing
 		});
 	}// constructor
+	
+	
+
+	public JLabel getJlblBG() {
+		return jlblBG;
+	}
+
+
+
+	public JDesktopPane getDesktopPane() {
+		return desktopPane;
+	}
+
+
 
 	public static void main(String[] args) {
 		new HCYErp();
