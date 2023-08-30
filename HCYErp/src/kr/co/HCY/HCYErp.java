@@ -154,7 +154,7 @@ public class HCYErp extends JFrame {
 		jlblQEmail.setFont(findPWFont);
 		add(jlblQEmail);
 
-		// 배경 설정ㅇ
+		// 배경 설정
 		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
@@ -170,6 +170,10 @@ public class HCYErp extends JFrame {
 		
 		// 탭설정
 		tabbedPane = new JTabbedPane();
+		tabbedPane.setVisible(true);
+		tabbedPane.setBounds(100,100,100,100);
+		add(tabbedPane);
+		
 		tabbedPane.add(jpAttendance,"근태관리");
 		
 		
