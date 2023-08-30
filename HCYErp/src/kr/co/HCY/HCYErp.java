@@ -86,19 +86,16 @@ public class HCYErp extends JFrame {
 
 	public HCYErp() {
 		desktopPane = new JDesktopPane();
-        add(desktopPane);
 		
 		// 이벤트 객체 생성
 		HCYErpEvt event = new HCYErpEvt(this);
 
 		// 로고 설정
-		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/조선 홍찬영.jpg"));
+		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/hcytravel_mainlogo.png"));
 		jlblMainImg.setBounds(480, 20, 150, 150);
-		add(jlblMainImg);
 		// 텍스트 로고 설정
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErpTextLogo.png"));
 		jlblLogoTxt.setBounds(470, 160, 180, 150);
-		add(jlblLogoTxt);
 
 		// 로그인 폰트
 		Font loginFont = new Font("맑은고딕", Font.BOLD, 20);
@@ -106,25 +103,21 @@ public class HCYErp extends JFrame {
 		jlblEmpNo = new JLabel("사원번호");
 		jlblEmpNo.setBounds(320, 295, 180, 60);
 		jlblEmpNo.setFont(loginFont);
-		add(jlblEmpNo);
 
 		jtfEmpNo = new JTextField();
 		jtfEmpNo.setBounds(410, 305, 300, 40);
 		jtfEmpNo.setFont(loginFont);
 		jtfEmpNo.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.LOWERED));
-		add(jtfEmpNo);
 
 		// 비밀번호 입력
 		jlblPass = new JLabel("비밀번호");
 		jlblPass.setBounds(320, 370, 180, 60);
 		jlblPass.setFont(loginFont);
-		add(jlblPass);
 
 		jpfPass = new JPasswordField();
 		jpfPass.setBounds(410, 380, 300, 40);
 		jpfPass.setFont(loginFont);
 		jpfPass.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.LOWERED));
-		add(jpfPass);
 		jpfPass.addActionListener(event);
 
 		// 로그인 버튼 폰트
@@ -135,7 +128,6 @@ public class HCYErp extends JFrame {
 		jbtnLogIn.setBackground(new Color(0x8244AD));
 		jbtnLogIn.setFont(loginBtnFont);
 		jbtnLogIn.setForeground(Color.white);
-		add(jbtnLogIn);
 		jbtnLogIn.addActionListener(event);
 
 		// 비밀번호 찾기 폰트
@@ -144,28 +136,20 @@ public class HCYErp extends JFrame {
 		jlblFindPass = new JLabel("비밀번호 찾기");
 		jlblFindPass.setBounds(517, 430, 180, 60);
 		jlblFindPass.setFont(findPWFont);
-		add(jlblFindPass);
 		jlblFindPass.addMouseListener(event);
 
 		// 문의 메일
 		jlblQEmail = new JLabel("기타 문의: hcyadmin@travel.com");
 		jlblQEmail.setBounds(450, 500, 300, 60);
 		jlblQEmail.setFont(findPWFont);
-		add(jlblQEmail);
 
 		// 배경 설정
 		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
-		add(jlblBG);
 		
 
-		
 
-      
-
-		// 근태 탭 설정
-		jpAttendance = new JPanel();
-		
+		addComponent();
 		
 		// 탭설정
 		tabbedPane = new JTabbedPane();
@@ -185,6 +169,22 @@ public class HCYErp extends JFrame {
 			}// windowClosing
 		});
 	}// constructor
+
+
+
+	public void addComponent() {
+		add(jlblQEmail);
+		add(jlblFindPass);
+		add(jbtnLogIn);
+		add(jpfPass);
+		add(jlblPass);
+		add(jtfEmpNo);
+		add(jlblEmpNo);
+		add(jlblLogoTxt);
+		add(desktopPane);
+		add(jlblMainImg);
+		add(jlblBG);
+	}
 	
 	
 
