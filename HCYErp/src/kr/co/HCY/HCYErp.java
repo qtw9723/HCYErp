@@ -82,17 +82,15 @@ public class HCYErp extends JFrame {
 	private JCheckBox jcbDayOff;
 	private JList<String> jlLeaveProposal;
 	private JLabel jlblBG;
-	private JDesktopPane desktopPane;
 
 	public HCYErp() {
-		desktopPane = new JDesktopPane();
-		
+		super("마 자신있나");
 		// 이벤트 객체 생성
 		HCYErpEvt event = new HCYErpEvt(this);
 
 		// 로고 설정
-		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/hcytravel_mainlogo.png"));
-		jlblMainImg.setBounds(480, 20, 150, 150);
+		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/hcytravel_mainlogo_3cm.png"));
+		jlblMainImg.setBounds(480, 20, 180, 150);
 		// 텍스트 로고 설정
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErpTextLogo.png"));
 		jlblLogoTxt.setBounds(470, 160, 180, 150);
@@ -153,21 +151,10 @@ public class HCYErp extends JFrame {
 		
 		// 탭설정
 		tabbedPane = new JTabbedPane();
-		tabbedPane.setVisible(true);
-		tabbedPane.setBounds(100,100,100,100);
-		add(tabbedPane);
-		
-		tabbedPane.add(jpAttendance,"근태관리");
 		
 		
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				dispose();
-			}// windowClosing
-		});
 	}// constructor
 
 
@@ -181,24 +168,15 @@ public class HCYErp extends JFrame {
 		add(jtfEmpNo);
 		add(jlblEmpNo);
 		add(jlblLogoTxt);
-		add(desktopPane);
 		add(jlblMainImg);
 		add(jlblBG);
-	}
+	}// addComponent
 	
 	
 
 	public JLabel getJlblBG() {
 		return jlblBG;
 	}
-
-
-
-	public JDesktopPane getDesktopPane() {
-		return desktopPane;
-	}
-
-
 
 	public static void main(String[] args) {
 		new HCYErp();
