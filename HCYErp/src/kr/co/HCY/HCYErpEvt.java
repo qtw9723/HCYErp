@@ -4,7 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
+import javax.swing.JButton;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.SwingUtilities;
 
 public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
@@ -18,6 +22,9 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==hcyE.getJbtnLogIn()) {
+			findPass();
+		}
 		if(e.getSource()==hcyE.getJbtnAttend()) {
 			
 		}
@@ -78,6 +85,20 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 	
 	public void findPass() {
 		
+			JDesktopPane desktopPane = new JDesktopPane();
+			hcyE.add(desktopPane);
+            // 내부 프레임
+            jif = new JInternalFrame("Inner Frame", true, true, true, true);
+            jif.setSize(300, 200);
+            jif.setLocation(50, 50);
+            
+            jif.setVisible(true);
+            desktopPane.add(jif);
+            
+            desktopPane.setVisible(false);
+            jif.setVisible(true);
+            
+            
 	}
 
 	
