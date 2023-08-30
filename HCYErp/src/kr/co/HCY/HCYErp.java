@@ -42,15 +42,11 @@ public class HCYErp extends JFrame {
 	private JPanel jpManageStatus;
 	private JPanel jpManageAttendance;
 	private JPanel jpAuthorizeLeave;
-	private JButton jbtnAttend;
-	private JButton jbtnOffWork;
-	private JButton jbtnApplyLeave;
-	private JLabel jlblMonthlyAttendance;
-	private JLabel jlblCalendar;
-	private JLabel jlblLeftLeave;
-	private JButton jbtnChangePass;
-	private JButton jbtnLogOut;
+	
+	
 	private JLabel jlblLogoTxt;
+	
+	
 	private JScrollPane jspDocList;
 	private JButton jbtnFileUpload;
 	private JButton jbtnFileDownload;
@@ -147,15 +143,40 @@ public class HCYErp extends JFrame {
 		
 
 
-		addComponent();
 		
 		// 탭설정
 		tabbedPane = new JTabbedPane();
+		
+		tabbedPane.add(new Attendance(),"이름");
+		tabbedPane.add(new Attendance(),"이름1");
+		
+		addComponent();
+		
+		
+		removeComponent();
+		add(tabbedPane);
+		
+		
 		
 		
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);
 	}// constructor
+
+
+
+	public void removeComponent() {
+		remove(jlblQEmail);
+		remove(jlblFindPass);
+		remove(jbtnLogIn);
+		remove(jpfPass);
+		remove(jlblPass);
+		remove(jtfEmpNo);
+		remove(jlblEmpNo);
+		remove(jlblLogoTxt);
+		remove(jlblMainImg);
+		remove(jlblBG);
+	}//removeComponent
 
 
 
@@ -248,38 +269,6 @@ public class HCYErp extends JFrame {
 
 	public JPanel getJpAuthorizeLeave() {
 		return jpAuthorizeLeave;
-	}
-
-	public JButton getJbtnAttend() {
-		return jbtnAttend;
-	}
-
-	public JButton getJbtnOffWork() {
-		return jbtnOffWork;
-	}
-
-	public JButton getJbtnApplyLeave() {
-		return jbtnApplyLeave;
-	}
-
-	public JLabel getJlblMonthlyAttendance() {
-		return jlblMonthlyAttendance;
-	}
-
-	public JLabel getJlblCalendar() {
-		return jlblCalendar;
-	}
-
-	public JLabel getJlblLeftLeave() {
-		return jlblLeftLeave;
-	}
-
-	public JButton getJbtnChangePass() {
-		return jbtnChangePass;
-	}
-
-	public JButton getJbtnLogOut() {
-		return jbtnLogOut;
 	}
 
 	public JLabel getJlblLogoTxt() {
