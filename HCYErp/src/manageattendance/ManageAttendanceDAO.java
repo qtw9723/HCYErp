@@ -1,4 +1,4 @@
-package manageAttendance;
+package manageattendance;
 
 public class ManageAttendanceDAO {
 
