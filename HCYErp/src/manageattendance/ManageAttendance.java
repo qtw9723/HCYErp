@@ -1,6 +1,8 @@
 package manageattendance;
 
-public class ManageAttendance {
+import javax.swing.JFrame;
+
+public class ManageAttendance extends JFrame{
 
 	public ManageAttendance() {
 		
