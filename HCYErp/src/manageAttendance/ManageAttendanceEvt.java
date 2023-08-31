@@ -1,4 +1,4 @@
-package manageattendance;
+package manageAttendance;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +8,7 @@ public class ManageAttendanceEvt extends MouseAdapter implements ActionListener{
 
 	private ManageAttendance ma;
 	public ManageAttendanceEvt(ManageAttendance ma) {
-		this.ma=ma;
+		this.ma=ma;  
 	}//Constructor
 	
 	@Override

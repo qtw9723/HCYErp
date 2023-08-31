@@ -1,8 +1,8 @@
-package manageattendance;
+package manageAttendance;
 
 public class ManageAttendanceDAO {
 
-	public ManageAttendanceDAO() {
+	public ManageAttendanceDAO() { 
 		
 	}//Constructor
 	

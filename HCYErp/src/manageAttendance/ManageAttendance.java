@@ -1,10 +1,10 @@
-package manageattendance;
+package manageAttendance;
 
 import javax.swing.JPanel;
 
 public class ManageAttendance extends JPanel{
 
-	public ManageAttendance() {
+	public ManageAttendance() { 
 		
 	}//Constructor
 	

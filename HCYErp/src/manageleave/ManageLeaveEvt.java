@@ -8,7 +8,7 @@ public class ManageLeaveEvt extends MouseAdapter implements ActionListener {
 	private ManageLeave ml;
 	
 	public ManageLeaveEvt(ManageLeave ml) {
-		this.ml=ml;
+		this.ml=ml; 
 	}//Constructor
 
 	@Override
