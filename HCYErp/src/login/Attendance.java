@@ -1,4 +1,4 @@
-package kr.co.HCY;
+package login;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
