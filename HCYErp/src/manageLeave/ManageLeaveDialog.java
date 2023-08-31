@@ -1,4 +1,4 @@
-package manageleave;
+package manageLeave;
 
 public class ManageLeaveDialog {
 

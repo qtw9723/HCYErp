@@ -1,4 +1,4 @@
-package manageleave;
+package manageLeave;
 
 import javax.swing.JPanel;
 
