@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 
 @SuppressWarnings("serial")
@@ -113,7 +112,11 @@ public class FindPassDialog extends JDialog {
 				new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 
 		setLayout(null);
-
+		
+		FindPassDialogEvt fpde=new FindPassDialog(this);
+		jbtnFindPass.addActionListener(fpde);
+		jbtnCancel.addActionListener(fpde);
+		
 		jtfEmpNo.setBounds(160, 50, 150, 30);
 		jtfEname.setBounds(160, 120, 150, 30);
 		jtfSsn.setBounds(160, 190, 150, 30);
