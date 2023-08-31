@@ -6,4 +6,4 @@ public class ManageLeaveDAO {
 		
 	}//Constructor
 	
-}//ManageLeaveDAO
+}//class

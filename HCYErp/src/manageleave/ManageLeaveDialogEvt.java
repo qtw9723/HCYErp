@@ -8,4 +8,4 @@ public class ManageLeaveDialogEvt {
 		this.mld=mld;
 	}//Constructor
 	
-}//ManageLeaveDialogEvt
+}//class

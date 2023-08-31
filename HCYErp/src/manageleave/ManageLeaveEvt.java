@@ -17,4 +17,4 @@ public class ManageLeaveEvt extends MouseAdapter implements ActionListener {
 		
 	}
 	
-}//ManageLeaveEvt
+}//class

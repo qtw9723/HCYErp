@@ -6,4 +6,4 @@ public class ManageAttendanceDAO {
 		
 	}//Constructor
 	
-}//ManageAttendanceDAO
+}//class

@@ -6,4 +6,4 @@ public class ManageLeaveDialog {
 		
 	}//Constructor
 	
-}//ManageLeaveDialog
+}//class

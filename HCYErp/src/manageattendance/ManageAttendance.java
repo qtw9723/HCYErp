@@ -8,4 +8,4 @@ public class ManageAttendance extends JFrame{
 		
 	}//Constructor
 	
-}//ManageAttendance
+}//class

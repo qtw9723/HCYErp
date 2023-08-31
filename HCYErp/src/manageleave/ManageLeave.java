@@ -8,4 +8,4 @@ public class ManageLeave extends JPanel{
 		
 	}//Constructor
 	
-}//ManageLeave
+}//class
