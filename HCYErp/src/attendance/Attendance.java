@@ -52,15 +52,21 @@ public class Attendance extends JPanel {
 		jlblMonthlyAttendance.setBounds(200,180,200,20);
 		jlblMonthlyAttendance.setFont(new Font("맑은 고딕",Font.BOLD,20));
 		add(jlblMonthlyAttendance);
+		
+		//달력날짜
+		Calendar cal = Calendar.getInstance();
+//		for(int i=1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
+//			+Calendar.DAY_OF_WEEK*65;
+//		}//for
+//		JLabel jlblDay = new JLabel("1");
+//		jlblDay.setBounds(280,250,100,20);
+//		add(jlblDay);
+		
 		//달력배경
 		jlblCalendar = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceCalendar.png"));
 		jlblCalendar.setBounds(200,210,580,400);
 		add(jlblCalendar);
 		
-		//달력설정
-		for(int i=0;i<Calendar.;) {
-			
-		}//for
 		//남은 연가
 		StringBuilder leftDayOff = new StringBuilder();
 //		leftDayOff.append()

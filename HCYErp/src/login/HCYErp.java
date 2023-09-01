@@ -96,8 +96,8 @@ public class HCYErp extends JFrame {
 		// 탭드 패인 생성
 		tabbedPane = new JTabbedPane();
 		tabbedPane.add("출근",new Attendance());
-		add(tabbedPane);
-//		addComponent();
+//		add(tabbedPane);
+		addComponent();
 		
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);
