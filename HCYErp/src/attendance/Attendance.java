@@ -1,9 +1,6 @@
 package attendance;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -14,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+@SuppressWarnings("serial")
 public class Attendance extends JPanel {
 	private JButton jbtnAttend;
 	private JButton jbtnOffWork;
@@ -32,15 +30,15 @@ public class Attendance extends JPanel {
 		
 		//출근버튼
 		jbtnAttend = new JButton("출근");
-		jbtnAttend.setBounds(230,100,150,50);
+		jbtnAttend.setBounds(230,50,150,50);
 		add(jbtnAttend);
 		//퇴근버튼
 		jbtnOffWork = new JButton("퇴근");
-		jbtnOffWork.setBounds(480,100,150,50);
+		jbtnOffWork.setBounds(480,50,150,50);
 		add(jbtnOffWork);
 		//휴가신청버튼
 		jbtnApplyDayOff = new JButton("휴가신청");
-		jbtnApplyDayOff.setBounds(730,100,150,50);
+		jbtnApplyDayOff.setBounds(730,50,150,50);
 		add(jbtnApplyDayOff);
 		//비밀번호 초기화버튼
 		jbtnChangePass = new JButton("비밀번호초기화");
@@ -56,7 +54,7 @@ public class Attendance extends JPanel {
 		add(jlblLogoTxt);
 		//이번달 근태 현황 라벨
 		jlblMonthlyAttendance = new JLabel("이번달 근태 현황");
-		jlblMonthlyAttendance.setBounds(200,180,200,20);
+		jlblMonthlyAttendance.setBounds(200,130,200,20);
 		jlblMonthlyAttendance.setFont(new Font("맑은 고딕",Font.BOLD,20));
 		add(jlblMonthlyAttendance);
 		
@@ -66,15 +64,27 @@ public class Attendance extends JPanel {
 		for(int i=1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
 			cal.set(Calendar.DATE, i);
 			jlblTempDay=new JLabel(Integer.toString(i));
-			jlblTempDay.setBounds(205+cal.get(Calendar.DAY_OF_WEEK)*77,191+cal.get(Calendar.WEEK_OF_MONTH)*59,100,20);
+			jlblTempDay.setBounds(205+cal.get(Calendar.DAY_OF_WEEK)*77,161+cal.get(Calendar.WEEK_OF_MONTH)*59,100,20);
 			add(jlblTempDay);
 			dayList.add(jlblTempDay);
 		}//for
 		
+		Font ymFont = new Font("맑은 고딕",Font.BOLD,17);
+		JLabel jlblyear =new JLabel(Integer.toString(cal.get(Calendar.YEAR)));
+		jlblyear.setBounds(280,137,100,100);
+		jlblyear.setFont(ymFont);
+		add(jlblyear);
+		
+		JLabel jlblmonth =new JLabel(Integer.toString(cal.get(Calendar.MONTH)));
+		jlblmonth.setBounds(380,137,100,100);
+		jlblmonth.setFont(ymFont);
+		add(jlblmonth);
+		
+		
 		
 		//달력배경
 		jlblCalendar = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceCalendar.png"));
-		jlblCalendar.setBounds(200,210,580,400);
+		jlblCalendar.setBounds(200,180,580,400);
 		add(jlblCalendar);
 		
 		//남은 연가 폰트
@@ -89,7 +99,7 @@ public class Attendance extends JPanel {
 		jlblLeftDayOff.setBorder(tb);
 		//라벨설정
 		jlblLeftDayOff.setFont(leftDayOffFont);
-		jlblLeftDayOff.setBounds(800,250,300,100);
+		jlblLeftDayOff.setBounds(800,220,300,100);
 		add(jlblLeftDayOff);
 		
 		// 배경 설정
