@@ -2,15 +2,12 @@ package attendance;
 
 import java.util.Calendar;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-
-import java.time.LocalDate;
 
 @SuppressWarnings("serial")
 public class ApplyDayOffDialog extends JDialog {
