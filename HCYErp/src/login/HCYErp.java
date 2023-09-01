@@ -40,7 +40,7 @@ public class HCYErp extends JFrame {
 		jlblMainImg.setBounds(480, 20, 180, 150);
 		
 		// 텍스트 로고 설정
-		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErpTextLogo.png"));
+		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErpTextLogoSmall.png"));
 		jlblLogoTxt.setBounds(470, 160, 180, 150);
 
 		// 로그인 폰트
@@ -96,8 +96,8 @@ public class HCYErp extends JFrame {
 		// 탭드 패인 생성
 		tabbedPane = new JTabbedPane();
 		tabbedPane.add("출근",new Attendance());
-//		add(tabbedPane);
-		addComponent();
+		add(tabbedPane);
+//		addComponent();
 		
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);

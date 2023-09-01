@@ -1,12 +1,18 @@
 package attendance;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 public class Attendance extends JPanel {
 	private JButton jbtnAttend;
@@ -20,6 +26,7 @@ public class Attendance extends JPanel {
 	private JLabel jlblLogoTxt;
 	
 	public Attendance() {
+		List<JLabel> dayList = new ArrayList<JLabel>();
 		
 		setLayout(null);
 		
@@ -37,15 +44,15 @@ public class Attendance extends JPanel {
 		add(jbtnApplyDayOff);
 		//비밀번호 초기화버튼
 		jbtnChangePass = new JButton("비밀번호초기화");
-		jbtnChangePass.setBounds(1000,430,150,40);
+		jbtnChangePass.setBounds(1000,450,150,40);
 		add(jbtnChangePass);
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
-		jbtnLogOut.setBounds(1000,490,150,40);
+		jbtnLogOut.setBounds(1000,510,150,40);
 		add(jbtnLogOut);
 		//텍스트 로고
-		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/질문이 싫은 홍찬영.jpg"));
-		jlblLogoTxt.setBounds(880,520,300,300);
+		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
+		jlblLogoTxt.setBounds(930,450,300,300);
 		add(jlblLogoTxt);
 		//이번달 근태 현황 라벨
 		jlblMonthlyAttendance = new JLabel("이번달 근태 현황");
@@ -55,23 +62,34 @@ public class Attendance extends JPanel {
 		
 		//달력날짜
 		Calendar cal = Calendar.getInstance();
-//		for(int i=1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
-//			+Calendar.DAY_OF_WEEK*65;
-//		}//for
-//		JLabel jlblDay = new JLabel("1");
-//		jlblDay.setBounds(280,250,100,20);
-//		add(jlblDay);
+		JLabel jlblTempDay = new JLabel();
+		for(int i=1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
+			cal.set(Calendar.DATE, i);
+			jlblTempDay=new JLabel(Integer.toString(i));
+			jlblTempDay.setBounds(205+cal.get(Calendar.DAY_OF_WEEK)*77,191+cal.get(Calendar.WEEK_OF_MONTH)*59,100,20);
+			add(jlblTempDay);
+			dayList.add(jlblTempDay);
+		}//for
+		
 		
 		//달력배경
 		jlblCalendar = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceCalendar.png"));
 		jlblCalendar.setBounds(200,210,580,400);
 		add(jlblCalendar);
 		
+		//남은 연가 폰트
+		Font leftDayOffFont = new Font("맑은 고딕",Font.BOLD,20);
 		//남은 연가
 		StringBuilder leftDayOff = new StringBuilder();
-//		leftDayOff.append()
-		jlblLeftDayOff = new JLabel();
-		jlblLeftDayOff.setBounds(200,210,580,400);
+//		leftDayOff.append()\
+		//보더타이틀 설정
+		jlblLeftDayOff = new JLabel("남은연가 대충 따닥");
+		TitledBorder tb= new TitledBorder("남은 연가");
+		tb.setTitleFont(leftDayOffFont);
+		jlblLeftDayOff.setBorder(tb);
+		//라벨설정
+		jlblLeftDayOff.setFont(leftDayOffFont);
+		jlblLeftDayOff.setBounds(800,250,300,100);
 		add(jlblLeftDayOff);
 		
 		// 배경 설정
