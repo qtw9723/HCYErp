@@ -1,4 +1,4 @@
-package login;
+package VO;
 
 public class AddVO {
 	private String columnName;

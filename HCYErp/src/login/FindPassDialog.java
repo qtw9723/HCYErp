@@ -113,7 +113,7 @@ public class FindPassDialog extends JDialog {
 
 		setLayout(null);
 		
-		FindPassDialogEvt fpde=new FindPassDialog(this);
+		FindPassDialogEvt fpde=new FindPassDialogEvt(this);
 		jbtnFindPass.addActionListener(fpde);
 		jbtnCancel.addActionListener(fpde);
 		
