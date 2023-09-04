@@ -4,9 +4,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
@@ -35,7 +33,7 @@ public class ManageDoc extends JPanel {
 		jpDoc.setLayout(new BoxLayout(jpDoc, BoxLayout.Y_AXIS));//세로 정렬
 		jspDocList = new JScrollPane(jpDoc);
 		add(jspDocList);
-		jspDocList.setBounds(100,80,800,500);
+		jspDocList.setBounds(100,50,800,500);
 		jspDocList.setBorder(new TitledBorder("문서 목록"));
 		
 		//로그아웃 버튼
@@ -49,18 +47,18 @@ public class ManageDoc extends JPanel {
 		
 		//업로드 버튼
 		jbtnFileUpload = new JButton("파일업로드");
-		jbtnFileUpload.setBounds(950,100,130,55);
+		jbtnFileUpload.setBounds(930,100,130,55);
 		add(jbtnFileUpload);
 		//다운로드 버튼
 		jbtnFileDownload = new JButton("다운로드");
-		jbtnFileDownload.setBounds(950,180,130,55);
+		jbtnFileDownload.setBounds(930,200,130,55);
 		add(jbtnFileDownload);
 		//파일 삭제
 		jbtnFileDelete = new JButton("파일 삭제");
-		jbtnFileDelete.setBounds(950,260,130,55);
+		jbtnFileDelete.setBounds(930,300,130,55);
 		add(jbtnFileDelete);
 		jbtnRef = new JButton("부서 참조");
-		jbtnRef.setBounds(950,340,130,55);
+		jbtnRef.setBounds(930,400,130,55);
 		add(jbtnRef);
 		
 		// 배경 설정

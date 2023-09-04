@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 import attendance.Attendance;
+import dailyReport.DailyReport;
 import manageDoc.ManageDoc;
 
 @SuppressWarnings("serial")
@@ -98,15 +99,14 @@ public class HCYErp extends JFrame {
 		tabbedPane = new JTabbedPane();
 		tabbedPane.add("출근",new Attendance());
 		tabbedPane.add("문서관리",new ManageDoc());
-//		add(tabbedPane);
+		tabbedPane.add("업무일지 작성",new DailyReport());
+//		addComponent();
+		add(tabbedPane);
 		
-		addComponent();
 		
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);
 	}// constructor
-
-
 
 	public void removeComponent() {
 		remove(jlblFindPass);
