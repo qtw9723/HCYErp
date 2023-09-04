@@ -96,11 +96,11 @@ public class HCYErp extends JFrame {
 		
 		// 탭드 패인 생성
 		tabbedPane = new JTabbedPane();
-//		tabbedPane.add("출근",new Attendance());
+		tabbedPane.add("출근",new Attendance());
 		tabbedPane.add("문서관리",new ManageDoc());
-		add(tabbedPane);
+//		add(tabbedPane);
 		
-//		addComponent();
+		addComponent();
 		
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);
