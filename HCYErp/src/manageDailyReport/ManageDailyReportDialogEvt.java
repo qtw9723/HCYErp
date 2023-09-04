@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
 public class ManageDailyReportDialogEvt extends MouseAdapter implements ActionListener {
-	private ManageDailyReportDilog mdrd;
+	private ManageDailyReportDialog mdrd;
 
-	private ManageDailyReportDialogEvt(ManageDailyReportDilog mdrd) {
+	ManageDailyReportDialogEvt(ManageDailyReportDialog mdrd) {
 		this.mdrd = mdrd;
 	}//constructor
 

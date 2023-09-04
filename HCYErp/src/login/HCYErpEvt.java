@@ -10,7 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
+
+import attendance.Attendance;
+import manageDoc.ManageDoc;
 
 public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
@@ -29,14 +33,17 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-
+		if(e.getSource()==hcyE.getJbtnLogIn()) {
+			hcyE.removeComponent();
+			JTabbedPane jt=new JTabbedPane();
+			hcyE.add(jt);		
+			jt.add("출근",new Attendance());
+			jt.add("문서관리",new ManageDoc());
+		}
 	}
-
 	public void findPass() {
-
 		
-
 	}
+
 
 }

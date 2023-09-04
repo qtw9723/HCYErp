@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 import attendance.Attendance;
+import dailyReport.DailyReport;
+import manageDoc.ManageDoc;
 
 @SuppressWarnings("serial")
 public class HCYErp extends JFrame {
@@ -41,7 +43,7 @@ public class HCYErp extends JFrame {
 		
 		// 텍스트 로고 설정
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErpTextLogoSmall.png"));
-		jlblLogoTxt.setBounds(470, 160, 180, 150);
+		jlblLogoTxt.setBounds(470, 140, 180, 150);
 
 		// 로그인 폰트
 		Font loginFont = new Font("맑은고딕", Font.BOLD, 20);
@@ -96,14 +98,15 @@ public class HCYErp extends JFrame {
 		// 탭드 패인 생성
 		tabbedPane = new JTabbedPane();
 		tabbedPane.add("출근",new Attendance());
-		add(tabbedPane);
+		tabbedPane.add("문서관리",new ManageDoc());
+		tabbedPane.add("업무일지 작성",new DailyReport());
 //		addComponent();
+		add(tabbedPane);
+		
 		
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);
 	}// constructor
-
-
 
 	public void removeComponent() {
 		remove(jlblFindPass);
