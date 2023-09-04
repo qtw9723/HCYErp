@@ -122,6 +122,7 @@ public class ApplyDayOffDialog extends JDialog {
 			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 				int selectedIndex = (int) jcbEndMonth.getSelectedItem() - 1;
 				jcbEndMonth.setSelectedIndex(selectedIndex);
+				
 			}
 
 			@Override
@@ -245,54 +246,69 @@ public class ApplyDayOffDialog extends JDialog {
 		add(jbtnApply);
 		add(jbtnCancel);
 		
+		ApplyDayOffDialogEvt adode=new ApplyDayOffDialogEvt(this);
+		jcbReason.addActionListener(adode);
+		jcbStartMonth.addActionListener(adode);
+		jcbStartDay.addActionListener(adode);
+		jcbEndMonth.addActionListener(adode);
+		
 		
 		setBounds(100, 100, 800, 400);
 		setVisible(true);
-		this.addWindowListener(new WindowListener() {
-
-			@Override
-			public void windowOpened(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowIconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
-				dispose();
-			}
-
-			@Override
-			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		
 	}// constructor
+
+	public JComboBox<Integer> getJcbStartYear() {
+		return jcbStartYear;
+	}
+
+	public JComboBox<Integer> getJcbStartMonth() {
+		return jcbStartMonth;
+	}
+
+	public JComboBox<Integer> getJcbStartDay() {
+		return jcbStartDay;
+	}
+
+	public JComboBox<Integer> getJcbEndYear() {
+		return jcbEndYear;
+	}
+
+	public JComboBox<Integer> getJcbEndMonth() {
+		return jcbEndMonth;
+	}
+
+	public JComboBox<Integer> getJcbEndDay() {
+		return jcbEndDay;
+	}
+
+	public JComboBox<String> getJcbReason() {
+		return jcbReason;
+	}
+
+	public JTextArea getJtaWriteReason() {
+		return jtaWriteReason;
+	}
+
+	public JButton getJbtnApply() {
+		return jbtnApply;
+	}
+
+	public JButton getJbtnCancel() {
+		return jbtnCancel;
+	}
+
+	public JLabel getJlblPeriod() {
+		return jlblPeriod;
+	}
+
+	public JLabel getJlblDuring() {
+		return jlblDuring;
+	}
+
+	public JLabel getJlblReason() {
+		return jlblReason;
+	}
 
 	public static void main(String[] arg) {
 		new ApplyDayOffDialog();
