@@ -71,7 +71,7 @@ public class Attendance extends JPanel {
 		
 		Font ymFont = new Font("맑은 고딕",Font.BOLD,17);
 		JLabel jlblyear =new JLabel(Integer.toString(cal.get(Calendar.YEAR)));
-		jlblyear.setBounds(280,137,100,100);
+		jlblyear.setBounds(260,137,100,100);
 		jlblyear.setFont(ymFont);
 		add(jlblyear);
 		
@@ -80,6 +80,25 @@ public class Attendance extends JPanel {
 		jlblmonth.setFont(ymFont);
 		add(jlblmonth);
 		
+		//출근도장
+		//도장 선언
+		ImageIcon attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceStamp.png");
+		ImageIcon dayoff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYDayoffStamp.png");
+		ImageIcon getoff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYGetoffStamp.png");
+		ImageIcon tardy = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTardyStamp.png");
+		JLabel jlblAttend = new JLabel(attend);
+		JLabel jlblDayoff = new JLabel(dayoff);
+		JLabel jlblGetoff = new JLabel(getoff);
+		JLabel jlblTardy = new JLabel(tardy);
+		
+		jlblAttend.setBounds(100,100,160,160);
+		jlblDayoff.setBounds(200,100,160,160);
+		jlblGetoff.setBounds(300,100,160,160);
+		jlblTardy.setBounds(400,100,160,160);
+		add(jlblAttend);
+		add(jlblDayoff);
+		add(jlblGetoff);
+		add(jlblTardy);
 		
 		
 		//달력배경
@@ -97,10 +116,13 @@ public class Attendance extends JPanel {
 		TitledBorder tb= new TitledBorder("남은 연가");
 		tb.setTitleFont(leftDayOffFont);
 		jlblLeftDayOff.setBorder(tb);
-		//라벨설정
+		//남은 연가 라벨
 		jlblLeftDayOff.setFont(leftDayOffFont);
 		jlblLeftDayOff.setBounds(800,220,300,100);
 		add(jlblLeftDayOff);
+		
+		
+		
 		
 		// 배경 설정
 		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
