@@ -19,6 +19,8 @@ public class ManageDoc extends JPanel {
 	private JLabel jlblLogoTxt;
 	
 	public ManageDoc() {
+		ManageDocEvt event = new ManageDocEvt(this);
+		
 		setLayout(null);
 		
 		JPanel jpDoc = new JPanel();
@@ -39,6 +41,7 @@ public class ManageDoc extends JPanel {
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
+		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		//텍스트 로고
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
@@ -48,17 +51,22 @@ public class ManageDoc extends JPanel {
 		//업로드 버튼
 		jbtnFileUpload = new JButton("파일업로드");
 		jbtnFileUpload.setBounds(930,100,130,55);
+		jbtnFileUpload.addActionListener(event);
 		add(jbtnFileUpload);
 		//다운로드 버튼
 		jbtnFileDownload = new JButton("다운로드");
 		jbtnFileDownload.setBounds(930,200,130,55);
+		jbtnFileDownload.addActionListener(event);
 		add(jbtnFileDownload);
 		//파일 삭제
 		jbtnFileDelete = new JButton("파일 삭제");
 		jbtnFileDelete.setBounds(930,300,130,55);
+		jbtnFileDelete.addActionListener(event);
 		add(jbtnFileDelete);
+		//부서참조
 		jbtnRef = new JButton("부서 참조");
 		jbtnRef.setBounds(930,400,130,55);
+		jbtnRef.addActionListener(event);
 		add(jbtnRef);
 		
 		// 배경 설정

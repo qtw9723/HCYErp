@@ -26,27 +26,34 @@ public class Attendance extends JPanel {
 	public Attendance() {
 		List<JLabel> dayList = new ArrayList<JLabel>();
 		
+		AttendanceEvt event= new AttendanceEvt(this); 
+		
 		setLayout(null);
 		
 		//출근버튼
 		jbtnAttend = new JButton("출근");
 		jbtnAttend.setBounds(230,50,150,50);
+		jbtnAttend.addActionListener(event);
 		add(jbtnAttend);
 		//퇴근버튼
 		jbtnOffWork = new JButton("퇴근");
 		jbtnOffWork.setBounds(480,50,150,50);
+		jbtnOffWork.addActionListener(event);
 		add(jbtnOffWork);
 		//휴가신청버튼
 		jbtnApplyDayOff = new JButton("휴가신청");
 		jbtnApplyDayOff.setBounds(730,50,150,50);
+		jbtnApplyDayOff.addActionListener(event);
 		add(jbtnApplyDayOff);
 		//비밀번호 초기화버튼
 		jbtnChangePass = new JButton("비밀번호초기화");
 		jbtnChangePass.setBounds(1000,450,150,40);
+		jbtnChangePass.addActionListener(event);
 		add(jbtnChangePass);
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
+		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		//텍스트 로고
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
@@ -69,12 +76,14 @@ public class Attendance extends JPanel {
 			dayList.add(jlblTempDay);
 		}//for
 		
+		//연도 라벨
 		Font ymFont = new Font("맑은 고딕",Font.BOLD,17);
 		JLabel jlblyear =new JLabel(Integer.toString(cal.get(Calendar.YEAR)));
 		jlblyear.setBounds(260,137,100,100);
 		jlblyear.setFont(ymFont);
 		add(jlblyear);
 		
+		//월 라벨
 		JLabel jlblmonth =new JLabel(Integer.toString(cal.get(Calendar.MONTH)));
 		jlblmonth.setBounds(380,137,100,100);
 		jlblmonth.setFont(ymFont);
@@ -90,7 +99,6 @@ public class Attendance extends JPanel {
 		JLabel jlblDayoff = new JLabel(dayoff);
 		JLabel jlblGetoff = new JLabel(getoff);
 		JLabel jlblTardy = new JLabel(tardy);
-		
 		jlblAttend.setBounds(100,100,160,160);
 		jlblDayoff.setBounds(200,100,160,160);
 		jlblGetoff.setBounds(300,100,160,160);
@@ -99,7 +107,6 @@ public class Attendance extends JPanel {
 		add(jlblDayoff);
 		add(jlblGetoff);
 		add(jlblTardy);
-		
 		
 		//달력배경
 		jlblCalendar = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceCalendar.png"));

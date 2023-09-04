@@ -8,7 +8,7 @@ public class DailyReportEvt extends MouseAdapter implements ActionListener {
 	
 	private DailyReport dr;
 
-	private DailyReportEvt(DailyReport dr) {
+	public DailyReportEvt(DailyReport dr) {
 		this.dr = dr;
 	}//constructor
 
