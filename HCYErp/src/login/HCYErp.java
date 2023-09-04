@@ -96,14 +96,7 @@ public class HCYErp extends JFrame {
 		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		
-		// 탭드 패인 생성
-		tabbedPane = new JTabbedPane();
-		tabbedPane.add("출근",new Attendance());
-		tabbedPane.add("문서관리",new ManageDoc());
-		tabbedPane.add("업무일지 작성",new DailyReport());
-		tabbedPane.add("업무일지 관리",new ManageDailyReport());
-//		addComponent();
-		add(tabbedPane);
+		addComponent();
 		
 		
 		setVisible(true);

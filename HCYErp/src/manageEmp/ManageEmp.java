@@ -1,5 +1,8 @@
 package manageEmp;
 
-public class ManageEmp {
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class ManageEmp extends JFrame {
 
 }//class
