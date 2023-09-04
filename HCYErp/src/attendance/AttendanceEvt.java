@@ -15,7 +15,11 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+		if(e.getSource()==ad.getJbtnChangePass()) {
+			System.out.println("as");
+			new ChangePassDialog();
+		}
 	}//actionPerformed
 
+	
 }//Class

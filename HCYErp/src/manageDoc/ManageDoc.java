@@ -69,4 +69,33 @@ public class ManageDoc extends JPanel {
 		add(jlblBG);
 		
 	}//constructor
+
+	public JScrollPane getJspDocList() {
+		return jspDocList;
+	}
+
+	public JButton getJbtnFileUpload() {
+		return jbtnFileUpload;
+	}
+
+	public JButton getJbtnFileDownload() {
+		return jbtnFileDownload;
+	}
+
+	public JButton getJbtnFileDelete() {
+		return jbtnFileDelete;
+	}
+
+	public JButton getJbtnRef() {
+		return jbtnRef;
+	}
+
+	public JButton getJbtnLogOut() {
+		return jbtnLogOut;
+	}
+
+	public JLabel getJlblLogoTxt() {
+		return jlblLogoTxt;
+	}
+	
 }// class
