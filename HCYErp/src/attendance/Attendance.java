@@ -131,4 +131,41 @@ public class Attendance extends JPanel {
 		
 		
 	}//constructor
+
+	public JButton getJbtnAttend() {
+		return jbtnAttend;
+	}
+
+	public JButton getJbtnOffWork() {
+		return jbtnOffWork;
+	}
+
+	public JButton getJbtnApplyDayOff() {
+		return jbtnApplyDayOff;
+	}
+
+	public JLabel getJlblMonthlyAttendance() {
+		return jlblMonthlyAttendance;
+	}
+
+	public JLabel getJlblCalendar() {
+		return jlblCalendar;
+	}
+
+	public JLabel getJlblLeftDayOff() {
+		return jlblLeftDayOff;
+	}
+
+	public JButton getJbtnChangePass() {
+		return jbtnChangePass;
+	}
+
+	public JButton getJbtnLogOut() {
+		return jbtnLogOut;
+	}
+
+	public JLabel getJlblLogoTxt() {
+		return jlblLogoTxt;
+	}
+	
 }//class
