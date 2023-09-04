@@ -36,13 +36,14 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			hcyE.removeComponent();
 			JTabbedPane jt=new JTabbedPane();
 			hcyE.add(jt);		
-			jt.add("출근",new Attendance());
+			jt.add("출근",new Attendance(hcyE));
 			jt.add("문서관리",new ManageDoc());
 			jt.add("업무일지 작성",new DailyReport());
 			jt.add("업무일지 관리",new ManageDailyReport());
 			jt.add("사원정보 관리",new ManageEmp());
 		}
 	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		new FindPassDialog().setBounds(hcyE.getX()+200,hcyE.getY()+150,800,400);

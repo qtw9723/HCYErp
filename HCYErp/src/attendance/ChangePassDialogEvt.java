@@ -15,7 +15,7 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+			
 	}
 	
 }//class

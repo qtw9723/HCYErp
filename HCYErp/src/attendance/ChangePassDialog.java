@@ -104,7 +104,7 @@ public class ChangePassDialog extends JDialog{
 		add(jbtnOK);
 		add(jbtnCancel);
 		
-		setSize(500,500);
+//		setSize(500,500);
 		setVisible(true);
 		this.addWindowListener(new WindowListener() {
 			

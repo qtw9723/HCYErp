@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import login.HCYErp;
+
 @SuppressWarnings("serial")
 public class Attendance extends JPanel {
 	private JButton jbtnAttend;
@@ -22,8 +24,10 @@ public class Attendance extends JPanel {
 	private JButton jbtnChangePass;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
+	private HCYErp hcyE;
 	
-	public Attendance() {
+	public Attendance(HCYErp hcyE) {
+		this.hcyE=hcyE;
 		List<JLabel> dayList = new ArrayList<JLabel>();
 		
 		AttendanceEvt event= new AttendanceEvt(this); 
@@ -135,6 +139,8 @@ public class Attendance extends JPanel {
 		
 		
 	}//constructor
+	
+
 
 	public JButton getJbtnAttend() {
 		return jbtnAttend;
@@ -170,6 +176,10 @@ public class Attendance extends JPanel {
 
 	public JLabel getJlblLogoTxt() {
 		return jlblLogoTxt;
+	}
+
+	public HCYErp getHcyE() {
+		return hcyE;
 	}
 	
 }//class

@@ -32,7 +32,10 @@ public class HCYErp extends JFrame {
 	private JLabel jlblPass;
 	private JLabel jlblBG;
 	private int user;
+	private int jfWidth;
+	private int jfHeight;
 
+	
 	public HCYErp() {
 		super("마 자신있나");
 		// 이벤트 객체 생성
@@ -209,6 +212,13 @@ public class HCYErp extends JFrame {
 		this.user = user;
 	}
 	
-	
+	public int getJfWidth() {
+		return jfWidth;
+	}
+
+	public int getJfHeight() {
+		return jfHeight;
+	}
+
 
 }// class
