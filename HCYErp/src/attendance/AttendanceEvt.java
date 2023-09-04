@@ -9,7 +9,7 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 	private Attendance ad;
 	
 	public AttendanceEvt(Attendance ad) {
-		
+		this.ad=ad;
 	}//constructor
 	
 	@Override

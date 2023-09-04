@@ -155,5 +155,65 @@ public class ChangePassDialog extends JDialog{
 	public static void main(String[] arg) {
 		new ChangePassDialog();
 	}//main
+
+	public JPasswordField getJpfCurrentPass() {
+		return jpfCurrentPass;
+	}
+
+	public JPasswordField getJpfNewPass() {
+		return jpfNewPass;
+	}
+
+	public JPasswordField getJpfCheckNewPass() {
+		return jpfCheckNewPass;
+	}
+
+	public JTextField getJtfCurrentPass() {
+		return jtfCurrentPass;
+	}
+
+	public JTextField getJtfNewPass() {
+		return jtfNewPass;
+	}
+
+	public JTextField getJtfCheckNewPass() {
+		return jtfCheckNewPass;
+	}
+
+	public JLabel getJlblNewHide() {
+		return jlblNewHide;
+	}
+
+	public JLabel getJlblNewView() {
+		return jlblNewView;
+	}
+
+	public JLabel getJlblCheckNewHide() {
+		return jlblCheckNewHide;
+	}
+
+	public JLabel getJlblCheckNewView() {
+		return jlblCheckNewView;
+	}
+
+	public JLabel getJlblCurrentPass() {
+		return jlblCurrentPass;
+	}
+
+	public JLabel getJlblNewPass() {
+		return jlblNewPass;
+	}
+
+	public JLabel getJlblCheckNewPass() {
+		return jlblCheckNewPass;
+	}
+
+	public JButton getJbtnOK() {
+		return jbtnOK;
+	}
+
+	public JButton getJbtnCancel() {
+		return jbtnCancel;
+	}
 	
 }//class
