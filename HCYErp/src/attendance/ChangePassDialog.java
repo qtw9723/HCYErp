@@ -50,6 +50,6 @@ public class ChangePassDialog extends JDialog{
 	
 	public static void main(String[] arg) {
 		new ChangePassDialog();
-	}
+	}//main
 	
 }//class
