@@ -142,11 +142,11 @@ public class FindPassDialog extends JDialog {
 		add(jlblSsn);
 		add(jlblLogoGrey);
 		add(jlblBg);
-		setBounds(100, 100, 800, 400);
+//		setBounds(100, 100, 800, 400);
 		setVisible(true);
 	}// constructor
 
-	public static void main(String[] arg) {
-		new FindPassDialog();
-	}
+//	public static void main(String[] arg) {
+//		new FindPassDialog();
+//	}
 }// class

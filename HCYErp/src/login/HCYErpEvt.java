@@ -1,25 +1,24 @@
 package login;
 
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JButton;
-import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
 
 import attendance.Attendance;
+import dailyReport.DailyReport;
+import manageDailyReport.ManageDailyReport;
 import manageDoc.ManageDoc;
+import manageEmp.ManageEmp;
 
 public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 	private HCYErp hcyE;
-	private JInternalFrame jif;
 	private int empNo;
 
 	public HCYErpEvt(HCYErp hcyE) {
@@ -39,8 +38,25 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			hcyE.add(jt);		
 			jt.add("출근",new Attendance());
 			jt.add("문서관리",new ManageDoc());
+			jt.add("업무일지 작성",new DailyReport());
+			jt.add("업무일지 관리",new ManageDailyReport());
+			jt.add("사원정보 관리",new ManageEmp());
 		}
 	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		new FindPassDialog().setBounds(hcyE.getX()+200,hcyE.getY()+150,800,400);
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		hcyE.getJlblFindPass().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	}
+//	@Override
+//	public void mouseExited(MouseEvent e) {
+//		
+//	}
+	
 	public void findPass() {
 		
 	}

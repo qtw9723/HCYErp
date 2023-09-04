@@ -58,6 +58,7 @@ public class ChangePassDialog extends JDialog{
 		jtfCheckNewPass.setVisible(false);
 		
 		setLayout(null);
+		
 		ChangePassDialogEvt cpde=new ChangePassDialogEvt(this);
 		jbtnOK.addActionListener(cpde);
 		jbtnCancel.addActionListener(cpde);

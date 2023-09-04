@@ -35,7 +35,7 @@ public class ManageDailyReport extends JPanel {
 		jcbYear.addItem(year);
 		jcbYear.addItem(year+1);
 		jcbYear.setBounds(100,100,100,50);
-		jcbYear.setBackground(0xffffff);
+//		jcbYear.setBackground(0xffffff);
 		add(jcbYear);
 		
 		for(int i=1;i<13;i++) {
