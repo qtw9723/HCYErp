@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import login.HCYErp;
 
+@SuppressWarnings("serial")
 public class ManageEmpRegister extends JPanel{
 	private JButton jbtnEmpRegister;
 	private JButton jbtnResign;
@@ -80,6 +80,50 @@ public class ManageEmpRegister extends JPanel{
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 	}//constructor
+	
+	
+
+	public JButton getJbtnEmpRegister() {
+		return jbtnEmpRegister;
+	}
+
+
+
+	public JButton getJbtnResign() {
+		return jbtnResign;
+	}
+
+
+
+	public JButton getJbtnAbsence() {
+		return jbtnAbsence;
+	}
+
+
+
+	public JTable getJtRegiAbInfo() {
+		return jtRegiAbInfo;
+	}
+
+
+
+	public JButton getJbtnLogOut() {
+		return jbtnLogOut;
+	}
+
+
+
+	public JLabel getJlblLogoTxt() {
+		return jlblLogoTxt;
+	}
+
+
+
+	public JScrollPane getJspResignAb() {
+		return jspResignAb;
+	}
+
+
 
 	public HCYErp getHcyE() {
 		return hcyE;

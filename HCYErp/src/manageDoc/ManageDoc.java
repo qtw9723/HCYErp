@@ -11,6 +11,7 @@ import javax.swing.border.TitledBorder;
 
 import login.HCYErp;
 
+@SuppressWarnings("serial")
 public class ManageDoc extends JPanel {
 	private JScrollPane jspDocList;
 	private JButton jbtnFileUpload;

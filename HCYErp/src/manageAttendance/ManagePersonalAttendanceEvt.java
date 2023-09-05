@@ -4,10 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
-public class ManageAttendanceEvt extends MouseAdapter implements ActionListener{
+public class ManagePersonalAttendanceEvt extends MouseAdapter implements ActionListener{
 
-	private ManageAttendance ma;
-	public ManageAttendanceEvt(ManageAttendance ma) {
+	private ManagePersonalAttendance ma;
+	public ManagePersonalAttendanceEvt(ManagePersonalAttendance ma) {
 		this.ma=ma;  
 	}//Constructor
 	
