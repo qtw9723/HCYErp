@@ -76,7 +76,6 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener 
 				cpd.getJlblNewHide().setVisible(true);
 				cpd.getJlblNewView().setVisible(false);
 
-
 				
 				char[] passwordChars = cpd.getJpfNewPass().getPassword();
 				String password = new String(passwordChars);

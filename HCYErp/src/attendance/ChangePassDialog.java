@@ -1,12 +1,18 @@
 package attendance;
 
 
+import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 @SuppressWarnings("serial")
 public class ChangePassDialog extends JDialog{
@@ -65,6 +71,53 @@ public class ChangePassDialog extends JDialog{
 		jlblNewView.addMouseListener(cpde);
 		jlblCheckNewHide.addMouseListener(cpde);
 		jlblCheckNewView.addMouseListener(cpde);
+		
+		//텍스트 필드 디자인
+		Border focusField=BorderFactory.createLineBorder(new Color(0xEE82EE));// Line border
+		Border unfocusField=BorderFactory.createLineBorder(Color.LIGHT_GRAY);// Line border
+		
+		jpfCurrentPass.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				jpfCurrentPass.setBorder(unfocusField);
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				jpfCurrentPass.setBorder(focusField);
+			}
+		});
+		
+		jpfNewPass.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				jpfNewPass.setBorder(unfocusField);
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				jpfNewPass.setBorder(focusField);
+			}
+		});
+		
+		jpfCheckNewPass.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				jpfCheckNewPass.setBorder(unfocusField);
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				jpfCheckNewPass.setBorder(focusField);
+			}
+		});
+		
 		//컴포넌트 크기설정
 		jpfCurrentPass.setBounds(100,100,150,30);
 		jpfNewPass.setBounds(100,200,150,30);
