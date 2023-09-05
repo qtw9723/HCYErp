@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
+import login.HCYErp;
+
 @SuppressWarnings("serial")
 public class ManageEmp extends JPanel {
 	private JList<String> jlDepartment;
@@ -19,8 +21,10 @@ public class ManageEmp extends JPanel {
 	private JScrollPane jspName;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
+	private HCYErp hcyE;
 	
-	public ManageEmp() {
+	public ManageEmp(HCYErp hcyE) {
+		this.hcyE=hcyE;
 		ManageEmpEvt event = new ManageEmpEvt(this);
 		
 		setLayout(null);

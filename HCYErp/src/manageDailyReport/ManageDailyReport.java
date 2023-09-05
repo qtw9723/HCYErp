@@ -12,6 +12,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import login.HCYErp;
+
 @SuppressWarnings("serial")
 public class ManageDailyReport extends JPanel {
 	private JComboBox<Integer> jcbYear;
@@ -24,8 +26,10 @@ public class ManageDailyReport extends JPanel {
 	private JScrollPane jspReport;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
+	private HCYErp hcyE;
 	
-	public ManageDailyReport() {
+	public ManageDailyReport(HCYErp hcyE) {
+		this.hcyE=hcyE;
 		ManageDailyReportEvt event = new ManageDailyReportEvt(this);
 		
 		setLayout(null);

@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
+import login.HCYErp;
+
 public class ManageDoc extends JPanel {
 	private JScrollPane jspDocList;
 	private JButton jbtnFileUpload;
@@ -17,8 +19,10 @@ public class ManageDoc extends JPanel {
 	private JButton jbtnRef;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
+	private HCYErp hcyE;
 	
-	public ManageDoc() {
+	public ManageDoc(HCYErp hcyE) {
+		this.hcyE=hcyE;
 		ManageDocEvt event = new ManageDocEvt(this);
 		
 		setLayout(null);
