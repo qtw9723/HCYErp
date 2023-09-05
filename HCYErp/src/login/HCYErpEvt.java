@@ -7,9 +7,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import VO.EmpVO;
 import attendance.Attendance;
 import dailyReport.DailyReport;
 import manageAttendance.ManageAttendance;
@@ -23,6 +26,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 	private HCYErp hcyE;
 	private int empNo;
+	private EmpVO eVO;
 
 	public HCYErpEvt(HCYErp hcyE) {
 		this.hcyE = hcyE;
@@ -36,6 +40,12 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==hcyE.getJbtnLogIn()) {
+			try {
+				login();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			hcyE.removeComponent();
 			JTabbedPane jt=new JTabbedPane();
 			hcyE.add(jt);		
@@ -64,7 +74,25 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 //		
 //	}
 	
-	public void findPass() {
+	public void login() throws SQLException {
+		
+		HCYErpDAO hcyEDAO=HCYErpDAO.getInstance();
+		
+		char[] passwordChars=hcyE.getJpfPass().getPassword();
+		String password=new String(passwordChars);
+		
+		eVO=new EmpVO(Integer.parseInt(hcyE.getJtfEmpNo().getText()),password);
+		System.out.println(eVO.getEmpNo()+" / "+password);
+		
+		hcyEDAO.selectLogin(eVO);
+		
+//		if(hcyEDAO.selectLogin(eVO)==false) {
+//			JOptionPane.showMessageDialog(hcyE, "아이디 또는 비밀번호가 잘못되었습니다.");
+//		}else {	
+////			hcyE.getJtfEmpNo().getText()=eVO.getEm
+//		}
+		
+		
 		
 	}
 
