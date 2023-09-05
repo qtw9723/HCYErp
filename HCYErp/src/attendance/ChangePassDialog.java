@@ -1,7 +1,5 @@
 package attendance;
 
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,9 +33,9 @@ public class ChangePassDialog extends JDialog{
 		jpfNewPass=new JPasswordField();
 		jpfCheckNewPass=new JPasswordField();
 		//텍스트필드 선언
-		jtfCurrentPass=new JPasswordField();
-		jtfNewPass=new JPasswordField();
-		jtfCheckNewPass=new JPasswordField();
+		jtfCurrentPass=new JTextField();
+		jtfNewPass=new JTextField();
+		jtfCheckNewPass=new JTextField();
 		//버튼선언
 		jbtnOK=new JButton("변경확인");
 		jbtnCancel=new JButton("취소");
@@ -73,7 +71,7 @@ public class ChangePassDialog extends JDialog{
 		jpfCheckNewPass.setBounds(100,300,150,30);
 		
 		jtfNewPass.setBounds(100,200,150,30);
-		jtfCheckNewPass.setBounds(100,200,150,30);
+		jtfCheckNewPass.setBounds(100,300,150,30);
 		
 		jlblNewHide.setBounds(250,200,30,30);
 		jlblNewView.setBounds(250,200,30,30);
@@ -103,55 +101,12 @@ public class ChangePassDialog extends JDialog{
 		
 		add(jbtnOK);
 		add(jbtnCancel);
-		
-//		setSize(500,500);
+		setSize(500,500);
 		setVisible(true);
-		this.addWindowListener(new WindowListener() {
-			
-			@Override
-			public void windowOpened(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowIconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
-				dispose();
-			}
-			
-			@Override
-			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});//windowListener
+		
 		
 	}//constructor
+	
 	
 	public static void main(String[] arg) {
 		new ChangePassDialog();

@@ -1,8 +1,6 @@
 package attendance;
 
 import java.awt.Font;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.Calendar;
 
 import javax.swing.JButton;

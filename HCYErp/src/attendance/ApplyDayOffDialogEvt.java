@@ -2,13 +2,9 @@ package attendance;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.Calendar;
 
 public class ApplyDayOffDialogEvt extends MouseAdapter implements ActionListener{
@@ -24,11 +20,12 @@ public class ApplyDayOffDialogEvt extends MouseAdapter implements ActionListener
 			adod.dispose();
 		}
 
-       });
+       });//addWindowListener
     }
     
     
 	public void startUpdateDays() {
+		
         int selectedYear = (int) adod.getJcbStartYear().getSelectedItem();
         int selectedMonth = (int) adod.getJcbStartMonth().getSelectedItem();
 
@@ -41,7 +38,7 @@ public class ApplyDayOffDialogEvt extends MouseAdapter implements ActionListener
         for (int i = 1; i <= maxDay; i++) {
             adod.getJcbStartDay().addItem(i);
         }
-    }
+    }//startUpdateDays
 	
 	public void endUpdateDays() {
 		int selectedYear = (int) adod.getJcbEndYear().getSelectedItem();
@@ -56,7 +53,7 @@ public class ApplyDayOffDialogEvt extends MouseAdapter implements ActionListener
 		for (int i = 1; i <= maxDay; i++) {
 			adod.getJcbEndDay().addItem(i);
 		}
-	}
+	}//endUpdateDays
 
 
 	@Override
@@ -76,7 +73,9 @@ public class ApplyDayOffDialogEvt extends MouseAdapter implements ActionListener
 		if(e.getSource()==adod.getJcbEndMonth()) {
 			endUpdateDays();
 		}
-	
-	}
+		if(e.getSource()==adod.getJbtnCancel()) {
+			adod.dispose();
+		}
+	}//actionPerformed
     
 }
