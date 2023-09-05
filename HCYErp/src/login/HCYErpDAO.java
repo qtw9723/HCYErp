@@ -13,13 +13,13 @@ public class HCYErpDAO {
 	private static HCYErpDAO hcyEDAO;
 	
 	private HCYErpDAO() {
-		if(hcyEDAO==null) {
-			hcyEDAO=new HCYErpDAO();
-		}
-		return;
+		
 	}//constructor
 	
 	public static HCYErpDAO getInstance() {
+		if(hcyEDAO==null) {
+			hcyEDAO=new HCYErpDAO();
+		}
 		return hcyEDAO;
 	}//getInstance
 	
@@ -41,6 +41,8 @@ public class HCYErpDAO {
 			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 			
 			String sql="select empno,pass from emp where empno=?";
+			
+			
 			
 			pstmt=con.prepareStatement(sql);
 			
