@@ -42,24 +42,21 @@ public class HCYErpDAO {
 			
 			String sql="select empno,pass from emp where empno=?";
 			
-			
-			
 			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setInt(1, eVO.getEmpNo());
 			
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
 				eVO=new EmpVO(rs.getInt("empno"),rs.getString("pass"));
-				System.out.println(eVO.getEmpNo());
+//				System.out.println(eVO.getEmpNo()+" / "+eVO.getPass());
 			}
 			if(eVO!=null) {
 				flag=true;
 			}
 		} finally {
-			// 6.연결 끊기
-
 			db.dbclose(rs, pstmt, con);
-
 		}
 		
 		return flag;

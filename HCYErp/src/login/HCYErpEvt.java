@@ -84,15 +84,11 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		eVO=new EmpVO(Integer.parseInt(hcyE.getJtfEmpNo().getText()),password);
 		System.out.println(eVO.getEmpNo()+" / "+password);
 		
-		hcyEDAO.selectLogin(eVO);
-		
-//		if(hcyEDAO.selectLogin(eVO)==false) {
-//			JOptionPane.showMessageDialog(hcyE, "아이디 또는 비밀번호가 잘못되었습니다.");
-//		}else {	
-////			hcyE.getJtfEmpNo().getText()=eVO.getEm
-//		}
 		
 		
+		if(hcyEDAO.selectLogin(eVO)) {
+
+		}
 		
 	}
 
