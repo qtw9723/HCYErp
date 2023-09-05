@@ -1,7 +1,10 @@
 package manageAttendance;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,12 +17,9 @@ import login.HCYErp;
 
 @SuppressWarnings("serial")
 public class ManagePersonalAttendance extends JPanel{
-	private JButton jbtnAttendDate;
 	private JButton jbtnAttendName;
 	private JCheckBox jcbAbsent;
 	private JCheckBox jcbDayOff;
-	private JComboBox<Integer> jcbYear;
-	private JComboBox<Integer> jcbMonth;
 	private JComboBox<String> jcbEmp;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
@@ -32,25 +32,39 @@ public class ManagePersonalAttendance extends JPanel{
 		setLayout(null);
 		ManagePersonalAttendanceEvt event = new ManagePersonalAttendanceEvt(this);
 		
-		//연월일 콤박
-		//연 콤박
-		jcbYear = new JComboBox<Integer>();
+		//달력날짜
+		List<JLabel> dayList = new ArrayList<JLabel>();
 		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		jcbYear.addItem(year-1);
-		jcbYear.addItem(year);
-		jcbYear.addItem(year+1);
-		jcbYear.setBounds(100,100,130,40);
-		jcbYear.setBackground(new Color(0xffffff));
-		add(jcbYear);
-		//월 콤박
-		jcbMonth = new JComboBox<Integer>();
-		for(int i = 1;i<13;i++) {
-			jcbMonth.addItem(i);
+		JLabel jlblTempDay = new JLabel();
+		for(int i=1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
+			cal.set(Calendar.DATE, i);
+			jlblTempDay=new JLabel(Integer.toString(i));
+			jlblTempDay.setBounds(205+cal.get(Calendar.DAY_OF_WEEK)*77,161+cal.get(Calendar.WEEK_OF_MONTH)*59,100,20);
+			add(jlblTempDay);
+			dayList.add(jlblTempDay);
 		}//for
-		jcbMonth.setBounds(260,100,130,40);
-		jcbMonth.setBackground(new Color(0xffffff));
-		add(jcbMonth);
+		
+		//연도 라벨
+		Font ymFont = new Font("맑은 고딕",Font.BOLD,17);
+		JLabel jlblyear =new JLabel(Integer.toString(cal.get(Calendar.YEAR)));
+		jlblyear.setBounds(260,137,100,100);
+		jlblyear.setFont(ymFont);
+		add(jlblyear);
+		
+		//월 라벨
+		JLabel jlblmonth =new JLabel(Integer.toString(cal.get(Calendar.MONTH)));
+		jlblmonth.setBounds(380,137,100,100);
+		jlblmonth.setFont(ymFont);
+		add(jlblmonth);
+		
+		//사원 콤박
+		jcbEmp = new JComboBox<String>();
+		for(int i = 0 ;i<100;i++) {
+		jcbEmp.addItem(i+"번사원");
+		}//다오 나오면 삭제
+		jcbEmp.setBounds(300,70,130,40);
+		jcbEmp.setBackground(new Color(0xffffff));
+		add(jcbEmp);
 		
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
@@ -73,9 +87,6 @@ public class ManagePersonalAttendance extends JPanel{
 		return hcyE;
 	}
 
-	public JButton getJbtnAttendDate() {
-		return jbtnAttendDate;
-	}
 
 	public JButton getJbtnAttendName() {
 		return jbtnAttendName;
@@ -89,13 +100,6 @@ public class ManagePersonalAttendance extends JPanel{
 		return jcbDayOff;
 	}
 
-	public JComboBox<Integer> getJcbYear() {
-		return jcbYear;
-	}
-
-	public JComboBox<Integer> getJcbMonth() {
-		return jcbMonth;
-	}
 
 	public JComboBox<String> getJcbEmp() {
 		return jcbEmp;
