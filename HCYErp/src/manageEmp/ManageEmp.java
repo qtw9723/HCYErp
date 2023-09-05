@@ -34,10 +34,32 @@ public class ManageEmp extends JPanel {
 		jspDepartment = new JScrollPane(jlDepartment);
 		jspDepartment.setBounds(150,100,230,400);
 		jspDepartment.setBorder(new TitledBorder("부서"));
+		jlDepartment.addListSelectionListener(event);
 		add(jspDepartment);
 		
 		//팀 리스트
+		DefaultListModel<String> dlmteam = new DefaultListModel<String>();
+		jlTeam = new JList<String>(dlmteam);
+		for(int i =1;i<100;i++) {
+			dlmteam.addElement("팀"+i);
+		}//이거 다오 들어오면 삭제
+		jspTeam = new JScrollPane(jlTeam);
+		jspTeam.setBounds(430,100,230,400);
+		jspTeam.setBorder(new TitledBorder("팀"));
+		jlTeam.addListSelectionListener(event);
+		add(jspTeam);
 		
+		//사원 리스트
+		DefaultListModel<String> dlmEmp = new DefaultListModel<String>();
+		jlName = new JList<String>(dlmEmp);
+		for(int i =1;i<100;i++) {
+			dlmEmp.addElement("사원"+i);
+		}//이거 다오 들어오면 삭제
+		jspName = new JScrollPane(jlName);
+		jspName.setBounds(710,100,230,400);
+		jspName.setBorder(new TitledBorder("사원"));
+		jlName.addListSelectionListener(event);
+		add(jspName);
 		
 		
 		

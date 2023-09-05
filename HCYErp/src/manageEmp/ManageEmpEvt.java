@@ -4,7 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
-public class ManageEmpEvt extends MouseAdapter implements ActionListener{
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+public class ManageEmpEvt extends MouseAdapter implements ActionListener, ListSelectionListener{
 
 	private ManageEmp me;
 	
@@ -14,8 +17,11 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
-	}
+	}//actionPerformed
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+	}//valueChanged
 	
 }//class
