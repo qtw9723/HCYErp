@@ -101,6 +101,10 @@ public class HCYErp extends JFrame {
 		
 		addComponent();
 		
+		//나중에 빼라잉
+		jtfEmpNo.setText("4702");
+		jpfPass.setText("1234");
+		
 		
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);
