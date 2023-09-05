@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import login.HCYErp;
+
 public class ManageEmpRegister extends JPanel{
 	private JButton jbtnEmpRegister;
 	private JButton jbtnResign;
@@ -20,8 +22,9 @@ public class ManageEmpRegister extends JPanel{
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
 	private JScrollPane jspResignAb;
+	private HCYErp hcyE;
 	
-	public ManageEmpRegister() {
+	public ManageEmpRegister(HCYErp hcyE) {
 		ManageEmpRegisterEvt event = new ManageEmpRegisterEvt(this);
 		
 		//입퇴사자 테이블
@@ -62,4 +65,9 @@ public class ManageEmpRegister extends JPanel{
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 	}//constructor
+
+	public HCYErp getHcyE() {
+		return hcyE;
+	}
+	
 }//class

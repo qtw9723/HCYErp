@@ -107,5 +107,9 @@ public class ManageDoc extends JPanel {
 	public JLabel getJlblLogoTxt() {
 		return jlblLogoTxt;
 	}
+
+	public HCYErp getHcyE() {
+		return hcyE;
+	}
 	
 }// class

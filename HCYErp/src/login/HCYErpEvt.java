@@ -12,9 +12,12 @@ import javax.swing.JTabbedPane;
 
 import attendance.Attendance;
 import dailyReport.DailyReport;
+import manageAttendance.ManageAttendance;
 import manageDailyReport.ManageDailyReport;
 import manageDoc.ManageDoc;
 import manageEmp.ManageEmp;
+import manageEmpRegister.ManageEmpRegister;
+import manageLeave.ManageLeave;
 
 public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
@@ -41,6 +44,9 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			jt.add("업무일지 작성",new DailyReport(hcyE));
 			jt.add("업무일지 관리",new ManageDailyReport(hcyE));
 			jt.add("사원정보 관리",new ManageEmp(hcyE));
+			jt.add("사원정보 관리",new ManageEmpRegister(hcyE));
+			jt.add("사원정보 관리",new ManageAttendance(hcyE));
+			jt.add("사원정보 관리",new ManageLeave(hcyE));
 		}
 	}
 	

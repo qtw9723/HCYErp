@@ -13,6 +13,9 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+	if(e.getSource()==md.getJbtnFileUpload()) {
+		new FileUploadDialog().setBounds(md.getHcyE().getX()+100, md.getHcyE().getY()+100, 500, 500);
+	}
 	}//actionPerformed
 
 }//class
