@@ -115,4 +115,50 @@ public class ManageDailyReport extends JPanel {
 		add(jlblBG);
 	}//constructor
 
+	public JComboBox<Integer> getJcbYear() {
+		return jcbYear;
+	}
+
+	public JComboBox<Integer> getJcbMonth() {
+		return jcbMonth;
+	}
+
+	public JComboBox<Integer> getJcbDay() {
+		return jcbDay;
+	}
+
+	public JComboBox<String> getJcbEmp() {
+		return jcbEmp;
+	}
+
+	public JButton getJbtnDateSearch() {
+		return jbtnDateSearch;
+	}
+
+	public JButton getJbtnEmpSearch() {
+		return jbtnEmpSearch;
+	}
+
+	public JList<String> getJlReport() {
+		return jlReport;
+	}
+
+	public JScrollPane getJspReport() {
+		return jspReport;
+	}
+
+	public JButton getJbtnLogOut() {
+		return jbtnLogOut;
+	}
+
+	public JLabel getJlblLogoTxt() {
+		return jlblLogoTxt;
+	}
+
+	public HCYErp getHcyE() {
+		return hcyE;
+	}
+	
+	
+
 }//class

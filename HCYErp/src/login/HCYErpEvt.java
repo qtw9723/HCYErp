@@ -15,7 +15,7 @@ import javax.swing.JTabbedPane;
 import VO.EmpVO;
 import attendance.Attendance;
 import dailyReport.DailyReport;
-import manageAttendance.ManageAttendance;
+import manageAttendance.ManageMonthlyAttendance;
 import manageDailyReport.ManageDailyReport;
 import manageDoc.ManageDoc;
 import manageEmp.ManageEmp;
@@ -55,7 +55,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			jt.add("업무일지 관리",new ManageDailyReport(hcyE));
 			jt.add("사원정보 관리",new ManageEmp(hcyE));
 			jt.add("사원정보 관리",new ManageEmpRegister(hcyE));
-			jt.add("사원정보 관리",new ManageAttendance(hcyE));
+			jt.add("사원정보 관리",new ManageMonthlyAttendance(hcyE));
 			jt.add("사원정보 관리",new ManageLeave(hcyE));
 		}
 	}
