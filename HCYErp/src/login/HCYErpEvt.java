@@ -37,10 +37,10 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			JTabbedPane jt=new JTabbedPane();
 			hcyE.add(jt);		
 			jt.add("출근",new Attendance(hcyE));
-			jt.add("문서관리",new ManageDoc());
-			jt.add("업무일지 작성",new DailyReport());
-			jt.add("업무일지 관리",new ManageDailyReport());
-			jt.add("사원정보 관리",new ManageEmp());
+			jt.add("문서관리",new ManageDoc(hcyE));
+			jt.add("업무일지 작성",new DailyReport(hcyE));
+			jt.add("업무일지 관리",new ManageDailyReport(hcyE));
+			jt.add("사원정보 관리",new ManageEmp(hcyE));
 		}
 	}
 	

@@ -7,14 +7,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
+import login.HCYErp;
+
 @SuppressWarnings("serial")
 public class DailyReport extends JPanel {
 	private JButton jbtnReport;
 	private JTextArea jtaReport;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
+	private HCYErp hcyE;
 	
-	public DailyReport() {
+	public DailyReport(HCYErp hcyE) {
+		this.hcyE=hcyE;
 		DailyReportEvt event = new DailyReportEvt(this);
 		
 		setLayout(null);
