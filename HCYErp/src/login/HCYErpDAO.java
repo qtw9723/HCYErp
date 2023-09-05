@@ -25,9 +25,12 @@ public class HCYErpDAO {
 	
 
 	
-	public boolean selectLogin(EmpVO eVO) throws SQLException {
+	public boolean selectLogin(int empno,String password) throws SQLException {
 		
 		boolean flag=false;
+		
+		EmpVO eVO=null;
+		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -40,25 +43,24 @@ public class HCYErpDAO {
 		try {
 			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 			
-			String sql="select empno,pass from emp where empno=?";
+			String sql="select empno,pass from emp where empno=? and pass=?";
 			
 			pstmt=con.prepareStatement(sql);
 			
-			pstmt.setInt(1, eVO.getEmpNo());
+			pstmt.setInt(1, empno);
+			pstmt.setString(2, password);
 			
 			rs=pstmt.executeQuery();
-			
 			while(rs.next()) {
-				eVO=new EmpVO(rs.getInt("empno"),rs.getString("pass"));
-//				System.out.println(eVO.getEmpNo()+" / "+eVO.getPass());
-			}
-			if(eVO!=null) {
-				flag=true;
+			eVO=new EmpVO(rs.getInt("empno"),rs.getString("pass"));
 			}
 		} finally {
 			db.dbclose(rs, pstmt, con);
 		}
-		
+		if(eVO!=null) {
+			flag=true;
+		}
+		System.out.println(flag);
 		return flag;
 		
 	}//selectLogin

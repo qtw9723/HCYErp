@@ -46,17 +46,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			hcyE.removeComponent();
-			JTabbedPane jt=new JTabbedPane();
-			hcyE.add(jt);		
-			jt.add("출근",new Attendance(hcyE));
-			jt.add("문서관리",new ManageDoc(hcyE));
-			jt.add("업무일지 작성",new DailyReport(hcyE));
-			jt.add("업무일지 관리",new ManageDailyReport(hcyE));
-			jt.add("사원정보 관리",new ManageEmp(hcyE));
-			jt.add("사원정보 관리",new ManageEmpRegister(hcyE));
-			jt.add("사원정보 관리",new ManageMonthlyAttendance(hcyE));
-			jt.add("사원정보 관리",new ManageLeave(hcyE));
+			
 		}
 	}
 	
@@ -81,15 +71,26 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		char[] passwordChars=hcyE.getJpfPass().getPassword();
 		String password=new String(passwordChars);
 		
-		eVO=new EmpVO(Integer.parseInt(hcyE.getJtfEmpNo().getText()),password);
-		System.out.println(eVO.getEmpNo()+" / "+password);
+//		eVO=new EmpVO(Integer.parseInt(hcyE.getJtfEmpNo().getText()),password);
+//		System.out.println(eVO.getEmpNo()+" / "+password);
 		
 		
-		
-		if(hcyEDAO.selectLogin(eVO)) {
-
+		System.out.println(Integer.parseInt(hcyE.getJtfEmpNo().getText())+"/"+password);
+		if(hcyEDAO.selectLogin(Integer.parseInt(hcyE.getJtfEmpNo().getText()),password)) {
+			hcyE.removeComponent();
+			JTabbedPane jt=new JTabbedPane();
+			hcyE.add(jt);		
+			jt.add("출근",new Attendance(hcyE));
+			jt.add("문서관리",new ManageDoc(hcyE));
+			jt.add("업무일지 작성",new DailyReport(hcyE));
+			jt.add("업무일지 관리",new ManageDailyReport(hcyE));
+			jt.add("사원정보 관리",new ManageEmp(hcyE));
+			jt.add("사원정보 관리",new ManageEmpRegister(hcyE));
+			jt.add("사원정보 관리",new ManageMonthlyAttendance(hcyE));
+			jt.add("사원정보 관리",new ManageLeave(hcyE));
+		}else {
+			JOptionPane.showMessageDialog(hcyE, "아이디혹은 비밀번호가 잘못되었습니다.");
 		}
-		
 	}
 
 
