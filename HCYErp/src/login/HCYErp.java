@@ -224,5 +224,9 @@ public class HCYErp extends JFrame {
 		return jfHeight;
 	}
 
+	public void setTabbedPane(JTabbedPane tabbedPane) {
+		this.tabbedPane = tabbedPane;
+	}
+
 
 }// class
