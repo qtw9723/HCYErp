@@ -81,6 +81,7 @@ public class ManageDoc extends JPanel {
 		
 	}//constructor
 
+	
 	public JScrollPane getJspDocList() {
 		return jspDocList;
 	}
