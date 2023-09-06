@@ -82,8 +82,6 @@ public class HCYErpDAO {
 		if(eVO!=null) {
 			flag=true;
 		}
-		System.out.println(flag);
-		System.out.println(eVO.getPass());
 		return flag;
 		
 	}//selectLogin
