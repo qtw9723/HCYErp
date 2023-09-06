@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import VO.DailyReportVO;
+
 public class DailyReportDAO {
 	private static DailyReportDAO dailyReportDAO;
 	
@@ -18,14 +20,13 @@ public class DailyReportDAO {
 		
 		return dailyReportDAO;
 	}//getInstance
-//	
-//	public void insertDailyReport( DailyReportVO dRVO ) {
-//		Connection con=null;
-//		PreparedStatement pstmt=null;
-//		ResultSet rs=null;
-//		
-//		
-//		
-//	}//insertDailyReport
+	
+	public void insertDailyReport( DailyReportVO dRVO ) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		
+	}//insertDailyReport
 	
 }//class
