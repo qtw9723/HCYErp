@@ -45,11 +45,6 @@ public class EmpVO {
 		this.totalDayOff = totalDayOff;
 	}// constructor
 
-	public EmpVO(int empNo, String pass) {
-		this.empNo=empNo;
-		this.pass=pass;
-	}
-	
 	// getter
 	public int getEmpNo() {
 		return empNo;

@@ -25,7 +25,7 @@ public class HCYErpDAO {
 	
 
 	
-	public boolean selectLogin(int empno,String password) throws SQLException {
+	public boolean selectLogin(int empno) throws SQLException {
 		
 		boolean flag=false;
 		
@@ -43,16 +43,32 @@ public class HCYErpDAO {
 		try {
 			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 			
-			String sql="select empno,pass from emp where empno=? and pass=?";
+			String sql="select * from emp where empno=?";
 			
 			pstmt=con.prepareStatement(sql);
 			
 			pstmt.setInt(1, empno);
-			pstmt.setString(2, password);
 			
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-			eVO=new EmpVO(rs.getInt("empno"),rs.getString("pass"));
+			eVO=new EmpVO();
+			eVO.setEmpNo(rs.getInt("empno"));
+			eVO.setAddr(rs.getString("addr"));
+			eVO.setDept(rs.getString("dept"));
+			eVO.setDeptLoc(rs.getString("deptloc"));
+			eVO.setEmail(rs.getString("email"));
+			eVO.setEname(rs.getString("ename"));
+			eVO.setHiredate(rs.getDate("hiredate"));
+			eVO.setInputDate(rs.getDate("inputdate"));
+			eVO.setJob(rs.getString("job"));
+			eVO.setLevel(rs.getString("level"));
+			eVO.setPass(rs.getString("pass"));
+			eVO.setSal(rs.getInt("sal"));
+			eVO.setSsn(rs.getString("ssn"));
+			eVO.setTeam(rs.getString("team"));
+			eVO.setTel(rs.getString("tell"));
+			eVO.setTotalDayOff(rs.getInt("totaldayoff"));
+			eVO.setEmpNo(rs.getInt("empno"));
 			}
 		} finally {
 			db.dbclose(rs, pstmt, con);

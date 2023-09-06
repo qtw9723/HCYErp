@@ -68,15 +68,12 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		
 		HCYErpDAO hcyEDAO=HCYErpDAO.getInstance();
 		
-		char[] passwordChars=hcyE.getJpfPass().getPassword();
-		String password=new String(passwordChars);
 		
 //		eVO=new EmpVO(Integer.parseInt(hcyE.getJtfEmpNo().getText()),password);
 //		System.out.println(eVO.getEmpNo()+" / "+password);
+		empNo=Integer.parseInt(hcyE.getJtfEmpNo().getText());
 		
-		
-		System.out.println(Integer.parseInt(hcyE.getJtfEmpNo().getText())+"/"+password);
-		if(hcyEDAO.selectLogin(Integer.parseInt(hcyE.getJtfEmpNo().getText()),password)) {
+		if(hcyEDAO.selectLogin(empNo)) {
 			hcyE.removeComponent();
 			JTabbedPane jt=new JTabbedPane();
 			hcyE.add(jt);		
