@@ -68,12 +68,14 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		
 		HCYErpDAO hcyEDAO=HCYErpDAO.getInstance();
 		
-		
+		char[] passwordChar=hcyE.getJpfPass().getPassword();
+		String password=new String(passwordChar);
 //		eVO=new EmpVO(Integer.parseInt(hcyE.getJtfEmpNo().getText()),password);
 //		System.out.println(eVO.getEmpNo()+" / "+password);
 		empNo=Integer.parseInt(hcyE.getJtfEmpNo().getText());
 		
-		if(hcyEDAO.selectLogin(empNo)) {
+		if(hcyEDAO.selectLogin(empNo)==true) {
+			if(password.equals(hcyEDAO.geteVO().getPass())) {
 			hcyE.removeComponent();
 			JTabbedPane jt=new JTabbedPane();
 			hcyE.add(jt);		
@@ -82,9 +84,10 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			jt.add("업무일지 작성",new DailyReport(hcyE));
 			jt.add("업무일지 관리",new ManageDailyReport(hcyE));
 			jt.add("사원정보 관리",new ManageEmp(hcyE));
-			jt.add("사원정보 관리",new ManageEmpRegister(hcyE));
-			jt.add("사원정보 관리",new ManageMonthlyAttendance(hcyE));
-			jt.add("사원정보 관리",new ManageLeave(hcyE));
+			jt.add("입퇴사 관리",new ManageEmpRegister(hcyE));
+			jt.add("사원근태 관리",new ManageMonthlyAttendance(hcyE));
+			jt.add("휴가 관리",new ManageLeave(hcyE));
+			}
 		}else {
 			JOptionPane.showMessageDialog(hcyE, "아이디혹은 비밀번호가 잘못되었습니다.");
 		}

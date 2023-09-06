@@ -11,7 +11,7 @@ import VO.EmpVO;
 public class HCYErpDAO {
 
 	private static HCYErpDAO hcyEDAO;
-	
+	private EmpVO eVO;
 	private HCYErpDAO() {
 		
 	}//constructor
@@ -29,7 +29,7 @@ public class HCYErpDAO {
 		
 		boolean flag=false;
 		
-		EmpVO eVO=null;
+		
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -43,7 +43,14 @@ public class HCYErpDAO {
 		try {
 			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 			
-			String sql="select * from emp where empno=?";
+			String sql="select e.empno empno,e.addr addr,e.email email,e.ename ename,e.hiredate hiredate,e.input_date input_date, "
+					+ "e.jobno jobno,e.levelno levelno,e.pass pass,e.sal sal "
+					+ ",e.ssn ssn,e.teamno teamno,e.tel tel,e.totaldayoff totaldayoff,e.jobtel jobtel,t.tname tname, "
+					+ "t.deptno deptno,d.dname dname,j.jobname jobname,t.loc loc,jl.lvname lvname "
+					+ "from emp e,team t,dept d,job j,joblevel jl "
+					+ "where (e.teamno=t.teamno(+) and t.deptno=d.deptno(+) and e.jobno=j.jobno(+) and e.levelno=jl.levelno(+)) "
+					+ "and empno=?";
+					
 			
 			pstmt=con.prepareStatement(sql);
 			
@@ -54,21 +61,20 @@ public class HCYErpDAO {
 			eVO=new EmpVO();
 			eVO.setEmpNo(rs.getInt("empno"));
 			eVO.setAddr(rs.getString("addr"));
-			eVO.setDept(rs.getString("dept"));
-			eVO.setDeptLoc(rs.getString("deptloc"));
+			eVO.setDept(rs.getString("dname"));
+			eVO.setDeptLoc(rs.getString("loc"));
 			eVO.setEmail(rs.getString("email"));
 			eVO.setEname(rs.getString("ename"));
 			eVO.setHiredate(rs.getDate("hiredate"));
-			eVO.setInputDate(rs.getDate("inputdate"));
-			eVO.setJob(rs.getString("job"));
-			eVO.setLevel(rs.getString("level"));
+			eVO.setInputDate(rs.getDate("input_date"));
+			eVO.setJob(rs.getString("jobname"));
+			eVO.setLevel(rs.getString("lvname"));
 			eVO.setPass(rs.getString("pass"));
 			eVO.setSal(rs.getInt("sal"));
 			eVO.setSsn(rs.getString("ssn"));
-			eVO.setTeam(rs.getString("team"));
-			eVO.setTel(rs.getString("tell"));
+			eVO.setTeam(rs.getString("tname"));
+			eVO.setTel(rs.getString("tel"));
 			eVO.setTotalDayOff(rs.getInt("totaldayoff"));
-			eVO.setEmpNo(rs.getInt("empno"));
 			}
 		} finally {
 			db.dbclose(rs, pstmt, con);
@@ -77,8 +83,13 @@ public class HCYErpDAO {
 			flag=true;
 		}
 		System.out.println(flag);
+		System.out.println(eVO.getPass());
 		return flag;
 		
 	}//selectLogin
+
+	public EmpVO geteVO() {
+		return eVO;
+	}
 	
 }//class
