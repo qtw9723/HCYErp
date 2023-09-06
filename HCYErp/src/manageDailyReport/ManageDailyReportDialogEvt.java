@@ -13,6 +13,9 @@ public class ManageDailyReportDialogEvt extends MouseAdapter implements ActionLi
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==mdrd.getJbtnCancel()) {
+			mdrd.dispose();
+		}
 	}//actionPerformed
 
 }//class
