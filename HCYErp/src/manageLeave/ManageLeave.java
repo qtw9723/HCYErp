@@ -1,40 +1,52 @@
 package manageLeave;
 
-import javax.swing.DefaultListModel;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
+import VO.DayOffApplyVO;
 import login.HCYErp;
 
 @SuppressWarnings("serial")
 public class ManageLeave extends JPanel{
 
 	private HCYErp hcyE;
-	private JList<String> jlLeaveProposal;
+	private JTable jtLeaveProposal;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
 	private JDesktopPane desktopPane;
 	private JScrollPane jspLeave;
+	private List<DayOffApplyVO> doaVOList;
 	
-	public ManageLeave(HCYErp hcyE) {
+	public ManageLeave(HCYErp hcyE) throws SQLException {
+		this.hcyE = hcyE;
 		setLayout(null);
 		ManageLeaveEvt event = new ManageLeaveEvt(this);
 		
-		DefaultListModel<String> dlmLeave = new DefaultListModel<String>();
-		for(int i = 0 ; i<100 ; i++) {
-		dlmLeave.addElement("클래드 열받긴 해");
-		}
-		jlLeaveProposal = new JList<String>(dlmLeave);
-		jspLeave = new JScrollPane(jlLeaveProposal);
+		DefaultTableModel dtmLeave = new DefaultTableModel();
+		dtmLeave.addColumn("사원번호");
+		dtmLeave.addColumn("사원이름");
+		dtmLeave.addColumn("휴가시작일");
+		dtmLeave.addColumn("휴가끝일");
+		dtmLeave.addColumn("휴가신청일");
+		doaVOList = ManageLeaveDAO.getInstance().selectDayOffApply();
+		for(DayOffApplyVO doaVO:doaVOList) {
+			dtmLeave.addRow(new Object[] {doaVO.getEmpNo(),doaVO.getEname(),doaVO.getStartDate(),doaVO.getEndDate(),doaVO.getSubmitDate()});
+		}//for
+		jtLeaveProposal = new JTable(dtmLeave);
+		jspLeave = new JScrollPane(jtLeaveProposal);
 		jspLeave.setBounds(100,50,800,500);
 		jspLeave.setBorder(new TitledBorder("휴가 신청 목록"));
-		jlLeaveProposal.addMouseListener(event);
+		jtLeaveProposal.addMouseListener(event);
 		add(jspLeave);
 		
 		//로그아웃 버튼
@@ -58,8 +70,8 @@ public class ManageLeave extends JPanel{
 		return hcyE;
 	}
 
-	public JList<String> getJlLeaveProposal() {
-		return jlLeaveProposal;
+	public JTable getJtLeaveProposal() {
+		return jtLeaveProposal;
 	}
 
 	public JButton getJbtnLogOut() {
@@ -72,6 +84,10 @@ public class ManageLeave extends JPanel{
 
 	public JDesktopPane getDesktopPane() {
 		return desktopPane;
+	}
+
+	public List<DayOffApplyVO> getDoaVOList() {
+		return doaVOList;
 	}
 	
 	 

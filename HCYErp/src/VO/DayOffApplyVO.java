@@ -4,24 +4,25 @@ import java.util.Date;
 
 public class DayOffApplyVO {
 	private int empNo;
+	private String ename;
 	private int dayOffDays;
 	private String reason;
 	private String startDate;
 	private String endDate;
-	private boolean grant;
+	private String approve;
 	private Date submitDate;
 	
 	public DayOffApplyVO() {
 	}//constructor
 
-	public DayOffApplyVO(int empNo, int dayOffDays, String reason, String startDate, String endDate, boolean grant,
+	public DayOffApplyVO(int empNo, int dayOffDays, String reason, String startDate, String endDate, String approve,
 			Date submitDate) {
 		this.empNo = empNo;
 		this.dayOffDays = dayOffDays;
 		this.reason = reason;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.grant = grant;
+		this.approve = approve;
 		this.submitDate = submitDate;
 	}//constructor
 
@@ -65,12 +66,12 @@ public class DayOffApplyVO {
 		this.endDate = endDate;
 	}
 
-	public boolean isGrant() {
-		return grant;
+	public String isGrant() {
+		return approve;
 	}
 
-	public void setGrant(boolean grant) {
-		this.grant = grant;
+	public void setApprove(String approve) {
+		this.approve = approve;
 	}
 
 	public Date getSubmitDate() {
@@ -80,5 +81,14 @@ public class DayOffApplyVO {
 	public void setSubmitDate(Date submitDate) {
 		this.submitDate = submitDate;
 	}
+
+	public String getEname() {
+		return ename;
+	}
+
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	
 	
 }//class
