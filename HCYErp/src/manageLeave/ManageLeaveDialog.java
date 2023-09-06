@@ -40,6 +40,8 @@ public class ManageLeaveDialog extends JDialog {
 		jlblInfoReason.setBounds(100,100,100,100);
 		add(jlblInfoReason);
 		
+		//반려 사유 입력창
+		
 		
 		//승인버튼
 		jbtnApprove = new JButton("승인");
