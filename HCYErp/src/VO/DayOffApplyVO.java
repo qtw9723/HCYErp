@@ -99,10 +99,6 @@ public class DayOffApplyVO {
 	public void setDayOffNo(int dayOffNo) {
 		this.dayOffNo = dayOffNo;
 	}
-
-	public String getApprove() {
-		return approve;
-	}
 	
 	
 }//class
