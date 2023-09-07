@@ -12,7 +12,10 @@ public class ManageDailyReportDialogEvt extends MouseAdapter implements ActionLi
 	}//constructor
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {//내가 적은 업무일지 들고와서 수정완료,취소만 짜면 됨
+		if(e.getSource()==mdrd.getJbtnCancel()) {
+			mdrd.dispose();
+		}
 	}//actionPerformed
 
 }//class

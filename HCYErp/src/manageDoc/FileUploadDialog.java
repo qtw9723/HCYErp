@@ -12,7 +12,7 @@ public class FileUploadDialog extends JDialog {
 	private JButton jbtnDeleteFile;
 	private JButton jbtnUpload;
 	private JButton jbtnCancel;
-	
+	private DefaultListModel<String> listmodel;
 	public FileUploadDialog() {
 		
 		
@@ -21,30 +21,73 @@ public class FileUploadDialog extends JDialog {
 		jbtnUpload=new JButton("업로드확인");
 		jbtnCancel=new JButton("취소");
 	
-		String file="파일명이였던것";
-		
-		DefaultListModel<String> listmodel=new DefaultListModel<String>();
-		for(int i=0;i<100;i++) {
-			listmodel.addElement(file);
-		}
+		listmodel=new DefaultListModel<String>();
 		
 		jlFile=new JList<String>(listmodel);
 		
-		JScrollPane jsp=new JScrollPane();
+		FileUploadDialogEvt fude=new FileUploadDialogEvt(this);
+		jbtnAddFile.addActionListener(fude);
+		jbtnDeleteFile.addActionListener(fude);
+		jbtnUpload.addActionListener(fude);
+		jbtnCancel.addActionListener(fude);
+
 		
-		jsp.add(jlFile);
+		JScrollPane jsp=new JScrollPane(jlFile);
+		
+//		jsp.add(jlFile);
 
 		setLayout(null);
 		
-		jbtnAddFile.setBounds(50,400,100,30);
+		
 		
 		jsp.setBounds(0,0,500,400);
+		jbtnAddFile.setBounds(10,400,100,30);
+		jbtnDeleteFile.setBounds(140,400,140,30);
+		jbtnUpload.setBounds(310,400,100,30);
+		jbtnCancel.setBounds(440,400,100,30);
 		
 		add(jbtnAddFile);
-		
-		add(jsp);
+		add(jbtnDeleteFile);
+		add(jbtnUpload);
+		add(jbtnCancel);
 
+		add(jsp);
+		
+		
+		jsp.setVisible(true);
+		
+		
+		
+		setSize(600,600);
 		setVisible(true);
 		
+	}
+	
+	public JList<String> getJlFile() {
+		return jlFile;
+	}
+
+	public JButton getJbtnAddFile() {
+		return jbtnAddFile;
+	}
+
+	public JButton getJbtnDeleteFile() {
+		return jbtnDeleteFile;
+	}
+
+	public JButton getJbtnUpload() {
+		return jbtnUpload;
+	}
+
+	public JButton getJbtnCancel() {
+		return jbtnCancel;
+	}
+
+	public DefaultListModel<String> getListmodel() {
+		return listmodel;
+	}
+
+	public static void main(String[]args) {
+		new FileUploadDialog();
 	}
 }//class

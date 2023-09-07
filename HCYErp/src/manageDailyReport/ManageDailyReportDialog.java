@@ -39,6 +39,7 @@ public class ManageDailyReportDialog extends JDialog {
 		setVisible(true);
 		
 	}//constructor
+	
 	public static void main(String[] arg) {
 		new ManageDailyReportDialog();
 	}//main

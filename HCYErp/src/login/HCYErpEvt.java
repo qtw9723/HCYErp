@@ -26,7 +26,6 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 	private HCYErp hcyE;
 	private int empNo;
-	private EmpVO eVO;
 
 	public HCYErpEvt(HCYErp hcyE) {
 		this.hcyE = hcyE;
@@ -68,28 +67,28 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		
 		HCYErpDAO hcyEDAO=HCYErpDAO.getInstance();
 		
-		char[] passwordChars=hcyE.getJpfPass().getPassword();
-		String password=new String(passwordChars);
-		
+		char[] passwordChar=hcyE.getJpfPass().getPassword();
+		String password=new String(passwordChar);
 //		eVO=new EmpVO(Integer.parseInt(hcyE.getJtfEmpNo().getText()),password);
 //		System.out.println(eVO.getEmpNo()+" / "+password);
+		empNo=Integer.parseInt(hcyE.getJtfEmpNo().getText());
 		
-		
-		System.out.println(Integer.parseInt(hcyE.getJtfEmpNo().getText())+"/"+password);
-		if(hcyEDAO.selectLogin(Integer.parseInt(hcyE.getJtfEmpNo().getText()),password)) {
+		if(hcyEDAO.selectLogin(empNo)==true) {
+			if(password.equals(hcyEDAO.geteVO().getPass())) {
 			hcyE.removeComponent();
-			JTabbedPane jt=new JTabbedPane();
-			hcyE.add(jt);		
-			jt.add("출근",new Attendance(hcyE));
-			jt.add("문서관리",new ManageDoc(hcyE));
-			jt.add("업무일지 작성",new DailyReport(hcyE));
-			jt.add("업무일지 관리",new ManageDailyReport(hcyE));
-			jt.add("사원정보 관리",new ManageEmp(hcyE));
-			jt.add("사원정보 관리",new ManageEmpRegister(hcyE));
-			jt.add("사원정보 관리",new ManageMonthlyAttendance(hcyE));
-			jt.add("사원정보 관리",new ManageLeave(hcyE));
-		}else {
-			JOptionPane.showMessageDialog(hcyE, "아이디혹은 비밀번호가 잘못되었습니다.");
+			hcyE.setTabbedPane(new JTabbedPane());
+			hcyE.add(hcyE.getTabbedPane());		
+			hcyE.getTabbedPane().add("출근",new Attendance(hcyE));
+			hcyE.getTabbedPane().add("문서관리",new ManageDoc(hcyE));
+			hcyE.getTabbedPane().add("업무일지 작성",new DailyReport(hcyE));
+			hcyE.getTabbedPane().add("업무일지 관리",new ManageDailyReport(hcyE));
+			hcyE.getTabbedPane().add("사원정보 관리",new ManageEmp(hcyE));
+			hcyE.getTabbedPane().add("입퇴사 관리",new ManageEmpRegister(hcyE));
+			hcyE.getTabbedPane().add("사원근태 관리",new ManageMonthlyAttendance(hcyE));
+			hcyE.getTabbedPane().add("휴가 관리",new ManageLeave(hcyE));
+			}else {
+				JOptionPane.showMessageDialog(hcyE, "아이디혹은 비밀번호가 잘못되었습니다.");
+			}
 		}
 	}
 
