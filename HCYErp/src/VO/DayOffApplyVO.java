@@ -3,6 +3,7 @@ package VO;
 import java.util.Date;
 
 public class DayOffApplyVO {
+	private int dayOffNo;
 	private int empNo;
 	private String ename;
 	private int dayOffDays;
@@ -15,8 +16,9 @@ public class DayOffApplyVO {
 	public DayOffApplyVO() {
 	}//constructor
 
-	public DayOffApplyVO(int empNo, int dayOffDays, String reason, String startDate, String endDate, String approve,
+	public DayOffApplyVO(int dayOffNo, int empNo, int dayOffDays, String reason, String startDate, String endDate, String approve,
 			Date submitDate) {
+		this.dayOffNo = dayOffNo;
 		this.empNo = empNo;
 		this.dayOffDays = dayOffDays;
 		this.reason = reason;
@@ -88,6 +90,18 @@ public class DayOffApplyVO {
 
 	public void setEname(String ename) {
 		this.ename = ename;
+	}
+
+	public int getDayOffNo() {
+		return dayOffNo;
+	}
+
+	public void setDayOffNo(int dayOffNo) {
+		this.dayOffNo = dayOffNo;
+	}
+
+	public String getApprove() {
+		return approve;
 	}
 	
 	

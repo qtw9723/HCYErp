@@ -1,11 +1,13 @@
 package manageLeave;
 
+import java.awt.Font;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import javax.swing.border.TitledBorder;
 
 import VO.DayOffApplyVO;
 
@@ -15,33 +17,30 @@ public class ManageLeaveDialog extends JDialog {
 	private JButton jbtnReject;
 	private JButton jbtnCancel;
 	private JLabel jlblInfoPerson;
-	private JLabel jlblInfoReason;
 	private JTextArea jtaRejectReason;
+	private DayOffApplyVO doaVO;
 
 	public ManageLeaveDialog(ManageLeave ml) throws SQLException {
 		ManageLeaveDialogEvt event = new ManageLeaveDialogEvt(this);
 		setLayout(null);
 		
 		//휴가신청 사원 정보
+		Font infoFont = new Font("맑은 고딕",Font.BOLD,17);
 		jlblInfoPerson = new JLabel();
-		DayOffApplyVO doaVO= ManageLeaveDAO.getInstance().selectPersonalDayOffApply(ml.getDoaVOList().get(ml.getJtLeaveProposal().getSelectedRow()).getEmpNo());
+		doaVO= ManageLeaveDAO.getInstance().selectPersonalDayOffApply(ml.getDoaVOList().get(ml.getJtLeaveProposal().getSelectedRow()).getEmpNo());
 		StringBuilder sbDoaVO = new StringBuilder();
-		sbDoaVO.append("<html>     사원번호 / 사원이름 / 휴가 시작 일 / 휴가 끝 일<br>").append(doaVO.getEmpNo()).append(" / ").append(doaVO.getEname()).append(" / ")
-		.append(doaVO.getStartDate()).append(" / ").append(doaVO.getEndDate()).append("</html>");
+		sbDoaVO.append("<html>사원번호&nbsp;:&nbsp;").append(doaVO.getEmpNo()).append("<br>사원이름&nbsp;:&nbsp;").append(doaVO.getEname()).append("<br>휴가 시작 일&nbsp;:&nbsp;")
+		.append(doaVO.getStartDate()).append("<br>휴가 끝 일&nbsp;:&nbsp;").append(doaVO.getEndDate()).append("<br>신청사유&nbsp;:&nbsp;").append(doaVO.getReason()).append("</html>");
 		jlblInfoPerson.setText(sbDoaVO.toString());
-		jlblInfoPerson.setBounds(50,30,1000,50);
+		jlblInfoPerson.setBounds(70,10,1000,200);
+		jlblInfoPerson.setFont(infoFont);
 		add(jlblInfoPerson);
 		
-		//휴가신청 사유
-		jlblInfoReason = new JLabel();
-		sbDoaVO.delete(0, sbDoaVO.length());
-		sbDoaVO.append("<html>신청사유<br>").append(doaVO.getReason()).append("</html>");
-		jlblInfoReason.setText(sbDoaVO.toString());
-		jlblInfoReason.setBounds(100,100,100,100);
-		add(jlblInfoReason);
-		
 		//반려 사유 입력창
-		
+		jtaRejectReason = new JTextArea();
+		jtaRejectReason.setBounds(400,40,340,240);
+		jtaRejectReason.setBorder(new TitledBorder("반려 사유"));
+		add(jtaRejectReason);
 		
 		//승인버튼
 		jbtnApprove = new JButton("승인");
@@ -66,5 +65,31 @@ public class ManageLeaveDialog extends JDialog {
 		setBounds(ml.getHcyE().getX()+100,ml.getHcyE().getY()+100, 800, 400);
 		setVisible(true);
 	}//Constructor 
+
+	public JButton getJbtnApprove() {
+		return jbtnApprove;
+	}
+
+	public JButton getJbtnReject() {
+		return jbtnReject;
+	}
+
+	public JButton getJbtnCancel() {
+		return jbtnCancel;
+	}
+
+	public JLabel getJlblInfoPerson() {
+		return jlblInfoPerson;
+	}
+
+	public JTextArea getJtaRejectReason() {
+		return jtaRejectReason;
+	}
+
+	public DayOffApplyVO getDoaVO() {
+		return doaVO;
+	}
+	
+	
 	
 }//class
