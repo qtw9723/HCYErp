@@ -26,7 +26,7 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 				fud.dispose();
 			}
 			
-		});
+		});//addWindowListener
 	}//constructor
 
 	public void addFile() {
@@ -82,10 +82,14 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 		return selectPath;
 	}
 
+	public void cancelFileUpload() {
+		fud.dispose();
+	}//cancelFileUpload
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==fud.getJbtnCancel()) {
-			fud.dispose();
+			cancelFileUpload();
 		}
 		if(e.getSource()==fud.getJbtnAddFile()) {
 			addFile();

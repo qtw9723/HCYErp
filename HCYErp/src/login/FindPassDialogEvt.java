@@ -21,7 +21,7 @@ public class FindPassDialogEvt extends MouseAdapter implements ActionListener {
 				fpd.dispose();
 			}
 			
-		});
+		});//addWindowListener
 	}// constructor
 
 	public void findPass() {
@@ -47,10 +47,14 @@ public class FindPassDialogEvt extends MouseAdapter implements ActionListener {
 		}
 	}//findPass
 	
+	public void cancel() {
+		
+	}//cancel
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==fpd.getJbtnCancel()) {
-			fpd.dispose();
+			cancel();
 		}else if(e.getSource()==fpd.getJbtnFindPass()) {
 			findPass();
 		}

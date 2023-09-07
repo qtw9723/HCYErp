@@ -57,9 +57,10 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == cpd.getJbtnOK()) {
 			confirmPassChange();
-		}
-		if (e.getSource() == cpd.getJbtnCancel()) {
-			cpd.dispose();
+		}else if(e.getSource()==cpd.getJbtnCancel()) {
+			cancelChangePass();
+		}else if(e.getSource()==cpd.getJbtnOK()) {
+			changePass();
 		}
 	}// actionPerformed
 
@@ -93,6 +94,7 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener 
 		cpd.getJlblNewView().setVisible(true);
 	}// passwordState
 
+	
 	public void textfieldStateCheck() {
 		if(cpd.getJpfCurrentPass().getPassword().length==0) {
 			JOptionPane.showMessageDialog(cpd, "현재 비밀번호를 입력하세요");
@@ -126,6 +128,14 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener 
 	}// passwordStateCheck
 	
 
+	public void cancelChangePass() {
+		cpd.dispose();
+	}//cancelChangePass
+	
+	public void changePass() {
+		//비밀번호 변경하자
+	}//changePass
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == cpd.getJlblNewView()) {

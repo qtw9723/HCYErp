@@ -36,7 +36,7 @@ public class DailyReport extends JPanel {
 		add(jbtnReport);
 		
 		
-		//로그아웃 버튼
+		//로그아웃 버튼 
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
 		jbtnLogOut.addActionListener(event);
