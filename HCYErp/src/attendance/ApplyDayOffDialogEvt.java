@@ -56,7 +56,7 @@ public class ApplyDayOffDialogEvt extends MouseAdapter implements ActionListener
 	}// endUpdateDays
 
 	public void dayOffApply() {
-		// 신청 눌렀을 때 가야겠지?
+		// 신청 눌렀을 때 가야겠지? 
 	}// dayOffApply
 
 	public void cancelDayOffApply() {
