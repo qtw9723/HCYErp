@@ -68,7 +68,7 @@ public class DayOffApplyVO {
 		this.endDate = endDate;
 	}
 
-	public String isGrant() {
+	public String getApprove() {
 		return approve;
 	}
 
