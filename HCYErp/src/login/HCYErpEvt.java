@@ -16,6 +16,7 @@ import VO.EmpVO;
 import attendance.Attendance;
 import dailyReport.DailyReport;
 import manageAttendance.ManageMonthlyAttendance;
+import manageAttendance.ManagePersonalAttendance;
 import manageDailyReport.ManageDailyReport;
 import manageDoc.ManageDoc;
 import manageEmp.ManageEmp;
@@ -84,7 +85,8 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			hcyE.getTabbedPane().add("업무일지 관리",new ManageDailyReport(hcyE));
 			hcyE.getTabbedPane().add("사원정보 관리",new ManageEmp(hcyE));
 			hcyE.getTabbedPane().add("입퇴사 관리",new ManageEmpRegister(hcyE));
-			hcyE.getTabbedPane().add("사원근태 관리",new ManageMonthlyAttendance(hcyE));
+			hcyE.getTabbedPane().add("월별 사원근태 관리",new ManageMonthlyAttendance(hcyE));
+			hcyE.getTabbedPane().add("사원명별 사원근태 관리",new ManagePersonalAttendance(hcyE));
 			hcyE.getTabbedPane().add("휴가 관리",new ManageLeave(hcyE));
 			}else {
 				JOptionPane.showMessageDialog(hcyE, "아이디혹은 비밀번호가 잘못되었습니다.");

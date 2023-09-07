@@ -3,7 +3,9 @@ package dailyReport;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import DB.DbConn;
 import VO.DailyReportVO;
 
 public class DailyReportDAO {
@@ -21,11 +23,29 @@ public class DailyReportDAO {
 		return dailyReportDAO;
 	}//getInstance
 	
-	public void insertDailyReport( DailyReportVO dRVO ) {
+	public void insertDailyReport( DailyReportVO drVO ) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		ResultSet rs=null;
 		
+		DbConn db=DbConn.getInstance();
+		
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql = "insert into daily_report(empno, reportcontent, reportdate) values(?,?,to_char(sysdate, 'yyyy-mm-dd'))";
+
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, drVO.getEmpNo());
+			pstmt.setString(2, drVO.getReportContent());
+						
+			pstmt.executeUpdate( );
+			
+		} finally {
+			if (db != null) {
+				db.dbclose(null, pstmt, con);
+			}//end if
+		}//end try
 		
 	}//insertDailyReport
 	
