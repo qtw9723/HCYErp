@@ -69,6 +69,7 @@ public class AttendanceDAO {
 	public void insertAttendance(AttendanceVO adVO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		DbConn db = DbConn.getInstance();
 
@@ -81,11 +82,11 @@ public class AttendanceDAO {
 
 			pstmt.setInt(1, adVO.getEmpNo());
 
-			
+			rs = pstmt.executeQuery();
 
 		} finally {
 			if (db != null) {
-				db.dbclose(null, pstmt, con);
+				db.dbclose(rs, pstmt, con);
 			}
 		} // try
 	}// insertAttendance
@@ -143,6 +144,7 @@ public class AttendanceDAO {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		int flag = 0;
 
@@ -161,7 +163,7 @@ public class AttendanceDAO {
 
 		} finally {
 			if (db != null) {
-				db.dbclose(null, pstmt, con);
+				db.dbclose(rs, pstmt, con);
 			}
 		} // try
 		return flag;
@@ -171,6 +173,7 @@ public class AttendanceDAO {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		java.util.Date utilDate = doaVO.getSubmitDate();
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
@@ -192,9 +195,11 @@ public class AttendanceDAO {
 			pstmt.setString(6, doaVO.getApprove());
 			pstmt.setDate(7, sqlDate);
 			// new java.sql.Date(utilDate.getTime());
+			
+			pstmt.execute();
 		} finally {
 			if (db != null) {
-				db.dbclose(null, pstmt, con);
+				db.dbclose(rs, pstmt, con);
 			}
 		} // try
 	}// insertDayOffApply
