@@ -1,6 +1,7 @@
 package attendance;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,26 +36,20 @@ public class AttendanceDAO {
 		
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-			StringBuilder selectPersonalAttendance = new StringBuilder();
-			selectPersonalAttendance.append("select dayoff,decode(sum(state),0,'attendance',1,'dayoff',2,'absence','err') state").append("from ").append("(SELECT distinct to_char((TRUNC(to_date(STARTDATE, 'YYYY-MM-DD')) + LEVEL - 1),'YYYY-MM-DD') AS dayoff, 'dayoff' state")
-			.append("FROM DAYOFF_APPLY").append("where empno = ? and APPROVE = 'Y'")
-			.append("CONNECT BY LEVEL <= (to_date(ENDDATE, 'YYYY-MM-DD') - to_date(STARTDATE, 'YYYY-MM-DD')) + 1")
-			.append("union all").append("select workdate, 'attendance' state")
-			.append("from ATTENDANCE").append("where empno = ?")
-			.append("union all").append("SELECT distinct to_char((TRUNC(to_date(STARTDATE, 'YYYY-MM-DD')) + LEVEL - 1),'YYYY-MM-DD') AS absence, 'absence' state")
-			.append("FROM ABSENCE").append("where empno = ?")
-			.append("CONNECT BY LEVEL <= (to_date(ENDDATE, 'YYYY-MM-DD') - to_date(STARTDATE, 'YYYY-MM-DD')) + 1)").append("group by dayoff").append("order by dayoff");
+			String selectPersonalAttendance = "SELECT to_date(STARTDATE,'yyyy-mm-dd'), DAYOFFDAYS FROM DAYOFF_APPLY where empno = ? and APPROVE = 'Y'";
 					
-			pstmt = con.prepareStatement(selectPersonalAttendance.toString());
+			pstmt = con.prepareStatement(selectPersonalAttendance);
 			pstmt.setInt(1, empno);
-			pstmt.setInt(2, empno);
-			pstmt.setInt(3, empno);
 					
 			rs = pstmt.executeQuery();
-			StringBuilder sbTemp = new StringBuilder();
+			Date date = null;
 			while(rs.next()) {
-				sbTemp.delete(0, sbTemp.length());
-				attendance.add(sbTemp.append(rs.getString(1)).append("/").append(rs.getString(2)).toString());
+				date = rs.getDate(1);
+				for(int i = 0;i<rs.getInt(2);i++) {
+					System.out.println(rs.getString(1));
+//					attendance.add(date.valueOf("YYYY-MM-DD"));
+					
+				}//for
 			}//while
 			
 					

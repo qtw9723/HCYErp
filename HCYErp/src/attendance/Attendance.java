@@ -33,7 +33,7 @@ public class Attendance extends JPanel {
 		AttendanceEvt event= new AttendanceEvt(this); 
 		
 		setLayout(null);
-		
+		 
 		//출근버튼
 		jbtnAttend = new JButton("출근");
 		jbtnAttend.setBounds(230,50,150,50);
@@ -105,15 +105,20 @@ public class Attendance extends JPanel {
 		JLabel jlblTardy = new JLabel(tardy);
 		
 		List<String> attendList = AttendanceDAO.getInstance().selectPersonalAttendance(hcyE.getUser());
-		List<JLabel>
+		List<JLabel> jlblList = new ArrayList<JLabel>();
 		for(int i = 0;i<cal.get(Calendar.DAY_OF_MONTH)-1;i++) {
 			
 			switch (attendList.get(i)) {
 			case "attendance":
+				jlblAttend = new JLabel(attend);
 				jlblAttend.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
+				jlblList.add(jlblAttend);
 				break;
 			case "absence":
 				jlblDayoff.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
+				jlblAttend = new JLabel(attend);
+				jlblAttend.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
+				jlblList.add(jlblAttend);
 				
 				break;
 			case "dayoff":
