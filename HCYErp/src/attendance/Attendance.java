@@ -1,6 +1,7 @@
 package attendance;
 
 import java.awt.Font;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -104,7 +105,12 @@ public class Attendance extends JPanel {
 		JLabel jlblGetoff = new JLabel(getoff);
 		JLabel jlblTardy = new JLabel(tardy);
 		
-		List<String> attendList = AttendanceDAO.getInstance().selectPersonalAttendance(hcyE.getUser());
+		List<String> attendList = null;
+		try {
+			attendList = AttendanceDAO.getInstance().selectPersonalAttendance(hcyE.getUser());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//catch
 		List<JLabel> jlblList = new ArrayList<JLabel>();
 		for(int i = 0;i<cal.get(Calendar.DAY_OF_MONTH)-1;i++) {
 			
@@ -115,11 +121,9 @@ public class Attendance extends JPanel {
 				jlblList.add(jlblAttend);
 				break;
 			case "absence":
-				jlblDayoff.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
 				jlblAttend = new JLabel(attend);
 				jlblAttend.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
 				jlblList.add(jlblAttend);
-				
 				break;
 			case "dayoff":
 				
