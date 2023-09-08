@@ -1,76 +1,89 @@
 package manageDoc;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.DefaultListModel;
-import javax.swing.Icon;
-import javax.swing.JButton; 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.ListCellRenderer;
-
-import java.util.Arrays;
 
 public class RefDeptDialog extends JDialog {
-	private JCheckBox jcbDeptList;
-	private JScrollPane jspDeptList;
-	private JButton jbtnApproveRef;
-	private JButton jbtnCancel;
-	private JList<JCheckBox> jlDeptList;
-	private DefaultListModel<JCheckBox> listmodel;
+   
+    private JCheckBox jcbManage;
+    private JCheckBox jcbLaw;
+    private JCheckBox jcbProduct;
+    private JCheckBox jcbService;
+    private JCheckBox jcbBusiness;
+    private JCheckBox jcbExecutive;
 
-	public RefDeptDialog() {
-//		listmodel = new DefaultListModel<JCheckBox>();
-//		listmodel.addElement("경영지원");
-//		listmodel.addElement("법무지원");
-//		listmodel.addElement("상품");
-//		listmodel.addElement("영업");
-//		listmodel.addElement("임원");
-		String[] str = { "경영지원", "법무지원", "상품", "영업", "임원" };
-//		jlDeptList = new JList<JCheckBox>(listmodel);
-//		jcbDeptList=new JCheckBox[](); 
-		for (int i = 0; i < 5; i++) {
-			jcbDeptList = new JCheckBox(str[i]);
-//			listmodel.addElement(jcbDeptList);
-		}
+    private JButton jbtnApproveRef;
+    private JButton jbtnCancel;
 
-		
-//		jspDeptList=new JScrollPane(jlDeptList);
+    public RefDeptDialog() {
+       setLayout(null);
+       
+       jcbManage=new JCheckBox("경영지원");
+       jcbLaw=new JCheckBox("법무지원");
+       jcbProduct=new JCheckBox("상품");
+       jcbService=new JCheckBox("서비스");
+       jcbBusiness=new JCheckBox("영업");
+       jcbExecutive=new JCheckBox("임원");
+       
+       jbtnApproveRef=new JButton("권한 부여");
+       jbtnCancel=new JButton("취소");
+       
+       add(jcbManage);
+       add(jcbLaw);
+       add(jcbProduct);
+       add(jcbService);
+       add(jcbBusiness);
+       add(jcbExecutive);
+       add(jbtnApproveRef);
+       add(jbtnCancel);
+       
+       jcbManage.setBounds(10, 10, 100, 60);
+       jcbLaw.setBounds(10, 60, 100, 60);
+       jcbProduct.setBounds(10, 110, 100, 60);
+       jcbService.setBounds(10, 160, 100, 60);
+       jcbBusiness.setBounds(10, 210, 100, 60);
+       jcbExecutive.setBounds(10, 260, 100, 60);
+       
+       jbtnApproveRef.setBounds(135, 115, 120, 50);
+       jbtnCancel.setBounds(135, 180, 120, 50);
+       
+       RefDeptDialogEvt rdde=new RefDeptDialogEvt(this);
+       
+       jbtnApproveRef.addActionListener(rdde);
+       jbtnCancel.addActionListener(rdde);
+       
+       setTitle("일단은 이겅가");
+       setSize(300,400);
+       setVisible(true);
 
-		jbtnApproveRef = new JButton("권한 부여");
-		jbtnCancel = new JButton("취소");
 
-		setLayout(null);
-//		int num = 0;
-//		for (int i = 0; i < 5; i++) {
-//			if (i > 0) {
-//				jcbDeptList.setBounds(0, num, 100, 30);
-//			} else {
-//				jcbDeptList.setBounds(0, 0, 100, 30);
-//			}
-//		}
-		int num = 0;
-		for (int i = 0; i < 100; i+=20) {
-				jcbDeptList.setBounds(0, num+i, 100, 30);
-		}
+       
+    }
 
-//		jspDeptList.setBounds(0, 0, 500, 400);
-		jbtnApproveRef.setBounds(200, 500, 100, 40);
-		jbtnCancel.setBounds(400, 500, 100, 40);
-
-		add(jbtnApproveRef);
-		add(jbtnCancel);
-		add(jcbDeptList);
-
-		setSize(600, 600);
-		setVisible(true);
+    public JCheckBox getJcbManage() {
+		return jcbManage;
 	}
 
-	public JScrollPane getJspDeptList() {
-		return jspDeptList;
+	public JCheckBox getJcbLaw() {
+		return jcbLaw;
+	}
+
+	public JCheckBox getJcbProduct() {
+		return jcbProduct;
+	}
+
+	public JCheckBox getJcbService() {
+		return jcbService;
+	}
+
+	public JCheckBox getJcbBusiness() {
+		return jcbBusiness;
+	}
+
+	public JCheckBox getJcbExecutive() {
+		return jcbExecutive;
 	}
 
 	public JButton getJbtnApproveRef() {
@@ -81,11 +94,7 @@ public class RefDeptDialog extends JDialog {
 		return jbtnCancel;
 	}
 
-//	public JList<String> getJlDeptList() {
-//		return jlDeptList;
-//	}
-
 	public static void main(String[] args) {
-		new RefDeptDialog();
-	}
+        new RefDeptDialog();
+    }
 }
