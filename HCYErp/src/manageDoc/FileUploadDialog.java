@@ -61,7 +61,7 @@ public class FileUploadDialog extends JDialog {
 		setSize(600,600);
 		setVisible(true);
 		
-	}
+	}//constructor
 	
 	public JList<String> getJlFile() {
 		return jlFile;
