@@ -103,7 +103,25 @@ public class Attendance extends JPanel {
 		JLabel jlblDayoff = new JLabel(dayoff);
 		JLabel jlblGetoff = new JLabel(getoff);
 		JLabel jlblTardy = new JLabel(tardy);
-		jlblAttend.setBounds(100,100,160,160);
+		
+		List<String> attendList = AttendanceDAO.getInstance().selectPersonalAttendance(hcyE.getUser());
+		List<JLabel>
+		for(int i = 0;i<cal.get(Calendar.DAY_OF_MONTH)-1;i++) {
+			
+			switch (attendList.get(i)) {
+			case "attendance":
+				jlblAttend.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
+				break;
+			case "absence":
+				jlblDayoff.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
+				
+				break;
+			case "dayoff":
+				
+			default:
+				
+			}
+		}//for
 		jlblDayoff.setBounds(200,100,160,160);
 		jlblGetoff.setBounds(300,100,160,160);
 		jlblTardy.setBounds(400,100,160,160);

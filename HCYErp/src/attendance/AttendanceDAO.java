@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import DB.DbConn;
@@ -25,9 +26,43 @@ public class AttendanceDAO {
 		return attendanceDAO;
 	}// getInstance
 
-	public List<String> selectPersonalAttendance(int empno) {
-
-		return null;
+	public List<String> selectPersonalAttendance(int empno) throws SQLException {
+		List<String> attendance = new ArrayList<String>();
+		DbConn db = DbConn.getInstance();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+			StringBuilder selectPersonalAttendance = new StringBuilder();
+			selectPersonalAttendance.append("select dayoff,decode(sum(state),0,'attendance',1,'dayoff',2,'absence','err') state").append("from ").append("(SELECT distinct to_char((TRUNC(to_date(STARTDATE, 'YYYY-MM-DD')) + LEVEL - 1),'YYYY-MM-DD') AS dayoff, 'dayoff' state")
+			.append("FROM DAYOFF_APPLY").append("where empno = ? and APPROVE = 'Y'")
+			.append("CONNECT BY LEVEL <= (to_date(ENDDATE, 'YYYY-MM-DD') - to_date(STARTDATE, 'YYYY-MM-DD')) + 1")
+			.append("union all").append("select workdate, 'attendance' state")
+			.append("from ATTENDANCE").append("where empno = ?")
+			.append("union all").append("SELECT distinct to_char((TRUNC(to_date(STARTDATE, 'YYYY-MM-DD')) + LEVEL - 1),'YYYY-MM-DD') AS absence, 'absence' state")
+			.append("FROM ABSENCE").append("where empno = ?")
+			.append("CONNECT BY LEVEL <= (to_date(ENDDATE, 'YYYY-MM-DD') - to_date(STARTDATE, 'YYYY-MM-DD')) + 1)").append("group by dayoff").append("order by dayoff");
+					
+			pstmt = con.prepareStatement(selectPersonalAttendance.toString());
+			pstmt.setInt(1, empno);
+			pstmt.setInt(2, empno);
+			pstmt.setInt(3, empno);
+					
+			rs = pstmt.executeQuery();
+			StringBuilder sbTemp = new StringBuilder();
+			while(rs.next()) {
+				sbTemp.delete(0, sbTemp.length());
+				attendance.add(sbTemp.append(rs.getString(1)).append("/").append(rs.getString(2)).toString());
+			}//while
+			
+					
+		}finally {
+			db.dbclose(rs, pstmt, con);
+		}//finally
+		
+		return attendance;
 	}// selectPersonalAttendance
 
 	public int[] selectLeftDayOff(int empno) throws SQLException {
