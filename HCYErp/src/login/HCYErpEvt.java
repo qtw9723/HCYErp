@@ -76,6 +76,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		
 		if(hcyEDAO.selectLogin(empNo)==true) {
 			if(password.equals(hcyEDAO.geteVO().getPass())) {
+			hcyE.setUser(empNo);
 			hcyE.removeComponent();
 			hcyE.setTabbedPane(new JTabbedPane());
 			hcyE.add(hcyE.getTabbedPane());		
