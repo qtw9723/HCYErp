@@ -40,7 +40,7 @@ public class FileUploadDialog extends JDialog {
 		
 		
 		
-		jsp.setBounds(0,0,500,400);
+		jsp.setBounds(25,0,500,400);
 		jbtnAddFile.setBounds(10,400,100,30);
 		jbtnDeleteFile.setBounds(140,400,140,30);
 		jbtnUpload.setBounds(310,400,100,30);
@@ -58,7 +58,7 @@ public class FileUploadDialog extends JDialog {
 		
 		
 		
-		setSize(600,600);
+		setSize(580,500);
 		setVisible(true);
 		
 	}//constructor
