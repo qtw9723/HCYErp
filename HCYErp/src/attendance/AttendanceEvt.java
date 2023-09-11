@@ -51,9 +51,6 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 		if(e.getSource()==ad.getJbtnApplyDayOff()) {
 			new ApplyDayOffDialog(ad);
 		}//if
-			
-		
-	
 	}//actionPerformed
 
 	private void attend() throws SQLException {
@@ -85,10 +82,6 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 		ad.getHcyE().addComponent();
 		ad.getHcyE().setUser(0);
 	}//logOut
-	
-	public void dayOffApply() {
-		
-	}
 	
 	
 }//Class

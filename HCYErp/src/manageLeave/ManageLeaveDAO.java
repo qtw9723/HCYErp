@@ -44,6 +44,7 @@ public class ManageLeaveDAO {
 				doaVO.setEmpNo(rs.getInt("empno"));
 				doaVO.setEname(rs.getString("ename"));
 				doaVO.setStartDate(rs.getString("startdate"));
+				System.out.println(rs.getString("startdate"));
 				doaVO.setEndDate(rs.getString("enddate"));
 				doaVO.setDayOffDays(rs.getInt("DAYOFFDAYS"));
 				doaVO.setReason(rs.getString("REASON"));
