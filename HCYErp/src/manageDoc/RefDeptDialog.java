@@ -46,8 +46,8 @@ public class RefDeptDialog extends JDialog {
        jcbBusiness.setBounds(10, 210, 100, 60);
        jcbExecutive.setBounds(10, 260, 100, 60);
        
-       jbtnApproveRef.setBounds(135, 115, 120, 50);
-       jbtnCancel.setBounds(135, 180, 120, 50);
+       jbtnApproveRef.setBounds(135, 190, 120, 50);
+       jbtnCancel.setBounds(135, 255, 120, 50);
        
        RefDeptDialogEvt rdde=new RefDeptDialogEvt(this);
        
@@ -60,7 +60,7 @@ public class RefDeptDialog extends JDialog {
 
 
        
-    }
+    }//constructor
 
     public JCheckBox getJcbManage() {
 		return jcbManage;
