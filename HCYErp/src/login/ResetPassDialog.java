@@ -14,11 +14,11 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 @SuppressWarnings("serial")
-public class FindPassDialog extends JDialog {
+public class ResetPassDialog extends JDialog {
 	private JTextField jtfEmpNo;
 	private JTextField jtfEname;
 	private JTextField jtfSsn;
-	private JButton jbtnFindPass;
+	private JButton jbtnResetPass;
 	private JButton jbtnCancel;
 	private JLabel jlblLogoGrey;
 	private JLabel jlblEmpNo;
@@ -31,7 +31,7 @@ public class FindPassDialog extends JDialog {
 	private String inputEname;
 	private String inputSsn;
 
-	public FindPassDialog() {
+	public ResetPassDialog() {
 
 		Border focusField = BorderFactory.createLineBorder(new Color(0xEE82EE)); // Line border
 		Border unfocusField = BorderFactory.createLineBorder(Color.LIGHT_GRAY); // Line border
@@ -92,7 +92,7 @@ public class FindPassDialog extends JDialog {
 			}
 		});
 		// 버튼선언
-		jbtnFindPass = new JButton("비밀번호 찾기");
+		jbtnResetPass = new JButton("비밀번호 초기화");
 		jbtnCancel = new JButton("취소");
 
 		// 라벨선언
@@ -107,7 +107,7 @@ public class FindPassDialog extends JDialog {
 		jlblSsn.setFont(font);
 
 		// 버튼 폰트 설정
-		jbtnFindPass.setFont(font);
+		jbtnResetPass.setFont(font);
 		jbtnCancel.setFont(font);
 
 		// 로고이미지 삽입
@@ -118,15 +118,15 @@ public class FindPassDialog extends JDialog {
 
 		setLayout(null);
 		
-		FindPassDialogEvt fpde=new FindPassDialogEvt(this);
-		jbtnFindPass.addActionListener(fpde);
+		ResetPassDialogEvt fpde=new ResetPassDialogEvt(this);
+		jbtnResetPass.addActionListener(fpde);
 		jbtnCancel.addActionListener(fpde);
 		
 		jtfEmpNo.setBounds(160, 50, 150, 30);
 		jtfEname.setBounds(160, 120, 150, 30);
 		jtfSsn.setBounds(160, 190, 150, 30);
 
-		jbtnFindPass.setBounds(80, 250, 150, 35);
+		jbtnResetPass.setBounds(80, 250, 150, 35);
 		jbtnCancel.setBounds(300, 250, 120, 35);
 
 		jlblEmpNo.setBounds(40, 50, 80, 30);
@@ -139,7 +139,7 @@ public class FindPassDialog extends JDialog {
 		add(jtfEname);
 		add(jtfSsn);
 
-		add(jbtnFindPass);
+		add(jbtnResetPass);
 		add(jbtnCancel);
 
 		add(jlblEmpNo);
@@ -213,8 +213,12 @@ public class FindPassDialog extends JDialog {
 
 
 
-	public void setJbtnFindPass(JButton jbtnFindPass) {
-		this.jbtnFindPass = jbtnFindPass;
+	
+
+
+
+	public void setJbtnResetPass(JButton jbtnResetPass) {
+		this.jbtnResetPass = jbtnResetPass;
 	}
 
 
@@ -273,8 +277,8 @@ public class FindPassDialog extends JDialog {
 
 
 
-	public JButton getJbtnFindPass() {
-		return jbtnFindPass;
+	public JButton getJbtnResetPass() {
+		return jbtnResetPass;
 	}
 
 
@@ -316,7 +320,7 @@ public class FindPassDialog extends JDialog {
 
 
 	public static void main(String[] arg) {
-		new FindPassDialog();
+		new ResetPassDialog();
 	}
 
 

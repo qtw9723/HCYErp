@@ -9,10 +9,10 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JOptionPane;
 
-public class FindPassDialogEvt extends MouseAdapter implements ActionListener {
-	private FindPassDialog fpd;
+public class ResetPassDialogEvt extends MouseAdapter implements ActionListener {
+	private ResetPassDialog fpd;
 
-	public FindPassDialogEvt(FindPassDialog fpd) {
+	public ResetPassDialogEvt(ResetPassDialog fpd) {
 		this.fpd = fpd;
 		fpd.addWindowListener(new WindowAdapter() {
 
@@ -24,7 +24,7 @@ public class FindPassDialogEvt extends MouseAdapter implements ActionListener {
 		});//addWindowListener
 	}// constructor
 
-	public void findPass() {
+	public void resetPass() {
 		if(fpd.getJtfEmpNo().getText().length()==0||fpd.getJtfEname().getText().length()==0||
 				fpd.getJtfSsn().getText().length()==0) {
 			JOptionPane.showMessageDialog(fpd, "값을 입력해주세요");
@@ -55,8 +55,8 @@ public class FindPassDialogEvt extends MouseAdapter implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==fpd.getJbtnCancel()) {
 			cancel();
-		}else if(e.getSource()==fpd.getJbtnFindPass()) {
-			findPass();
+		}else if(e.getSource()==fpd.getJbtnResetPass()) {
+			resetPass();
 		}
 	}// actionPerformed
 

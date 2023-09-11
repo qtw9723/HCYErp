@@ -133,6 +133,7 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener 
 	}//cancelChangePass
 	
 	public void changePass() {
+		
 		//비밀번호 변경하자
 	}//changePass
 	

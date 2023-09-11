@@ -24,7 +24,7 @@ public class HCYErp extends JFrame {
 	private JTabbedPane tabbedPane;
 	private JTextField jtfEmpNo;
 	private JButton jbtnLogIn;
-	private JLabel jlblFindPass;
+	private JLabel jlblresetPass;
 	private JLabel jlblLogoTxt;
 	private JLabel jlblMainImg;
 	private JLabel jlblQEmail;
@@ -82,18 +82,18 @@ public class HCYErp extends JFrame {
 		jbtnLogIn.setForeground(Color.white);
 		jbtnLogIn.addActionListener(event);
 
-		// 비밀번호 찾기 폰트
-		Font findPWFont = new Font("맑은고딕", Font.BOLD, 15);
-		// 비밀번호 찾기
-		jlblFindPass = new JLabel("비밀번호 찾기");
-		jlblFindPass.setBounds(517, 430, 180, 60);
-		jlblFindPass.setFont(findPWFont);
-		jlblFindPass.addMouseListener(event);
+		// 비밀번호 초기화 폰트
+		Font resetPWFont = new Font("맑은고딕", Font.BOLD, 15);
+		// 비밀번호 초기화
+		jlblresetPass = new JLabel("비밀번호 초기화");
+		jlblresetPass.setBounds(517, 430, 180, 60);
+		jlblresetPass.setFont(resetPWFont);
+		jlblresetPass.addMouseListener(event);
 
 		// 문의 메일
 		jlblQEmail = new JLabel("기타 문의: hcyadmin@travel.com");
 		jlblQEmail.setBounds(450, 500, 300, 60);
-		jlblQEmail.setFont(findPWFont);
+		jlblQEmail.setFont(resetPWFont);
 
 		// 배경 설정
 		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
@@ -111,7 +111,7 @@ public class HCYErp extends JFrame {
 	}// constructor
 
 	public void removeComponent() {
-		remove(jlblFindPass);
+		remove(jlblresetPass);
 		remove(jlblLogoTxt);
 		remove(jlblMainImg);
 		remove(jlblQEmail);
@@ -126,7 +126,7 @@ public class HCYErp extends JFrame {
 
 
 	public void addComponent() {
-		add(jlblFindPass);
+		add(jlblresetPass);
 		add(jlblLogoTxt);
 		add(jlblMainImg);
 		add(jlblQEmail);
@@ -176,8 +176,8 @@ public class HCYErp extends JFrame {
 
 
 
-	public JLabel getJlblFindPass() {
-		return jlblFindPass;
+	public JLabel getJlblresetPass() {
+		return jlblresetPass;
 	}
 
 

@@ -52,12 +52,12 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		new FindPassDialog().setBounds(hcyE.getX()+200,hcyE.getY()+150,800,400);
+		new ResetPassDialog().setBounds(hcyE.getX()+200,hcyE.getY()+150,800,400);
 		
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		hcyE.getJlblFindPass().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		hcyE.getJlblresetPass().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 //	@Override
 //	public void mouseExited(MouseEvent e) {

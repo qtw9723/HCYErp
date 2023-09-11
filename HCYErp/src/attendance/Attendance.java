@@ -53,7 +53,7 @@ public class Attendance extends JPanel {
 		jbtnApplyDayOff.addActionListener(event);
 		add(jbtnApplyDayOff);
 		// 비밀번호 초기화버튼
-		jbtnChangePass = new JButton("비밀번호초기화");
+		jbtnChangePass = new JButton("비밀번호 변경");
 		jbtnChangePass.setBounds(1000, 450, 150, 40);
 		jbtnChangePass.addActionListener(event);
 		add(jbtnChangePass);

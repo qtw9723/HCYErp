@@ -32,8 +32,10 @@ public class ChangePassDialog extends JDialog{
 	private JLabel jlblCheckNewPass;
 	private JButton jbtnOK;
 	private JButton jbtnCancel;
+	private Attendance ad;
 	
-	public ChangePassDialog() {
+	public ChangePassDialog(Attendance ad) {
+		this.ad=ad;
 		//패스워드필드 선언
 		jpfCurrentPass=new JPasswordField();
 		jpfNewPass=new JPasswordField();
@@ -161,9 +163,7 @@ public class ChangePassDialog extends JDialog{
 	}//constructor
 	
 	
-	public static void main(String[] arg) {
-		new ChangePassDialog();
-	}//main
+	
 
 	public JPasswordField getJpfCurrentPass() {
 		return jpfCurrentPass;
