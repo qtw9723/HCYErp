@@ -19,7 +19,7 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//비밀번호 초기화
+		//비밀번호 변경
 		if(e.getSource()==ad.getJbtnChangePass()) {
 			new ChangePassDialog(ad).setBounds(ad.getHcyE().getX()+200,ad.getHcyE().getY()+100,500,500);
 		}//if
