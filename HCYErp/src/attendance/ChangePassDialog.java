@@ -73,7 +73,7 @@ public class ChangePassDialog extends JDialog{
 		jlblCheckNewView.addMouseListener(cpde);
 		
 		//텍스트 필드 디자인
-		Border focusField=BorderFactory.createLineBorder(new Color(0xEE82EE));// Line border
+		Border focusField=BorderFactory.createLineBorder(new Color(0xEE82EE),2);// Line border
 		Border unfocusField=BorderFactory.createLineBorder(Color.LIGHT_GRAY);// Line border
 		
 		jpfCurrentPass.addFocusListener(new FocusListener() {
