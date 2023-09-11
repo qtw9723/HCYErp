@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,13 +46,17 @@ public class AttendanceDAO {
 
 			rs = pstmt.executeQuery();
 			java.util.Date tempDate = null;
-			Calendar cal = Calendar.getInstance();
+			Calendar targetCal = Calendar.getInstance();
+			Calendar currentCal = Calendar.getInstance();
 			while (rs.next()) {
 				tempDate = new java.util.Date(rs.getDate(1).getTime());
-				cal.setTime(tempDate);
-				for (int i = 0; i < rs.getInt(2); i++) {
-					attendance.put(cal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.DAY_OFF);
-				} // for
+				targetCal.setTime(tempDate);
+				if (targetCal.get(Calendar.YEAR) == currentCal.get(Calendar.YEAR)
+						&& targetCal.get(Calendar.MONTH) == currentCal.get(Calendar.MONTH)) {
+					for (int i = 0; i < rs.getInt(2); i++) {
+						attendance.put(targetCal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.DAY_OFF);
+					} // for
+				} // if
 			} // while
 
 			// 출근일 및 지각일 검색
@@ -68,33 +71,44 @@ public class AttendanceDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				tempDate = new java.util.Date(rs.getDate(1).getTime());
-				cal.setTime(tempDate);
-				if (cal.get(Calendar.HOUR_OF_DAY) < WORK_START_TIME) {
-					tempDate = new java.util.Date(rs.getDate(2).getTime());
-					cal.setTime(tempDate);
-					attendance.put(cal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.ATTENDANCE);
-				} else {
-					tempDate = new java.util.Date(rs.getDate(2).getTime());
-					cal.setTime(tempDate);
-					attendance.put(cal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.ABSENCE);
-				} // else
+				targetCal.setTime(tempDate);
+				if (targetCal.get(Calendar.YEAR) == currentCal.get(Calendar.YEAR)
+						&& targetCal.get(Calendar.MONTH) == currentCal.get(Calendar.MONTH)) {
+					if (targetCal.get(Calendar.HOUR_OF_DAY) < WORK_START_TIME) {
+						tempDate = new java.util.Date(rs.getDate(2).getTime());
+						targetCal.setTime(tempDate);
+						attendance.put(targetCal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.ATTENDANCE);
+					} else {
+						tempDate = new java.util.Date(rs.getDate(2).getTime());
+						targetCal.setTime(tempDate);
+						attendance.put(targetCal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.ABSENCE);
+					} // else
+				} // if
 			} // while
-			
-			//휴직일 검색
+
+			// 휴직일 검색
 			rs.close();
 			pstmt.close();
-			
+
 			selectPersonalAttendance = "SELECT STARTDATE, ABSENCEDAYS FROM ABSENCE where empno = ? ";
-			
+
 			pstmt = con.prepareStatement(selectPersonalAttendance);
 			pstmt.setInt(1, empno);
-			
+
 			rs = pstmt.executeQuery();
+			System.out.println(empno);
 			while (rs.next()) {
+				System.out.println("하하");
 				tempDate = new java.util.Date(rs.getDate(1).getTime());
-				cal.setTime(tempDate);
+				targetCal.setTime(tempDate);
 				for (int i = 0; i < rs.getInt(2); i++) {
-					attendance.put(cal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.LEAVE);
+					if (targetCal.get(Calendar.YEAR) == currentCal.get(Calendar.YEAR)
+							&& targetCal.get(Calendar.MONTH) == currentCal.get(Calendar.MONTH)) {
+						attendance.put(targetCal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.LEAVE);
+						targetCal.set(Calendar.DAY_OF_MONTH, targetCal.get(Calendar.DAY_OF_MONTH) + 1);
+					} else {
+						break;
+					} // else
 				} // for
 			} // while
 		} finally {
@@ -116,13 +130,11 @@ public class AttendanceDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "select (select totaldayoff from emp where empno = ? )-dayoffdays days,(select totaldayoff from emp where empno = ? ) totaldays from dayoff_apply where empno = ? and approve='Y'";
+			String sql = "select nvl((select sum(d.dayoffdays) days from DAYOFF_APPLY d where d.approve='Y' and d.empno = e.empno and to_char(to_date(startdate,'yyyy-mm-dd'),'yyyy') = to_char(sysdate,'yyyy') group by d.empno),0) days, totaldayoff totaldays from emp e where e.empno = ? ";
 
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, empno);
-			pstmt.setInt(2, empno);
-			pstmt.setInt(3, empno);
 
 			rs = pstmt.executeQuery();
 
