@@ -1,12 +1,13 @@
 package attendance;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import DB.DbConn;
 import VO.AttendanceVO;
@@ -15,6 +16,7 @@ import VO.EmpVO;
 
 public class AttendanceDAO {
 	private static AttendanceDAO attendanceDAO;
+	private static int WORK_START_TIME = 9;
 
 	private AttendanceDAO() {
 
@@ -27,36 +29,78 @@ public class AttendanceDAO {
 		return attendanceDAO;
 	}// getInstance
 
-	public List<String> selectPersonalAttendance(int empno) throws SQLException {
-		List<String> attendance = new ArrayList<String>();
+	public Map<Integer, AttendanceStatus> selectPersonalAttendance(int empno) throws SQLException {
+		Map<Integer, AttendanceStatus> attendance = new HashMap<Integer, AttendanceStatus>();
 		DbConn db = DbConn.getInstance();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			// 휴가일 검색
 			String selectPersonalAttendance = "SELECT to_date(STARTDATE,'yyyy-mm-dd'), DAYOFFDAYS FROM DAYOFF_APPLY where empno = ? and APPROVE = 'Y'";
-					
+
 			pstmt = con.prepareStatement(selectPersonalAttendance);
 			pstmt.setInt(1, empno);
-					
+
 			rs = pstmt.executeQuery();
-			Date date = null;
-			while(rs.next()) {
-				date = rs.getDate(1);
-				for(int i = 0;i<rs.getInt(2);i++) {
-					System.out.println(rs.getString(1));
-//					attendance.add(date.valueOf("YYYY-MM-DD"));
-					
-				}//for
-			}//while
+			java.util.Date tempDate = null;
+			Calendar cal = Calendar.getInstance();
+			while (rs.next()) {
+				tempDate = new java.util.Date(rs.getDate(1).getTime());
+				cal.setTime(tempDate);
+				for (int i = 0; i < rs.getInt(2); i++) {
+					attendance.put(cal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.DAY_OFF);
+				} // for
+			} // while
+
+			// 출근일 및 지각일 검색
+			rs.close();
+			pstmt.close();
+
+			selectPersonalAttendance = "select to_date(starttime,'hh:mi:ss'),workdate from ATTENDANCE where empno = ? and ENDTIME is not null";
+
+			pstmt = con.prepareStatement(selectPersonalAttendance);
+			pstmt.setInt(1, empno);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tempDate = new java.util.Date(rs.getDate(1).getTime());
+				cal.setTime(tempDate);
+				if (cal.get(Calendar.HOUR_OF_DAY) < WORK_START_TIME) {
+					tempDate = new java.util.Date(rs.getDate(2).getTime());
+					cal.setTime(tempDate);
+					attendance.put(cal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.ATTENDANCE);
+				} else {
+					tempDate = new java.util.Date(rs.getDate(2).getTime());
+					cal.setTime(tempDate);
+					attendance.put(cal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.ABSENCE);
+				} // else
+			} // while
 			
-					
-		}finally {
+			//휴직일 검색
+			rs.close();
+			pstmt.close();
+			
+			selectPersonalAttendance = "SELECT STARTDATE, ABSENCEDAYS FROM ABSENCE where empno = ? ";
+			
+			pstmt = con.prepareStatement(selectPersonalAttendance);
+			pstmt.setInt(1, empno);
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tempDate = new java.util.Date(rs.getDate(1).getTime());
+				cal.setTime(tempDate);
+				for (int i = 0; i < rs.getInt(2); i++) {
+					attendance.put(cal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.LEAVE);
+				} // for
+			} // while
+		} finally {
 			db.dbclose(rs, pstmt, con);
-		}//finally
-		
+		} // finally
+
 		return attendance;
 	}// selectPersonalAttendance
 
@@ -225,7 +269,7 @@ public class AttendanceDAO {
 			pstmt.setString(6, doaVO.getApprove());
 			pstmt.setDate(7, sqlDate);
 			// new java.sql.Date(utilDate.getTime());
-			
+
 			pstmt.execute();
 		} finally {
 			if (db != null) {
@@ -235,29 +279,28 @@ public class AttendanceDAO {
 	}// insertDayOffApply
 
 	public int updateChangePass(EmpVO eVO) throws SQLException {
-		int rowCnt=0;
+		int rowCnt = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		DbConn db = DbConn.getInstance();
-		
+
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
 			String sql = "update emp set pass=? where empno=?";
 			pstmt = con.prepareStatement(sql);
-			
+
 			pstmt.setString(1, eVO.getPass());
 			pstmt.setInt(1, eVO.getEmpNo());
-			rowCnt=pstmt.executeUpdate();
+			rowCnt = pstmt.executeUpdate();
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}//if
-			
+			} // if
 
-		}//try
+		} // try
 		return rowCnt;
-	}//updateChangePass
+	}// updateChangePass
 }// class

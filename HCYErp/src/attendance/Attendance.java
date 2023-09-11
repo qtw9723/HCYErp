@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -97,47 +98,51 @@ public class Attendance extends JPanel {
 		//출근도장
 		//도장 선언
 		ImageIcon attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceStamp.png");
-		ImageIcon dayoff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYDayoffStamp.png");
-		ImageIcon getoff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYGetoffStamp.png");
+		ImageIcon leave = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYLeaveStamp.png");
+		ImageIcon dayOff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYDayoffStamp.png");
 		ImageIcon tardy = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTardyStamp.png");
-		JLabel jlblAttend = new JLabel(attend);
-		JLabel jlblDayoff = new JLabel(dayoff);
-		JLabel jlblGetoff = new JLabel(getoff);
-		JLabel jlblTardy = new JLabel(tardy);
+		JLabel jlblAttend = null;
+		List<JLabel> jlblList = new ArrayList<JLabel>(); 
 		
-		List<String> attendList = null;
+		Map<Integer, AttendanceStatus> attendMap = null;
 		try {
-			attendList = AttendanceDAO.getInstance().selectPersonalAttendance(hcyE.getUser());
+			attendMap = AttendanceDAO.getInstance().selectPersonalAttendance(hcyE.getUser());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}//catch
-		List<JLabel> jlblList = new ArrayList<JLabel>();
-		for(int i = 0;i<cal.get(Calendar.DAY_OF_MONTH)-1;i++) {
+		
+		for(int i = 1;i<cal.get(Calendar.DAY_OF_MONTH);i++) {
 			
-			switch (attendList.get(i)) {
-			case "attendance":
+			switch (attendMap.get(i)) {
+			case ATTENDANCE:
 				jlblAttend = new JLabel(attend);
 				jlblAttend.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
+				add(jlblAttend);
 				jlblList.add(jlblAttend);
 				break;
-			case "absence":
-				jlblAttend = new JLabel(attend);
+			case ABSENCE:
+				jlblAttend = new JLabel(tardy);
 				jlblAttend.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
+				add(jlblAttend);
 				jlblList.add(jlblAttend);
 				break;
-			case "dayoff":
+			case DAY_OFF:
+				jlblAttend = new JLabel(dayOff);
+				jlblAttend.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
+				add(jlblAttend);
+				jlblList.add(jlblAttend);
+				break;
+			case LEAVE:
+				jlblAttend = new JLabel(leave);
+				jlblAttend.setBounds(dayList.get(i).getX()-50,dayList.get(i).getY()+15,40,40);
+				add(jlblAttend);
+				jlblList.add(jlblAttend);
+				break;
 				
 			default:
 				
-			}
+			}//switch
 		}//for
-		jlblDayoff.setBounds(200,100,160,160);
-		jlblGetoff.setBounds(300,100,160,160);
-		jlblTardy.setBounds(400,100,160,160);
-		add(jlblAttend);
-		add(jlblDayoff);
-		add(jlblGetoff);
-		add(jlblTardy);
 		
 		//달력배경
 		jlblCalendar = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceCalendar.png"));
