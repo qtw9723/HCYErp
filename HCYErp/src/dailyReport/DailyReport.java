@@ -35,12 +35,12 @@ public class DailyReport extends JPanel {
 		jbtnReport.addActionListener(event);
 		add(jbtnReport);
 		
-		
 		//로그아웃 버튼 
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
+
 		//텍스트 로고
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
 		jlblLogoTxt.setBounds(930,450,300,300);
@@ -51,10 +51,6 @@ public class DailyReport extends JPanel {
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 	}//constructor
-	
-	
-	
-	
 
 	public JButton getJbtnReport() {
 		return jbtnReport;
@@ -71,6 +67,9 @@ public class DailyReport extends JPanel {
 	public JLabel getJlblLogoTxt() {
 		return jlblLogoTxt;
 	}
-	
+
+	public HCYErp getHcyE() {
+		return hcyE;
+	}
 	
 }//class
