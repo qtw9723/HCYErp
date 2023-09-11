@@ -27,8 +27,10 @@ public class ApplyDayOffDialog extends JDialog {
 	private JLabel jlblPeriod;
 	private JLabel jlblDuring;
 	private JLabel jlblReason;
+	private Attendance ad;
 
-	public ApplyDayOffDialog() {
+	public ApplyDayOffDialog(Attendance ad) {
+		this.ad = ad;
 		//Calendar선언
 		Calendar cal = Calendar.getInstance();
 		//폰트 설정
@@ -80,12 +82,12 @@ public class ApplyDayOffDialog extends JDialog {
 		for (int i = year; i < year + 2; i++) {
 			jcbStartYear.addItem(i);
 			jcbEndYear.addItem(i);
-		}
+		}//for
 
 		for (int i = 1; i <= 12; i++) {
 			jcbStartMonth.addItem(i);
 			jcbEndMonth.addItem(i);
-		}
+		}//for
 
 		// Month콤보박스 기본값설정
 		jcbStartMonth.setSelectedItem(cal.get(Calendar.MONTH) + 1);
@@ -94,19 +96,17 @@ public class ApplyDayOffDialog extends JDialog {
 
 			@Override
 			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-
-			}
+			}//popupMenuWillBecomeVisible
 
 			@Override
 			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 				int selectedIndex = (int) jcbStartMonth.getSelectedItem() - 1;
 				jcbStartMonth.setSelectedIndex(selectedIndex);
-			}
+			}//popupMenuWillBecomeInvisible
 
 			@Override
 			public void popupMenuCanceled(PopupMenuEvent e) {
-
-			}
+			}//popupMenuCanceled
 		});
 
 		jcbEndMonth.addPopupMenuListener(new PopupMenuListener() {
@@ -131,7 +131,7 @@ public class ApplyDayOffDialog extends JDialog {
 		// 현재달의 일을 콤보박스에 설정
 		for (int i = 1; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
 			jcbStartDay.addItem(i);
-		}
+		}//for
 		
 		int nextday=cal.get(Calendar.MONTH)+1;
 		// 현재일을 기본값으로 설정
@@ -162,7 +162,7 @@ public class ApplyDayOffDialog extends JDialog {
 		cal.set(Calendar.MONTH, nextday);
 		for (int i = 1; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
 			jcbEndDay.addItem(i);
-		}
+		}//for
 		jcbEndDay.setSelectedItem(cal.get(Calendar.DAY_OF_MONTH));
 		
 		jcbEndDay.addPopupMenuListener(new PopupMenuListener() {
@@ -244,14 +244,16 @@ public class ApplyDayOffDialog extends JDialog {
 		add(jbtnApply);
 		add(jbtnCancel);
 		
-		ApplyDayOffDialogEvt adode=new ApplyDayOffDialogEvt(this);
-		jcbReason.addActionListener(adode);
-		jcbStartMonth.addActionListener(adode);
-		jcbStartDay.addActionListener(adode);
-		jcbEndMonth.addActionListener(adode);
+		ApplyDayOffDialogEvt event=new ApplyDayOffDialogEvt(this);
+		jcbReason.addActionListener(event);
+		jcbStartMonth.addActionListener(event);
+		jcbStartDay.addActionListener(event);
+		jcbEndMonth.addActionListener(event);
+		jbtnApply.addActionListener(event);
+		jbtnCancel.addActionListener(event);
 		
 		
-		setBounds(100, 100, 800, 400);
+		setBounds(ad.getHcyE().getX()+100, ad.getHcyE().getY()+100, 800, 400);
 		setVisible(true);
 		
 	}// constructor
@@ -308,8 +310,9 @@ public class ApplyDayOffDialog extends JDialog {
 		return jlblReason;
 	}
 
-	public static void main(String[] arg) {
-		new ApplyDayOffDialog();
+	public Attendance getAd() {
+		return ad;
 	}
+	
 
 }// class

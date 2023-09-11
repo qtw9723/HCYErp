@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import DB.DbConn;
-import VO.AttendanceVO;
 import VO.DayOffApplyVO;
 import VO.EmpVO;
 
@@ -152,7 +151,7 @@ public class AttendanceDAO {
 
 	}// selectLeftDayOff
 
-	public void insertAttendance(AttendanceVO adVO) throws SQLException {
+	public void insertAttendance(int empno) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -162,18 +161,18 @@ public class AttendanceDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "insert into attendance(empno,starttime,endtime,workdate) values(?,to_char(sysdate,'hh:mi:ss'),null,to_char(sysdate,'yyyy-mm-dd'))";
+			String sql = "insert into attendance(empno,starttime,workdate) values(?,to_char(sysdate,'hh:mi:ss'),to_char(sysdate,'yyyy-mm-dd'))";
 
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setInt(1, adVO.getEmpNo());
+			pstmt.setInt(1, empno);
 
 			rs = pstmt.executeQuery();
 
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}
+			} // if
 		} // try
 	}// insertAttendance
 
@@ -239,7 +238,7 @@ public class AttendanceDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "update attendance set endtime=to_char(sysdate,'hh:mi:ss') where empno=?";
+			String sql = "update attendance set endtime=to_char(sysdate,'hh:mi:ss') where empno= ? and endtime is null";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -250,8 +249,8 @@ public class AttendanceDAO {
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}
-		} // try
+			} // if
+		} // finally
 		return flag;
 	}// updateGetOff
 
@@ -259,17 +258,14 @@ public class AttendanceDAO {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		java.util.Date utilDate = doaVO.getSubmitDate();
-		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		
 
 		DbConn db = DbConn.getInstance();
 
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "insert into dayoff_apply(empno, startdate, endate, dayoffdays,reason,approve,submitdate) values(?,?,?,?,?,?,?)";
+			String sql = "insert into dayoff_apply(empno, startdate, enddate, dayoffdays,reason,submitdate) values(?,?,?,?,?,sysdate)";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -278,14 +274,11 @@ public class AttendanceDAO {
 			pstmt.setString(3, doaVO.getEndDate());
 			pstmt.setInt(4, doaVO.getDayOffDays());
 			pstmt.setString(5, doaVO.getReason());
-			pstmt.setString(6, doaVO.getApprove());
-			pstmt.setDate(7, sqlDate);
-			// new java.sql.Date(utilDate.getTime());
 
 			pstmt.execute();
 		} finally {
 			if (db != null) {
-				db.dbclose(rs, pstmt, con);
+				db.dbclose(null, pstmt, con);
 			}
 		} // try
 	}// insertDayOffApply
@@ -294,7 +287,6 @@ public class AttendanceDAO {
 		int rowCnt = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
 		DbConn db = DbConn.getInstance();
 
@@ -309,10 +301,40 @@ public class AttendanceDAO {
 			rowCnt = pstmt.executeUpdate();
 		} finally {
 			if (db != null) {
-				db.dbclose(rs, pstmt, con);
+				db.dbclose(null, pstmt, con);
 			} // if
 
 		} // try
 		return rowCnt;
 	}// updateChangePass
+	
+	public boolean selectWorkingFlag(int empno) throws SQLException {
+		boolean flag = false;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		DbConn db = DbConn.getInstance();
+
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql = "SELECT 1 FROM ATTENDANCE WHERE EMPNO = ? and ENDTIME IS NULL";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, empno);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				flag = true;
+			}//if
+		} finally {
+			if (db != null) {
+				db.dbclose(rs, pstmt, con);
+			} // if
+		} // try
+		
+		return flag;
+	}//selectWorkingFlag
 }// class
