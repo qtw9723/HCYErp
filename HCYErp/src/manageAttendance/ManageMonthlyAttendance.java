@@ -1,5 +1,6 @@
 package manageAttendance;
 
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,6 +26,7 @@ public class ManageMonthlyAttendance extends JPanel{
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
 	private JTable jtMonthlyAttend;
+	private DefaultTableModel dtmMonthlyAttend;
 
 
 	private HCYErp hcyE;
@@ -61,18 +63,14 @@ public class ManageMonthlyAttendance extends JPanel{
 		add(jbtnAttendDate);
 		
 		//출근 목록
-		DefaultTableModel dtmMonthlyAttend = new DefaultTableModel();
+		dtmMonthlyAttend = new DefaultTableModel();
 		dtmMonthlyAttend.addColumn("사원번호");
 		dtmMonthlyAttend.addColumn("사원이름");
 		dtmMonthlyAttend.addColumn("출근시간");
 		dtmMonthlyAttend.addColumn("퇴근시간");
+		dtmMonthlyAttend.addColumn("출근일");
 		//내용 생성
 		List<Object[]> ojList = new ArrayList<Object[]>();
-		
-		//다오 들어오면 삭제
-		for(int i = 0;i<100;i++) {
-			ojList.add(new Object[] {i,"이름","08:55","18:05"});
-		}///사사사사사사삭제
 		
 		for(Object[] oj:ojList) {
 		dtmMonthlyAttend.addRow(oj);
@@ -125,5 +123,16 @@ public class ManageMonthlyAttendance extends JPanel{
 	public JLabel getJlblLogoTxt() {
 		return jlblLogoTxt;
 	}
+
+	public JTable getJtMonthlyAttend() {
+		return jtMonthlyAttend;
+	}
+
+	public DefaultTableModel getDtmMonthlyAttend() {
+		return dtmMonthlyAttend;
+	}
+	
+	
+	
 	
 }//class

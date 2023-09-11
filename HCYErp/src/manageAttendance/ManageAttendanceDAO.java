@@ -1,5 +1,6 @@
 package manageAttendance;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,7 @@ public class ManageAttendanceDAO {
 	public static ManageAttendanceDAO getInstance() {
 		if(maDAO==null) {
 			maDAO=new ManageAttendanceDAO();
-		}
+		}//if
 		return maDAO;
 	}//getInstance
 	
@@ -35,10 +36,9 @@ public class ManageAttendanceDAO {
 		DbConn db=DbConn.getInstance();
 		
 		try {
-			
 			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 			
-			String sql="select e.empno,e.ename,at.starttime,at.endtime from emp e,attendance at where (at.empno=e.empno) and at.workdate=?";
+			String sql="select e.empno,e.ename,at.starttime,at.endtime, at.workdate from emp e,attendance at where at.empno=e.empno and substr(at.workdate,1,7) = ? ";
 			
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, days);
@@ -50,6 +50,7 @@ public class ManageAttendanceDAO {
 				atVO.setEname(rs.getString("ename"));
 				atVO.setStartTime(rs.getString("starttime"));
 				atVO.setEndTime(rs.getString("endtime"));
+				atVO.setWorkDate(rs.getString("workdate"));
 				list.add(atVO);
 			}//while
 			
