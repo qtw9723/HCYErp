@@ -58,13 +58,16 @@ public class ManageEmpRegister extends JPanel{
 		//입사자 추가 버튼
 		jbtnEmpRegister = new JButton("입사자 추가");
 		jbtnEmpRegister.setBounds(930,100,130,55);
+		jbtnEmpRegister.addActionListener(event);
 		add(jbtnEmpRegister);
 		//퇴사 처리 버튼
 		jbtnResign = new JButton("퇴사 처리");
 		jbtnResign.setBounds(930,200,130,55);
+		jbtnResign.addActionListener(event);
 		add(jbtnResign);
 		//휴직 버튼
 		jbtnAbsence = new JButton("휴직");
+		jbtnAbsence.addActionListener(event);
 		jbtnAbsence.setBounds(930,300,130,55);
 		add(jbtnAbsence);
 		

@@ -14,14 +14,14 @@ public class ManageEmpRegisterEvt extends MouseAdapter implements ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		//입사자 추가
+		//퇴사처리
 		if (ae.getSource() == mer.getJbtnResign()) {
-			new AddEmpDialog(mer);
+			new GrantResignationDialog();
 		}//if
 
-		//퇴사처리
+		//입사자 추가
 		if (ae.getSource() == mer.getJbtnEmpRegister()) {
-			
+			new AddEmpDialog(mer);
 		}//if
 
 		//휴직처리
