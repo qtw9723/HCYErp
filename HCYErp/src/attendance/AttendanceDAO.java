@@ -1,3 +1,4 @@
+
 package attendance;
 
 import java.sql.Connection;
@@ -297,7 +298,7 @@ public class AttendanceDAO {
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, eVO.getPass());
-			pstmt.setInt(1, eVO.getEmpNo());
+			pstmt.setInt(2, eVO.getEmpNo());
 			rowCnt = pstmt.executeUpdate();
 		} finally {
 			if (db != null) {
@@ -338,3 +339,6 @@ public class AttendanceDAO {
 		return flag;
 	}//selectWorkingFlag
 }// class
+
+
+

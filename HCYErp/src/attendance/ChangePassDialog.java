@@ -1,3 +1,4 @@
+
 package attendance;
 
 
@@ -65,14 +66,14 @@ public class ChangePassDialog extends JDialog{
 		
 		setLayout(null);
 		
-		ChangePassDialogEvt event=new ChangePassDialogEvt(this);
-		jbtnOK.addActionListener(event);
-		jbtnCancel.addActionListener(event);
+		ChangePassDialogEvt cpde=new ChangePassDialogEvt(this);
+		jbtnOK.addActionListener(cpde);
+		jbtnCancel.addActionListener(cpde);
 		
-		jlblNewHide.addMouseListener(event);
-		jlblNewView.addMouseListener(event);
-		jlblCheckNewHide.addMouseListener(event);
-		jlblCheckNewView.addMouseListener(event);
+		jlblNewHide.addMouseListener(cpde);
+		jlblNewView.addMouseListener(cpde);
+		jlblCheckNewHide.addMouseListener(cpde);
+		jlblCheckNewView.addMouseListener(cpde);
 		
 		//텍스트 필드 디자인
 		Border focusField=BorderFactory.createLineBorder(new Color(0xEE82EE),2);// Line border
@@ -81,11 +82,13 @@ public class ChangePassDialog extends JDialog{
 		jpfCurrentPass.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
 				jpfCurrentPass.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
 				jpfCurrentPass.setBorder(focusField);
 			}
 		});
@@ -93,11 +96,13 @@ public class ChangePassDialog extends JDialog{
 		jpfNewPass.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
 				jpfNewPass.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
 				jpfNewPass.setBorder(focusField);
 			}
 		});
@@ -105,11 +110,13 @@ public class ChangePassDialog extends JDialog{
 		jpfCheckNewPass.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
 				jpfCheckNewPass.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
 				jpfCheckNewPass.setBorder(focusField);
 			}
 		});
@@ -155,6 +162,7 @@ public class ChangePassDialog extends JDialog{
 		
 		
 	}//constructor
+	
 	
 	
 
@@ -217,5 +225,17 @@ public class ChangePassDialog extends JDialog{
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
 	}
+
+	public Attendance getAd() {
+		return ad;
+	}
+
 	
 }//class
+
+
+
+
+
+
+
