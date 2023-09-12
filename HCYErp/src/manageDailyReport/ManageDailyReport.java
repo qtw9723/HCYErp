@@ -1,7 +1,9 @@
 package manageDailyReport;
 
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -11,7 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
+import VO.EmpVO;
 import login.HCYErp;
 
 @SuppressWarnings("serial")
@@ -22,11 +27,12 @@ public class ManageDailyReport extends JPanel {
 	private JComboBox<String> jcbEmp;
 	private JButton jbtnDateSearch;
 	private JButton jbtnEmpSearch;
-	private JList<String> jlReport;
+	private JTable jtReport;
 	private JScrollPane jspReport;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
 	private HCYErp hcyE;
+	private DefaultTableModel dtmReport;
 	
 	public ManageDailyReport(HCYErp hcyE) {
 		this.hcyE=hcyE;
@@ -42,6 +48,7 @@ public class ManageDailyReport extends JPanel {
 		jcbYear.addItem(year-1);
 		jcbYear.addItem(year);
 		jcbYear.addItem(year+1);
+		jcbYear.setSelectedItem(year);
 		jcbYear.setBounds(100,100,130,40);
 		jcbYear.setBackground(new Color(0xffffff));
 		add(jcbYear);
@@ -50,6 +57,7 @@ public class ManageDailyReport extends JPanel {
 		for(int i = 1;i<13;i++) {
 			jcbMonth.addItem(i);
 		}//for
+		jcbMonth.setSelectedItem(cal.get(Calendar.MONTH)+1);
 		jcbMonth.setBounds(260,100,130,40);
 		jcbMonth.setBackground(new Color(0xffffff));
 		jcbMonth.addActionListener(event);
@@ -60,6 +68,7 @@ public class ManageDailyReport extends JPanel {
 		for(int i = 1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
 			jcbDay.addItem(i);
 		}//for
+		jcbDay.setSelectedItem(cal.get(Calendar.DAY_OF_MONTH));
 		jcbDay.setBounds(420,100,130,40);
 		jcbDay.setBackground(new Color(0xffffff));
 		add(jcbDay);
@@ -74,7 +83,14 @@ public class ManageDailyReport extends JPanel {
 		
 		//이름 콤박
 		jcbEmp = new JComboBox<String>();
-		//잇츠 다오 필요 예스
+		try {
+			List<String> empList = ManageDailyReportDAO.getInstance().selectEmp();
+			for(String emp : empList) {
+				jcbEmp.addItem(emp);
+			}//for
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//catch
 		jcbEmp.setBounds(700,100,230,40);
 		jcbEmp.setBackground(new Color(0xffffff));
 		add(jcbEmp);
@@ -87,16 +103,15 @@ public class ManageDailyReport extends JPanel {
 		
 		
 		//업무일지 리스트
-		DefaultListModel<String> dlmReport = new DefaultListModel<String>();
-		jlReport = new JList<String>(dlmReport);
-		for(int i =1;i<100;i++) {
-			dlmReport.addElement("업무일지"+i);
-		}// 다오 나오면 수저저저저저저저저저저저저저저저ㅓㅇ
-		jspReport = new JScrollPane(jlReport);
+		dtmReport = new DefaultTableModel();
+		jtReport = new JTable(dtmReport);
+		dtmReport.addColumn("사원번호");
+		dtmReport.addColumn("사원이름");
+		dtmReport.addColumn("내용 요약");
+		dtmReport.addColumn("일지등록일");
+		jspReport = new JScrollPane(jtReport);
 		jspReport.setBounds(150,160,800,350);
 		add(jspReport);
-		
-		
 		
 		
 		//로그아웃 버튼
@@ -104,6 +119,7 @@ public class ManageDailyReport extends JPanel {
 		jbtnLogOut.setBounds(1000,510,150,40);
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
+		
 		//텍스트 로고
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
 		jlblLogoTxt.setBounds(930,450,300,300);
@@ -139,8 +155,8 @@ public class ManageDailyReport extends JPanel {
 		return jbtnEmpSearch;
 	}
 
-	public JList<String> getJlReport() {
-		return jlReport;
+	public JTable getJtReport() {
+		return jtReport;
 	}
 
 	public JScrollPane getJspReport() {
@@ -157,6 +173,14 @@ public class ManageDailyReport extends JPanel {
 
 	public HCYErp getHcyE() {
 		return hcyE;
+	}
+
+	public DefaultTableModel getDtmReport() {
+		return dtmReport;
+	}
+
+	public void setDtmReport(DefaultTableModel dtmReport) {
+		this.dtmReport = dtmReport;
 	}
 	
 	

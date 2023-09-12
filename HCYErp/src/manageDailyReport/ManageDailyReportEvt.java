@@ -4,6 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import VO.DailyReportVO;
 
 public class ManageDailyReportEvt extends MouseAdapter implements ActionListener {
 	private ManageDailyReport mdr;
@@ -14,24 +21,61 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//날짜 조회
 		if(e.getSource()==mdr.getJbtnDateSearch()) {
-			ManageDailyReportDAO mdrDAO=ManageDailyReportDAO.getInstance();
+			for(int i = mdr.getDtmReport().getRowCount()-1 ; i>=0;i--) {
+				mdr.getDtmReport().removeRow(i);
+			}//for
 			try {
-				mdrDAO.selectDailyReport("2023-09-04");
+				StringBuilder sbDate = new StringBuilder();
+				StringBuilder sbMonth = new StringBuilder();
+				StringBuilder sbDay = new StringBuilder();
+				
+				if(mdr.getJcbMonth().getSelectedItem().toString().length() == 1) {
+					sbMonth.append("0");
+				}//if
+				sbMonth.append(mdr.getJcbMonth().getSelectedItem());
+				
+				if(mdr.getJcbDay().getSelectedItem().toString().length() == 1) {
+					sbDay.append("0");
+				}//if
+				sbDay.append(mdr.getJcbDay().getSelectedItem());
+				
+				sbDate.append(mdr.getJcbYear().getSelectedItem()).append("-").append(sbMonth.toString()).append("-").append(sbDay.toString());
+				List<DailyReportVO> drVOList = new ArrayList<DailyReportVO>();
+				System.out.println(sbDate.toString());
+				drVOList = ManageDailyReportDAO.getInstance().selectDailyReport(sbDate.toString());
+				
+				//작성된 업무일지 업음
+				if(drVOList.isEmpty()) {
+					JOptionPane.showMessageDialog(mdr, "해당 일에는 작성된 업무일지가 없습니다.");
+					return;
+					}//if
+				
+				for(DailyReportVO drVO : drVOList) {
+					mdr.getDtmReport().addRow(new Object[] {drVO.getEmpNo(),drVO.getEname(),drVO.getReportContent().substring(0,15),drVO.getReportDate()});;
+				}//for
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
+			}//catch
 		}//if
+		
+		//사원별 조회
 		if(e.getSource()==mdr.getJbtnEmpSearch()) {
-			ManageDailyReportDAO mdrDAO=ManageDailyReportDAO.getInstance();
+			for(int i = mdr.getDtmReport().getRowCount()-1 ; i>=0;i--) {
+				mdr.getDtmReport().removeRow(i);
+			}//for
+			String emp = mdr.getJcbEmp().getSelectedItem().toString();
 			try {
-				mdrDAO.selectDailyReport(4705);
+				List<DailyReportVO> drVOList = ManageDailyReportDAO.getInstance().selectDailyReport(Integer.parseInt(emp.substring(0,emp.indexOf("/"))) );
+				for(DailyReportVO drVO:drVOList) {
+					mdr.getDtmReport().addRow(new Object[] {drVO.getEmpNo(),drVO.getEname(),drVO.getReportContent().substring(0,15),drVO.getReportDate()});
+				}//for
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-		}
+			}//catch
+		}//if
+		
 	}//actionPerformed
 
 }//class

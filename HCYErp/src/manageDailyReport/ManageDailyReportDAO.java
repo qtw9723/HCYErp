@@ -15,11 +15,9 @@ public class ManageDailyReportDAO {
 	private static ManageDailyReportDAO mdrDAO;
 	
 	private ManageDailyReportDAO() {
-		
 	}//constructor
 	
 	public static ManageDailyReportDAO getInstance() {
-		
 		if(mdrDAO==null) {
 			mdrDAO=new ManageDailyReportDAO();
 		}//if
@@ -39,7 +37,7 @@ public class ManageDailyReportDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql="select dr.empno,dr.reportdate,dr.reportcontent,e.ename from daily_report dr, emp e where (dr.empno=e.empno) and dr.reportdate=?";
+			String sql="select dr.empno,dr.reportdate,dr.reportcontent,e.ename from daily_report dr, emp e where dr.empno=e.empno and dr.reportdate= ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, days);
@@ -54,7 +52,7 @@ public class ManageDailyReportDAO {
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}
+			}//if
 		} // try
 		return list;
 		
@@ -88,7 +86,7 @@ public class ManageDailyReportDAO {
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}
+			}//if
 		} // try
 		return list;
 		
@@ -115,9 +113,40 @@ public class ManageDailyReportDAO {
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}
-		} // try
+			}//if
+		} // finally
 		return rowCnt;
+	}//updateDailyReport
+	
+	public List<String> selectEmp() throws SQLException {
+		List<String> empList = new ArrayList<String>();
+		StringBuilder sbEmp = new StringBuilder();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		DbConn db = DbConn.getInstance();
+		
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql="SELECT EMPNO, ENAME FROM EMP";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				sbEmp.replace(0, sbEmp.length(), "");
+				sbEmp.append(rs.getInt("empno")).append("/").append(rs.getString("ename"));
+				empList.add(sbEmp.toString());
+			}//while
+		} finally {
+			if (db != null) {
+				db.dbclose(rs, pstmt, con);
+			}//if
+		} // finally
+		return empList;
 	}//updateDailyReport
 	
 }//class
