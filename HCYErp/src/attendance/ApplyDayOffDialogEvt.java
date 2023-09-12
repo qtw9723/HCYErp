@@ -81,7 +81,7 @@ public class ApplyDayOffDialogEvt extends MouseAdapter implements ActionListener
 		adod.getJcbStartDay().removeAllItems();
 		for (int i = 1; i <= maxDay; i++) {
 			adod.getJcbStartDay().addItem(i);
-		}
+		}//end for
 	}// startUpdateDays
 
 	public void endUpdateDays() {
@@ -96,7 +96,7 @@ public class ApplyDayOffDialogEvt extends MouseAdapter implements ActionListener
 		adod.getJcbEndDay().removeAllItems();
 		for (int i = 1; i <= maxDay; i++) {
 			adod.getJcbEndDay().addItem(i);
-		}
+		}//end for
 	}// endUpdateDays
 
 	public void dayOffApply() throws SQLException {

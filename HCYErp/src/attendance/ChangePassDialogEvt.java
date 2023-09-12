@@ -34,56 +34,58 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == cpd.getJbtnOK()) {
 			changePass();
-		}
+		} // end if
 		if (e.getSource() == cpd.getJbtnCancel()) {
 			cancelChangePass();
-		}
+		} // end if
 	}// actionPerformed
 
 	public void textfieldState() {
 		if (cpd.getJpfCurrentPass().getPassword().length == 0) {
 			JOptionPane.showMessageDialog(cpd, "현재 비밀번호를 입력하세요");
-		} else {
-			if (cpd.getJpfNewPass().getPassword().length == 0) {
-				JOptionPane.showMessageDialog(cpd, "새 비밀번호를 입력해주세요");
-			} else {
-				cpd.getJpfNewPass().setVisible(false);
-				cpd.getJtfNewPass().setVisible(true);
-
-				cpd.getJlblNewHide().setVisible(true);
-				cpd.getJlblNewView().setVisible(false);
-
-				char[] passwordChars = cpd.getJpfNewPass().getPassword();
-				String password = new String(passwordChars);
-
-				cpd.getJtfNewPass().setText(password);
-			}
+			return;
 		}
+		if (cpd.getJpfNewPass().getPassword().length == 0) {
+			JOptionPane.showMessageDialog(cpd, "새 비밀번호를 입력해주세요");
+			return;
+		}
+		cpd.getJpfNewPass().setVisible(false);
+		cpd.getJtfNewPass().setVisible(true);
+
+		cpd.getJlblNewHide().setVisible(true);
+		cpd.getJlblNewView().setVisible(false);
+
+		char[] passwordChars = cpd.getJpfNewPass().getPassword();
+		String password = new String(passwordChars);
+
+		cpd.getJtfNewPass().setText(password);
+
 	}// textfieldState
 
 	public void textfieldStateCheck() {
 		if (cpd.getJpfCurrentPass().getPassword().length == 0) {
 			JOptionPane.showMessageDialog(cpd, "현재 비밀번호를 입력하세요");
-		} else {
-			if (cpd.getJpfNewPass().getPassword().length == 0) {
-				JOptionPane.showMessageDialog(cpd, "새 비밀번호를 입력하세요");
-			} else {
-				if (cpd.getJpfCheckNewPass().getPassword().length == 0) {
-					JOptionPane.showMessageDialog(cpd, "비밀번호 확인란을 입력하세요");
-				} else {
-					cpd.getJpfCheckNewPass().setVisible(false);
-					cpd.getJtfCheckNewPass().setVisible(true);
-
-					cpd.getJlblCheckNewView().setVisible(false);
-					cpd.getJlblCheckNewHide().setVisible(true);
-
-					char[] passwordChars = cpd.getJpfCheckNewPass().getPassword();
-					String password = new String(passwordChars);
-
-					cpd.getJtfCheckNewPass().setText(password);
-				}
-			}
+			return;
 		}
+		if (cpd.getJpfNewPass().getPassword().length == 0) {
+			JOptionPane.showMessageDialog(cpd, "새 비밀번호를 입력하세요");
+			return;
+		}
+		if (cpd.getJpfCheckNewPass().getPassword().length == 0) {
+			JOptionPane.showMessageDialog(cpd, "비밀번호 확인란을 입력하세요");
+			return;
+		}
+		cpd.getJpfCheckNewPass().setVisible(false);
+		cpd.getJtfCheckNewPass().setVisible(true);
+
+		cpd.getJlblCheckNewView().setVisible(false);
+		cpd.getJlblCheckNewHide().setVisible(true);
+
+		char[] passwordChars = cpd.getJpfCheckNewPass().getPassword();
+		String password = new String(passwordChars);
+
+		cpd.getJtfCheckNewPass().setText(password);
+
 	}// textfieldStateCheck
 
 	public void passwordState() {
@@ -118,27 +120,27 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener 
 			if (currentPassword.isEmpty() || newPassword.isEmpty() || checkPassword.isEmpty()) {
 				JOptionPane.showMessageDialog(cpd, "해당 비밀번호를 입력해주세요");
 				return;
-			}//end if
+			} // end if
 			if (currentPassword.equals(newPassword) || currentPassword.equals(checkPassword)) {
 				JOptionPane.showMessageDialog(cpd, "현재 비밀번호와 다른 비밀번호를 입력해주세요");
 				return;
-			}//end if
+			} // end if
 
 			// 문자열 비교에는 equals 메서드를 사용
 			if (!newPassword.equals(checkPassword)) {
 				JOptionPane.showMessageDialog(cpd, "새로운 비밀번호를 올바르게 입력하세요");
 				return;
-			}//end if
+			} // end if
 
 			// 비밀번호
 			EmpVO eVO = new EmpVO();
-			String dbPass=HCYErpDAO.getInstance().geteVO().getPass();
-			
+			String dbPass = HCYErpDAO.getInstance().geteVO().getPass();
+
 			if (!currentPassword.equals(dbPass)) {
 				JOptionPane.showMessageDialog(cpd, "현재 비밀번호가 맞지 않습니다.");
 				return;
-			}//end if
-			
+			} // end if
+
 			// 사번 추가
 			eVO.setEmpNo(cpd.getAd().getHcyE().getUser());
 			String tempPass = new String();
@@ -150,11 +152,11 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener 
 				JOptionPane.showMessageDialog(cpd, "비밀번호가 변경되었습니다.");
 			} else {
 				JOptionPane.showMessageDialog(cpd, "비밀번호 변경이 실패되었습니다.");
-			}//end else
+			} // end else
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}//end catch
-	}//changePass
+		} // end catch
+	}// changePass
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
