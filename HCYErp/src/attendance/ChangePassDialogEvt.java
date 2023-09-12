@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import VO.EmpVO;
+import login.HCYErpDAO;
 
 public class ChangePassDialogEvt extends MouseAdapter implements ActionListener {
 
@@ -116,43 +117,44 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener 
 
 			if (currentPassword.isEmpty() || newPassword.isEmpty() || checkPassword.isEmpty()) {
 				JOptionPane.showMessageDialog(cpd, "해당 비밀번호를 입력해주세요");
-			} else {
-				if (currentPassword.equals(newPassword) || currentPassword.equals(checkPassword)) {
-					JOptionPane.showMessageDialog(cpd, "현재 비밀번호와 다른 비밀번호를 입력해주세요");
-				} else {
-					if (!newPassword.equals(checkPassword)) { // 문자열 비교에는 equals 메서드를 사용
-						JOptionPane.showMessageDialog(cpd, "새로운 비밀번호를 올바르게 입력하세요");
-					} else {
-						EmpVO eVO = new EmpVO();
-						String currentDBPass = eVO.getPass();
-						if (currentPassword.equals(currentDBPass)) {
-							// 사번 추가
-							if (newPassword.equals(checkPassword)) {
-								eVO.setEmpNo(cpd.getAd().getHcyE().getUser());
-								String tempPass = new String();
-								tempPass = checkPassword;
-								eVO.setPass(tempPass);
-								int updatedRows = AttendanceDAO.getInstance().updateChangePass(eVO);
-								System.out.println("업데이트 행수  " + updatedRows);
-								if (updatedRows >= 0) {
-									JOptionPane.showMessageDialog(cpd, "비밀번호가 변경되었습니다.");
-								} else {
-									JOptionPane.showMessageDialog(cpd, "비밀번호 변경이 실패되었습니다.");
-								}
-							} else {
-								JOptionPane.showMessageDialog(cpd, "입력하신 새 비밀번호가 다릅니다.");
-							}
-						} else {
-							JOptionPane.showMessageDialog(cpd, "현재 비밀번호가 맞지 않습니다.");
+				return;
+			}//end if
+			if (currentPassword.equals(newPassword) || currentPassword.equals(checkPassword)) {
+				JOptionPane.showMessageDialog(cpd, "현재 비밀번호와 다른 비밀번호를 입력해주세요");
+				return;
+			}//end if
 
-						}
-					}
-				}
-			}
+			// 문자열 비교에는 equals 메서드를 사용
+			if (!newPassword.equals(checkPassword)) {
+				JOptionPane.showMessageDialog(cpd, "새로운 비밀번호를 올바르게 입력하세요");
+				return;
+			}//end if
+
+			// 비밀번호
+			EmpVO eVO = new EmpVO();
+			String dbPass=HCYErpDAO.getInstance().geteVO().getPass();
+			
+			if (!currentPassword.equals(dbPass)) {
+				JOptionPane.showMessageDialog(cpd, "현재 비밀번호가 맞지 않습니다.");
+				return;
+			}//end if
+			
+			// 사번 추가
+			eVO.setEmpNo(cpd.getAd().getHcyE().getUser());
+			String tempPass = new String();
+			tempPass = checkPassword;
+			eVO.setPass(tempPass);
+			int updatedRows = AttendanceDAO.getInstance().updateChangePass(eVO);
+			System.out.println("업데이트 행수  " + updatedRows);
+			if (updatedRows >= 0) {
+				JOptionPane.showMessageDialog(cpd, "비밀번호가 변경되었습니다.");
+			} else {
+				JOptionPane.showMessageDialog(cpd, "비밀번호 변경이 실패되었습니다.");
+			}//end else
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-	}
+		}//end catch
+	}//changePass
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
