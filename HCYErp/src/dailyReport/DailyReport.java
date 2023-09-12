@@ -24,7 +24,7 @@ public class DailyReport extends JPanel {
 		setLayout(null);
 		
 		//업무일지 에리어
-		jtaReport = new JTextArea();
+		jtaReport = new JTextArea("2023-00-00 사원명\n\n\n업무내용\n-\n-\n-");
 		jtaReport.setBounds(190,100,800,350);
 		jtaReport.setBorder(new TitledBorder(""));
 		add(jtaReport);
@@ -50,6 +50,7 @@ public class DailyReport extends JPanel {
 		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
+		
 	}//constructor
 
 	public JButton getJbtnReport() {

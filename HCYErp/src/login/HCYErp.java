@@ -34,7 +34,7 @@ public class HCYErp extends JFrame {
 	private int user;
 	private int jfWidth;
 	private int jfHeight;
-
+	private boolean getOffFlag = false;
 	
 	public HCYErp() {
 		super("마 자신있나");
@@ -228,5 +228,12 @@ public class HCYErp extends JFrame {
 		this.tabbedPane = tabbedPane;
 	}
 
+	public boolean isGetOffFlag() {
+		return getOffFlag;
+	}
+
+	public void setGetOffFlag(boolean getOffFlag) {
+		this.getOffFlag = getOffFlag;
+	}
 
 }// class

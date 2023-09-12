@@ -24,6 +24,7 @@ public class DailyReportDAO {
 	}//getInstance
 	
 	public void insertDailyReport( DailyReportVO drVO ) throws SQLException {
+		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
@@ -32,14 +33,14 @@ public class DailyReportDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "insert into daily_report(empno, reportcontent, reportdate) values(?,?,to_char(sysdate, 'yyyy-mm-dd'))";
+			String sql = "insert into daily_report(empno, reportcontent) values(?,?)";
 
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, drVO.getEmpNo());
 			pstmt.setString(2, drVO.getReportContent());
 						
-			pstmt.executeUpdate( );
+			pstmt.execute( );
 			
 		} finally {
 			if (db != null) {

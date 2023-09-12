@@ -27,6 +27,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 	private HCYErp hcyE;
 	private int empNo;
+	
 
 	public HCYErpEvt(HCYErp hcyE) {
 		this.hcyE = hcyE;
@@ -92,6 +93,8 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			}
 		}
 	}
+
+	
 
 
 }
