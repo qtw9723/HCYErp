@@ -28,10 +28,17 @@ public class Attendance extends JPanel {
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
 	private HCYErp hcyE;
+	private ImageIcon attend;
+	private ImageIcon leave;
+	private ImageIcon dayOff;
+	private ImageIcon tardy;
+	private JLabel jlblAttend;
+	private List<JLabel> jlblList;
+	private List<JLabel> dayList;
 
 	public Attendance(HCYErp hcyE) {
 		this.hcyE = hcyE;
-		List<JLabel> dayList = new ArrayList<JLabel>();
+		dayList = new ArrayList<JLabel>();
 
 		AttendanceEvt event = new AttendanceEvt(this);
 
@@ -83,7 +90,6 @@ public class Attendance extends JPanel {
 			add(jlblTempDay);
 			dayList.add(jlblTempDay);
 		} // for
-		System.out.println(dayList.get(0));
 
 		// 연도 라벨
 		Font ymFont = new Font("맑은 고딕", Font.BOLD, 17);
@@ -100,11 +106,11 @@ public class Attendance extends JPanel {
 
 		// 출근도장
 		// 도장 선언
-		ImageIcon attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttedanceStamp.png");
-		ImageIcon leave = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYLeaveStamp.png");
-		ImageIcon dayOff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYDayoffStamp.png");
-		ImageIcon tardy = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTardyStamp.png");
-		JLabel jlblAttend = null;
+		attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttedanceStamp.png");
+		leave = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYLeaveStamp.png");
+		dayOff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYDayoffStamp.png");
+		tardy = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTardyStamp.png");
+		jlblAttend = null;
 		List<JLabel> jlblList = new ArrayList<JLabel>();
 
 		Map<Integer, AttendanceStatus> attendMap = new HashMap<Integer, AttendanceStatus>();
@@ -219,5 +225,34 @@ public class Attendance extends JPanel {
 	public HCYErp getHcyE() {
 		return hcyE;
 	}
+
+	public ImageIcon getAttend() {
+		return attend;
+	}
+
+	public ImageIcon getLeave() {
+		return leave;
+	}
+
+	public ImageIcon getDayOff() {
+		return dayOff;
+	}
+
+	public ImageIcon getTardy() {
+		return tardy;
+	}
+
+	public JLabel getJlblAttend() {
+		return jlblAttend;
+	}
+
+	public List<JLabel> getJlblList() {
+		return jlblList;
+	}
+
+	public List<JLabel> getDayList() {
+		return dayList;
+	}
+	
 
 }// class

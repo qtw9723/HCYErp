@@ -15,7 +15,7 @@ import VO.EmpVO;
 
 public class AttendanceDAO {
 	private static AttendanceDAO attendanceDAO;
-	private static int WORK_START_TIME = 9;
+	public static int WORK_START_TIME = 9;
 
 	private AttendanceDAO() {
 
@@ -63,7 +63,7 @@ public class AttendanceDAO {
 			rs.close();
 			pstmt.close();
 
-			selectPersonalAttendance = "select to_date(starttime,'hh:mi:ss'),workdate from ATTENDANCE where empno = ? and ENDTIME is not null";
+			selectPersonalAttendance = "select to_date(starttime,'hh:mi:ss'),workdate from ATTENDANCE where empno = ? ";
 
 			pstmt = con.prepareStatement(selectPersonalAttendance);
 			pstmt.setInt(1, empno);
@@ -96,9 +96,7 @@ public class AttendanceDAO {
 			pstmt.setInt(1, empno);
 
 			rs = pstmt.executeQuery();
-			System.out.println(empno);
 			while (rs.next()) {
-				System.out.println("하하");
 				tempDate = new java.util.Date(rs.getDate(1).getTime());
 				targetCal.setTime(tempDate);
 				for (int i = 0; i < rs.getInt(2); i++) {
@@ -322,6 +320,36 @@ public class AttendanceDAO {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
 			String sql = "SELECT 1 FROM ATTENDANCE WHERE EMPNO = ? and ENDTIME IS NULL";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, empno);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				flag = true;
+			}//if
+		} finally {
+			if (db != null) {
+				db.dbclose(rs, pstmt, con);
+			} // if
+		} // try
+		
+		return flag;
+	}//selectWorkingFlag
+	
+	public boolean selectTodayWork(int empno) throws SQLException {
+		boolean flag = false;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		DbConn db = DbConn.getInstance();
+
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql = "SELECT 1 FROM ATTENDANCE WHERE EMPNO = ? and WORKDATE = to_char(sysdate,'yyyy-mm-dd')";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, empno);
