@@ -119,25 +119,25 @@ public class Attendance extends JPanel {
 				switch (attendMap.get(i + 1)) {
 				case ATTENDANCE:
 					jlblAttend = new JLabel(attend);
-					jlblAttend.setBounds(dayList.get(i).getX() - 50, dayList.get(i).getY() + 15, 40, 40);
+					jlblAttend.setBounds(dayList.get(i).getX() - 50, dayList.get(i).getY() + 15, 50, 50);
 					add(jlblAttend);
 					jlblList.add(jlblAttend);
 					break;
 				case ABSENCE:
 					jlblAttend = new JLabel(tardy);
-					jlblAttend.setBounds(dayList.get(i).getX() - 50, dayList.get(i).getY() + 15, 40, 40);
+					jlblAttend.setBounds(dayList.get(i).getX() - 50, dayList.get(i).getY() + 15, 50, 50);
 					add(jlblAttend);
 					jlblList.add(jlblAttend);
 					break;
 				case DAY_OFF:
 					jlblAttend = new JLabel(dayOff);
-					jlblAttend.setBounds(dayList.get(i).getX() - 50, dayList.get(i).getY() + 15, 40, 40);
+					jlblAttend.setBounds(dayList.get(i).getX() - 50, dayList.get(i).getY() + 15, 50, 50);
 					add(jlblAttend);
 					jlblList.add(jlblAttend);
 					break;
 				case LEAVE:
 					jlblAttend = new JLabel(leave);
-					jlblAttend.setBounds(dayList.get(i).getX() - 50, dayList.get(i).getY() + 15, 40, 40);
+					jlblAttend.setBounds(dayList.get(i).getX() - 50, dayList.get(i).getY() + 15, 50, 50);
 					add(jlblAttend);
 					jlblList.add(jlblAttend);
 					break;

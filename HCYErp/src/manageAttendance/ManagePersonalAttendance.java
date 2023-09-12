@@ -3,17 +3,23 @@ package manageAttendance;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import attendance.AttendanceDAO;
+import attendance.AttendanceStatus;
 import login.HCYErp;
 
 @SuppressWarnings("serial")
@@ -24,6 +30,9 @@ public class ManagePersonalAttendance extends JPanel{
 	private JComboBox<String> jcbEmp;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
+	private JLabel jlblCalendar;
+	private List<JLabel> dayList;
+	private List<JLabel> jlblAttendList;
 
 
 	private HCYErp hcyE;
@@ -34,7 +43,7 @@ public class ManagePersonalAttendance extends JPanel{
 		ManagePersonalAttendanceEvt event = new ManagePersonalAttendanceEvt(this);
 		
 		//달력날짜
-		List<JLabel> dayList = new ArrayList<JLabel>();
+		dayList = new ArrayList<JLabel>();
 		Calendar cal = Calendar.getInstance();
 		JLabel jlblTempDay = new JLabel();
 		for(int i=1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
@@ -60,12 +69,24 @@ public class ManagePersonalAttendance extends JPanel{
 		
 		//사원 콤박
 		jcbEmp = new JComboBox<String>();
-		for(int i = 0 ;i<100;i++) {
-		jcbEmp.addItem(i+"번사원");
-		}//다오 나오면 삭제
+		List<String> empList = new ArrayList<String>();
+		try {
+			empList = ManageAttendanceDAO.getInstance().selectEmp();
+		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(jlblmonth, "데이터 베이스에 오류가 발생했습니다.");
+		}//catch
+		for(String emp:empList) {
+			jcbEmp.addItem(emp);
+		}//for
 		jcbEmp.setBounds(300,70,130,40);
 		jcbEmp.setBackground(new Color(0xffffff));
 		add(jcbEmp);
+		
+		//조회버튼
+		jbtnAttendName = new JButton("조회");
+		jbtnAttendName.setBounds(700,70,130,40);
+		jbtnAttendName.addActionListener(event);
+		add(jbtnAttendName);
 		
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
@@ -77,6 +98,11 @@ public class ManagePersonalAttendance extends JPanel{
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
 		jlblLogoTxt.setBounds(930,450,300,300);
 		add(jlblLogoTxt);
+		
+		// 달력배경
+		jlblCalendar = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceCalendar.png"));
+		jlblCalendar.setBounds(200, 180, 580, 400);
+		add(jlblCalendar);
 		
 		// 배경 설정
 		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
@@ -113,5 +139,22 @@ public class ManagePersonalAttendance extends JPanel{
 	public JLabel getJlblLogoTxt() {
 		return jlblLogoTxt;
 	}
+
+	public JLabel getJlblCalendar() {
+		return jlblCalendar;
+	}
+
+	public List<JLabel> getDayList() {
+		return dayList;
+	}
+
+	public List<JLabel> getJlblAttendList() {
+		return jlblAttendList;
+	}
+
+	public void setJlblAttendList(List<JLabel> jlblAttendList) {
+		this.jlblAttendList = jlblAttendList;
+	}
+	
 	
 }//class
