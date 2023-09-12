@@ -26,46 +26,45 @@ public class ManagePersonalAttendanceEvt extends MouseAdapter implements ActionL
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 
 		// 조회버튼
 		if (e.getSource() == ma.getJbtnAttendName()) {
-			
+
 			// 도장 선언
 			ImageIcon attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttedanceStamp.png");
 			ImageIcon leave = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYLeaveStamp.png");
 			ImageIcon dayOff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYDayoffStamp.png");
 			ImageIcon tardy = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTardyStamp.png");
 			JLabel jlblAttend = null;
-			
-			if(ma.getJlblAttendList()==null) {
-			ma.setJlblAttendList(new ArrayList<JLabel>());
-			}//if
-			
+
+			if (ma.getJlblAttendList() == null) {
+				ma.setJlblAttendList(new ArrayList<JLabel>());
+			} // if
+
 			// 이전에 추가된 도장 제거
 			for (JLabel label : ma.getJlblAttendList()) {
 				ma.remove(label);
-			}//for
+			} // for
 			ma.revalidate();
 			ma.repaint();
 			ma.getJlblAttendList().clear();
-			
-			//도장추가
+
+			// 도장추가
 			Map<Integer, AttendanceStatus> attendMap = new HashMap<Integer, AttendanceStatus>();
 			try {
 				String emp = ma.getJcbEmp().getSelectedItem().toString();
 				attendMap = ManageAttendanceDAO.getInstance()
-						.selectNoAttend(Integer.parseInt(emp.substring(0,emp.indexOf("/"))));
+						.selectNoAttend(Integer.parseInt(emp.substring(0, emp.indexOf("/"))));
 			} catch (SQLException se) {
 				JOptionPane.showMessageDialog(jlblAttend, "데이터베이스에 문제가 발생했습니다. 기술팀에 문의해주세요!");
 			} // catch
 
 			Calendar cal = Calendar.getInstance();
-			//상황에 맞는 도장 설정
+			// 상황에 맞는 도장 설정
 			for (int i = 0; i < cal.get(Calendar.DATE); i++) {
 				if (attendMap.get(i + 1) != null) {
 					switch (attendMap.get(i + 1)) {
-					//출근도장 쾅
+					// 출근도장 쾅
 					case ATTENDANCE:
 						jlblAttend = new JLabel(attend);
 						jlblAttend.setBounds(ma.getDayList().get(i).getX() - 50, ma.getDayList().get(i).getY() + 15, 50,
@@ -75,7 +74,7 @@ public class ManagePersonalAttendanceEvt extends MouseAdapter implements ActionL
 						ma.repaint();
 						ma.getJlblAttendList().add(jlblAttend);
 						break;
-					//지각도장 쾅
+					// 지각도장 쾅
 					case ABSENCE:
 						jlblAttend = new JLabel(tardy);
 						jlblAttend.setBounds(ma.getDayList().get(i).getX() - 50, ma.getDayList().get(i).getY() + 15, 50,
@@ -85,7 +84,7 @@ public class ManagePersonalAttendanceEvt extends MouseAdapter implements ActionL
 						ma.repaint();
 						ma.getJlblAttendList().add(jlblAttend);
 						break;
-					//휴가도장 쾅
+					// 휴가도장 쾅
 					case DAY_OFF:
 						jlblAttend = new JLabel(dayOff);
 						jlblAttend.setBounds(ma.getDayList().get(i).getX() - 50, ma.getDayList().get(i).getY() + 15, 50,
@@ -95,7 +94,7 @@ public class ManagePersonalAttendanceEvt extends MouseAdapter implements ActionL
 						ma.repaint();
 						ma.getJlblAttendList().add(jlblAttend);
 						break;
-					//휴직도장 쾅
+					// 휴직도장 쾅
 					case LEAVE:
 						jlblAttend = new JLabel(leave);
 						jlblAttend.setBounds(ma.getDayList().get(i).getX() - 50, ma.getDayList().get(i).getY() + 15, 50,
@@ -109,6 +108,13 @@ public class ManagePersonalAttendanceEvt extends MouseAdapter implements ActionL
 					}// switch
 				} // if
 			} // for
+		} // if
+
+		// 로그아웃
+		if (e.getSource() == ma.getJbtnLogOut()) {
+			ma.getHcyE().getTabbedPane().setVisible(false);
+			ma.getHcyE().addComponent();
+			ma.getHcyE().setUser(0);
 		} // if
 	}// actionPerformed
 
