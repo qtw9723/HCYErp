@@ -1,5 +1,6 @@
 package manageEmpRegister;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import VO.EmpVO;
 import login.HCYErp;
 
 @SuppressWarnings("serial")
@@ -33,22 +35,24 @@ public class ManageEmpRegister extends JPanel{
 		DefaultTableModel dtmRefiAbInfo = new DefaultTableModel();
 		dtmRefiAbInfo.addColumn("사원번호");
 		dtmRefiAbInfo.addColumn("사원이름");
-		dtmRefiAbInfo.addColumn("퇴사일");
-		dtmRefiAbInfo.addColumn("승인일");
-		dtmRefiAbInfo.addColumn("퇴사사유");
+		dtmRefiAbInfo.addColumn("부서");
+		dtmRefiAbInfo.addColumn("직급");
+		dtmRefiAbInfo.addColumn("입사일");
+		dtmRefiAbInfo.addColumn("연봉");
 		//다오에서 추가
-		List<Object[]> ojList = new ArrayList<Object[]>();
-		for(int i =0;i<100;i++) {
-			ojList.add(new Object[]{i,"이름","2023.09.05","2023.09.04","회장이 갈궈서"});
-		}//사사사사사사삭제
-		
-		for(Object[] oj:ojList) {
-		dtmRefiAbInfo.addRow(oj);
+		List<EmpVO> empVOList = null;
+		try {
+			empVOList = ManageEmpRegisterDAO.getInstance().selectEmp();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//catch
+		for(int i = 0; i< empVOList.size();i++) {
+			dtmRefiAbInfo.addRow(new Object[] {empVOList.get(i).getEmpNo(),empVOList.get(i).getEname(),empVOList.get(i).getJob(),empVOList.get(i).getLevel(),empVOList.get(i).getHiredate(),empVOList.get(i).getSal()});
 		}//for
 		jtRegiAbInfo = new JTable(dtmRefiAbInfo);
 		jspResignAb = new JScrollPane(jtRegiAbInfo);
 		jspResignAb.setBounds(100,50,800,500);
-		jspResignAb.setBorder(new TitledBorder("입사자/퇴사자 목록"));
+		jspResignAb.setBorder(new TitledBorder("입사자/퇴사 대상자 목록"));
 		add(jspResignAb);
 		
 		//입사자 추가 버튼

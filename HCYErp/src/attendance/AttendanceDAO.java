@@ -184,7 +184,7 @@ public class AttendanceDAO {
 
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-			String sql = "select e.empno empno,e.addr addr,e.email email,e.ename ename,e.hiredate hiredate,e.input_date input_date, "
+			String sql = "select e.empno empno,e.addr addr,e.email email,e.ename ename,to_char(e.hiredate,'yyyy-mm-dd') hiredate,e.input_date input_date, "
 					+ "e.jobno jobno,e.levelno levelno,e.pass pass,e.sal sal "
 					+ ",e.ssn ssn,e.teamno teamno,e.tel tel,e.totaldayoff totaldayoff,e.jobtel jobtel,t.tname tname, "
 					+ "t.deptno deptno,d.dname dname,j.jobname jobname,t.loc loc,jl.lvname lvname "
@@ -205,7 +205,7 @@ public class AttendanceDAO {
 				eVO.setDeptLoc(rs.getString("loc"));
 				eVO.setEmail(rs.getString("email"));
 				eVO.setEname(rs.getString("ename"));
-				eVO.setHiredate(rs.getDate("hiredate"));
+				eVO.setHiredate(rs.getString("hiredate"));
 				eVO.setInputDate(rs.getDate("input_date"));
 				eVO.setJob(rs.getString("jobname"));
 				eVO.setLevel(rs.getString("lvname"));

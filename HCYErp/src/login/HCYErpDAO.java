@@ -65,7 +65,7 @@ public class HCYErpDAO {
 			eVO.setDeptLoc(rs.getString("loc"));
 			eVO.setEmail(rs.getString("email"));
 			eVO.setEname(rs.getString("ename"));
-			eVO.setHiredate(rs.getDate("hiredate"));
+			eVO.setHiredate(rs.getString("hiredate"));
 			eVO.setInputDate(rs.getDate("input_date"));
 			eVO.setJob(rs.getString("jobname"));
 			eVO.setLevel(rs.getString("lvname"));

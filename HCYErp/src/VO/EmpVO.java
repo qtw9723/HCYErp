@@ -17,7 +17,7 @@ public class EmpVO {
 	private String ssn;
 	private String tel;
 	private String pass;
-	private Date hiredate;
+	private String hiredate;
 	private int totalDayOff;
 
 	public EmpVO() {
@@ -25,7 +25,7 @@ public class EmpVO {
 	}// constructor
 
 	public EmpVO(int empNo, String team, String job, String dept, String deptLoc, String level, int sal, Date inputDate,
-			String ename, String email, String addr, String ssn, String tel, String pass, Date hiredate,
+			String ename, String email, String addr, String ssn, String tel, String pass, String hiredate,
 			int totalDayOff) {
 		this.empNo = empNo;
 		this.team = team;
@@ -102,7 +102,7 @@ public class EmpVO {
 		return pass;
 	}
 
-	public Date getHiredate() {
+	public String getHiredate() {
 		return hiredate;
 	}
 
@@ -168,7 +168,7 @@ public class EmpVO {
 		this.pass = pass;
 	}
 
-	public void setHiredate(Date hiredate) {
+	public void setHiredate(String hiredate) {
 		this.hiredate = hiredate;
 	}
 

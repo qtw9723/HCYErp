@@ -7,6 +7,7 @@ public class ResignationVO {
 	private String reason;
 	private Date grantDate;
 	private Date lastDate;
+	private String ename;
 	
 	public ResignationVO() {
 	}//constructor
@@ -49,5 +50,14 @@ public class ResignationVO {
 	public void setLastDate(Date lastDate) {
 		this.lastDate = lastDate;
 	}
+
+	public String getEname() {
+		return ename;
+	}
+
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	
 	
 }//class
