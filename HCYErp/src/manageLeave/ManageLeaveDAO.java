@@ -35,16 +35,17 @@ public class ManageLeaveDAO {
 		
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-			String selectDayOff = "SELECT d.EMPNO, e.ename, STARTDATE, ENDDATE, DAYOFFDAYS, REASON, APPROVE, SUBMITDATE FROM DAYOFF_APPLY d, EMP e WHERE d.empno=e.empno  and APPROVE = 'W'";
+			String selectDayOff = "SELECT d.dayoffno, d.EMPNO, e.ename, STARTDATE, ENDDATE, DAYOFFDAYS, REASON, APPROVE, SUBMITDATE FROM DAYOFF_APPLY d, EMP e WHERE d.empno=e.empno  and APPROVE = 'W'";
 			stmt = con.createStatement();
 			
 			rs = stmt.executeQuery(selectDayOff);
-			DayOffApplyVO doaVO = new DayOffApplyVO();
+			DayOffApplyVO doaVO = null;
 			while (rs.next()) {
+				doaVO = new DayOffApplyVO();
+				doaVO.setDayOffNo(rs.getInt("dayoffno"));
 				doaVO.setEmpNo(rs.getInt("empno"));
 				doaVO.setEname(rs.getString("ename"));
 				doaVO.setStartDate(rs.getString("startdate"));
-				System.out.println(rs.getString("startdate"));
 				doaVO.setEndDate(rs.getString("enddate"));
 				doaVO.setDayOffDays(rs.getInt("DAYOFFDAYS"));
 				doaVO.setReason(rs.getString("REASON"));
@@ -55,12 +56,11 @@ public class ManageLeaveDAO {
 		}finally {
 			db.dbclose(rs, stmt, con);
 		}//finally
-		
 		return doaVOList;
 	}//selectDayOffApply
 	
 	
-	public DayOffApplyVO selectPersonalDayOffApply(int empNo) throws SQLException {
+	public DayOffApplyVO selectPersonalDayOffApply(int dayOffNo) throws SQLException {
 		DbConn db = DbConn.getInstance();
 		DayOffApplyVO doaVO = new DayOffApplyVO();
 		Connection con = null;
@@ -69,9 +69,9 @@ public class ManageLeaveDAO {
 		
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-			String selectDayOff = "SELECT d.dayoffno, d.EMPNO, e.ename, STARTDATE, ENDDATE, DAYOFFDAYS, REASON, APPROVE, SUBMITDATE FROM DAYOFF_APPLY d, EMP e WHERE d.empno=e.empno  and APPROVE = 'W' and d.empno = ?";
+			String selectDayOff = "SELECT d.dayoffno, d.EMPNO, e.ename, STARTDATE, ENDDATE, DAYOFFDAYS, REASON, APPROVE, SUBMITDATE FROM DAYOFF_APPLY d, EMP e WHERE d.empno=e.empno  and APPROVE = 'W' and d.dayoffno = ?";
 			pstmt = con.prepareStatement(selectDayOff);
-			pstmt.setInt(1, empNo);
+			pstmt.setInt(1, dayOffNo);
 			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

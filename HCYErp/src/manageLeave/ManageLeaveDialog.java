@@ -19,15 +19,17 @@ public class ManageLeaveDialog extends JDialog {
 	private JLabel jlblInfoPerson;
 	private JTextArea jtaRejectReason;
 	private DayOffApplyVO doaVO;
+	private ManageLeave ml;
 
 	public ManageLeaveDialog(ManageLeave ml) throws SQLException {
+		this.ml = ml;
 		ManageLeaveDialogEvt event = new ManageLeaveDialogEvt(this);
 		setLayout(null);
 		
 		//휴가신청 사원 정보
 		Font infoFont = new Font("맑은 고딕",Font.BOLD,17);
 		jlblInfoPerson = new JLabel();
-		doaVO= ManageLeaveDAO.getInstance().selectPersonalDayOffApply(ml.getDoaVOList().get(ml.getJtLeaveProposal().getSelectedRow()).getEmpNo());
+		doaVO= ManageLeaveDAO.getInstance().selectPersonalDayOffApply(ml.getDoaVOList().get(ml.getJtLeaveProposal().getSelectedRow()).getDayOffNo());
 		StringBuilder sbDoaVO = new StringBuilder();
 		sbDoaVO.append("<html>사원번호&nbsp;:&nbsp;").append(doaVO.getEmpNo()).append("<br>사원이름&nbsp;:&nbsp;").append(doaVO.getEname()).append("<br>휴가 시작 일&nbsp;:&nbsp;")
 		.append(doaVO.getStartDate()).append("<br>휴가 끝 일&nbsp;:&nbsp;").append(doaVO.getEndDate()).append("<br>신청사유&nbsp;:&nbsp;").append(doaVO.getReason()).append("</html>");
@@ -88,6 +90,10 @@ public class ManageLeaveDialog extends JDialog {
 
 	public DayOffApplyVO getDoaVO() {
 		return doaVO;
+	}
+
+	public ManageLeave getMl() {
+		return ml;
 	}
 	
 	
