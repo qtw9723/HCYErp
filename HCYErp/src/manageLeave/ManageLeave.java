@@ -40,6 +40,7 @@ public class ManageLeave extends JPanel{
 		        return false;
 		    }//isCellEditable
 		};
+		jtLeaveProposal = new JTable(dtmLeave);
 		dtmLeave.addColumn("사원번호");
 		dtmLeave.addColumn("사원이름");
 		dtmLeave.addColumn("휴가시작일");
@@ -47,7 +48,6 @@ public class ManageLeave extends JPanel{
 		dtmLeave.addColumn("휴가신청일");
 		doaVOList = ManageLeaveDAO.getInstance().selectDayOffApply();
 		addApplyList();
-		jtLeaveProposal = new JTable(dtmLeave);
 		jspLeave = new JScrollPane(jtLeaveProposal);
 		jspLeave.setBounds(100,50,800,500);
 		jspLeave.setBorder(new TitledBorder("휴가 신청 목록"));
