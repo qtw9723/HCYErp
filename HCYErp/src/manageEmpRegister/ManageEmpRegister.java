@@ -28,6 +28,7 @@ public class ManageEmpRegister extends JPanel{
 	private HCYErp hcyE;
 	
 	public ManageEmpRegister(HCYErp hcyE) {
+		this.hcyE=hcyE;
 		setLayout(null);
 		ManageEmpRegisterEvt event = new ManageEmpRegisterEvt(this);
 		

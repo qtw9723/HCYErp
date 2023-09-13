@@ -115,13 +115,11 @@ public class ApplyDayOffDialogEvt extends MouseAdapter implements ActionListener
 		} // if
 		if (adod.getJcbStartDay().getSelectedItem().toString().length() == 1) {
 			tempDay.append("0");
-			System.out.println(tempDay);
 		} // if
 		tempMonth.append(adod.getJcbStartMonth().getSelectedItem().toString());
 		tempDay.append(adod.getJcbStartDay().getSelectedItem().toString());
 		sbTemp.append(adod.getJcbStartYear().getSelectedItem()).append("-").append(tempMonth).append("-")
 				.append(tempDay);
-		System.out.println(sbTemp.toString());
 		doaVO.setStartDate(sbTemp.toString());
 
 		// 마지막 날짜 추가
@@ -146,7 +144,7 @@ public class ApplyDayOffDialogEvt extends MouseAdapter implements ActionListener
 		LocalDate endDate = LocalDate.of(Integer.parseInt(adod.getJcbEndYear().getSelectedItem().toString()),
 				Integer.parseInt(adod.getJcbEndMonth().getSelectedItem().toString()),
 				Integer.parseInt(adod.getJcbEndDay().getSelectedItem().toString()));
-
+ 
 		long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
 		doaVO.setDayOffDays((int) daysBetween);
 
