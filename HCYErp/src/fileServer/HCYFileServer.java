@@ -43,9 +43,6 @@ public class HCYFileServer extends JFrame {
 		
 		setBounds(100, 100, 400, 500);
 		setVisible(true);
-		
-		
-		
 	}//constructor
 
 

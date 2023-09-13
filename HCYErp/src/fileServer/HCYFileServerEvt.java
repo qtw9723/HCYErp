@@ -6,13 +6,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 
 public class HCYFileServerEvt extends WindowAdapter implements ActionListener, Runnable {
 
@@ -61,18 +59,20 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 	public void openServer() throws IOException {
 		if (serverThread != null) {
 			JOptionPane.showMessageDialog(hcyfs, "서버가 동작중입니다.");
-		} else {
-			serverThread = new Thread(this);
-			serverThread.start();
-		} // else
+			return;
+			}//if
+		serverThread = new Thread(this);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		serverThread.start();
+		hcyfs.getJtaConnectList().append(sdf.format(new Date()) + "에 서버가 실행되었습니다.\n");
+		JOptionPane.showMessageDialog(hcyfs, "서버를 실행합니다.");
 	}// startServer
 
 	public void closeServer() throws IOException {
-		if (server != null) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			server.close();
-			hcyfs.getJtaConnectList().append(sdf.format(new Date()) + "에 서버가 종료되었습니다.\n");
-		} // if
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		if (uploadServer != null) {uploadServer.close();}
+		if (DownloadServer != null) {DownloadServer.close();} 
+		hcyfs.getJtaConnectList().append(sdf.format(new Date()) + "에 서버가 종료되었습니다.\n");
 	}// startServer
 
 	@Override
@@ -83,8 +83,8 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 			FileDownloadHelper fdlh = null;
 			FileUploadHelper fulh = null;
 			try {
-				fulh = new FileUploadHelper(uploadServer);
-				fdlh = new FileDownloadHelper(DownloadServer);
+				fulh = new FileUploadHelper(uploadServer,hcyfs);
+				fdlh = new FileDownloadHelper(DownloadServer,hcyfs);
 				fulh.start();
 				fdlh.start();
 			} catch (IOException e1) {
@@ -93,7 +93,7 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 			} // try
 		} catch (IOException e1) {
 			System.out.println("서버종료");
-		} // try
+		} // catch
 	}// run
 
 }// class
