@@ -35,6 +35,7 @@ public class HCYErp extends JFrame {
 	private int jfWidth;
 	private int jfHeight;
 	private boolean getOffFlag = false;
+	private boolean attendFlag = false;
 	
 	public HCYErp() {
 		super("마 자신있나");
@@ -105,7 +106,6 @@ public class HCYErp extends JFrame {
 		jtfEmpNo.setText("4702");
 		jpfPass.setText("1234");
 		
-		
 		setVisible(true);
 		setBounds(400, 150, 1200, 700);
 	}// constructor
@@ -123,8 +123,6 @@ public class HCYErp extends JFrame {
 		remove(jlblBG);
 	}//removeComponent
 
-
-
 	public void addComponent() {
 		add(jlblresetPass);
 		add(jlblLogoTxt);
@@ -138,79 +136,53 @@ public class HCYErp extends JFrame {
 		add(jlblBG);
 	}// addComponent
 
-
-
 	public JLabel getJlblMainImg() {
 		return jlblMainImg;
 	}
-
-
 
 	public JLabel getJlblEmpNo() {
 		return jlblEmpNo;
 	}
 
-
-
 	public JLabel getJlblPass() {
 		return jlblPass;
 	}
-
-
 
 	public JTextField getJtfEmpNo() {
 		return jtfEmpNo;
 	}
 
-
-
 	public JPasswordField getJpfPass() {
 		return jpfPass;
 	}
-
-
 
 	public JButton getJbtnLogIn() {
 		return jbtnLogIn;
 	}
 
-
-
 	public JLabel getJlblresetPass() {
 		return jlblresetPass;
 	}
-
-
 
 	public JLabel getJlblQEmail() {
 		return jlblQEmail;
 	}
 
-
-
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
 	}
-
-
 
 	public JLabel getJlblLogoTxt() {
 		return jlblLogoTxt;
 	}
 
-
-
 	public JLabel getJlblBG() {
 		return jlblBG;
 	}
 
-
-
 	public int getUser() {
 		return user;
 	}
-
-
 
 	public void setUser(int user) {
 		this.user = user;
@@ -235,5 +207,15 @@ public class HCYErp extends JFrame {
 	public void setGetOffFlag(boolean getOffFlag) {
 		this.getOffFlag = getOffFlag;
 	}
+
+	public boolean isAttendFlag() {
+		return attendFlag;
+	}
+
+	public void setAttendFlag(boolean attendFlag) {
+		this.attendFlag = attendFlag;
+	}
+	
+	
 
 }// class

@@ -28,15 +28,14 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 	private HCYErp hcyE;
 	private int empNo;
 	
-
 	public HCYErpEvt(HCYErp hcyE) {
 		this.hcyE = hcyE;
 		hcyE.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				hcyE.dispose();
-			};
-		});
-	}
+			};//windowClosing
+		});//addWindowListender
+	}//constructor
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -44,22 +43,21 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			try {
 				login();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			
-		}
-	}
+			}//catch
+		}//if
+	}//actionPerformed
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		new ResetPassDialog().setBounds(hcyE.getX()+200,hcyE.getY()+150,800,400);
-		
-	}
+	}//mouseClicked
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		hcyE.getJlblresetPass().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	}
+	}//mouseEntered
+	
 //	@Override
 //	public void mouseExited(MouseEvent e) {
 //		
@@ -90,11 +88,8 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			hcyE.getTabbedPane().add("휴가 관리",new ManageLeave(hcyE));
 			}else {
 				JOptionPane.showMessageDialog(hcyE, "아이디혹은 비밀번호가 잘못되었습니다.");
-			}
-		}
-	}
+			}//else
+		}//if
+	}//login
 
-	
-
-
-}
+}//class

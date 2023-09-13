@@ -14,7 +14,6 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 
 	private Attendance ad;
 	
-	
 	public AttendanceEvt(Attendance ad) {
 		this.ad=ad;
 	}//constructor
@@ -85,9 +84,17 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 		ad.add(jlblAttend);
 		ad.setComponentZOrder(jlblAttend, 0);
 		ad.repaint();
+		
+		ad.getHcyE().setAttendFlag(true);
+		
 	}//attend
 
 	private void getOff() throws SQLException {
+		if( !ad.getHcyE().isGetOffFlag() ) {
+			JOptionPane.showMessageDialog(ad, "업무일지를 작성해주세요.");
+			return;
+		}//if
+		
 		boolean AttendFlag = AttendanceDAO.getInstance().selectWorkingFlag(ad.getHcyE().getUser());
 		int updateFlag = AttendanceDAO.getInstance().updateGetOff(ad.getHcyE().getUser());
 		if(AttendFlag) {

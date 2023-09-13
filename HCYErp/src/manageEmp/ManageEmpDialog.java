@@ -13,7 +13,7 @@ import javax.swing.border.Border;
 
 public class ManageEmpDialog extends JDialog{
 
-	private JLabel jlblEmpno;
+	private JLabel jlblEmpNo;
 	private JLabel jlblEname;
 	private JLabel jlblLevel;
 	private JLabel jlblJobTel;
@@ -25,7 +25,7 @@ public class ManageEmpDialog extends JDialog{
 	private JLabel jlblLoc;
 	private JLabel jlblSal;
 	
-	private JTextField jtfEmpno;
+	private JTextField jtfEmpNo;
 	private JTextField jtfEname;
 	private JTextField jtfLevel;
 	private JTextField jtfJobTel;
@@ -42,7 +42,7 @@ public class ManageEmpDialog extends JDialog{
 	private JButton jbtnCancel;
 	
 	public ManageEmpDialog() {
-		jlblEmpno=new JLabel("번호");
+		jlblEmpNo=new JLabel("번호");
 		jlblEname=new JLabel("이름");
 		jlblLevel=new JLabel("직급");
 		jlblJobTel=new JLabel("전화");
@@ -54,7 +54,7 @@ public class ManageEmpDialog extends JDialog{
 		jlblLoc=new JLabel("근무지");
 		jlblSal=new JLabel("연봉");
 		
-		jtfEmpno=new JTextField();
+		jtfEmpNo=new JTextField();
 		jtfEname=new JTextField();
 		jtfLevel=new JTextField();
 		jtfJobTel=new JTextField();
@@ -76,18 +76,18 @@ public class ManageEmpDialog extends JDialog{
 		Border unfocusField=BorderFactory.createLineBorder(Color.LIGHT_GRAY);// Line border
 		
 		//어떤 게 변경되고있는지 알 수 있게 focusListener
-		jtfEmpno.addFocusListener(new FocusListener() {
+		jtfEmpNo.addFocusListener(new FocusListener() {
 			
 			@Override
 			public void focusLost(FocusEvent e) {
 				// TODO Auto-generated method stub
-				jtfEmpno.setBorder(unfocusField);
+				jtfEmpNo.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
 				// TODO Auto-generated method stub
-				jtfEmpno.setBorder(focusField);
+				jtfEmpNo.setBorder(focusField);
 			}
 		});//addFocusListener
 		
@@ -244,7 +244,7 @@ public class ManageEmpDialog extends JDialog{
 		
 		setLayout(null);
 		
-		add(jlblEmpno);
+		add(jlblEmpNo);
 		add(jlblEname);
 		add(jlblLevel);
 		add(jlblJobTel);
@@ -256,7 +256,7 @@ public class ManageEmpDialog extends JDialog{
 		add(jlblLoc);
 		add(jlblSal);
 		
-		jlblEmpno.setBounds(45,10,100,30);
+		jlblEmpNo.setBounds(45,10,100,30);
 		jlblEname.setBounds(45,60,100,30);
 		jlblLevel.setBounds(45,110,100,30);
 		jlblJobTel.setBounds(45,160,100,30);
@@ -270,7 +270,7 @@ public class ManageEmpDialog extends JDialog{
 		
 		
 		
-		add(jtfEmpno);
+		add(jtfEmpNo);
 		add(jtfEname);
 		add(jtfLevel);
 		add(jtfJobTel);
@@ -282,7 +282,7 @@ public class ManageEmpDialog extends JDialog{
 		add(jtfLoc);
 		add(jtfSal);
 		
-		jtfEmpno.setBounds(120,10,110,30);
+		jtfEmpNo.setBounds(120,10,110,30);
 		jtfEname.setBounds(120,60,110,30);
 		jtfLevel.setBounds(120,110,110,30);
 		jtfJobTel.setBounds(120,160,110,30);
@@ -318,7 +318,7 @@ public class ManageEmpDialog extends JDialog{
 	
 	
 	public JLabel getJlblEmpno() {
-		return jlblEmpno;
+		return jlblEmpNo;
 	}
 
 
@@ -373,7 +373,7 @@ public class ManageEmpDialog extends JDialog{
 
 
 	public JTextField getJtfEmpno() {
-		return jtfEmpno;
+		return jtfEmpNo;
 	}
 
 
