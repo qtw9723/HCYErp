@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -74,6 +75,16 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}//catch
+		}//if
+		if(e.getSource()==mdr.getJcbMonth()) {
+			Calendar cal=Calendar.getInstance();
+			int num=mdr.getJcbDay().getSelectedIndex();
+			mdr.getJcbDay().removeAllItems();
+			cal.set(Calendar.MONTH, mdr.getJcbMonth().getSelectedIndex());
+			for(int i=1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
+				mdr.getJcbDay().addItem(i);
+			}//for
+			mdr.getJcbDay().setSelectedIndex(num);
 		}//if
 		
 	}//actionPerformed

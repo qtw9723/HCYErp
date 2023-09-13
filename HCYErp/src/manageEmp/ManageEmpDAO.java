@@ -17,6 +17,9 @@ public class ManageEmpDAO {
 	}//constructor
 	
 	public static ManageEmpDAO getInstance() {
+		if(manageEmpDAO==null) {
+			manageEmpDAO=new ManageEmpDAO();
+		}
 		
 		return manageEmpDAO;
 	}//getInstance
@@ -43,7 +46,6 @@ public class ManageEmpDAO {
 		} finally {
 			db.dbclose(rs, pstmt, con);
 		} // try
-
 		return list;
 	}// selectDept
 	
@@ -57,13 +59,13 @@ public class ManageEmpDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "select tname from team where ~~~~~";
+			String sql = "select tname from team";
 
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				list.add(rs.getString("dname"));
+				list.add(rs.getString("tname"));
 			}
 
 		} finally {
@@ -71,7 +73,88 @@ public class ManageEmpDAO {
 		} // try
 
 		return list;
-	}// selectDept
+	}// selectTeam
+	public List<String> selectEmp() throws SQLException {
+		List<String> list = new ArrayList<String>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		DbConn db = DbConn.getInstance();
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql = "select ename from emp";
+
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				list.add(rs.getString("ename"));
+			}
+
+		} finally {
+			db.dbclose(rs, pstmt, con);
+		} // try
+
+		return list;
+	}// selectEmp
+	
+	public List<String> searchTeam(String dept) throws SQLException {
+		List<String> list = new ArrayList<String>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		DbConn db = DbConn.getInstance();
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql = "select t.tname,e.ename from team t,dept d,emp e where (t.deptno(+)=d.deptno and e.teamno(+)=t.teamno) and dname=?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dept);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				if(rs.getString("ename")!=null) {
+				list.add(rs.getString("tname")+"/"+rs.getString("ename"));
+				}else {
+					list.add(rs.getString("tname")+"/");
+				}//if
+			}//while
+
+		} finally {
+			db.dbclose(rs, pstmt, con);
+		} // try
+		return list;
+	}//searchTeam
 	
 	
+	public List<String> searchEmp(String team) throws SQLException {
+		List<String> list = new ArrayList<String>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		DbConn db = DbConn.getInstance();
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql = "select ename from emp e,team t where e.teamno(+)=t.teamno and tname=?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, team);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				list.add(rs.getString("ename"));
+			}//while
+
+		} finally {
+			db.dbclose(rs, pstmt, con);
+		} // try
+
+		return list;
+	}//searchEmp
 }//class
