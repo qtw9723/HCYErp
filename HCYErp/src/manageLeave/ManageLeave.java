@@ -26,23 +26,28 @@ public class ManageLeave extends JPanel{
 	private JDesktopPane desktopPane;
 	private JScrollPane jspLeave;
 	private List<DayOffApplyVO> doaVOList;
+	private DefaultTableModel dtmLeave;
 	
 	public ManageLeave(HCYErp hcyE) throws SQLException {
 		this.hcyE = hcyE;
 		setLayout(null);
 		ManageLeaveEvt event = new ManageLeaveEvt(this);
 		
-		DefaultTableModel dtmLeave = new DefaultTableModel();
+		dtmLeave = new DefaultTableModel() {
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		        // 모든 셀을 수정 불가능하게 설정
+		        return false;
+		    }//isCellEditable
+		};
+		jtLeaveProposal = new JTable(dtmLeave);
 		dtmLeave.addColumn("사원번호");
 		dtmLeave.addColumn("사원이름");
 		dtmLeave.addColumn("휴가시작일");
 		dtmLeave.addColumn("휴가끝일");
 		dtmLeave.addColumn("휴가신청일");
 		doaVOList = ManageLeaveDAO.getInstance().selectDayOffApply();
-		for(DayOffApplyVO doaVO:doaVOList) {
-			dtmLeave.addRow(new Object[] {doaVO.getEmpNo(),doaVO.getEname(),doaVO.getStartDate(),doaVO.getEndDate(),doaVO.getSubmitDate()});
-		}//for
-		jtLeaveProposal = new JTable(dtmLeave);
+		addApplyList();
 		jspLeave = new JScrollPane(jtLeaveProposal);
 		jspLeave.setBounds(100,50,800,500);
 		jspLeave.setBorder(new TitledBorder("휴가 신청 목록"));
@@ -65,6 +70,18 @@ public class ManageLeave extends JPanel{
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 	}//Constructor
+
+	public void addApplyList() {
+		//리스트 초기화
+		for(int i = dtmLeave.getRowCount()-1;i>=0;i--) {
+			dtmLeave.removeRow(i);
+		}//for
+		
+		//리스트 추가
+		for(DayOffApplyVO doaVO:doaVOList) {
+			dtmLeave.addRow(new Object[] {doaVO.getEmpNo(),doaVO.getEname(),doaVO.getStartDate(),doaVO.getEndDate(),doaVO.getSubmitDate()});
+		}//for
+	}//addApplyList
 
 	public HCYErp getHcyE() {
 		return hcyE;

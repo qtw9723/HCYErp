@@ -1,6 +1,6 @@
 package manageEmpRegister;
 
-public class GrantResignationDialog {
+public class ApproveResignationDialog {
 
 
 }//class

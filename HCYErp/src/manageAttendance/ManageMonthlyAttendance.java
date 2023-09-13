@@ -63,7 +63,13 @@ public class ManageMonthlyAttendance extends JPanel{
 		add(jbtnAttendDate);
 		
 		//출근 목록
-		dtmMonthlyAttend = new DefaultTableModel();
+		dtmMonthlyAttend = new DefaultTableModel() {
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		        // 모든 셀을 수정 불가능하게 설정
+		        return false;
+		    }//isCellEditable
+		};
 		dtmMonthlyAttend.addColumn("사원번호");
 		dtmMonthlyAttend.addColumn("사원이름");
 		dtmMonthlyAttend.addColumn("출근시간");

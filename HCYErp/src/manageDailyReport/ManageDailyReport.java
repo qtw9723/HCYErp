@@ -103,7 +103,13 @@ public class ManageDailyReport extends JPanel {
 		
 		
 		//업무일지 리스트
-		dtmReport = new DefaultTableModel();
+		dtmReport  = new DefaultTableModel() {
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		        // 모든 셀을 수정 불가능하게 설정
+		        return false;
+		    }//isCellEditable
+		};
 		jtReport = new JTable(dtmReport);
 		dtmReport.addColumn("사원번호");
 		dtmReport.addColumn("사원이름");

@@ -32,7 +32,13 @@ public class ManageEmpRegister extends JPanel{
 		ManageEmpRegisterEvt event = new ManageEmpRegisterEvt(this);
 		
 		//입퇴사자 테이블
-		DefaultTableModel dtmRefiAbInfo = new DefaultTableModel();
+		DefaultTableModel dtmRefiAbInfo  = new DefaultTableModel() {
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		        // 모든 셀을 수정 불가능하게 설정
+		        return false;
+		    }//isCellEditable
+		};;
 		dtmRefiAbInfo.addColumn("사원번호");
 		dtmRefiAbInfo.addColumn("사원이름");
 		dtmRefiAbInfo.addColumn("부서");

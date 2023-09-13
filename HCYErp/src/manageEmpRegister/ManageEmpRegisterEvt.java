@@ -16,7 +16,7 @@ public class ManageEmpRegisterEvt extends MouseAdapter implements ActionListener
 	public void actionPerformed(ActionEvent ae) {
 		//퇴사처리
 		if (ae.getSource() == mer.getJbtnResign()) {
-			new GrantResignationDialog();
+			new ApproveResignationDialog();
 		}//if
 
 		//입사자 추가
@@ -26,7 +26,7 @@ public class ManageEmpRegisterEvt extends MouseAdapter implements ActionListener
 
 		//휴직처리
 		if (ae.getSource() == mer.getJbtnAbsence()) {
-			
+			new ApproveAbsenceDialog(mer);
 		}//if
 		
 		// 로그아웃

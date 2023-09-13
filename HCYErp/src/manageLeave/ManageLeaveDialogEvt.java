@@ -45,6 +45,7 @@ public class ManageLeaveDialogEvt implements ActionListener {
 		if(e.getSource()==mld.getJbtnCancel()) {
 			mld.dispose();
 		}//if
+		
 	}//actionPerformed
 
 	public void reject() {
@@ -62,6 +63,9 @@ public class ManageLeaveDialogEvt implements ActionListener {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}//catch
+		//리스트 초기화
+		mld.getMl().addApplyList();
+		mld.dispose();
 	}//reject
 
 	public void approve() throws SQLException {
@@ -69,6 +73,9 @@ public class ManageLeaveDialogEvt implements ActionListener {
 		ManageLeaveDAO.getInstance().updateDayOffApply(mld.getDoaVO().getDayOffNo());
 		//성공 메세지
 		JOptionPane.showMessageDialog(mld, mld.getDoaVO().getEname()+"님이 신청하신 "+mld.getDoaVO().getStartDate()+"부터 "+mld.getDoaVO().getEndDate()+"까지의 휴가를 승인하였습니다.");
+		//리스트 초기화
+		mld.getMl().addApplyList();
+		mld.dispose();
 	}//approve
 	
 }//class
