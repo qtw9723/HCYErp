@@ -106,7 +106,7 @@ public class Attendance extends JPanel {
 
 		// 출근도장
 		// 도장 선언
-		attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttedanceStamp.png");
+		attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceStamp.png");
 		leave = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYLeaveStamp.png");
 		dayOff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYDayoffStamp.png");
 		tardy = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTardyStamp.png");
