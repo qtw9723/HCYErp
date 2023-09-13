@@ -62,7 +62,7 @@ public class ManagePersonalAttendance extends JPanel{
 		add(jlblyear);
 		
 		//월 라벨
-		JLabel jlblmonth =new JLabel(Integer.toString(cal.get(Calendar.MONTH)));
+		JLabel jlblmonth =new JLabel(Integer.toString(cal.get(Calendar.MONTH)+1));
 		jlblmonth.setBounds(380,137,100,100);
 		jlblmonth.setFont(ymFont);
 		add(jlblmonth);
