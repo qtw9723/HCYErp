@@ -46,7 +46,7 @@ public class ManagePersonalAttendanceEvt extends MouseAdapter implements ActionL
 
 	private void searchAttendanceName() {
 		// 도장 선언
-		ImageIcon attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttedanceStamp.png");
+		ImageIcon attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceStamp.png");
 		ImageIcon leave = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYLeaveStamp.png");
 		ImageIcon dayOff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYDayoffStamp.png");
 		ImageIcon tardy = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTardyStamp.png");
@@ -82,12 +82,12 @@ public class ManagePersonalAttendanceEvt extends MouseAdapter implements ActionL
 				// 출근도장 쾅
 				case ATTENDANCE:
 					jlblAttend = new JLabel(attend);
-					jlblAttend.setBounds(ma.getDayList().get(i).getX() - 50, ma.getDayList().get(i).getY() + 15, 50,
-							50);
+					jlblAttend.setBounds(ma.getDayList().get(i).getX() - 50, ma.getDayList().get(i).getY() + 15, 50, 50);
 					ma.add(jlblAttend);
 					ma.setComponentZOrder(jlblAttend, 0);
 					ma.repaint();
 					ma.getJlblAttendList().add(jlblAttend);
+					System.out.println("왜이랴"+i);
 					break;
 				// 지각도장 쾅
 				case ABSENCE:

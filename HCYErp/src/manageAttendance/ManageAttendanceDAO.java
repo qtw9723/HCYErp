@@ -134,7 +134,6 @@ public class ManageAttendanceDAO {
 
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				System.out.println("하하");
 				tempDate = new java.util.Date(rs.getDate(1).getTime());
 				targetCal.setTime(tempDate);
 				for (int i = 0; i < rs.getInt(2); i++) {
