@@ -5,8 +5,8 @@ import java.util.Date;
 public class AbsenceApplyVO {
 	private int empNo;
 	private int absenceDays;
-	private Date startDate;
-	private Date endDate; 
+	private String startDate;
+	private String endDate; 
 	private String reason;
 	private boolean grant;
 	private Date submitDate;
@@ -14,7 +14,7 @@ public class AbsenceApplyVO {
 	public AbsenceApplyVO() {
 	}//constructor
 
-	public AbsenceApplyVO(int empNo, int absenceDays, Date startDate, Date endDate, String reason, boolean grant,
+	public AbsenceApplyVO(int empNo, int absenceDays, String startDate, String endDate, String reason, boolean grant,
 			Date submitDate) {
 		this.empNo = empNo;
 		this.absenceDays = absenceDays;
@@ -41,19 +41,19 @@ public class AbsenceApplyVO {
 		this.absenceDays = absenceDays;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 

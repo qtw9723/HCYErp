@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DB.DbConn;
+import VO.AbsenceApplyVO;
 import VO.AttendanceVO;
+import VO.DayOffApplyVO;
 import VO.EmpVO;
 import VO.ResignationVO;
 
@@ -57,5 +59,32 @@ public class ManageEmpRegisterDAO {
 		} // try
 		return empVOList;
 	}// selectEmp
+	
+	public void insertAbsenceApply(AbsenceApplyVO aaVO) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		DbConn db=DbConn.getInstance();
+		try {
+			con=db.getConnection("192.168.10.145","hcytravel","boramsangjo");
+			
+			String sql="insert into absence(empno,startdate, enddate, absencedays, reason, submitdate) values(?,?,?,?,?,sysdate)";
+		
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setInt(1, aaVO.getEmpNo());
+			pstmt.setString(2, aaVO.getStartDate());
+			pstmt.setString(3, aaVO.getEndDate());
+			pstmt.setInt(4, aaVO.getAbsenceDays());
+			pstmt.setString(5, aaVO.getReason());
+			
+			pstmt.execute();
+		}finally {
+			if(db!=null) {
+				db.dbclose(null, pstmt, con);
+			}//end if
+		}//end finally
+	}//insertAbsenceApply
+	
 	
 }//class
