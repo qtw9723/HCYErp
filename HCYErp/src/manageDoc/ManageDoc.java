@@ -34,7 +34,6 @@ public class ManageDoc extends JPanel {
 		setLayout(null);
 		
 		jpDoc = new JPanel();
-		
 		// 문서 리스트 추가
 		List<DocVO> dVOList = null;
 		try {
@@ -89,6 +88,7 @@ public class ManageDoc extends JPanel {
 		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
+		hcyE.getList().add(this);
 		
 	}//constructor
 

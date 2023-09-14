@@ -188,6 +188,7 @@ public class Attendance extends JPanel {
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 		hcyE.getList().add(this);
+	
 
 	}// constructor
 

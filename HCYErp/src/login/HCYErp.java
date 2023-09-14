@@ -3,6 +3,7 @@ package login;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -48,7 +49,8 @@ public class HCYErp extends JFrame {
 		super("마 자신있나");
 		// 이벤트 객체 생성
 		HCYErpEvt event = new HCYErpEvt(this);
-
+		//리스트 객체 생성
+		list=new ArrayList<JPanel>();
 		// 로고 설정
 		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/hcytravel_mainlogo_3cm.png"));
 		jlblMainImg.setBounds(480, 20, 180, 150);
