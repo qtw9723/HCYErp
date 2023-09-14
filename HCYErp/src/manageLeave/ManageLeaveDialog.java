@@ -1,5 +1,6 @@
 package manageLeave;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.sql.SQLException;
 
@@ -47,18 +48,21 @@ public class ManageLeaveDialog extends JDialog {
 		//승인버튼
 		jbtnApprove = new JButton("승인");
 		jbtnApprove.setBounds(400,300,100,40);
+		jbtnApprove.setBackground(new Color(0x8244AD));
 		jbtnApprove.addActionListener(event);
 		add(jbtnApprove);
 		
 		//취소버튼
 		jbtnCancel = new JButton("취소");
 		jbtnCancel.setBounds(640,300,100,40);
+		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		jbtnCancel.addActionListener(event);
 		add(jbtnCancel);
 		
 		//반려버튼
 		jbtnReject = new JButton("반려");
 		jbtnReject.setBounds(520,300,100,40);
+		jbtnReject.setBackground(new Color(0x5E5E5E));
 		jbtnReject.addActionListener(event);
 		add(jbtnReject);
 		

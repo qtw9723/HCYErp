@@ -1,6 +1,7 @@
 package manageEmpRegister;
 
 import java.awt.Button;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
@@ -28,7 +29,6 @@ public class ApproveResignationDialog extends JDialog {
 	
 	private ManageEmpRegister mer;
 	
-
 	public ApproveResignationDialog(ManageEmpRegister mer) {
 		this.mer=mer;
 		
@@ -97,8 +97,9 @@ public class ApproveResignationDialog extends JDialog {
 		jcbMonth.setBounds(230,350,100,30);
 		jcbDay.setBounds(350,350,100,30);
 		jbtnApprove.setBounds(50,400,100,30);
+		jbtnApprove.setBackground(new Color(0x8244AD));
 		jbtnCancel.setBounds(200,400,100,30);
-		
+		jbtnCancel.setBackground(new Color(0x5E5E5E));
 		
 		ApproveResignationDialogEvt event=new ApproveResignationDialogEvt(this);
 		jcbYear.addActionListener(event);
@@ -110,13 +111,7 @@ public class ApproveResignationDialog extends JDialog {
 		setVisible(true);
 		setBounds(mer.getX()+150,mer.getY()+150,500,500);
 		
-		
-		
 	}// constructor
-
-
-	
-
 
 
 	//getter
@@ -124,41 +119,33 @@ public class ApproveResignationDialog extends JDialog {
 		return jcbEmpNoName;
 	}
 
-
 	public JTextArea getJtaReason() {
 		return jtaReason;
 	}
-
 
 	public JButton getJbtnApprove() {
 		return jbtnApprove;
 	}
 
-
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
 	}
-
 
 	public JLabel getJlblLastDate() {
 		return jlblLastDate;
 	}
 
-
 	public JComboBox<Integer> getJcbYear() {
 		return jcbYear;
 	}
-
 
 	public JComboBox<Integer> getJcbMonth() {
 		return jcbMonth;
 	}
 
-
 	public JComboBox<Integer> getJcbDay() {
 		return jcbDay;
 	}
-
 
 	public ManageEmpRegister getMer() {
 		return mer;
