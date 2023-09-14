@@ -54,7 +54,10 @@ public class AttendanceDAO {
 				if (targetCal.get(Calendar.YEAR) == currentCal.get(Calendar.YEAR)
 						&& targetCal.get(Calendar.MONTH) == currentCal.get(Calendar.MONTH)) {
 					for (int i = 0; i < rs.getInt(2); i++) {
+						System.out.println(targetCal.get(Calendar.DAY_OF_MONTH)+"/"+rs.getInt(2));
 						attendance.put(targetCal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.DAY_OFF);
+						targetCal.set(Calendar.DAY_OF_MONTH, targetCal.get(Calendar.DAY_OF_MONTH)+1);
+						if(targetCal.get(Calendar.DAY_OF_MONTH) == 1) {break;}
 					} // for
 				} // if
 			} // while
@@ -99,15 +102,13 @@ public class AttendanceDAO {
 			while (rs.next()) {
 				tempDate = new java.util.Date(rs.getDate(1).getTime());
 				targetCal.setTime(tempDate);
+				if (targetCal.get(Calendar.YEAR) == currentCal.get(Calendar.YEAR)
+						&& targetCal.get(Calendar.MONTH) == currentCal.get(Calendar.MONTH)) {
 				for (int i = 0; i < rs.getInt(2); i++) {
-					if (targetCal.get(Calendar.YEAR) == currentCal.get(Calendar.YEAR)
-							&& targetCal.get(Calendar.MONTH) == currentCal.get(Calendar.MONTH)) {
 						attendance.put(targetCal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.LEAVE);
 						targetCal.set(Calendar.DAY_OF_MONTH, targetCal.get(Calendar.DAY_OF_MONTH) + 1);
-					} else {
-						break;
-					} // else
-				} // for
+					} // for
+				} //if
 			} // while
 		} finally {
 			db.dbclose(rs, pstmt, con);
@@ -307,6 +308,36 @@ public class AttendanceDAO {
 		return rowCnt;
 	}// updateChangePass
 	
+	public boolean selectWorkedFlag(int empno) throws SQLException {
+		boolean flag = false;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		DbConn db = DbConn.getInstance();
+		
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+			
+			String sql = "SELECT 1 FROM ATTENDANCE WHERE EMPNO = ? and ENDTIME IS NULL";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, empno);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				flag = true;
+			}//if
+		} finally {
+			if (db != null) {
+				db.dbclose(rs, pstmt, con);
+			} // if
+		} // try
+		
+		return flag;
+	}//selectWorkedFlag
+	
 	public boolean selectWorkingFlag(int empno) throws SQLException {
 		boolean flag = false;
 		
@@ -319,7 +350,7 @@ public class AttendanceDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "SELECT 1 FROM ATTENDANCE WHERE EMPNO = ? and ENDTIME IS NULL";
+			String sql = "SELECT 1 FROM ATTENDANCE WHERE EMPNO = ? and ENDTIME IS NULL and to_char(STARTTIME,'yyyy-mm-dd') = to_char(sysdate,'yyyy-mm-dd')";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, empno);
