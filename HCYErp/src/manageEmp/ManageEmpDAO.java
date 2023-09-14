@@ -159,7 +159,7 @@ public class ManageEmpDAO {
 		return list;
 	}//searchEmp
 	
-	public int updateEmpInfo(EmpVO eVO) {
+	public int updateEmpInfo(EmpVO eVO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
