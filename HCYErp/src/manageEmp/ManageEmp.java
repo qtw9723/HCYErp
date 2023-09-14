@@ -105,6 +105,7 @@ public class ManageEmp extends JPanel {
 		jspName.setBounds(710, 100, 230, 400);
 		jspName.setBorder(new TitledBorder("사원"));
 		jlName.addListSelectionListener(event);
+		jlName.addMouseListener(event);
 		add(jspName);
 
 		// 로그아웃 버튼

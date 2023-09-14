@@ -13,56 +13,50 @@ import javax.swing.border.Border;
 
 public class ManageEmpDialog extends JDialog{
 
-	private JLabel jlblEmpNo;
 	private JLabel jlblEname;
 	private JLabel jlblLevel;
-	private JLabel jlblJobTel;
+	private JLabel jlblTel;
 	private JLabel jlblEmail;
 	private JLabel jlblDept;
 	private JLabel jlblTeam;
 	private JLabel jlblJob;
-	private JLabel jlblBirthday;
 	private JLabel jlblLoc;
 	private JLabel jlblSal;
 	
-	private JTextField jtfEmpNo;
 	private JTextField jtfEname;
 	private JTextField jtfLevel;
-	private JTextField jtfJobTel;
+	private JTextField jtfTel;
 	private JTextField jtfEmail;
 	private JTextField jtfDept;
 	private JTextField jtfTeam;
 	private JTextField jtfJob;
-	private JTextField jtfBirthday;
 	private JTextField jtfLoc;
 	private JTextField jtfSal;
 	
 	private JButton jbtnModify;
 	private JButton jbtnOK;
 	private JButton jbtnCancel;
+	private ManageEmp me;
 	
-	public ManageEmpDialog() {
-		jlblEmpNo=new JLabel("번호");
+	public ManageEmpDialog(ManageEmp me) {
+		this.me=me;
 		jlblEname=new JLabel("이름");
 		jlblLevel=new JLabel("직급");
-		jlblJobTel=new JLabel("전화");
+		jlblTel=new JLabel("전화");
 		jlblEmail=new JLabel("이메일");
 		jlblDept=new JLabel("부서");
 		jlblTeam=new JLabel("팀");
 		jlblJob=new JLabel("직무");
-		jlblBirthday=new JLabel("생년월일");
 		jlblLoc=new JLabel("근무지");
 		jlblSal=new JLabel("연봉");
 		
-		jtfEmpNo=new JTextField();
 		jtfEname=new JTextField();
 		jtfLevel=new JTextField();
-		jtfJobTel=new JTextField();
+		jtfTel=new JTextField();
 		jtfEmail=new JTextField();
 		jtfDept=new JTextField();
 		jtfTeam=new JTextField();
 		jtfJob=new JTextField();
-		jtfBirthday=new JTextField();
 		jtfLoc=new JTextField();
 		jtfSal=new JTextField();
 		
@@ -78,19 +72,6 @@ public class ManageEmpDialog extends JDialog{
 		Border focusField=BorderFactory.createLineBorder(new Color(0xEE82EE),2);// Line border
 		Border unfocusField=BorderFactory.createLineBorder(Color.LIGHT_GRAY);// Line border
 		
-		//어떤 게 변경되고있는지 알 수 있게 focusListener
-		jtfEmpNo.addFocusListener(new FocusListener() {
-			
-			@Override
-			public void focusLost(FocusEvent e) {
-				jtfEmpNo.setBorder(unfocusField);
-			}
-			
-			@Override
-			public void focusGained(FocusEvent e) {
-				jtfEmpNo.setBorder(focusField);
-			}
-		});//addFocusListener
 		
 		jtfEname.addFocusListener(new FocusListener() {
 			
@@ -118,16 +99,16 @@ public class ManageEmpDialog extends JDialog{
 			}
 		});//addFocusListener
 		
-		jtfJobTel.addFocusListener(new FocusListener() {
+		jtfTel.addFocusListener(new FocusListener() {
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				jtfJobTel.setBorder(unfocusField);
+				jtfTel.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				jtfJobTel.setBorder(focusField);
+				jtfTel.setBorder(focusField);
 			}
 		});//addFocusListener
 		
@@ -183,19 +164,6 @@ public class ManageEmpDialog extends JDialog{
 			}
 		});//addFocusListener
 		
-		jtfBirthday.addFocusListener(new FocusListener() {
-			
-			@Override
-			public void focusLost(FocusEvent e) {
-				jtfBirthday.setBorder(unfocusField);
-			}
-			
-			@Override
-			public void focusGained(FocusEvent e) {
-				jtfBirthday.setBorder(focusField);
-			}
-		});//addFocusListener
-		
 		jtfLoc.addFocusListener(new FocusListener() {
 			
 			@Override
@@ -224,53 +192,45 @@ public class ManageEmpDialog extends JDialog{
 		
 		setLayout(null);
 		
-		add(jlblEmpNo);
 		add(jlblEname);
 		add(jlblLevel);
-		add(jlblJobTel);
+		add(jlblTel);
 		add(jlblEmail);
 		add(jlblDept);
 		add(jlblTeam);
 		add(jlblJob);
-		add(jlblBirthday);
 		add(jlblLoc);
 		add(jlblSal);
 		
-		jlblEmpNo.setBounds(45,10,100,30);
 		jlblEname.setBounds(45,60,100,30);
 		jlblLevel.setBounds(45,110,100,30);
-		jlblJobTel.setBounds(45,160,100,30);
+		jlblTel.setBounds(45,160,100,30);
 		jlblEmail.setBounds(45,210,100,30);
 		jlblDept.setBounds(300,10,100,30);
 		jlblTeam.setBounds(300,60,100,30);
 		jlblJob.setBounds(300,110,100,30);
-		jlblBirthday.setBounds(300,160,100,30);
-		jlblLoc.setBounds(300,210,100,30);
-		jlblSal.setBounds(300,260,100,30);
+		jlblLoc.setBounds(300,160,100,30);
+		jlblSal.setBounds(300,210,100,30);
 		
-		add(jtfEmpNo);
 		add(jtfEname);
 		add(jtfLevel);
-		add(jtfJobTel);
+		add(jtfTel);
 		add(jtfEmail);
 		add(jtfDept);
 		add(jtfTeam);
 		add(jtfJob);
-		add(jtfBirthday);
 		add(jtfLoc);
 		add(jtfSal);
 		
-		jtfEmpNo.setBounds(120,10,110,30);
 		jtfEname.setBounds(120,60,110,30);
 		jtfLevel.setBounds(120,110,110,30);
-		jtfJobTel.setBounds(120,160,110,30);
+		jtfTel.setBounds(120,160,110,30);
 		jtfEmail.setBounds(120,210,110,30);
 		jtfDept.setBounds(370,10,110,30);
 		jtfTeam.setBounds(370,60,110,30);
 		jtfJob.setBounds(370,110,110,30);
-		jtfBirthday.setBounds(370,160,110,30);
-		jtfLoc.setBounds(370,210,110,30);
-		jtfSal.setBounds(370,260,110,30); 
+		jtfLoc.setBounds(370,160,110,30);
+		jtfSal.setBounds(370,210,110,30); 
 		
 		add(jbtnModify);
 		add(jbtnOK);
@@ -286,14 +246,11 @@ public class ManageEmpDialog extends JDialog{
 		jbtnOK.addActionListener(mede);
 		jbtnCancel.addActionListener(mede);
 		
-		setSize(680,450);
+		setBounds(me.getX()+300,me.getY()+100,680,450);
 		setVisible(true);
 		
 	}//constructor
 	
-	public JLabel getJlblEmpno() {
-		return jlblEmpNo;
-	}
 
 	public JLabel getJlblEname() {
 		return jlblEname;
@@ -303,8 +260,8 @@ public class ManageEmpDialog extends JDialog{
 		return jlblLevel;
 	}
 
-	public JLabel getJlblJobTel() {
-		return jlblJobTel;
+	public JLabel getJlblTel() {
+		return jlblTel;
 	}
 
 	public JLabel getJlblEmail() {
@@ -323,10 +280,6 @@ public class ManageEmpDialog extends JDialog{
 		return jlblJob;
 	}
 
-	public JLabel getJlblBirthday() {
-		return jlblBirthday;
-	}
-
 	public JLabel getJlblLoc() {
 		return jlblLoc;
 	}
@@ -335,9 +288,6 @@ public class ManageEmpDialog extends JDialog{
 		return jlblSal;
 	}
 
-	public JTextField getJtfEmpno() {
-		return jtfEmpNo;
-	}
 
 	public JTextField getJtfEname() {
 		return jtfEname;
@@ -347,8 +297,8 @@ public class ManageEmpDialog extends JDialog{
 		return jtfLevel;
 	}
 
-	public JTextField getJtfJobTel() {
-		return jtfJobTel;
+	public JTextField getJtfTel() {
+		return jtfTel;
 	}
 
 	public JTextField getJtfEmail() {
@@ -365,10 +315,6 @@ public class ManageEmpDialog extends JDialog{
 
 	public JTextField getJtfJob() {
 		return jtfJob;
-	}
-
-	public JTextField getJtfBirthday() {
-		return jtfBirthday;
 	}
 
 	public JTextField getJtfLoc() {
@@ -391,8 +337,11 @@ public class ManageEmpDialog extends JDialog{
 		return jbtnCancel;
 	}
 
-	public static void main(String[]args) {
-		new ManageEmpDialog();
+
+	public ManageEmp getMe() {
+		return me;
 	}
+
+	
 	
 }//class
