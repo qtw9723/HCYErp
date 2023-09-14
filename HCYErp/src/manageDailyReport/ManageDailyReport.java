@@ -118,12 +118,12 @@ public class ManageDailyReport extends JPanel {
 		jspReport.setBounds(150,160,800,350);
 		add(jspReport);
 		
-<<<<<<< HEAD
+
 		jtReport.addMouseListener(event);
 		
 		
-=======
->>>>>>> branch 'main' of https://github.com/qtw9723/HCYErp.git
+
+
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
