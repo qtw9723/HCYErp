@@ -1,6 +1,7 @@
 package manageDoc;
 
 
+import java.awt.Checkbox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -94,7 +95,7 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 				dVO.setDocName(fileName);
 				dVO.setDeptNo(fud.getMde().getMd().getHcyE().getUser());
 			ManageDocDAO.getInstance().insertDoc(dVO);
-			fud.getMde().getMd().get;
+			fud.getMde().getMd().getJpDoc().add(new Checkbox(fileName));
 			}//for
 		}//for
 		JOptionPane.showMessageDialog(fud, "파일 업로드를 성공적으로 종료했습니다.");

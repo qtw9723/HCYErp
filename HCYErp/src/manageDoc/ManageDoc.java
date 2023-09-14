@@ -25,6 +25,7 @@ public class ManageDoc extends JPanel {
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
 	private HCYErp hcyE;
+	private JPanel jpDoc;
 	
 	public ManageDoc(HCYErp hcyE) {
 		this.hcyE=hcyE;
@@ -32,7 +33,7 @@ public class ManageDoc extends JPanel {
 		
 		setLayout(null);
 		
-		JPanel jpDoc = new JPanel();
+		jpDoc = new JPanel();
 		
 		// 문서 리스트 추가
 		List<DocVO> dVOList = null;
@@ -122,6 +123,11 @@ public class ManageDoc extends JPanel {
 
 	public HCYErp getHcyE() {
 		return hcyE;
+	}
+
+
+	public JPanel getJpDoc() {
+		return jpDoc;
 	}
 	
 }// class
