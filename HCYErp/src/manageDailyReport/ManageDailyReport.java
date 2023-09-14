@@ -63,7 +63,7 @@ public class ManageDailyReport extends JPanel {
 		jcbMonth.addActionListener(event);
 		add(jcbMonth);
 		
-		//일 콤박 찬영아 이거 가져다가 쓰렴 하하
+		//일 콤박 
 		jcbDay = new JComboBox<Integer>();
 		for(int i = 1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
 			jcbDay.addItem(i);
@@ -72,14 +72,13 @@ public class ManageDailyReport extends JPanel {
 		jcbDay.setBounds(420,100,130,40);
 		jcbDay.setBackground(new Color(0xffffff));
 		add(jcbDay);
-		//하하하하하하하하하하하하하ㅏ하하하하하하하하하하하하하하하하ㅏ하하하하하하하하하하ㅏ하하하하하하하
 		
 		//일자 조회 버튼
 		jbtnDateSearch = new JButton("조회");
 		jbtnDateSearch.setBounds(580,100,70,40);
+		jbtnDateSearch.setBackground(new Color(0x5E5E5E));
 		jbtnDateSearch.addActionListener(event);
 		add(jbtnDateSearch);
-		
 		
 		//이름 콤박
 		jcbEmp = new JComboBox<String>();
@@ -98,9 +97,9 @@ public class ManageDailyReport extends JPanel {
 		//이름 조회 버튼
 		jbtnEmpSearch = new JButton("조회");
 		jbtnEmpSearch.setBounds(960,100,70,40);
+		jbtnEmpSearch.setBackground(new Color(0x5E5E5E));
 		jbtnEmpSearch.addActionListener(event);
 		add(jbtnEmpSearch);
-		
 		
 		//업무일지 리스트
 		dtmReport  = new DefaultTableModel() {
@@ -119,10 +118,16 @@ public class ManageDailyReport extends JPanel {
 		jspReport.setBounds(150,160,800,350);
 		add(jspReport);
 		
+
+		jtReport.addMouseListener(event);
 		
+		
+
+
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
+		jbtnLogOut.setBackground(new Color(0xE0E0E0));
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		

@@ -1,5 +1,6 @@
 package manageEmpRegister;
 
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,22 +66,28 @@ public class ManageEmpRegister extends JPanel{
 		//입사자 추가 버튼
 		jbtnEmpRegister = new JButton("입사자 추가");
 		jbtnEmpRegister.setBounds(930,100,130,55);
+		jbtnEmpRegister.setBackground(new Color(0x8244AD));
 		jbtnEmpRegister.addActionListener(event);
 		add(jbtnEmpRegister);
+		
 		//퇴사 처리 버튼
 		jbtnResign = new JButton("퇴사 처리");
 		jbtnResign.setBounds(930,200,130,55);
+		jbtnResign.setBackground(new Color(0x8244AD));
 		jbtnResign.addActionListener(event);
 		add(jbtnResign);
+		
 		//휴직 버튼
 		jbtnAbsence = new JButton("휴직");
 		jbtnAbsence.addActionListener(event);
 		jbtnAbsence.setBounds(930,300,130,55);
+		jbtnAbsence.setBackground(new Color(0x8244AD));
 		add(jbtnAbsence);
 		
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
+		jbtnLogOut.setBackground(new Color(0xE0E0E0));
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		
@@ -94,50 +101,34 @@ public class ManageEmpRegister extends JPanel{
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);hcyE.getList().add(this);
 	}//constructor
-	
-	
 
 	public JButton getJbtnEmpRegister() {
 		return jbtnEmpRegister;
 	}
 
-
-
 	public JButton getJbtnResign() {
 		return jbtnResign;
 	}
-
-
 
 	public JButton getJbtnAbsence() {
 		return jbtnAbsence;
 	}
 
-
-
 	public JTable getJtRegiAbInfo() {
 		return jtRegiAbInfo;
 	}
-
-
 
 	public JButton getJbtnLogOut() {
 		return jbtnLogOut;
 	}
 
-
-
 	public JLabel getJlblLogoTxt() {
 		return jlblLogoTxt;
 	}
 
-
-
 	public JScrollPane getJspResignAb() {
 		return jspResignAb;
 	}
-
-
 
 	public HCYErp getHcyE() {
 		return hcyE;

@@ -1,5 +1,6 @@
 package manageLeave;
 
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class ManageLeave extends JPanel{
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
+		jbtnLogOut.setBackground(new Color(0xE0E0E0));
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		

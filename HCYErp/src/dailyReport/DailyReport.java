@@ -1,5 +1,7 @@
 package dailyReport;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -32,12 +34,14 @@ public class DailyReport extends JPanel {
 		//작성 버튼
 		jbtnReport = new JButton("작성완료");
 		jbtnReport.setBounds(480,470,200,70);
+		jbtnReport.setBackground(new Color(0x8244AD));
 		jbtnReport.addActionListener(event);
 		add(jbtnReport);
 		
 		//로그아웃 버튼 
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
+		jbtnLogOut.setBackground(new Color(0xE0E0E0));
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 

@@ -3,6 +3,7 @@ package manageDailyReport;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,10 +16,23 @@ import VO.DailyReportVO;
 
 public class ManageDailyReportEvt extends MouseAdapter implements ActionListener {
 	private ManageDailyReport mdr;
+	private ManageDailyReportDialog mdrd;
 
 	public ManageDailyReportEvt(ManageDailyReport mdr) {
 		this.mdr = mdr;
 	}//constructor
+
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if(e.getSource()==mdr.getJtReport()) {
+			new ManageDailyReportDialog(mdr);
+//			DailyReportVO drVO=new DailyReportVO();
+//			
+//			mdrd.getJtaDailyReport().setText(drVO.getReportContent());
+		}
+	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
