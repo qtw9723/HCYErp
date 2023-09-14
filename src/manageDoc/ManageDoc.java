@@ -2,9 +2,7 @@ package manageDoc;
 
 import java.awt.Color;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -29,7 +27,6 @@ public class ManageDoc extends JPanel {
 	private JLabel jlblLogoTxt;
 	private HCYErp hcyE;
 	private JPanel jpDoc;
-	private Map<Integer,JCheckBox> jcheckBoxMap;
 	
 	public ManageDoc(HCYErp hcyE) {
 		this.hcyE=hcyE;
@@ -46,12 +43,8 @@ public class ManageDoc extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}//catch
-		JCheckBox jcbdVO =null;
-		jcheckBoxMap = new HashMap<Integer, JCheckBox>();
 		for(DocVO dVO:dVOList) {
-			jcbdVO = new JCheckBox(dVO.getDocName());
-			jpDoc.add(jcbdVO);
-			jcheckBoxMap.put(dVO.getDocNo(), jcbdVO);
+			jpDoc.add(new JCheckBox(dVO.getDocName()));
 		}// for
 		
 		//문서 목록 체크박스
@@ -140,11 +133,6 @@ public class ManageDoc extends JPanel {
 
 	public JPanel getJpDoc() {
 		return jpDoc;
-	}
-
-
-	public Map<Integer, JCheckBox> getJcheckBoxMap() {
-		return jcheckBoxMap;
 	}
 	
 }// class

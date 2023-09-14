@@ -38,7 +38,7 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 			StringBuilder msg = new StringBuilder();
 			msg.append("다음의 파일을 선택하셨습니다!\n");
 			List<Integer> docNoList = new ArrayList<Integer>();
-			for(Entry<Integer, JCheckBox> entry:md.getJcheckBoxMap().entrySet()){
+			for(Entry<Integer, JCheckBox> entry:md.getCheckBoxMap().entrySet()){
 				if(entry.getValue().isSelected()) {
 					docNoList.add(entry.getKey());
 					msg.append(entry.getValue().getText()).append("\n");
