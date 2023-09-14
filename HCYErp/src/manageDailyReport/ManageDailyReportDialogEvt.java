@@ -29,9 +29,7 @@ public class ManageDailyReportDialogEvt extends MouseAdapter implements ActionLi
 		if(e.getSource()==mdrd.getJbtnModify()) {
 			modifyReport();
 		}//end if
-		if(e.getSource()==mdrd.getJcbMonth){
-			
-		}
+		
 	}//actionPerformed
 
 }//class

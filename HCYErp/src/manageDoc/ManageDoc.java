@@ -1,5 +1,8 @@
 package manageDoc;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
+import VO.DocVO;
 import login.HCYErp;
 
 @SuppressWarnings("serial")
@@ -21,6 +25,7 @@ public class ManageDoc extends JPanel {
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
 	private HCYErp hcyE;
+	private JPanel jpDoc;
 	
 	public ManageDoc(HCYErp hcyE) {
 		this.hcyE=hcyE;
@@ -28,12 +33,18 @@ public class ManageDoc extends JPanel {
 		
 		setLayout(null);
 		
-		JPanel jpDoc = new JPanel();
-		//다오 추가시 연결
-		for(int i =0;i<100;i++) {
-			jpDoc.add(new JCheckBox("문서"+i));
-			
-		}// 다다다ㅏ다다다다다오오오오오오오옹
+		jpDoc = new JPanel();
+		
+		// 문서 리스트 추가
+		List<DocVO> dVOList = null;
+		try {
+			dVOList = ManageDocDAO.getInstance().selectDoc(hcyE.getUser());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//catch
+		for(DocVO dVO:dVOList) {
+			jpDoc.add(new JCheckBox(dVO.getDocName()));
+		}// for
 		
 		
 		//문서 목록 체크박스
@@ -112,6 +123,11 @@ public class ManageDoc extends JPanel {
 
 	public HCYErp getHcyE() {
 		return hcyE;
+	}
+
+
+	public JPanel getJpDoc() {
+		return jpDoc;
 	}
 	
 }// class

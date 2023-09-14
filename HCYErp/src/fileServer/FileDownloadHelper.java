@@ -46,6 +46,7 @@ public class FileDownloadHelper extends Thread {
 	@Override
 	public void run() {
 		try {
+			while(true) {
 			client = server.accept();
 	        
 			//버퍼리더 선언
@@ -63,6 +64,7 @@ public class FileDownloadHelper extends Thread {
 	        writeStream = client.getOutputStream();
 	        
 	        download(server, reader);
+			}//while
 		} catch (IOException e) {
 		}//catch
 	}//run
