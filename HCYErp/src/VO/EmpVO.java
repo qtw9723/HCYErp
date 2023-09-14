@@ -19,6 +19,7 @@ public class EmpVO {
 	private String pass;
 	private String hiredate;
 	private int totalDayOff;
+	private String jobTel;
 
 	public EmpVO() {
 
@@ -26,7 +27,7 @@ public class EmpVO {
 
 	public EmpVO(int empNo, String team, String job, String dept, String deptLoc, String level, int sal, Date inputDate,
 			String ename, String email, String addr, String ssn, String tel, String pass, String hiredate,
-			int totalDayOff) {
+			int totalDayOff,String jobTel) {
 		this.empNo = empNo;
 		this.team = team;
 		this.job = job;
@@ -43,11 +44,16 @@ public class EmpVO {
 		this.pass = pass;
 		this.hiredate = hiredate;
 		this.totalDayOff = totalDayOff;
+		this.jobTel=jobTel;
 	}// constructor
 
 	// getter
 	public int getEmpNo() {
 		return empNo;
+	}
+
+	public String getJobTel() {
+		return jobTel;
 	}
 
 	public String getTeam() {
@@ -174,6 +180,10 @@ public class EmpVO {
 
 	public void setTotalDayOff(int totalDayOff) {
 		this.totalDayOff = totalDayOff;
+	}
+
+	public void setJobTel(String jobTel) {
+		this.jobTel = jobTel;
 	}
 	
 }// class

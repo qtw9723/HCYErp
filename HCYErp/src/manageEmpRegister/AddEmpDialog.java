@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 
 public class AddEmpDialog extends JDialog {
 	private ManageEmpRegister mer;
-	private JLabel jlblEmpNo;
 	private JLabel jlblEname;
 	private JLabel jlblEmail;
 	private JLabel jlblHyphenEmail;
@@ -29,7 +28,6 @@ public class AddEmpDialog extends JDialog {
 	private JLabel jlblSal;
 	private JLabel jlblLoc;
 
-	private JTextField jtfEmpNo;
 	private JTextField jtfEname;
 	private JTextField jtfStartEmail;
 	private JTextField jtfEndEmail;
@@ -63,7 +61,6 @@ public class AddEmpDialog extends JDialog {
 		setLayout(null);
 
 		// JLabel 선언
-		jlblEmpNo = new JLabel("사원번호");
 		jlblEname = new JLabel("이름");
 		jlblEmail = new JLabel("이메일");
 		jlblHyphenEmail = new JLabel("@");
@@ -105,7 +102,6 @@ public class AddEmpDialog extends JDialog {
 
 
 		// JTextField선언
-		jtfEmpNo = new JTextField();
 		jtfEname = new JTextField();
 		jtfStartEmail = new JTextField();
 		jtfEndEmail = new JTextField();
@@ -130,7 +126,6 @@ public class AddEmpDialog extends JDialog {
 		jtfDetailAddr.setHorizontalAlignment(JTextField.CENTER);
 
 		// add
-		add(jlblEmpNo);
 		add(jlblEname);
 		add(jlblEmail);
 		add(jlblHyphenEmail);
@@ -149,7 +144,6 @@ public class AddEmpDialog extends JDialog {
 		add(jlblSal);
 		add(jlblLoc);
 
-		add(jtfEmpNo);
 		add(jtfEname);
 		add(jtfStartEmail);
 		add(jtfEndEmail);
@@ -175,7 +169,6 @@ public class AddEmpDialog extends JDialog {
 		add(jbtnCancel);
 
 		// 배치
-		jlblEmpNo.setBounds(30, 10, 100, 50);
 		jlblEname.setBounds(30, 50, 100, 50);
 		jlblEmail.setBounds(30, 90, 100, 50);
 		jlblHyphenEmail.setBounds(280, 90, 100, 50);
@@ -194,7 +187,6 @@ public class AddEmpDialog extends JDialog {
 		jlblSal.setBounds(400, 130, 100, 50);
 		jlblLoc.setBounds(400, 170, 100, 50);
 
-		jtfEmpNo.setBounds(130, 20, 100, 30);
 		jtfEname.setBounds(130, 60, 100, 30);
 		jtfStartEmail.setBounds(130, 100, 150, 30);
 		jtfEndEmail.setBounds(295, 100, 150, 30);
@@ -239,10 +231,6 @@ public class AddEmpDialog extends JDialog {
 
 	public ManageEmpRegister getMer() {
 		return mer;
-	}
-
-	public JLabel getJlblEmpNo() {
-		return jlblEmpNo;
 	}
 
 	public JLabel getJlblEname() {
@@ -311,10 +299,6 @@ public class AddEmpDialog extends JDialog {
 
 	public JLabel getJlblLoc() {
 		return jlblLoc;
-	}
-
-	public JTextField getJtfEmpNo() {
-		return jtfEmpNo;
 	}
 
 	public JTextField getJtfEname() {
