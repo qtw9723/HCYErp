@@ -37,7 +37,6 @@ public class FileDownloadHelper extends Thread {
         if(writeStream!=null) { writeStream.close();}
         if(reader!=null) { reader.close();}
         if(client!=null) { client.close();}
-        if(server!=null) { server.close();}
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		hcyfs.getJtaConnectList().append(sdf.format(new Date()) + "에"+client.getInetAddress().getHostAddress()+"님이 \""+fileName+"\" 파일을 업로드 했습니다.\n");
