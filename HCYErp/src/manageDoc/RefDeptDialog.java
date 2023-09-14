@@ -1,6 +1,8 @@
 package manageDoc;
 
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -47,7 +49,9 @@ public class RefDeptDialog extends JDialog {
        jcbExecutive.setBounds(10, 260, 100, 60);
        
        jbtnApproveRef.setBounds(135, 190, 120, 50);
+       jbtnApproveRef.setBackground(new Color(0x8244AD));
        jbtnCancel.setBounds(135, 255, 120, 50);
+       jbtnCancel.setBackground(new Color(0x5E5E5E));
        
        RefDeptDialogEvt rdde=new RefDeptDialogEvt(this);
        
@@ -57,8 +61,6 @@ public class RefDeptDialog extends JDialog {
        setTitle("일단은 이겅가");
        setSize(300,400);
        setVisible(true);
-
-
        
     }//constructor
 
