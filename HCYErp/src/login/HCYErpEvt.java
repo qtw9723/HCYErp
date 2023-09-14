@@ -11,6 +11,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import VO.EmpVO;
 import attendance.Attendance;

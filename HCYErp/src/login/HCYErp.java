@@ -3,16 +3,20 @@ package login;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import attendance.Attendance;
 import dailyReport.DailyReport;
@@ -38,6 +42,7 @@ public class HCYErp extends JFrame {
 	private int jfHeight;
 	private boolean getOffFlag = false;
 	private boolean attendFlag = false;
+	private List<JPanel> list;
 	
 	public HCYErp() {
 		super("마 자신있나");
@@ -101,6 +106,7 @@ public class HCYErp extends JFrame {
 		// 배경 설정
 		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
+		
 		
 		addComponent();
 		
@@ -216,6 +222,14 @@ public class HCYErp extends JFrame {
 
 	public void setAttendFlag(boolean attendFlag) {
 		this.attendFlag = attendFlag;
+	}
+
+	public List<JPanel> getList() {
+		return list;
+	}
+
+	public void setList(List<JPanel> list) {
+		this.list = list;
 	}
 	
 	

@@ -151,7 +151,7 @@ public class ManageDocDAO {
 				pstmt.setInt(1, dpVO.getDocNo());
 				pstmt.setInt(2, deptNo);
 				
-				pstmt.execute();
+				pstmt.executeQuery();
 			} finally {
 				db.dbclose(rs, pstmt, con);
 			} // try
