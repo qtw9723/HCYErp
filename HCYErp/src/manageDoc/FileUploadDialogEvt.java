@@ -2,20 +2,25 @@ package manageDoc;
 
 
 import java.awt.event.ActionEvent;
-
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import fileServer.HCYFileClient;
+
 public class FileUploadDialogEvt extends MouseAdapter implements ActionListener {
 	private FileUploadDialog fud;
-	private  String selectPath ;
+	private  List<String> selectPathList ;
 	public FileUploadDialogEvt(FileUploadDialog fud) {
 		this.fud = fud;
 		
@@ -24,7 +29,7 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 			@Override
 			public void windowClosing(WindowEvent e) {
 				fud.dispose();
-			}
+			}//windowClosing
 			
 		});//addWindowListener
 	}//constructor
@@ -34,6 +39,11 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 	    jfc.setFileSelectionMode(JFileChooser.FILES_ONLY); // 파일만 선택하도록 설정
 
 	    int value = jfc.showOpenDialog(fud);
+	    
+	    //리스트 없다면 객체 생성
+	    if(selectPathList==null) {
+	    	selectPathList = new ArrayList<String>();
+	    }//if
 
 	    if (value == JFileChooser.APPROVE_OPTION) {
 	        File selectedFile = jfc.getSelectedFile();
@@ -41,45 +51,50 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 	        if (selectedFile.isFile()) { // 선택한 것이 파일인 경우에만 처리
 	        	String selectPath = selectedFile.getAbsolutePath();
 	        	if(exist(selectPath)) {//중복 파일이 없으면 실행
-	        		fud.getListmodel().addElement(selectPath);
+	        		selectPathList.add(selectPath);
+	        		fud.getListmodel().addElement(selectPath.substring(selectPath.lastIndexOf("\\")+1));
 	        	}else {
 	        		JOptionPane.showMessageDialog(jfc, "이미 존재하는 파일입니다");
-	        	}
+	        	}//else
 	        	
 	        }else {
 	        	JOptionPane.showMessageDialog(jfc, "파일을 업로드 해주세요");
-	        }
-	    }
+	        }//else
+	    }//if
 	}//addFile
 	
-	private boolean exist(String filePath) {//이미 파일이 존재하면 false
-		DefaultListModel<String>file=fud.getListmodel();
-		for(int i =0;i<file.getSize();i++) {
-			String existPath=file.getElementAt(i);
+	private boolean exist(String filePath) {
+		for(int i =0;i<selectPathList.size();i++) {
+			String existPath=selectPathList.get(i);
 			if(filePath.equals(existPath)) {
-				return false;//중복 파일 존재
-			}
-		}
+				return false;
+			}//if
+		}//for
 		return true;//중복 파일 없음
 		
-	}
+	}//exist
 	
 	public void deleteFile() {
 		int selectedFile=fud.getJlFile().getSelectedIndex();
 		
-		if(selectedFile>=0) {//jlist니까 0도 포함해야지 멍충아
+		if(selectedFile>=0) {
+			selectPathList.remove(selectedFile);
 			fud.getListmodel().remove(selectedFile);
-		}
+		}//if
 	}//deleteFile
 	
-	public void uploadFile() {//DB로 jlist 파일첨부된것 보내기
-		
+	public void uploadFile() throws UnknownHostException, IOException {//DB로 jlist 파일첨부된것 보내기
+		for(String filePath:selectPathList) {
+			System.out.println("시작");
+			HCYFileClient.getInstance().uploadFile(new File(filePath));
+		}//for
+		JOptionPane.showMessageDialog(fud, "파일업로드를 성공적으로 종료했습니다.");
 	}//uploadFile
 	
 	
 	
-	public String getSelectPath() {
-		return selectPath;
+	public List<String> getSelectPath() {
+		return selectPathList;
 	}
 
 	public void cancelFileUpload() {
@@ -96,10 +111,23 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 		}
 		if(e.getSource()==fud.getJbtnDeleteFile()) {
 			deleteFile();
-		}
+		}//if
+		
+		//
 		if(e.getSource()==fud.getJbtnUpload()) {
-			uploadFile();
-		}
+			try {
+				uploadFile();
+			} catch (UnknownHostException e1) {
+				e1.printStackTrace();
+				JOptionPane.showMessageDialog(fud, "서버와의 연결이 취소되었습니다.");
+			}catch (ConnectException ce){
+				ce.printStackTrace();
+				JOptionPane.showMessageDialog(fud, "서버를 찾을 수 없습니다.");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				JOptionPane.showMessageDialog(fud, "파일을 올리는데 문제가 발생했습니다.");
+			} 
+		}//if
 	}//actionPerformed
 
 }//class
