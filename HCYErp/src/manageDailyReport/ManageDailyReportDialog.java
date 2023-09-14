@@ -6,13 +6,13 @@ import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class ManageDailyReportDialog extends JDialog {
-
+	private ManageDailyReport mdr;
 	private JTextArea jtaDailyReport;
 	private JButton jbtnModify;
 	private JButton jbtnCancel;
 	
-	public ManageDailyReportDialog() {
-		
+	public ManageDailyReportDialog(ManageDailyReport mdr) {
+		this.mdr=mdr;
 		//textarea선언
 		jtaDailyReport=new JTextArea();
 		
@@ -35,14 +35,12 @@ public class ManageDailyReportDialog extends JDialog {
 		add(jbtnModify);
 		add(jbtnCancel);
 		
-		setBounds(100,100,500,300);
+		setBounds(mdr.getX()+600,mdr.getY()+200,500,300);
 		setVisible(true);
 		
 	}//constructor
 	
-	public static void main(String[] arg) {
-		new ManageDailyReportDialog();
-	}//main
+	
 	public JTextArea getJtaDailyReport() {
 		return jtaDailyReport;
 	}
@@ -51,6 +49,10 @@ public class ManageDailyReportDialog extends JDialog {
 	}
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
+	}
+
+	public ManageDailyReport getMdr() {
+		return mdr;
 	}
 	
 }//class

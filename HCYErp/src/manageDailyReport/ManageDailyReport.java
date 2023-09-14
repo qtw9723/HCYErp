@@ -118,6 +118,8 @@ public class ManageDailyReport extends JPanel {
 		jspReport.setBounds(150,160,800,350);
 		add(jspReport);
 		
+		jtReport.addMouseListener(event);
+		
 		
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
