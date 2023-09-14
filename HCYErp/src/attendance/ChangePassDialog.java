@@ -82,13 +82,11 @@ public class ChangePassDialog extends JDialog{
 		jpfCurrentPass.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jpfCurrentPass.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jpfCurrentPass.setBorder(focusField);
 			}
 		});
@@ -96,13 +94,11 @@ public class ChangePassDialog extends JDialog{
 		jpfNewPass.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jpfNewPass.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jpfNewPass.setBorder(focusField);
 			}
 		});
@@ -110,13 +106,11 @@ public class ChangePassDialog extends JDialog{
 		jpfCheckNewPass.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jpfCheckNewPass.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jpfCheckNewPass.setBorder(focusField);
 			}
 		});
@@ -138,7 +132,9 @@ public class ChangePassDialog extends JDialog{
 		jlblCheckNewPass.setBounds(0,300,100,30);
 		
 		jbtnOK.setBounds(100,400,100,30);
+		jbtnOK.setBackground(new Color(0x5E5E5E));
 		jbtnCancel.setBounds(300,400,100,30);
+		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		//컴포넌트 추가
 		add(jpfCurrentPass);
 		add(jpfNewPass);
@@ -160,11 +156,7 @@ public class ChangePassDialog extends JDialog{
 		setSize(500,500);
 		setVisible(true);
 		
-		
 	}//constructor
-	
-	
-	
 
 	public JPasswordField getJpfCurrentPass() {
 		return jpfCurrentPass;
@@ -230,7 +222,6 @@ public class ChangePassDialog extends JDialog{
 		return ad;
 	}
 
-	
 }//class
 
 

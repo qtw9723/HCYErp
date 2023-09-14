@@ -1,5 +1,6 @@
 package manageEmp;
 
+import java.awt.Color;
 import java.sql.SQLException;
 
 import javax.swing.DefaultListModel;
@@ -58,9 +59,9 @@ public class ManageEmp extends JPanel {
 				dlmDept.addElement(dept);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}//catch
+		
 		jspDepartment = new JScrollPane(jlDepartment);
 		jspDepartment.setBounds(150, 100, 230, 400);
 		jspDepartment.setBorder(new TitledBorder("부서"));
@@ -78,9 +79,8 @@ public class ManageEmp extends JPanel {
 				dlmteam.addElement(team);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}//catch
 
 		jspTeam = new JScrollPane(jlTeam);
 		jspTeam.setBounds(430, 100, 230, 400);
@@ -99,9 +99,8 @@ public class ManageEmp extends JPanel {
 				dlmEmp.addElement(emp);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}//catch
 		jspName = new JScrollPane(jlName);
 		jspName.setBounds(710, 100, 230, 400);
 		jspName.setBorder(new TitledBorder("사원"));
@@ -111,8 +110,10 @@ public class ManageEmp extends JPanel {
 		// 로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000, 510, 150, 40);
+		jbtnLogOut.setBackground(new Color(0xE0E0E0));
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
+		
 		// 텍스트 로고
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
 		jlblLogoTxt.setBounds(930, 450, 300, 300);

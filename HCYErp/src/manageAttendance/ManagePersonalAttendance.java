@@ -85,12 +85,14 @@ public class ManagePersonalAttendance extends JPanel{
 		//조회버튼
 		jbtnAttendName = new JButton("조회");
 		jbtnAttendName.setBounds(700,70,130,40);
+		jbtnAttendName.setBackground(new Color(0x5E5E5E));
 		jbtnAttendName.addActionListener(event);
 		add(jbtnAttendName);
 		
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
+		jbtnLogOut.setBackground(new Color(0xE0E0E0));
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		
@@ -113,7 +115,6 @@ public class ManagePersonalAttendance extends JPanel{
 	public HCYErp getHcyE() {
 		return hcyE;
 	}
-
 
 	public JButton getJbtnAttendName() {
 		return jbtnAttendName;
@@ -155,6 +156,5 @@ public class ManagePersonalAttendance extends JPanel{
 	public void setJlblAttendList(List<JLabel> jlblAttendList) {
 		this.jlblAttendList = jlblAttendList;
 	}
-	
 	
 }//class

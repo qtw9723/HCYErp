@@ -1,5 +1,7 @@
 package manageDailyReport;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
@@ -29,7 +31,9 @@ public class ManageDailyReportDialog extends JDialog {
 		
 		jtaDailyReport.setBounds(0,0,500,200);
 		jbtnModify.setBounds(100,215,100,30);
+		jbtnModify.setBackground(new Color(0x8244AD));
 		jbtnCancel.setBounds(270,215,100,30);
+		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		
 		add(jtaDailyReport);
 		add(jbtnModify);

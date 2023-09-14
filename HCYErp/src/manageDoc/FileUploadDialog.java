@@ -1,5 +1,7 @@
 package manageDoc;
 
+import java.awt.Color;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -42,13 +44,15 @@ public class FileUploadDialog extends JDialog {
 
 		setLayout(null);
 		
-		
-		
 		jsp.setBounds(25,0,500,400);
 		jbtnAddFile.setBounds(10,400,100,30);
+		jbtnAddFile.setBackground(new Color(0x8244AD));
 		jbtnDeleteFile.setBounds(140,400,140,30);
+		jbtnDeleteFile.setBackground(new Color(0x8244AD));
 		jbtnUpload.setBounds(310,400,100,30);
+		jbtnUpload.setBackground(new Color(0x8244AD));
 		jbtnCancel.setBounds(440,400,100,30);
+		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		
 		add(jbtnAddFile);
 		add(jbtnDeleteFile);
@@ -57,10 +61,7 @@ public class FileUploadDialog extends JDialog {
 
 		add(jsp);
 		
-		
 		jsp.setVisible(true);
-		
-		
 		
 		setSize(580,500);
 		setVisible(true);

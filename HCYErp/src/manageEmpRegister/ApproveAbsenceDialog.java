@@ -161,7 +161,9 @@ public class ApproveAbsenceDialog extends JDialog {
 		jtaWriteReason.setBounds(250,150,420,200);
 		
 		jbtnApprove.setBounds(80,230,100,30);
+		jbtnApprove.setBackground(new Color(0x8244AD));
 		jbtnCancel.setBounds(80,300,100,30);
+		jbtnCancel.setBackground(new Color(0x5E5E5E));
 
 		ApproveAbsenceDialogEvt event=new ApproveAbsenceDialogEvt(this);
 		jcbReason.addActionListener(event);

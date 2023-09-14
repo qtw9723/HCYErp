@@ -28,7 +28,6 @@ public class ManageMonthlyAttendance extends JPanel{
 	private JTable jtMonthlyAttend;
 	private DefaultTableModel dtmMonthlyAttend;
 
-
 	private HCYErp hcyE;
 	
 	public ManageMonthlyAttendance(HCYErp hcyE) { 
@@ -59,6 +58,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		//날짜 검색 버튼
 		jbtnAttendDate = new JButton("조회");
 		jbtnAttendDate.setBounds(630,70,150,40);
+		jbtnAttendDate.setBackground(new Color(0x5E5E5E));
 		jbtnAttendDate.addActionListener(event);
 		add(jbtnAttendDate);
 		
@@ -90,6 +90,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
+		jbtnLogOut.setBackground(new Color(0xE0E0E0));
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		
@@ -112,7 +113,6 @@ public class ManageMonthlyAttendance extends JPanel{
 		return jbtnAttendDate;
 	}
 
-
 	public JComboBox<Integer> getJcbYear() {
 		return jcbYear;
 	}
@@ -120,7 +120,6 @@ public class ManageMonthlyAttendance extends JPanel{
 	public JComboBox<Integer> getJcbMonth() {
 		return jcbMonth;
 	}
-
 
 	public JButton getJbtnLogOut() {
 		return jbtnLogOut;
@@ -137,8 +136,5 @@ public class ManageMonthlyAttendance extends JPanel{
 	public DefaultTableModel getDtmMonthlyAttend() {
 		return dtmMonthlyAttend;
 	}
-	
-	
-	
 	
 }//class

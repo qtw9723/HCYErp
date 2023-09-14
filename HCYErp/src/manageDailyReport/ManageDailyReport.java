@@ -76,9 +76,9 @@ public class ManageDailyReport extends JPanel {
 		//일자 조회 버튼
 		jbtnDateSearch = new JButton("조회");
 		jbtnDateSearch.setBounds(580,100,70,40);
+		jbtnDateSearch.setBackground(new Color(0x5E5E5E));
 		jbtnDateSearch.addActionListener(event);
 		add(jbtnDateSearch);
-		
 		
 		//이름 콤박
 		jcbEmp = new JComboBox<String>();
@@ -97,9 +97,9 @@ public class ManageDailyReport extends JPanel {
 		//이름 조회 버튼
 		jbtnEmpSearch = new JButton("조회");
 		jbtnEmpSearch.setBounds(960,100,70,40);
+		jbtnEmpSearch.setBackground(new Color(0x5E5E5E));
 		jbtnEmpSearch.addActionListener(event);
 		add(jbtnEmpSearch);
-		
 		
 		//업무일지 리스트
 		dtmReport  = new DefaultTableModel() {
@@ -118,9 +118,12 @@ public class ManageDailyReport extends JPanel {
 		jspReport.setBounds(150,160,800,350);
 		add(jspReport);
 		
+<<<<<<< HEAD
 		jtReport.addMouseListener(event);
 		
 		
+=======
+>>>>>>> branch 'main' of https://github.com/qtw9723/HCYErp.git
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
