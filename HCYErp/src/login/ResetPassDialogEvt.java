@@ -45,10 +45,10 @@ public class ResetPassDialogEvt extends MouseAdapter implements ActionListener {
 			}
 			
 		}
-	}//findPass
+	}//resetPass
 	
 	public void cancel() {
-		
+		fpd.dispose();
 	}//cancel
 	
 	@Override

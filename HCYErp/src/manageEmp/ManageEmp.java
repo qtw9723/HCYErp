@@ -105,6 +105,7 @@ public class ManageEmp extends JPanel {
 		jspName.setBounds(710, 100, 230, 400);
 		jspName.setBorder(new TitledBorder("사원"));
 		jlName.addListSelectionListener(event);
+		jlName.addMouseListener(event);
 		add(jspName);
 
 		// 로그아웃 버튼
@@ -123,6 +124,8 @@ public class ManageEmp extends JPanel {
 		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
+		hcyE.getList().add(this);
+		
 	}// constructor
 
 	public JList<String> getJlDepartment() {
@@ -172,4 +175,9 @@ public class ManageEmp extends JPanel {
 	public DefaultListModel<String> getDlmEmp() {
 		return dlmEmp;
 	}
+
+	public void setDlmDept(DefaultListModel<String> dlmDept) {
+		this.dlmDept = dlmDept;
+	}
+	
 }// class

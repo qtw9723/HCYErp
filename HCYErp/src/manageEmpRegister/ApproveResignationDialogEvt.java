@@ -5,7 +5,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.util.Calendar;
+
+import javax.swing.JOptionPane;
+
+import VO.EmpVO;
 
 public class ApproveResignationDialogEvt extends MouseAdapter implements ActionListener{
 
@@ -24,7 +29,21 @@ public class ApproveResignationDialogEvt extends MouseAdapter implements ActionL
 		});//addWindowListener
 	}//constructor
 
-	public void approveResignation() {
+	public void approveResignation() throws SQLException {
+		if(ard.getJtaReason().getText().equals("")) {
+			JOptionPane.showMessageDialog(ard, "퇴사이유를 작성하세요");
+		}else {
+			
+			EmpVO eVO=new EmpVO(); 
+			
+			//사원번호
+			
+			eVO.setEmpNo(Integer.parseInt(ard.getJcbEmpNoName().getSelectedItem().toString().substring(0,4)));
+			
+			ManageEmpRegisterDAO.getInstance().deleteRsignationEmp(eVO);
+			
+			JOptionPane.showMessageDialog(ard, "퇴사되었습니다.");
+		}
 		
 	}//approveResignation
 	
@@ -54,7 +73,11 @@ public class ApproveResignationDialogEvt extends MouseAdapter implements ActionL
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==ard.getJbtnApprove()) {
-			approveResignation();
+			try {
+				approveResignation();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}if(e.getSource()==ard.getJbtnCancel()) {
 			cancel();
 		}if(e.getSource()==ard.getJcbMonth()) {

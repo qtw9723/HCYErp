@@ -16,7 +16,6 @@ import VO.DailyReportVO;
 
 public class ManageDailyReportEvt extends MouseAdapter implements ActionListener {
 	private ManageDailyReport mdr;
-	private ManageDailyReportDialog mdrd;
 
 	public ManageDailyReportEvt(ManageDailyReport mdr) {
 		this.mdr = mdr;
@@ -25,12 +24,23 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(e.getSource()==mdr.getJtReport()) {
-			new ManageDailyReportDialog(mdr);
-//			DailyReportVO drVO=new DailyReportVO();
-//			
-//			mdrd.getJtaDailyReport().setText(drVO.getReportContent());
+		//지금 리스트로 하니까 한명은 되는데 두명이상이면 문제가 리를빗
+		String emp = mdr.getJcbEmp().getSelectedItem().toString();
+		String content="";
+		try {
+			List<DailyReportVO> list=ManageDailyReportDAO.getInstance().selectDailyReport(Integer.parseInt(emp.substring(0, 4)));
+			 for(DailyReportVO drVO:list) {
+				 content=drVO.getReportContent();
+			 }
+			if(e.getSource()==mdr.getJtReport()) {
+				new ManageDailyReportDialog(mdr,content);
+			}
+		} catch (NumberFormatException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
+	
 	}
 
 

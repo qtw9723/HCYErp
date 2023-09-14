@@ -86,6 +86,29 @@ public class ManageEmpRegisterDAO {
 		}//end finally
 	}//insertAbsenceApply
 	
+	public void deleteRsignationEmp(EmpVO eVO) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		DbConn db=DbConn.getInstance();
+		try {
+			con=db.getConnection("192.168.10.145","hcytravel","boramsangjo");
+			
+			String sql="delete from emp where empno=?";
+			
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setInt(1, eVO.getEmpNo());
+			
+			
+			pstmt.execute();
+		}finally {
+			if(db!=null) {
+				db.dbclose(null, pstmt, con);
+			}//end if
+		}//end finally
+	}//insertAbsenceApply
+	
 	public void insertEmp(EmpVO eVO) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;

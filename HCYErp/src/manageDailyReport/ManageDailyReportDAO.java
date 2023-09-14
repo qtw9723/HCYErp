@@ -78,11 +78,15 @@ public class ManageDailyReportDAO {
 			rs = pstmt.executeQuery();
 			DailyReportVO drVO=null;
 			while(rs.next()) {
-				drVO=new DailyReportVO(rs.getInt("empno"),rs.getString("reportdate"),rs.getString("reportcontent"),rs.getString("ename"));
-				
+				drVO=new DailyReportVO();
+				drVO.setEmpNo(rs.getInt("empno"));
+				drVO.setReportDate(rs.getString("reportdate"));
+				drVO.setReportContent(rs.getString("reportcontent"));
+				drVO.setEname(rs.getString("ename"));
+
+				System.out.println(drVO.getReportContent());
 				list.add(drVO);
 			}//while
-			
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
