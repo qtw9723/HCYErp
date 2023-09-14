@@ -90,13 +90,13 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 		for(String filePath:selectPathList) {
 			HCYFileClient.getInstance().uploadFile(new File(filePath));
 			DocVO dVO = null;
-			for(String fileName:selectPathList) {
 				dVO = new DocVO();
-				dVO.setDocName(fileName);
+				dVO.setDocName(filePath.substring(filePath.lastIndexOf("\\")+1));
 				dVO.setDeptNo(fud.getMde().getMd().getHcyE().getUser());
+				
 			ManageDocDAO.getInstance().insertDoc(dVO);
-			fud.getMde().getMd().getJpDoc().add(new Checkbox(fileName));
-			}//for
+			fud.getMde().getMd().getJpDoc().add(new Checkbox(filePath.substring(filePath.lastIndexOf("\\")+1)));
+			fud.repaint();
 		}//for
 		JOptionPane.showMessageDialog(fud, "파일 업로드를 성공적으로 종료했습니다.");
 	}//uploadFile
