@@ -70,6 +70,9 @@ public class ManageEmpDialog extends JDialog{
 		jbtnOK=new JButton("수정확인");
 		jbtnCancel=new JButton("취소");
 		
+		jbtnModify.setBackground(new Color(0x8244AD));
+		jbtnOK.setBackground(new Color(0x8244AD));
+		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		
 		//텍스트 필드 디자인
 		Border focusField=BorderFactory.createLineBorder(new Color(0xEE82EE),2);// Line border
@@ -80,13 +83,11 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfEmpNo.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfEmpNo.setBorder(focusField);
 			}
 		});//addFocusListener
@@ -95,13 +96,11 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfEname.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfEname.setBorder(focusField);
 			}
 		});//addFocusListener
@@ -110,13 +109,11 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfLevel.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfLevel.setBorder(focusField);
 			}
 		});//addFocusListener
@@ -125,13 +122,11 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfJobTel.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfJobTel.setBorder(focusField);
 			}
 		});//addFocusListener
@@ -140,13 +135,11 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfEmail.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfEmail.setBorder(focusField);
 			}
 		});//addFocusListener
@@ -155,13 +148,11 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfDept.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfDept.setBorder(focusField);
 			}
 		});//addFocusListener
@@ -170,13 +161,11 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfTeam.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfTeam.setBorder(focusField);
 			}
 		});//addFocusListener
@@ -185,13 +174,11 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfJob.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfJob.setBorder(focusField);
 			}
 		});//addFocusListener
@@ -200,13 +187,11 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfBirthday.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfBirthday.setBorder(focusField);
 			}
 		});//addFocusListener
@@ -215,13 +200,11 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfLoc.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfLoc.setBorder(focusField);
 			}
 		});//addFocusListener
@@ -230,17 +213,14 @@ public class ManageEmpDialog extends JDialog{
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfSal.setBorder(unfocusField);
 			}
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfSal.setBorder(focusField);
 			}
 		});//addFocusListener
-		
 		
 		setLayout(null);
 		
@@ -267,8 +247,6 @@ public class ManageEmpDialog extends JDialog{
 		jlblBirthday.setBounds(300,160,100,30);
 		jlblLoc.setBounds(300,210,100,30);
 		jlblSal.setBounds(300,260,100,30);
-		
-		
 		
 		add(jtfEmpNo);
 		add(jtfEname);
@@ -299,11 +277,9 @@ public class ManageEmpDialog extends JDialog{
 		add(jbtnCancel);
 		
 		jbtnModify.setBounds(180, 330, 150, 50);
-		
+			
 		jbtnOK.setVisible(false);
 		jbtnCancel.setVisible(false);
-		
-		
 		
 		ManageEmpDialogEvt mede=new ManageEmpDialogEvt(this);
 		jbtnModify.addActionListener(mede);
@@ -313,139 +289,110 @@ public class ManageEmpDialog extends JDialog{
 		setSize(680,450);
 		setVisible(true);
 		
-		
 	}//constructor
-	
 	
 	public JLabel getJlblEmpno() {
 		return jlblEmpNo;
 	}
 
-
 	public JLabel getJlblEname() {
 		return jlblEname;
 	}
-
 
 	public JLabel getJlblLevel() {
 		return jlblLevel;
 	}
 
-
 	public JLabel getJlblJobTel() {
 		return jlblJobTel;
 	}
-
 
 	public JLabel getJlblEmail() {
 		return jlblEmail;
 	}
 
-
 	public JLabel getJlblDept() {
 		return jlblDept;
 	}
-
 
 	public JLabel getJlblTeam() {
 		return jlblTeam;
 	}
 
-
 	public JLabel getJlblJob() {
 		return jlblJob;
 	}
-
 
 	public JLabel getJlblBirthday() {
 		return jlblBirthday;
 	}
 
-
 	public JLabel getJlblLoc() {
 		return jlblLoc;
 	}
-
 
 	public JLabel getJlblSal() {
 		return jlblSal;
 	}
 
-
 	public JTextField getJtfEmpno() {
 		return jtfEmpNo;
 	}
-
 
 	public JTextField getJtfEname() {
 		return jtfEname;
 	}
 
-
 	public JTextField getJtfLevel() {
 		return jtfLevel;
 	}
-
 
 	public JTextField getJtfJobTel() {
 		return jtfJobTel;
 	}
 
-
 	public JTextField getJtfEmail() {
 		return jtfEmail;
 	}
-
 
 	public JTextField getJtfDept() {
 		return jtfDept;
 	}
 
-
 	public JTextField getJtfTeam() {
 		return jtfTeam;
 	}
-
 
 	public JTextField getJtfJob() {
 		return jtfJob;
 	}
 
-
 	public JTextField getJtfBirthday() {
 		return jtfBirthday;
 	}
-
 
 	public JTextField getJtfLoc() {
 		return jtfLoc;
 	}
 
-
 	public JTextField getJtfSal() {
 		return jtfSal;
 	}
-
 
 	public JButton getJbtnModify() {
 		return jbtnModify;
 	}
 
-
 	public JButton getJbtnOK() {
 		return jbtnOK;
 	}
-
 
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
 	}
 
-
 	public static void main(String[]args) {
 		new ManageEmpDialog();
 	}
-	
-	
 	
 }//class

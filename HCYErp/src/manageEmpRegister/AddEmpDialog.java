@@ -1,5 +1,6 @@
 package manageEmpRegister;
 
+import java.awt.Color;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -99,7 +100,6 @@ public class AddEmpDialog extends JDialog {
 		for (int i = 1; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
 			jcbDayHiredate.addItem(i);
 		} // end for
-
 
 		// JTextField선언
 		jtfEname = new JTextField();
@@ -209,7 +209,9 @@ public class AddEmpDialog extends JDialog {
 		jtfLoc.setBounds(500, 180, 100, 30);
 
 		jbtnAddEmp.setBounds(700, 500, 100, 50);
+		jbtnAddEmp.setBackground(new Color(0x8244AD));
 		jbtnCancel.setBounds(850, 500, 100, 50);
+		jbtnCancel.setBackground(new Color(0xE0E0E0));
 
 		// 이벤트 발생
 		AddEmpDialogEvt event = new AddEmpDialogEvt(this);
@@ -217,7 +219,6 @@ public class AddEmpDialog extends JDialog {
 		jbtnCancel.addActionListener(event);
 		jcbMonthHiredate.addActionListener(event);
 		jcbDayHiredate.addActionListener(event);
-		
 
 		setVisible(true);
 		setSize(1000, 600);
