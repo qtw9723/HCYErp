@@ -63,12 +63,13 @@ public class FileUploadHelper extends Thread {
 	        File folder = new File(folderPath);
 	        if (!folder.exists()) {
 	        	if (folder.mkdirs()) {
-	        		System.out.println("폴더가 생성되었습니다.");
+	        		hcyfs.getJtaConnectList().append(folderPath+"에 폴더가 생성되었습니다.\n");
 	        	} else {
-	        		System.out.println("폴더 생성에 실패했습니다.");
+	        		hcyfs.getJtaConnectList().append("폴더 생성에 실패했습니다.\n다시 시도하세요!\n");
 	        		return;
 	        	}//else
 	        }//if
+	       System.out.println(fileName);
 	        fosWriteStream = new FileOutputStream(folderPath+File.separator+fileName);
 			upload(server, reader);
 		} catch (IOException e) {
