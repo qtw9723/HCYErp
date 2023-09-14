@@ -51,13 +51,11 @@ public class ResetPassDialog extends JDialog {
 		jtfEmpNo.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfEmpNo.setBorder(unfocusField);
 			}
 
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfEmpNo.setBorder(focusField);
 			}
 		});
@@ -66,13 +64,11 @@ public class ResetPassDialog extends JDialog {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfEname.setBorder(unfocusField);
 			}
 
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfEname.setBorder(focusField);
 			}
 		});
@@ -81,13 +77,11 @@ public class ResetPassDialog extends JDialog {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfSsn.setBorder(unfocusField);
 			}
 
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
 				jtfSsn.setBorder(focusField);
 			}
 		});
@@ -127,8 +121,10 @@ public class ResetPassDialog extends JDialog {
 		jtfSsn.setBounds(160, 190, 150, 30);
 
 		jbtnResetPass.setBounds(80, 250, 150, 35);
+		jbtnResetPass.setBackground(new Color(0x5E5E5E));
 		jbtnCancel.setBounds(300, 250, 120, 35);
-
+		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		
 		jlblEmpNo.setBounds(40, 50, 80, 30);
 		jlblEname.setBounds(40, 120, 80, 30);
 		jlblSsn.setBounds(40, 190, 120, 30);
@@ -158,172 +154,112 @@ public class ResetPassDialog extends JDialog {
 	}// constructor
 
 	
-	
 	public int getInputEmpno() {
 		return inputEmpno;
 	}
-
-
 
 	public String getInputEname() {
 		return inputEname;
 	}
 
-
-
 	public String getInputSsn() {
 		return inputSsn;
 	}
-
-
 
 	public void setInputEmpno(int inputEmpno) {
 		this.inputEmpno = inputEmpno;
 	}
 
-
-
 	public void setInputEname(String inputEname) {
 		this.inputEname = inputEname;
 	}
-
-
 
 	public void setInputSsn(String inputSsn) {
 		this.inputSsn = inputSsn;
 	}
 
-
-
 	public void setJtfEmpNo(JTextField jtfEmpNo) {
 		this.jtfEmpNo = jtfEmpNo;
 	}
-
-
 
 	public void setJtfEname(JTextField jtfEname) {
 		this.jtfEname = jtfEname;
 	}
 
-
-
 	public void setJtfSsn(JTextField jtfSsn) {
 		this.jtfSsn = jtfSsn;
 	}
-
-
-
-	
-
-
 
 	public void setJbtnResetPass(JButton jbtnResetPass) {
 		this.jbtnResetPass = jbtnResetPass;
 	}
 
-
-
 	public void setJbtnCancel(JButton jbtnCancel) {
 		this.jbtnCancel = jbtnCancel;
 	}
-
-
 
 	public void setJlblLogoGrey(JLabel jlblLogoGrey) {
 		this.jlblLogoGrey = jlblLogoGrey;
 	}
 
-
-
 	public void setJlblEmpNo(JLabel jlblEmpNo) {
 		this.jlblEmpNo = jlblEmpNo;
 	}
-
-
 
 	public void setJlblEname(JLabel jlblEname) {
 		this.jlblEname = jlblEname;
 	}
 
-
-
 	public void setJlblSsn(JLabel jlblSsn) {
 		this.jlblSsn = jlblSsn;
 	}
-
-
 
 	public void setJlblBg(JLabel jlblBg) {
 		this.jlblBg = jlblBg;
 	}
 
-
-
 	public JTextField getJtfEmpNo() {
 		return jtfEmpNo;
 	}
-
-
 
 	public JTextField getJtfEname() {
 		return jtfEname;
 	}
 
-
-
 	public JTextField getJtfSsn() {
 		return jtfSsn;
 	}
-
-
 
 	public JButton getJbtnResetPass() {
 		return jbtnResetPass;
 	}
 
-
-
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
 	}
-
-
 
 	public JLabel getJlblLogoGrey() {
 		return jlblLogoGrey;
 	}
 
-
-
 	public JLabel getJlblEmpNo() {
 		return jlblEmpNo;
 	}
-
-
 
 	public JLabel getJlblEname() {
 		return jlblEname;
 	}
 
-
-
 	public JLabel getJlblSsn() {
 		return jlblSsn;
 	}
-
-
 
 	public JLabel getJlblBg() {
 		return jlblBg;
 	}
 
-
-
 	public static void main(String[] arg) {
 		new ResetPassDialog();
 	}
-
-
-
 	
 }// class
