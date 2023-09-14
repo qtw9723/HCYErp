@@ -36,7 +36,7 @@ public class ManageDocDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "select e.empno,t.teamno ,dp.deptno,dc.docno,dc.docname from emp e,team t,dept dp,doc dc where (e.teamno=t.teamno(+) and t.deptno=dp.deptno(+) and dp.deptno=dc.deptno(+)) and e.empno=?";
+			String sql = "select e.empno,t.teamno ,dp.deptno,dc.docno,dc.docname, dc.INPUT_DATE from emp e,team t,dept dp,doc dc where (e.teamno=t.teamno(+) and t.deptno=dp.deptno(+) and dc.deptno=dp.deptno(+)) and e.empno=?";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -50,9 +50,9 @@ public class ManageDocDAO {
 				dVO.setDeptNo(rs.getInt("deptno"));
 				dVO.setDocName(rs.getString("docname"));
 				dVO.setInputDate(rs.getDate("input_date"));
-
+				System.out.println(dVO.getDocNo());
 				list.add(dVO);
-			}
+			}//while
 
 		} finally {
 			db.dbclose(rs, pstmt, con);
@@ -62,35 +62,25 @@ public class ManageDocDAO {
 
 	}// selectDoc
 
-	public List<DocVO> insertDoc(DocVO dVO) throws SQLException {
-		List<DocVO> list = new ArrayList<DocVO>();
+	public void insertDoc(DocVO dVO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
-		int rowCnt = 0;
 
 		DbConn db = DbConn.getInstance();
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "insert into doc(docno,deptno,docname,input_date) values(?,?,?,sysdate)";
+			String sql = "insert into doc(deptno,docname) values((SELECT t.DEPTNO from TEAM t where t.TEAMNO=(select e.TEAMNO from emp e where e.empno= ? )),?)";
 
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setInt(1, dVO.getDocNo());
-			pstmt.setInt(2, dVO.getDeptNo());
-			pstmt.setString(3, dVO.getDocName());
+			pstmt.setInt(1, dVO.getDeptNo());
+			pstmt.setString(2, dVO.getDocName());
 
-			rowCnt = pstmt.executeUpdate();
-			if (rowCnt == 1) {
-				list.add(dVO);
-			}
-
+			pstmt.execute();
 		} finally {
 			db.dbclose(null, pstmt, con);
 		} // try
-
-		return list;
 	}// insertDoc
 
 	public void deleteDoc(int docno) throws SQLException {

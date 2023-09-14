@@ -10,13 +10,16 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.UnknownHostException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import VO.DocVO;
 import fileServer.HCYFileClient;
+import login.HCYErp;
 
 public class FileUploadDialogEvt extends MouseAdapter implements ActionListener {
 	private FileUploadDialog fud;
@@ -56,7 +59,6 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 	        	}else {
 	        		JOptionPane.showMessageDialog(jfc, "이미 존재하는 파일입니다");
 	        	}//else
-	        	
 	        }else {
 	        	JOptionPane.showMessageDialog(jfc, "파일을 업로드 해주세요");
 	        }//else
@@ -83,12 +85,19 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 		}//if
 	}//deleteFile
 	
-	public void uploadFile() throws UnknownHostException, IOException {//DB로 jlist 파일첨부된것 보내기
+	public void uploadFile() throws UnknownHostException, IOException, SQLException {
 		for(String filePath:selectPathList) {
-			System.out.println("시작");
 			HCYFileClient.getInstance().uploadFile(new File(filePath));
+			DocVO dVO = null;
+			for(String fileName:selectPathList) {
+				dVO = new DocVO();
+				dVO.setDocName(fileName);
+				dVO.setDeptNo(fud.getMde().getMd().getHcyE().getUser());
+			ManageDocDAO.getInstance().insertDoc(dVO);
+			fud.getMde().getMd().get;
+			}//for
 		}//for
-		JOptionPane.showMessageDialog(fud, "파일업로드를 성공적으로 종료했습니다.");
+		JOptionPane.showMessageDialog(fud, "파일 업로드를 성공적으로 종료했습니다.");
 	}//uploadFile
 	
 	
@@ -126,6 +135,9 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 			} catch (IOException e1) {
 				e1.printStackTrace();
 				JOptionPane.showMessageDialog(fud, "파일을 올리는데 문제가 발생했습니다.");
+			} catch (SQLException e1) {
+				JOptionPane.showMessageDialog(fud, "데이터 베이스에서 문제가 발생했습니다.\n파일 전송은 성공적으로 마무리했습니다.");
+				e1.printStackTrace();
 			} 
 		}//if
 	}//actionPerformed

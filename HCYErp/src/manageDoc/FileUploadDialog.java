@@ -6,6 +6,7 @@ import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
+@SuppressWarnings("serial")
 public class FileUploadDialog extends JDialog {
 	private JList<String> jlFile;
 	private JButton jbtnAddFile;
@@ -13,7 +14,9 @@ public class FileUploadDialog extends JDialog {
 	private JButton jbtnUpload;
 	private JButton jbtnCancel;
 	private DefaultListModel<String> listmodel;
-	public FileUploadDialog() {
+	private ManageDocEvt mde;
+	
+	public FileUploadDialog(ManageDocEvt mde) {
 		
 		
 		jbtnAddFile=new JButton("파일첨부");
@@ -87,7 +90,9 @@ public class FileUploadDialog extends JDialog {
 		return listmodel;
 	}
 
-	public static void main(String[]args) {
-		new FileUploadDialog();
+	public ManageDocEvt getMde() {
+		return mde;
 	}
+	
+	
 }//class
