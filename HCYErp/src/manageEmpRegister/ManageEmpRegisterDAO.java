@@ -86,5 +86,39 @@ public class ManageEmpRegisterDAO {
 		}//end finally
 	}//insertAbsenceApply
 	
+	public void insertEmp(EmpVO eVO) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		DbConn db=DbConn.getInstance();
+		try {
+			con=db.getConnection("192.168.10.145","hcytravel","boramsangjo");
+			
+			String sql="insert into emp (teamno, jobno, levelno, sal,input_date,jobtel, ename, email, addr, ssn, tel, pass, hiredate, totaldayoff )values((select teamno from team where tname=?), (select jobno from job where jobname=?),(select levelno from JOBLEVEL where lvname=?), ?, sysdate ,?,?, ?, ?, ?,?, ?, ?,15)";
+		
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setString(1, eVO.getTeam());
+			pstmt.setString(2, eVO.getJob());
+			pstmt.setString(3, eVO.getLevel());
+			pstmt.setInt(4, eVO.getSal());
+			pstmt.setString(5, eVO.getJobTel());
+			pstmt.setString(6, eVO.getEname());
+			pstmt.setString(7, eVO.getEmail());
+			pstmt.setString(8, eVO.getAddr());
+			pstmt.setString(9, eVO.getSsn());
+			pstmt.setString(10, eVO.getTel());
+			pstmt.setString(11, eVO.getSsn().substring(0,6));
+			pstmt.setString(12, eVO.getHiredate());
+//			pstmt.setInt(13, eVO.getTotalDayOff());
+			
+			pstmt.execute();
+		}finally {
+			if(db!=null) {
+				db.dbclose(null, pstmt, con);
+			}//end if
+		}//end finally
+	}//insertEmp
+	
 	
 }//class
