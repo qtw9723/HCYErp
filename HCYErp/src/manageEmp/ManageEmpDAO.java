@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DB.DbConn;
+import VO.EmpVO;
 
 public class ManageEmpDAO {
 
@@ -41,7 +42,7 @@ public class ManageEmpDAO {
 
 			while (rs.next()) {
 				list.add(rs.getString("dname"));
-			}
+			}//while
 
 		} finally {
 			db.dbclose(rs, pstmt, con);
@@ -66,7 +67,7 @@ public class ManageEmpDAO {
 
 			while (rs.next()) {
 				list.add(rs.getString("tname"));
-			}
+			}//while
 
 		} finally {
 			db.dbclose(rs, pstmt, con);
@@ -157,4 +158,40 @@ public class ManageEmpDAO {
 
 		return list;
 	}//searchEmp
+	
+	public int updateEmpInfo(EmpVO eVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		int rowCnt=0;
+		
+		DbConn db = DbConn.getInstance();
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql = "update emp set TEAMNO=(select teamno from team where tname=?), JOBNO=(select jobno from job where jobname=?), LEVELNO=(select levelno from joblevel where lvname=?), SAL=?, JOBTEL=?, ENAME=?, EMAIL=?, ADDR=?, SSN=?, TEL=?, PASS=?, TOTALDAYOFF=? where empno=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,eVO.getTeam());
+			pstmt.setString(2,eVO.getJob());
+			pstmt.setString(3,eVO.getLevel());
+			pstmt.setInt(4,eVO.getSal());
+			pstmt.setString(5,eVO.getJobTel());
+			pstmt.setString(6,eVO.getEname());
+			pstmt.setString(7,eVO.getEmail());
+			pstmt.setString(8,eVO.getAddr());
+			pstmt.setString(9,eVO.getSsn());
+			pstmt.setString(10,eVO.getTel());
+			pstmt.setString(11,eVO.getPass());
+			pstmt.setInt(12,eVO.getTotalDayOff());
+			pstmt.setInt(13,eVO.getEmpNo());
+			
+			rowCnt=pstmt.executeUpdate();
+		} finally {
+			db.dbclose(rs, pstmt, con);
+		} // try
+
+		return rowCnt;
+		
+	}
 }//class
