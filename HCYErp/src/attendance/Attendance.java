@@ -187,11 +187,6 @@ public class Attendance extends JPanel {
 		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
-<<<<<<< HEAD
-		hcyE.getList().add(this);
-	
-=======
->>>>>>> branch 'main' of https://github.com/qtw9723/HCYErp.git
 
 	}// constructor
 
