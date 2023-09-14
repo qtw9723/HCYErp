@@ -22,7 +22,7 @@ public class HCYFileClient {
 	}//getInstance
 	
 	public void uploadFile(File file) throws UnknownHostException, IOException {
-		Socket socket = new Socket("192.168.10.146",36500);
+		Socket socket = new Socket("192.168.10.145",36500);
 		//이름 및 확장자 보내기
 		String filePath = file.getAbsolutePath();
 		String fileNameWithExtension = filePath.substring(filePath.lastIndexOf("\\")+1); // 파일 이름 및 확장자 설정
@@ -45,7 +45,7 @@ public class HCYFileClient {
 	}//uploadFile
 	
 	public void downloadFile(File file) throws UnknownHostException, IOException {
-		Socket socket = new Socket("192.168.10.146",36500);
+		Socket socket = new Socket("192.168.10.145",36500);
 		//이름 및 확장자 보내기
 		String filePath = file.getAbsolutePath();
 		String fileNameWithExtension = filePath.substring(filePath.lastIndexOf("\\")+1); // 파일 이름 및 확장자 설정

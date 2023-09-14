@@ -17,6 +17,7 @@ public class FileUploadDialog extends JDialog {
 	private ManageDocEvt mde;
 	
 	public FileUploadDialog(ManageDocEvt mde) {
+		this.mde = mde;
 		
 		
 		jbtnAddFile=new JButton("파일첨부");
