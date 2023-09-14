@@ -147,9 +147,7 @@ public class Attendance extends JPanel {
 					add(jlblAttend);
 					jlblList.add(jlblAttend);
 					break;
-
 				default:
-
 				}// switch
 			} // if
 		} // for

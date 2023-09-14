@@ -56,9 +56,20 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 
 	private void attend() throws SQLException {
 		//이미 출근 눌렀는지 확인
-		boolean flag = AttendanceDAO.getInstance().selectWorkingFlag(ad.getHcyE().getUser());
+		boolean workdFlag = AttendanceDAO.getInstance().selectWorkedFlag(ad.getHcyE().getUser());
+		boolean workingFlag = AttendanceDAO.getInstance().selectWorkingFlag(ad.getHcyE().getUser());
 		boolean toDayFlag = AttendanceDAO.getInstance().selectTodayWork(ad.getHcyE().getUser());
-		if(flag) {
+		if(workdFlag) {
+			JOptionPane.showMessageDialog(ad, "퇴근처리하지 않은 날이 있습니다. 자동으로 퇴근처리 합니다. 다시 출근을 눌러주세요!");
+			int updateFlag = AttendanceDAO.getInstance().updateGetOff(ad.getHcyE().getUser());
+			if(updateFlag == 1) {
+				JOptionPane.showMessageDialog(ad, "정상적으로 퇴근처리 되었습니다! ");
+			}else {
+				JOptionPane.showMessageDialog(ad, "오류가 발생했습니다. 출근버튼을 눌렀는지 확인해주세요!");
+			}//else
+			return;
+		}//if
+		if(workingFlag) {
 			JOptionPane.showMessageDialog(ad, "이미 출근 했습니다!");
 			return;
 		}//if
