@@ -13,6 +13,8 @@ import VO.DailyReportVO;
 
 public class ManageDailyReportDialogEvt extends MouseAdapter implements ActionListener {
 	private ManageDailyReportDialog mdrd;
+	
+
 
 	ManageDailyReportDialogEvt(ManageDailyReportDialog mdrd) {
 		this.mdrd = mdrd;
@@ -36,7 +38,9 @@ public class ManageDailyReportDialogEvt extends MouseAdapter implements ActionLi
 		drVO.setReportContent(sbContent.append(mdrd.getJtaDailyReport().getText()).toString());
 		
 		//사번추가
-		drVO.setEmpNo(mdrd.getMdr().getHcyE().getUser());
+		int empNo=Integer.parseInt(mdrd.getMdr().getJcbEmp().getSelectedItem().toString().substring(0, 4));
+		drVO.setEmpNo(empNo);
+		
 		
 		ManageDailyReportDAO.getInstance().updateDailyReport(drVO);
 		

@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
 
+import VO.DailyReportVO;
+
 @SuppressWarnings("serial")
 public class ManageDailyReportDialog extends JDialog {
 	private ManageDailyReport mdr;
@@ -13,10 +15,12 @@ public class ManageDailyReportDialog extends JDialog {
 	private JButton jbtnModify;
 	private JButton jbtnCancel;
 	
-	public ManageDailyReportDialog(ManageDailyReport mdr) {
+	public ManageDailyReportDialog(ManageDailyReport mdr, String content) {
 		this.mdr=mdr;
+		
 		//textarea선언
-		jtaDailyReport=new JTextArea();
+		System.out.println(content);
+		jtaDailyReport=new JTextArea(content);
 		
 		//button선언
 		jbtnModify=new JButton("수정완료");
