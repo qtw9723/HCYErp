@@ -183,6 +183,7 @@ public class AttendanceDAO {
 		ResultSet rs = null;
 
 		DbConn db = DbConn.getInstance();
+		EmpVO eVO=null;
 
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
@@ -200,7 +201,7 @@ public class AttendanceDAO {
 
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				EmpVO eVO = new EmpVO();
+				eVO = new EmpVO();
 				eVO.setEmpNo(rs.getInt("empno"));
 				eVO.setAddr(rs.getString("addr"));
 				eVO.setDept(rs.getString("dname"));
@@ -223,7 +224,7 @@ public class AttendanceDAO {
 				db.dbclose(rs, pstmt, con);
 			}
 		} // try
-		return null;
+		return eVO;
 	}// selectEmp
 
 	public int updateGetOff(int empno) throws SQLException {
