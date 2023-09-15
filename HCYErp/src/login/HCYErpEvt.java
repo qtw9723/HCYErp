@@ -19,6 +19,7 @@ import javax.swing.event.ChangeListener;
 
 import VO.EmpVO;
 import attendance.Attendance;
+import attendance.AttendanceDAO;
 import dailyReport.DailyReport;
 import manageAttendance.ManageMonthlyAttendance;
 import manageAttendance.ManagePersonalAttendance;
@@ -70,96 +71,173 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 //	}
 
 	public void login() throws SQLException {
-		
-		HCYErpDAO hcyEDAO=HCYErpDAO.getInstance();
-		
-		char[] passwordChar=hcyE.getJpfPass().getPassword();
-		String password=new String(passwordChar);
-		empNo=Integer.parseInt(hcyE.getJtfEmpNo().getText());
+
+		HCYErpDAO hcyEDAO = HCYErpDAO.getInstance();
+
+		char[] passwordChar = hcyE.getJpfPass().getPassword();
+		String password = new String(passwordChar);
+		empNo = Integer.parseInt(hcyE.getJtfEmpNo().getText());
 		hcyE.setUser(empNo);
-		ManageEmp me=new ManageEmp(hcyE);
-		ManageDoc md=new ManageDoc(hcyE);
-		ManageDailyReport mdr=new ManageDailyReport(hcyE);
-		ManageMonthlyAttendance mma=new ManageMonthlyAttendance(hcyE);
-		ManagePersonalAttendance mpa=new ManagePersonalAttendance(hcyE);
-		if(hcyEDAO.selectLogin(empNo)==true) {
-			if(password.equals(hcyEDAO.geteVO().getPass())) {
-			hcyE.removeComponent();
-			hcyE.setTabbedPane(new JTabbedPane());
-			hcyE.add(hcyE.getTabbedPane());		
-			hcyE.getTabbedPane().add("출근",new Attendance(hcyE));
-			hcyE.getTabbedPane().add("문서관리",md);
-			hcyE.getTabbedPane().add("업무일지 작성",new DailyReport(hcyE));
-			hcyE.getTabbedPane().add("업무일지 관리",mdr);
-			hcyE.getTabbedPane().add("사원정보 관리",me);
-			hcyE.getTabbedPane().add("입퇴사 관리",new ManageEmpRegister(hcyE));
-			hcyE.getTabbedPane().add("월별 사원근태 관리",mma);
-			hcyE.getTabbedPane().add("사원명별 사원근태 관리",mpa);
-			hcyE.getTabbedPane().add("휴가 관리",new ManageLeave(hcyE));
-			hcyE.getTabbedPane().addChangeListener(new ChangeListener() {
-	            @Override
-	            public void stateChanged(ChangeEvent e) {
-	                int selectedIndex = hcyE.getTabbedPane().getSelectedIndex();
-	                switch(selectedIndex) {
-	                case 1:
-	                	JCheckBox jcbMap=null;
-	                	for(Map.Entry<Integer,JCheckBox> entry:md.getJcheckBoxMap().entrySet()) {
-	                		jcbMap=entry.getValue();
-	                		jcbMap.setSelected(false);
-	                	}
-	                case 3:
-	                	Calendar cal = Calendar.getInstance();
-	            		int year = cal.get(Calendar.YEAR);
-	            		int month = cal.get(Calendar.MONTH);
-	            		int day = cal.get(Calendar.DAY_OF_MONTH);
-	                	mdr.getJcbYear().setSelectedItem(year);
-	                	mdr.getJcbMonth().setSelectedItem(month+1);
-	                	mdr.getJcbDay().setSelectedItem(day);
-	                	
-	                case 4:	
-	                ManageEmpDAO meDAO=ManageEmpDAO.getInstance();
-	                	me.getDlmDept().removeAllElements();
-	                	try {
-	            			for (String dept : meDAO.selectDept()) {
-	            				me.getDlmDept().addElement(dept);
-	            			}
-	            		} catch (SQLException se) {
-	            			// TODO Auto-generated catch block
-	            			se.printStackTrace();
-	            		}
-	                	me.getDlmteam().removeAllElements();
-	                	try {
-	                		for (String team : meDAO.selectTeam()) {
-	                			me.getDlmteam().addElement(team);
-	                		}
-	                	} catch (SQLException se) {
-	                		// TODO Auto-generated catch block
-	                		se.printStackTrace();
-	                	}
-	                	me.getDlmEmp().removeAllElements();
-	                	try {
-	                		for (String emp : meDAO.selectEmp()) {
-	                			me.getDlmEmp().addElement(emp);
-	                		}
-	                	} catch (SQLException se) {
-	                		// TODO Auto-generated catch block
-	                		se.printStackTrace();
-	                	}//catch
-	                case 6:
-	                	Calendar cal1 = Calendar.getInstance();
-	            		int year1 = cal1.get(Calendar.YEAR);
-	            		int month1 = cal1.get(Calendar.MONTH);
-	                	mma.getJcbYear().setSelectedItem(year1);
-	                	mma.getJcbMonth().setSelectedItem(month1+1);
-	                case 7:
-	                	mpa.getJcbEmp().setSelectedIndex(0);
-	                }//switch
-	            }//stateChanged
-	        });
-			}else {
+		ManageEmp me = new ManageEmp(hcyE);
+		ManageDoc md = new ManageDoc(hcyE);
+		ManageDailyReport mdr = new ManageDailyReport(hcyE);
+		ManageMonthlyAttendance mma = new ManageMonthlyAttendance(hcyE);
+		ManagePersonalAttendance mpa = new ManagePersonalAttendance(hcyE);
+		EmpVO eVO = new EmpVO();
+		AttendanceDAO aDAO = AttendanceDAO.getInstance();
+		eVO=aDAO.selectEmp(hcyE.getUser());
+		if (hcyEDAO.selectLogin(empNo) == true) {
+			if (password.equals(hcyEDAO.geteVO().getPass())) {
+				if (eVO.getTeam().equals("인사")) {
+					hcyE.removeComponent();
+					hcyE.setTabbedPane(new JTabbedPane());
+					hcyE.add(hcyE.getTabbedPane());
+					hcyE.getTabbedPane().add("출근", new Attendance(hcyE));
+					hcyE.getTabbedPane().add("문서관리", md);
+					hcyE.getTabbedPane().add("업무일지 작성", new DailyReport(hcyE));
+					hcyE.getTabbedPane().add("업무일지 관리", mdr);
+					hcyE.getTabbedPane().add("사원정보 관리", me);
+					hcyE.getTabbedPane().add("입퇴사 관리", new ManageEmpRegister(hcyE));
+					hcyE.getTabbedPane().add("월별 사원근태 관리", mma);
+					hcyE.getTabbedPane().add("사원명별 사원근태 관리", mpa);
+					hcyE.getTabbedPane().add("휴가 관리", new ManageLeave(hcyE));
+					hcyE.getTabbedPane().addChangeListener(new ChangeListener() {
+						@Override
+						public void stateChanged(ChangeEvent e) {
+							int selectedIndex = hcyE.getTabbedPane().getSelectedIndex();
+							switch (selectedIndex) {
+							case 1:
+								JCheckBox jcbMap = null;
+								for (Map.Entry<Integer, JCheckBox> entry : md.getJcheckBoxMap().entrySet()) {
+									jcbMap = entry.getValue();
+									jcbMap.setSelected(false);
+								}
+							case 3:
+								Calendar cal = Calendar.getInstance();
+								int year = cal.get(Calendar.YEAR);
+								int month = cal.get(Calendar.MONTH);
+								int day = cal.get(Calendar.DAY_OF_MONTH);
+								mdr.getJcbYear().setSelectedItem(year);
+								mdr.getJcbMonth().setSelectedItem(month + 1);
+								mdr.getJcbDay().setSelectedItem(day);
+
+							case 4:
+								ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
+								me.getDlmDept().removeAllElements();
+								try {
+									for (String dept : meDAO.selectDept()) {
+										me.getDlmDept().addElement(dept);
+									}
+								} catch (SQLException se) {
+									// TODO Auto-generated catch block
+									se.printStackTrace();
+								}
+								me.getDlmteam().removeAllElements();
+								try {
+									for (String team : meDAO.selectTeam()) {
+										me.getDlmteam().addElement(team);
+									}
+								} catch (SQLException se) {
+									// TODO Auto-generated catch block
+									se.printStackTrace();
+								}
+								me.getDlmEmp().removeAllElements();
+								try {
+									for (String emp : meDAO.selectEmp()) {
+										me.getDlmEmp().addElement(emp);
+									}
+								} catch (SQLException se) {
+									// TODO Auto-generated catch block
+									se.printStackTrace();
+								} // catch
+							case 6:
+								Calendar cal1 = Calendar.getInstance();
+								int year1 = cal1.get(Calendar.YEAR);
+								int month1 = cal1.get(Calendar.MONTH);
+								mma.getJcbYear().setSelectedItem(year1);
+								mma.getJcbMonth().setSelectedItem(month1 + 1);
+							case 7:
+								mpa.getJcbEmp().setSelectedIndex(0);
+							}// switch
+						}// stateChanged
+					});
+				} // if
+				else {
+					hcyE.removeComponent();
+					hcyE.setTabbedPane(new JTabbedPane());
+					hcyE.add(hcyE.getTabbedPane());
+					hcyE.getTabbedPane().add("출근", new Attendance(hcyE));
+					hcyE.getTabbedPane().add("문서관리", md);
+					hcyE.getTabbedPane().add("업무일지 작성", new DailyReport(hcyE));
+					hcyE.getTabbedPane().add("업무일지 관리", mdr);
+					hcyE.getTabbedPane().add("사원정보 관리", me);
+					hcyE.getTabbedPane().add("월별 사원근태 관리", mma);
+					hcyE.getTabbedPane().add("사원명별 사원근태 관리", mpa);
+					hcyE.getTabbedPane().addChangeListener(new ChangeListener() {
+						@Override
+						public void stateChanged(ChangeEvent e) {
+							int selectedIndex = hcyE.getTabbedPane().getSelectedIndex();
+							switch (selectedIndex) {
+							case 1:
+								JCheckBox jcbMap = null;
+								for (Map.Entry<Integer, JCheckBox> entry : md.getJcheckBoxMap().entrySet()) {
+									jcbMap = entry.getValue();
+									jcbMap.setSelected(false);
+								}
+							case 3:
+								Calendar cal = Calendar.getInstance();
+								int year = cal.get(Calendar.YEAR);
+								int month = cal.get(Calendar.MONTH);
+								int day = cal.get(Calendar.DAY_OF_MONTH);
+								mdr.getJcbYear().setSelectedItem(year);
+								mdr.getJcbMonth().setSelectedItem(month + 1);
+								mdr.getJcbDay().setSelectedItem(day);
+
+							case 4:
+								ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
+								me.getDlmDept().removeAllElements();
+								try {
+									for (String dept : meDAO.selectDept()) {
+										me.getDlmDept().addElement(dept);
+									}
+								} catch (SQLException se) {
+									// TODO Auto-generated catch block
+									se.printStackTrace();
+								}
+								me.getDlmteam().removeAllElements();
+								try {
+									for (String team : meDAO.selectTeam()) {
+										me.getDlmteam().addElement(team);
+									}
+								} catch (SQLException se) {
+									// TODO Auto-generated catch block
+									se.printStackTrace();
+								}
+								me.getDlmEmp().removeAllElements();
+								try {
+									for (String emp : meDAO.selectEmp()) {
+										me.getDlmEmp().addElement(emp);
+									}
+								} catch (SQLException se) {
+									// TODO Auto-generated catch block
+									se.printStackTrace();
+								} // catch
+							case 6:
+								Calendar cal1 = Calendar.getInstance();
+								int year1 = cal1.get(Calendar.YEAR);
+								int month1 = cal1.get(Calendar.MONTH);
+								mma.getJcbYear().setSelectedItem(year1);
+								mma.getJcbMonth().setSelectedItem(month1 + 1);
+							case 7:
+								mpa.getJcbEmp().setSelectedIndex(0);
+							}// switch
+						}// stateChanged
+					});
+				}//else
+			} else {
 				JOptionPane.showMessageDialog(hcyE, "아이디혹은 비밀번호가 잘못되었습니다.");
-			}//else
-		}//if
-		
+			} // else
+		} // if
+
 	}// login
 }// class
