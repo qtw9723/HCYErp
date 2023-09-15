@@ -78,6 +78,9 @@ public class ManageDailyReport extends JPanel {
 		jbtnDateSearch = new JButton("조회");
 		jbtnDateSearch.setBounds(580, 100, 70, 40);
 		jbtnDateSearch.setBackground(new Color(0x5E5E5E));
+		Font searchBtnFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnDateSearch.setFont(searchBtnFont);
+		jbtnDateSearch.setForeground(Color.WHITE);
 		jbtnDateSearch.addActionListener(event);
 		add(jbtnDateSearch);
 

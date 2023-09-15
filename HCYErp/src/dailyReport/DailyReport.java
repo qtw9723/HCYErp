@@ -35,7 +35,10 @@ public class DailyReport extends JPanel {
 		//작성 버튼
 		jbtnReport = new JButton("작성완료");
 		jbtnReport.setBounds(480,470,200,70);
-		jbtnReport.setBackground(new Color(0x8244AD));
+		jbtnReport.setBackground(new Color(0x461C90));
+		Font ReportBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		jbtnReport.setFont(ReportBtnFont);
+		jbtnReport.setForeground(Color.WHITE);
 		jbtnReport.addActionListener(event);
 		add(jbtnReport);
 		
