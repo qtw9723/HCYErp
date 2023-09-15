@@ -91,6 +91,7 @@ public class ServerDAO {
 				pstmt.execute();
 			}//for
 			
+			con.commit();
 			
 		} finally {
 			db.dbclose(rs, pstmt, con);

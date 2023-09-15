@@ -64,16 +64,6 @@ public class FileUploadHelper extends Thread {
 				// 저장할 폴더 경로 지정
 				String folderPath = "C:/Users/user/HCYErpFile";
 				
-				// 폴더가 존재하지 않으면 폴더 생성
-				File folder = new File(folderPath);
-				if (!folder.exists()) {
-					if (folder.mkdirs()) {
-						hcyfs.getJtaConnectList().append(folderPath+"에 폴더가 생성되었습니다.\n");
-					} else {
-						hcyfs.getJtaConnectList().append("폴더 생성에 실패했습니다.\n다시 시도하세요!\n");
-						return;
-					}//else
-				}//if
 				fosWriteStream = new FileOutputStream(folderPath+File.separator+fileName);
 				upload();
 			}//while
