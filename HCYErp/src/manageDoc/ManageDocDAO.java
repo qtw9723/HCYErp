@@ -150,27 +150,48 @@ public class ManageDocDAO {
 	public void insertDocPermission(DocPermissionVO dpVO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		int rowCnt = 0;
 
 		DbConn db = DbConn.getInstance();
-		for (int deptNo : dpVO.getDeptNo()) {
-			try {
-				con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+			
+			con.setAutoCommit(false);
+			//권한 테이블 인설트
+			String sql = "insert into DOC_PERMISSION(DEPTNO, DOCNO) values((SELECT DEPTNO from dept where DNAME = ? ), ? )";
+			
+			pstmt = con.prepareStatement(sql);
 
-				String sql = "insert into doc_permission(docno,deptno) values(?,?)";
+			pstmt.setString(1, dpVO.getdeptName());
+			pstmt.setInt(2, dpVO.getDocNo());
 
-				pstmt = con.prepareStatement(sql);
+			pstmt.execute();
 
-				pstmt.setInt(1, dpVO.getDocNo());
-				pstmt.setInt(2, deptNo);
+		} finally {
+			db.dbclose(null, pstmt, con);
+		} // try
+	}// insertDocPermission
+	
+	public void deleteDocPermission(DocPermissionVO dpVO) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
 
-				pstmt.executeQuery();
-			} finally {
-				db.dbclose(rs, pstmt, con);
-			} // try
-		} // for
+		DbConn db = DbConn.getInstance();
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+			
+			con.setAutoCommit(false);
+			//권한 테이블 인설트
+			String sql = "insert into DOC_PERMISSION(DEPTNO, DOCNO) values((SELECT DEPTNO from dept where DNAME = ? ), ? )";
+			
+			pstmt = con.prepareStatement(sql);
 
+			pstmt.setString(1, dpVO.getdeptName());
+			pstmt.setInt(2, dpVO.getDocNo());
+
+			pstmt.execute();
+
+		} finally {
+			db.dbclose(null, pstmt, con);
+		} // try
 	}// insertDocPermission
 }// class

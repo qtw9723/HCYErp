@@ -1,34 +1,32 @@
 package VO;
 
-import java.util.List;
-
 public class DocPermissionVO {
 	private int docNo;
-	private List<Integer> deptNo;
+	private String deptName;
 	
 	public DocPermissionVO() {
 		
 	}//constructor
 	
-	public DocPermissionVO(int docNo, List<Integer> deptNo) {
+	public DocPermissionVO(int docNo, String deptName) {
 		this.docNo = docNo;
-		this.deptNo = deptNo;
+		this.deptName = deptName;
 	}//constructor
 	
 	//getter
 	public int getDocNo() {
 		return docNo;
 	}
-	public List<Integer> getDeptNo() {
-		return deptNo;
+	public String getdeptName() {
+		return deptName;
 	}
 	
 	//setter
 	public void setDocNo(int docNo) {
 		this.docNo = docNo;
 	}
-	public void setDeptNo(List<Integer> deptNo) {
-		this.deptNo = deptNo;
+	public void setdeptName(String deptName) {
+		this.deptName = deptName;
 	}
 	
 	
