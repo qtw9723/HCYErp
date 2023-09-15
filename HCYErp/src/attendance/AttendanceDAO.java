@@ -351,7 +351,7 @@ public class AttendanceDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "SELECT 1 FROM ATTENDANCE WHERE EMPNO = ? and ENDTIME IS NULL and to_char(STARTTIME,'yyyy-mm-dd') = to_char(sysdate,'yyyy-mm-dd')";
+			String sql = "SELECT 1 FROM ATTENDANCE WHERE EMPNO = ? and ENDTIME IS NULL and workdate = to_char(sysdate,'yyyy-mm-dd')";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, empno);
