@@ -71,8 +71,9 @@ public class ServerDAO {
 			
 			pstmt = con.prepareStatement(sql);
 			
+			
 			for(int i = 0 ; i<removeFile.size();i++) {
-				pstmt.setString(i, removeFile.get(i));
+				pstmt.setString(i+1, removeFile.get(i));
 			}//for
 			
 			pstmt.execute();
