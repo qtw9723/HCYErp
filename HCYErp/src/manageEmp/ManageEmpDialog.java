@@ -241,10 +241,10 @@ public class ManageEmpDialog extends JDialog{
 		jbtnOK.setVisible(false);
 		jbtnCancel.setVisible(false);
 		
-		ManageEmpDialogEvt mede=new ManageEmpDialogEvt(this);
-		jbtnModify.addActionListener(mede);
-		jbtnOK.addActionListener(mede);
-		jbtnCancel.addActionListener(mede);
+		ManageEmpDialogEvt event=new ManageEmpDialogEvt(this);
+		jbtnModify.addActionListener(event);
+		jbtnOK.addActionListener(event);
+		jbtnCancel.addActionListener(event);
 		
 		setBounds(me.getX()+300,me.getY()+100,680,450);
 		setVisible(true);

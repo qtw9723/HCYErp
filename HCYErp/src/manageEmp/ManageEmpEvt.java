@@ -12,7 +12,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class ManageEmpEvt extends MouseAdapter implements ActionListener{
+public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 
 	private ManageEmp me;
 
@@ -30,16 +30,21 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener{
 		ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
 		if (e.getSource() == me.getJlName()) {
 			try {
-				if(meDAO.selectTeamName(me.getHcyE().getUser())==13||meDAO.selectTeamName(me.getHcyE().getUser())==91) {
-				new ManageEmpDialog(me);
-				}else {
+				if (meDAO.selectTeamName(me.getHcyE().getUser()) == 13
+						|| meDAO.selectTeamName(me.getHcyE().getUser()) == 91) {
+					
+					for(String empno : me.getListName()) {
+					System.out.println(empno);
+					}
+					new ManageEmpDialog(me);
+				} else {
 					new ManageEmpDialog(me).getJbtnModify().setEnabled(false);
 				}
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}//if
+		} // if
 		if (e.getSource() == me.getJlDepartment()) {
 			me.getDlmteam().removeAllElements();
 			me.getDlmEmp().removeAllElements();
@@ -73,7 +78,7 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener{
 			} // try
 
 		} else if (e.getSource() == me.getJlTeam()) {
-			
+
 			me.getDlmEmp().removeAllElements();
 
 			try {
@@ -84,7 +89,7 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} // try
-			
+
 		} // valueChanged
-	}//mouseClicked
+	}// mouseClicked
 }// class
