@@ -134,8 +134,8 @@ public class ManageDailyReportDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "SELECT EMPNO, ENAME FROM EMP where teamno=(select teamno from emp where empno=?)";
 
+			String sql = "SELECT EMPNO, ENAME,teamno FROM EMP where teamno=(select teamno from emp where empno=?)";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, empno);
@@ -144,7 +144,7 @@ public class ManageDailyReportDAO {
 
 			while (rs.next()) {
 				sbEmp.replace(0, sbEmp.length(), "");
-				sbEmp.append(rs.getInt("empno")).append("/").append(rs.getString("ename"));
+				sbEmp.append(rs.getInt("empno")).append("/").append(rs.getString("ename")).append("/").append(rs.getString("teamno"));
 				empList.add(sbEmp.toString());
 			} // while
 		} finally {
@@ -155,6 +155,65 @@ public class ManageDailyReportDAO {
 		return empList;
 	}// updateDailyReport
 
+	public List<String> selectEmpBoss() throws SQLException {
+		List<String> empList = new ArrayList<String>();
+		StringBuilder sbEmp = new StringBuilder();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		DbConn db = DbConn.getInstance();
+
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+
+			String sql = "SELECT EMPNO, ENAME,teamno FROM EMP";
+			pstmt = con.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				sbEmp.replace(0, sbEmp.length(), "");
+				sbEmp.append(rs.getInt("empno")).append("/").append(rs.getString("ename")).append("/").append(rs.getString("teamno"));
+				empList.add(sbEmp.toString());
+			} // while
+		} finally {
+			if (db != null) {
+				db.dbclose(rs, pstmt, con);
+			} // if
+		} // finally
+		return empList;
+	}// updateDailyReport
+	
+	public int selectTeamno(int empno) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		DbConn db = DbConn.getInstance();
+		int teamno=0;
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+
+			String sql = "SELECT teamno FROM EMP where empno=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, empno);
+			rs = pstmt.executeQuery();
+
+			rs.next();
+			
+			teamno=rs.getInt("teamno");
+			
+		} finally {
+			if (db != null) {
+				db.dbclose(rs, pstmt, con);
+			} // if
+		} // finally
+		return teamno;
+	}// updateDailyReport
+	
 	public DailyReportVO selectDailyReport(DailyReportVO drVO) throws SQLException {
 
 		Connection con = null;
