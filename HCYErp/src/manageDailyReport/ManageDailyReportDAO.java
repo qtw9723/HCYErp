@@ -13,103 +13,103 @@ import VO.DailyReportVO;
 public class ManageDailyReportDAO {
 
 	private static ManageDailyReportDAO mdrDAO;
-	
+
 	private ManageDailyReportDAO() {
-	}//constructor
-	
+	}// constructor
+
 	public static ManageDailyReportDAO getInstance() {
-		if(mdrDAO==null) {
-			mdrDAO=new ManageDailyReportDAO();
-		}//if
+		if (mdrDAO == null) {
+			mdrDAO = new ManageDailyReportDAO();
+		} // if
 		return mdrDAO;
-	}//getInstance
-	
-	public List<DailyReportVO> selectDailyReport(String days) throws SQLException{
-		
-		List<DailyReportVO> list=new ArrayList<DailyReportVO>();
-		
+	}// getInstance
+
+	public List<DailyReportVO> selectDailyReport(String days) throws SQLException {
+
+		List<DailyReportVO> list = new ArrayList<DailyReportVO>();
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		DbConn db = DbConn.getInstance();
 
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql="select dr.empno,dr.reportdate,dr.reportcontent,e.ename from daily_report dr, emp e where dr.empno=e.empno and dr.reportdate= ? ";
-			
+			String sql = "select dr.empno,dr.reportdate,dr.reportcontent,e.ename from daily_report dr, emp e where dr.empno=e.empno and dr.reportdate= ? ";
+
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, days);
 			rs = pstmt.executeQuery();
-			DailyReportVO drVO=null;
-			while(rs.next()) {
-				drVO=new DailyReportVO(rs.getInt("empno"),rs.getString("reportdate"),rs.getString("reportcontent"),rs.getString("ename"));
-				
+			DailyReportVO drVO = null;
+			while (rs.next()) {
+				drVO = new DailyReportVO(rs.getInt("empno"), rs.getString("reportdate"), rs.getString("reportcontent"),
+						rs.getString("ename"));
+
 				list.add(drVO);
-			}//while
-			
+			} // while
+
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}//if
+			} // if
 		} // try
 		return list;
-		
-	}//selectDailyReport
-	
-	public List<DailyReportVO> selectDailyReport(int empno) throws SQLException{
-		
-		List<DailyReportVO> list=new ArrayList<DailyReportVO>();
-		
+
+	}// selectDailyReport
+
+	public List<DailyReportVO> selectDailyReport(int empno) throws SQLException {
+
+		List<DailyReportVO> list = new ArrayList<DailyReportVO>();
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		DbConn db = DbConn.getInstance();
 
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql="select dr.empno,dr.reportdate,dr.reportcontent,e.ename from daily_report dr, emp e where (dr.empno=e.empno) and dr.empno=?";
-			
+			String sql = "select dr.empno,dr.reportdate,dr.reportcontent,e.ename from daily_report dr, emp e where (dr.empno=e.empno) and dr.empno=?";
+
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, empno);
 			rs = pstmt.executeQuery();
-			DailyReportVO drVO=null;
-			while(rs.next()) {
-				drVO=new DailyReportVO();
+			DailyReportVO drVO = null;
+			while (rs.next()) {
+				drVO = new DailyReportVO();
 				drVO.setEmpNo(rs.getInt("empno"));
 				drVO.setReportDate(rs.getString("reportdate"));
 				drVO.setReportContent(rs.getString("reportcontent"));
 				drVO.setEname(rs.getString("ename"));
 
-				System.out.println(drVO.getReportContent());
 				list.add(drVO);
-			}//while
+			} // while
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}//if
+			} // if
 		} // try
 		return list;
-		
-	}//selectDailyReport
-	
+
+	}// selectDailyReport
+
 	public int updateDailyReport(DailyReportVO drVO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		int rowCnt=0;
-		
+
+		int rowCnt = 0;
+
 		DbConn db = DbConn.getInstance();
-		
+
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql="update daily_report set reportcontent=? where empno=?";
-			
+			String sql = "update daily_report set reportcontent=? where empno=?";
+
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, drVO.getReportContent());
 			pstmt.setInt(2, drVO.getEmpNo());
@@ -117,71 +117,71 @@ public class ManageDailyReportDAO {
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}//if
+			} // if
 		} // finally
 		return rowCnt;
-	}//updateDailyReport
-	
+	}// updateDailyReport
+
 	public List<String> selectEmp(int empno) throws SQLException {
 		List<String> empList = new ArrayList<String>();
 		StringBuilder sbEmp = new StringBuilder();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		DbConn db = DbConn.getInstance();
-		
+
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql="SELECT EMPNO, ENAME FROM EMP where teamno=(select teamno from emp where empno=?)";
-			
+			String sql = "SELECT EMPNO, ENAME FROM EMP where teamno=(select teamno from emp where empno=?)";
+
 			pstmt = con.prepareStatement(sql);
-			
+
 			pstmt.setInt(1, empno);
-			
+
 			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				sbEmp.replace(0, sbEmp.length(), "");
 				sbEmp.append(rs.getInt("empno")).append("/").append(rs.getString("ename"));
 				empList.add(sbEmp.toString());
-			}//while
+			} // while
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}//if
+			} // if
 		} // finally
 		return empList;
-	}//updateDailyReport
-	
-public DailyReportVO selectDailyReport(DailyReportVO drVO) throws SQLException{
-		
-		
+	}// updateDailyReport
+
+	public DailyReportVO selectDailyReport(DailyReportVO drVO) throws SQLException {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		DbConn db = DbConn.getInstance();
 
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql="select dr.empno,dr.reportdate,dr.reportcontent,e.ename from daily_report dr, emp e where dr.empno= ? and dr.reportdate= ? ";
-			
+			String sql = "select dr.empno,dr.reportdate,dr.reportcontent,e.ename from daily_report dr, emp e where dr.empno= ? and dr.reportdate= ? ";
+
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, drVO.getEmpNo());
 			pstmt.setString(2, drVO.getReportDate());
 			rs = pstmt.executeQuery();
 			rs.next();
-				drVO=new DailyReportVO(rs.getInt("empno"),rs.getString("reportdate"),rs.getString("reportcontent"),rs.getString("ename"));
+			drVO = new DailyReportVO(rs.getInt("empno"), rs.getString("reportdate"), rs.getString("reportcontent"),
+					rs.getString("ename"));
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}//if
+			} // if
 		} // try
 		return drVO;
-		
-	}//selectDailyReport
-	
-}//class
+
+	}// selectDailyReport
+
+}// class

@@ -31,11 +31,11 @@ public class RefDeptDialogEvt extends MouseAdapter implements ActionListener {
 		DocPermissionVO dpVO = null;
 		for( Entry<Integer, JCheckBox> entry:rdd.getMd().getJcheckBoxMap().entrySet()) {
 			if(entry.getValue().isSelected()) {
-				
+				dpVO = new DocPermissionVO();
+				dpVO.setDocNo(entry.getKey());
+				ManageDocDAO.getInstance().deleteDocPermission(dpVO);
 				for(JCheckBox jcb:rdd.getJcbList()) {
 					if(jcb.isSelected()) {
-					dpVO = new DocPermissionVO();
-					dpVO.setDocNo(entry.getKey());
 					dpVO.setdeptName(jcb.getText());
 					ManageDocDAO.getInstance().insertDocPermission(dpVO);
 					}//if

@@ -137,7 +137,7 @@ public class ManageDocDAO {
 
 			while (rs.next()) {
 				list.add(rs.getString("dname"));
-			}
+			}//while
 
 		} finally {
 			db.dbclose(rs, pstmt, con);
@@ -181,12 +181,11 @@ public class ManageDocDAO {
 			
 			con.setAutoCommit(false);
 			//권한 테이블 인설트
-			String sql = "insert into DOC_PERMISSION(DEPTNO, DOCNO) values((SELECT DEPTNO from dept where DNAME = ? ), ? )";
+			String sql = "DELETE FROM DOC_PERMISSION WHERE DOCNO = ? ";
 			
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, dpVO.getdeptName());
-			pstmt.setInt(2, dpVO.getDocNo());
+			pstmt.setInt(1, dpVO.getDocNo());
 
 			pstmt.execute();
 

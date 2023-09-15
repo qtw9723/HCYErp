@@ -19,7 +19,6 @@ public class ManageDailyReportDialog extends JDialog {
 		this.mdr=mdr;
 		
 		//textarea선언
-		System.out.println(content);
 		jtaDailyReport=new JTextArea(content);
 		
 		//button선언

@@ -19,100 +19,109 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 
 	public ManageDailyReportEvt(ManageDailyReport mdr) {
 		this.mdr = mdr;
-	}//constructor
+		
+	}// constructor
 
-	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		//지금 리스트로 하니까 한명은 되는데 두명이상이면 문제가 리를빗
 		String emp = mdr.getJcbEmp().getSelectedItem().toString();
-		String content="";
+		String content = "";
 		DailyReportVO drVO = new DailyReportVO();
 		try {
-			if(e.getClickCount()==2) {
-			drVO.setEmpNo(Integer.parseInt(emp.substring(0, 4)));
-			drVO.setReportDate(mdr.getDtmReport().getValueAt(mdr.getJtReport().getSelectedRow(), 3).toString());
-			drVO=ManageDailyReportDAO.getInstance().selectDailyReport(drVO);
-			content=drVO.getReportContent();
-			if(e.getSource()==mdr.getJtReport()) {
-				new ManageDailyReportDialog(mdr,content);
-			}//if
-			}//if
+			if (e.getClickCount() == 2) {
+				drVO.setEmpNo(Integer.parseInt(emp.substring(0, 4)));
+				drVO.setReportDate(mdr.getDtmReport().getValueAt(mdr.getJtReport().getSelectedRow(), 3).toString());
+				drVO = ManageDailyReportDAO.getInstance().selectDailyReport(drVO);
+				content = drVO.getReportContent();
+				if (e.getSource() == mdr.getJtReport()) {
+					new ManageDailyReportDialog(mdr, content);
+				} // if
+			} // if
 		} catch (NumberFormatException e1) {
 			e1.printStackTrace();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-		}//catch
-	}//mouseClicked
-
+		} // catch
+	}// mouseClicked
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//날짜 조회
-		if(e.getSource()==mdr.getJbtnDateSearch()) {
-			for(int i = mdr.getDtmReport().getRowCount()-1 ; i>=0;i--) {
+		// 날짜 조회
+		if (e.getSource() == mdr.getJbtnDateSearch()) {
+			for (int i = mdr.getDtmReport().getRowCount() - 1; i >= 0; i--) {
 				mdr.getDtmReport().removeRow(i);
-			}//for
+			} // for
 			try {
 				StringBuilder sbDate = new StringBuilder();
 				StringBuilder sbMonth = new StringBuilder();
 				StringBuilder sbDay = new StringBuilder();
-				
-				if(mdr.getJcbMonth().getSelectedItem().toString().length() == 1) {
+
+				if (mdr.getJcbMonth().getSelectedItem().toString().length() == 1) {
 					sbMonth.append("0");
-				}//if
+				} // if
 				sbMonth.append(mdr.getJcbMonth().getSelectedItem());
-				
-				if(mdr.getJcbDay().getSelectedItem().toString().length() == 1) {
+
+				if (mdr.getJcbDay().getSelectedItem().toString().length() == 1) {
 					sbDay.append("0");
-				}//if
+				} // if
 				sbDay.append(mdr.getJcbDay().getSelectedItem());
-				
-				sbDate.append(mdr.getJcbYear().getSelectedItem()).append("-").append(sbMonth.toString()).append("-").append(sbDay.toString());
+
+				sbDate.append(mdr.getJcbYear().getSelectedItem()).append("-").append(sbMonth.toString()).append("-")
+						.append(sbDay.toString());
 				List<DailyReportVO> drVOList = new ArrayList<DailyReportVO>();
 				System.out.println(sbDate.toString());
 				drVOList = ManageDailyReportDAO.getInstance().selectDailyReport(sbDate.toString());
-				
-				//작성된 업무일지 업음
-				if(drVOList.isEmpty()) {
+
+				// 작성된 업무일지 업음
+				if (drVOList.isEmpty()) {
 					JOptionPane.showMessageDialog(mdr, "해당 일에는 작성된 업무일지가 없습니다.");
 					return;
-					}//if
-				
-				for(DailyReportVO drVO : drVOList) {
-					mdr.getDtmReport().addRow(new Object[] {drVO.getEmpNo(),drVO.getEname(),drVO.getReportContent().length()<15?drVO.getReportContent().substring(0,15):drVO.getReportContent(),drVO.getReportDate()});;
-				}//for
+				} // if
+
+				for (DailyReportVO drVO : drVOList) {
+					mdr.getDtmReport()
+							.addRow(new Object[] { drVO.getEmpNo(), drVO.getEname(),
+									drVO.getReportContent().length() < 15 ? drVO.getReportContent().substring(0, 15)
+											: drVO.getReportContent(),
+									drVO.getReportDate() });
+					;
+				} // for
 			} catch (SQLException e1) {
 				e1.printStackTrace();
-			}//catch
-		}//if
-		
-		//사원별 조회
-		if(e.getSource()==mdr.getJbtnEmpSearch()) {
-			for(int i = mdr.getDtmReport().getRowCount()-1 ; i>=0;i--) {
+			} // catch
+		} // if
+
+		// 사원별 조회
+		if (e.getSource() == mdr.getJbtnEmpSearch()) {
+			for (int i = mdr.getDtmReport().getRowCount() - 1; i >= 0; i--) {
 				mdr.getDtmReport().removeRow(i);
-			}//for
+			} // for
 			String emp = mdr.getJcbEmp().getSelectedItem().toString();
 			try {
-				List<DailyReportVO> drVOList = ManageDailyReportDAO.getInstance().selectDailyReport(Integer.parseInt(emp.substring(0,emp.indexOf("/"))) );
-				for(DailyReportVO drVO:drVOList) {
-					mdr.getDtmReport().addRow(new Object[] {drVO.getEmpNo(),drVO.getEname(),(drVO.getReportContent().length()>14)?drVO.getReportContent().substring(0,15):drVO.getReportContent(),drVO.getReportDate()});
-				}//for
+				List<DailyReportVO> drVOList = ManageDailyReportDAO.getInstance()
+						.selectDailyReport(Integer.parseInt(emp.substring(0, emp.indexOf("/"))));
+				for (DailyReportVO drVO : drVOList) {
+					mdr.getDtmReport()
+							.addRow(new Object[] { drVO.getEmpNo(), drVO.getEname(),
+									(drVO.getReportContent().length() > 14) ? drVO.getReportContent().substring(0, 15)
+											: drVO.getReportContent(),
+									drVO.getReportDate() });
+				} // for
 			} catch (SQLException e1) {
 				e1.printStackTrace();
-			}//catch
-		}//if
-		if(e.getSource()==mdr.getJcbMonth()) {
-			Calendar cal=Calendar.getInstance();
-			int num=mdr.getJcbDay().getSelectedIndex();
+			} // catch
+		} // if
+		if (e.getSource() == mdr.getJcbMonth()) {
+			Calendar cal = Calendar.getInstance();
+			int num = mdr.getJcbDay().getSelectedIndex();
 			mdr.getJcbDay().removeAllItems();
 			cal.set(Calendar.MONTH, mdr.getJcbMonth().getSelectedIndex());
-			for(int i=1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
+			for (int i = 1; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
 				mdr.getJcbDay().addItem(i);
-			}//for
+			} // for
 			mdr.getJcbDay().setSelectedIndex(num);
-		}//if
-		
-	}//actionPerformed
+		} // if
 
-}//class
+	}// actionPerformed
+
+}// class
