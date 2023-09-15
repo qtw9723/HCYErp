@@ -83,7 +83,7 @@ public class ManageDailyReport extends JPanel {
 		//이름 콤박
 		jcbEmp = new JComboBox<String>();
 		try {
-			List<String> empList = ManageDailyReportDAO.getInstance().selectEmp();
+			List<String> empList = ManageDailyReportDAO.getInstance().selectEmp(Integer.parseInt(hcyE.getJtfEmpNo().getText()));
 			for(String emp : empList) {
 				jcbEmp.addItem(emp);
 			}//for
