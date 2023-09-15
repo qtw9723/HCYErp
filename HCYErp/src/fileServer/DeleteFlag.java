@@ -1,6 +1,6 @@
 package fileServer;
 
-public enum DeleteFalg {
+public enum DeleteFlag {
 	success,
 	fail;
 	

@@ -36,10 +36,10 @@ public class FileDeleteHelper extends Thread {
         //파일삭제
         PrintWriter writer = new PrintWriter(client.getOutputStream(),true);
         if(file.delete()) {
-	        writer.println(DeleteFalg.success);
+	        writer.println(DeleteFlag.success);
 	        hcyfs.getJtaConnectList().append(client.getInetAddress().getHostAddress()+"님이 \""+fileName+"\" 파일을 삭제 했습니다.\n");
         }else {
-        	writer.println(DeleteFalg.fail);
+        	writer.println(DeleteFlag.fail);
         	hcyfs.getJtaConnectList().append(client.getInetAddress().getHostAddress()+"님이 \""+fileName+"\" 파일 삭제에 실패했습니다.\n");
         }//else
 		}finally {
