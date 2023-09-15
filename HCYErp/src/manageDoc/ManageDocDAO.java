@@ -69,7 +69,10 @@ public class ManageDocDAO {
 		DbConn db = DbConn.getInstance();
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-
+			
+			con.setAutoCommit(false);
+			
+			//doc 테이블에 인설트
 			String sql = "insert into doc(deptno,docname) values((SELECT t.DEPTNO from TEAM t where t.TEAMNO=(select e.TEAMNO from emp e where e.empno= ? )),?)";
 
 			pstmt = con.prepareStatement(sql);
@@ -78,6 +81,18 @@ public class ManageDocDAO {
 			pstmt.setString(2, dVO.getDocName());
 
 			pstmt.execute();
+			pstmt.close();
+			
+			//권한 테이블 인설트
+			sql = "insert into DOC_PERMISSION(DEPTNO, DOCNO) values((SELECT t.DEPTNO from TEAM t where t.TEAMNO=(select e.TEAMNO from emp e where e.empno= ? )),(select docno from DOC where DOCNAME = ? ))";
+
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, dVO.getDeptNo());
+			pstmt.setString(2, dVO.getDocName());
+
+			pstmt.execute();
+
 		} finally {
 			db.dbclose(null, pstmt, con);
 		} // try

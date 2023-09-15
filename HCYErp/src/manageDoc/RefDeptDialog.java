@@ -18,8 +18,11 @@ public class RefDeptDialog extends JDialog {
 
     private JButton jbtnApproveRef;
     private JButton jbtnCancel;
+    
+    private ManageDoc md;
 
-    public RefDeptDialog() {
+    public RefDeptDialog(ManageDoc md) {
+    	this.md = md;
        setLayout(null);
        
        jcbManage=new JCheckBox("경영지원");
@@ -59,7 +62,7 @@ public class RefDeptDialog extends JDialog {
        jbtnCancel.addActionListener(rdde);
        
        setTitle("일단은 이겅가");
-       setSize(300,400);
+       setBounds(md.getHcyE().getX()+400,md.getHcyE().getY()+200,300,400);
        setVisible(true);
        
     }//constructor
@@ -95,8 +98,4 @@ public class RefDeptDialog extends JDialog {
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
 	}
-
-	public static void main(String[] args) {
-        new RefDeptDialog();
-    }
 }

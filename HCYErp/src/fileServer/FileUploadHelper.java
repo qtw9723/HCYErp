@@ -37,7 +37,6 @@ public class FileUploadHelper extends Thread {
         	fosWriteStream.write(buffer,0,bytesRead);
         }//while
         } finally {
-			
         //닫기
         if(fosWriteStream!=null) { fosWriteStream.close();}
         if(readStream!=null) { readStream.close();}
