@@ -60,7 +60,7 @@ public class HCYErp extends JFrame {
 		jlblLogoTxt.setBounds(470, 140, 180, 150);
 
 		// 로그인 폰트
-		Font loginFont = new Font("맑은고딕", Font.BOLD, 20);
+		Font loginFont = new Font("맑은 고딕", Font.BOLD, 20);
 		// 사원번호 입력
 		jlblEmpNo = new JLabel("사원번호");
 		jlblEmpNo.setBounds(320, 295, 180, 60);
@@ -83,17 +83,17 @@ public class HCYErp extends JFrame {
 		jpfPass.addActionListener(event);
 
 		// 로그인 버튼 폰트
-		Font loginBtnFont = new Font("맑은고딕", Font.BOLD, 15);
+		Font loginBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		// 로그인 버튼
 		jbtnLogIn = new JButton("로그인");
 		jbtnLogIn.setBounds(728, 302, 80, 120);
-		jbtnLogIn.setBackground(new Color(0x8244AD));
+		jbtnLogIn.setBackground(new Color(0x461C90));
 		jbtnLogIn.setFont(loginBtnFont);
 		jbtnLogIn.setForeground(Color.white);
 		jbtnLogIn.addActionListener(event);
 
 		// 비밀번호 초기화 폰트
-		Font resetPWFont = new Font("맑은고딕", Font.BOLD, 15);
+		Font resetPWFont = new Font("맑은 고딕", Font.BOLD, 17);
 		// 비밀번호 초기화
 		jlblresetPass = new JLabel("비밀번호 초기화");
 		jlblresetPass.setBounds(517, 430, 180, 60);

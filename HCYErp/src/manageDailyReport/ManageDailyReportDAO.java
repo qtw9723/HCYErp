@@ -122,7 +122,7 @@ public class ManageDailyReportDAO {
 		return rowCnt;
 	}//updateDailyReport
 	
-	public List<String> selectEmp() throws SQLException {
+	public List<String> selectEmp(int empno) throws SQLException {
 		List<String> empList = new ArrayList<String>();
 		StringBuilder sbEmp = new StringBuilder();
 		Connection con = null;
@@ -134,9 +134,11 @@ public class ManageDailyReportDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql="SELECT EMPNO, ENAME FROM EMP";
+			String sql="SELECT EMPNO, ENAME FROM EMP where teamno=(select teamno from emp where empno=?)";
 			
 			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, empno);
 			
 			rs = pstmt.executeQuery();
 			
