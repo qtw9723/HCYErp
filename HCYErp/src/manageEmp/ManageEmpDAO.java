@@ -142,7 +142,7 @@ public class ManageEmpDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "select ename from emp e,team t where e.teamno(+)=t.teamno and tname=?";
+			String sql = "select ename from emp e,team t where e.teamno=t.teamno(+) and tname=?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, team);
