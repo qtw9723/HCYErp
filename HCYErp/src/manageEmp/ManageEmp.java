@@ -65,7 +65,7 @@ public class ManageEmp extends JPanel {
 		jspDepartment = new JScrollPane(jlDepartment);
 		jspDepartment.setBounds(150, 100, 230, 400);
 		jspDepartment.setBorder(new TitledBorder("부서"));
-		jlDepartment.addListSelectionListener(event);
+		jlDepartment.addMouseListener(event);
 		add(jspDepartment);
 
 		// 팀 리스트
@@ -85,7 +85,7 @@ public class ManageEmp extends JPanel {
 		jspTeam = new JScrollPane(jlTeam);
 		jspTeam.setBounds(430, 100, 230, 400);
 		jspTeam.setBorder(new TitledBorder("팀"));
-		jlTeam.addListSelectionListener(event);
+		jlTeam.addMouseListener(event);
 		add(jspTeam);
 
 		// 사원 리스트
@@ -104,7 +104,6 @@ public class ManageEmp extends JPanel {
 		jspName = new JScrollPane(jlName);
 		jspName.setBounds(710, 100, 230, 400);
 		jspName.setBorder(new TitledBorder("사원"));
-		jlName.addListSelectionListener(event);
 		jlName.addMouseListener(event);
 		add(jspName);
 
@@ -124,7 +123,6 @@ public class ManageEmp extends JPanel {
 		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
-		hcyE.getList().add(this);
 		
 	}// constructor
 
