@@ -52,7 +52,7 @@ public class ManageDocDAO {
 				dVO.setInputDate(rs.getDate("input_date"));
 				System.out.println(dVO.getDocNo());
 				list.add(dVO);
-			}//while
+			} // while
 
 		} finally {
 			db.dbclose(rs, pstmt, con);
@@ -83,7 +83,7 @@ public class ManageDocDAO {
 		} // try
 	}// insertDoc
 
-	public void deleteDoc(List<Integer> docNoList) throws SQLException {
+	public void deleteDoc(int docNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -91,17 +91,12 @@ public class ManageDocDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "delete from doc where docno in ( ? ) ";
+			String sql = "delete from doc where docno = ? ";
 
 			pstmt = con.prepareStatement(sql);
-			
-			System.out.println(docNoList.size());
-			
-			for(int i=1;i<docNoList.size()+1;i++) {
-				pstmt.setInt(i, docNoList.get(i-1));
-				System.out.println(docNoList.get(i-1));
-			}//for
-			
+
+			pstmt.setInt(1, docNo);
+
 			pstmt.execute();
 
 		} finally {
@@ -137,13 +132,13 @@ public class ManageDocDAO {
 
 	}// selectDept
 
-	public void insertDocPermission(DocPermissionVO dpVO) throws SQLException{
+	public void insertDocPermission(DocPermissionVO dpVO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		int rowCnt=0;
-		
+		int rowCnt = 0;
+
 		DbConn db = DbConn.getInstance();
 		for (int deptNo : dpVO.getDeptNo()) {
 			try {
@@ -155,12 +150,12 @@ public class ManageDocDAO {
 
 				pstmt.setInt(1, dpVO.getDocNo());
 				pstmt.setInt(2, deptNo);
-				
+
 				pstmt.executeQuery();
 			} finally {
 				db.dbclose(rs, pstmt, con);
 			} // try
-		}//for
+		} // for
 
 	}// insertDocPermission
 }// class

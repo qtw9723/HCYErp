@@ -75,13 +75,14 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 		//삭제 의사 확인
 		switch (JOptionPane.showConfirmDialog(md, msg.toString())) {
 		case JOptionPane.OK_OPTION:
-				ManageDocDAO.getInstance().deleteDoc(docNoList);
 				
 				StringBuilder failList = new StringBuilder();
-				for(String fileName : fileNameList) {
-				if(!HCYFileClient.getInstance().deleteFile(fileName)) {
-					failList.append(fileName).append("\n");
-				}//if
+				for(int i = 0 ; i<docNoList.size();i++) {
+				if(!HCYFileClient.getInstance().deleteFile(fileNameList.get(i))) {
+					failList.append(fileNameList.get(i)).append("\n");
+				}else {
+					ManageDocDAO.getInstance().deleteDoc(docNoList.get(i));
+				}//else
 				}//for
 				if(!failList.toString().isEmpty()) {
 					JOptionPane.showMessageDialog(md, failList.toString()+"파일 삭제에 실패했습니다.");
