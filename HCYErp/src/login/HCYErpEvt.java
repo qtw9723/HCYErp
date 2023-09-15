@@ -150,13 +150,13 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 									// TODO Auto-generated catch block
 									se.printStackTrace();
 								} // catch
-							case 6:
+							case 5:
 								Calendar cal1 = Calendar.getInstance();
 								int year1 = cal1.get(Calendar.YEAR);
 								int month1 = cal1.get(Calendar.MONTH);
 								mma.getJcbYear().setSelectedItem(year1);
 								mma.getJcbMonth().setSelectedItem(month1 + 1);
-							case 7:
+							case 6:
 								mpa.getJcbEmp().setSelectedIndex(0);
 							}// switch
 						}// stateChanged

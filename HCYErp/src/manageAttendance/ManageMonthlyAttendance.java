@@ -43,6 +43,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		jcbYear.addItem(year-1);
 		jcbYear.addItem(year);
 		jcbYear.addItem(year+1);
+		jcbYear.setSelectedItem(year);
 		jcbYear.setBounds(300,70,130,40);
 		jcbYear.setBackground(new Color(0xffffff));
 		add(jcbYear);
@@ -51,6 +52,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		for(int i = 1;i<13;i++) {
 			jcbMonth.addItem(i);
 		}//for
+		jcbMonth.setSelectedItem(cal.get(Calendar.MONTH)+1);
 		jcbMonth.setBounds(460,70,130,40);
 		jcbMonth.setBackground(new Color(0xffffff));
 		add(jcbMonth);

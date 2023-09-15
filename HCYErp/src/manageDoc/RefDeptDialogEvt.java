@@ -13,12 +13,10 @@ public class RefDeptDialogEvt extends MouseAdapter implements ActionListener {
 		this.rdd = rdd;
 		
 		rdd.addWindowListener(new WindowAdapter() {
-
 			@Override
 			public void windowClosing(WindowEvent e) {
 				rdd.dispose();
-			}
-			
+			}//windowClosing
 		});//addWindowListener
 	}//constructor
 
@@ -26,18 +24,14 @@ public class RefDeptDialogEvt extends MouseAdapter implements ActionListener {
 		
 	}//approveRef
 	
-	public void cancelRef() {
-		rdd.dispose();
-	}//cancelRef
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==rdd.getJbtnApproveRef()) {
 			approveRef();
-		}
+		}//if
 		if(e.getSource()==rdd.getJbtnCancel()) {
-			cancelRef();
-		}
+			rdd.dispose();
+		}//if
 	}//actionPerformed
 
 }//class
