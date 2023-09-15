@@ -45,34 +45,49 @@ public class Attendance extends JPanel {
 
 		setLayout(null);
 
+		Font AttendanceBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		// 출근버튼
 		jbtnAttend = new JButton("출근");
-		jbtnAttend.setBounds(230, 50, 150, 50);
-		jbtnAttend.setBackground(new Color(0x8244AD));
+		jbtnAttend.setBounds(265, 50, 150, 50);
+		jbtnAttend.setBackground(new Color(0x461C90));
+		jbtnAttend.setFont(AttendanceBtnFont);
+		jbtnAttend.setForeground(Color.WHITE);
 		jbtnAttend.addActionListener(event);
 		add(jbtnAttend);
 		// 퇴근버튼
 		jbtnOffWork = new JButton("퇴근");
-		jbtnOffWork.setBounds(480, 50, 150, 50);
-		jbtnOffWork.setBackground(new Color(0x8244AD));
+		jbtnOffWork.setBounds(515, 50, 150, 50);
+		jbtnOffWork.setBackground(new Color(0x461C90));
+		jbtnOffWork.setFont(AttendanceBtnFont);
+		jbtnOffWork.setForeground(Color.white);
 		jbtnOffWork.addActionListener(event);
 		add(jbtnOffWork);
 		// 휴가신청버튼
 		jbtnApplyDayOff = new JButton("휴가신청");
-		jbtnApplyDayOff.setBounds(730, 50, 150, 50);
-		jbtnApplyDayOff.setBackground(new Color(0x8244AD));
+		jbtnApplyDayOff.setBounds(765, 50, 150, 50);
+		jbtnApplyDayOff.setBackground(new Color(0x461C90));
+		jbtnApplyDayOff.setFont(AttendanceBtnFont);
+		jbtnApplyDayOff.setForeground(Color.white);
 		jbtnApplyDayOff.addActionListener(event);
 		add(jbtnApplyDayOff);
+		
+		Font ChangePassFont = new Font("맑은 고딕", Font.BOLD, 13);
 		// 비밀번호 초기화버튼
 		jbtnChangePass = new JButton("비밀번호 변경");
 		jbtnChangePass.setBounds(1000, 450, 150, 40);
 		jbtnChangePass.setBackground(new Color(0x5E5E5E));
+		jbtnChangePass.setFont(ChangePassFont);
+		jbtnChangePass.setForeground(Color.WHITE);
 		jbtnChangePass.addActionListener(event);
 		add(jbtnChangePass);
+		
+		Font LogOutFont = new Font("맑은 고딕", Font.BOLD, 13);
 		// 로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000, 510, 150, 40);
 		jbtnLogOut.setBackground(new Color(0xE0E0E0));
+		jbtnLogOut.setFont(LogOutFont);
+		jbtnLogOut.setForeground(Color.BLACK);
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		// 텍스트 로고
