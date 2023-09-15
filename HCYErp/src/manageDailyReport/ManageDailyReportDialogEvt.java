@@ -16,7 +16,7 @@ public class ManageDailyReportDialogEvt extends MouseAdapter implements ActionLi
 	
 
 
-	ManageDailyReportDialogEvt(ManageDailyReportDialog mdrd) {
+	public ManageDailyReportDialogEvt(ManageDailyReportDialog mdrd) {
 		this.mdrd = mdrd;
 		mdrd.addWindowListener(new WindowAdapter() {
 
@@ -44,7 +44,7 @@ public class ManageDailyReportDialogEvt extends MouseAdapter implements ActionLi
 		
 		ManageDailyReportDAO.getInstance().updateDailyReport(drVO);
 		
-		JOptionPane.showMessageDialog(mdrd, "업무일지가 변경되었습니다.");
+		JOptionPane.showMessageDialog(mdrd, "업무일지가 수정되었습니다.");
 		
 	}//modifyReport
 	
