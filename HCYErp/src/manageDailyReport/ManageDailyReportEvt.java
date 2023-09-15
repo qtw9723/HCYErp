@@ -42,9 +42,8 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 			e1.printStackTrace();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-		}
-	
-	}
+		}//catch
+	}//mouseClicked
 
 
 	@Override
