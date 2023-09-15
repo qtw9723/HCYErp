@@ -26,10 +26,7 @@ public class ResetPassDialog extends JDialog {
 	private JLabel jlblSsn;
 	private JLabel jlblBg;
 	
-	//값 입력
-	private int inputEmpno;
-	private String inputEname;
-	private String inputSsn;
+
 
 	public ResetPassDialog() {
 
@@ -112,9 +109,9 @@ public class ResetPassDialog extends JDialog {
 
 		setLayout(null);
 		
-		ResetPassDialogEvt fpde=new ResetPassDialogEvt(this);
-		jbtnResetPass.addActionListener(fpde);
-		jbtnCancel.addActionListener(fpde);
+		ResetPassDialogEvt event=new ResetPassDialogEvt(this);
+		jbtnResetPass.addActionListener(event);
+		jbtnCancel.addActionListener(event);
 		
 		jtfEmpNo.setBounds(160, 50, 150, 30);
 		jtfEname.setBounds(160, 120, 150, 30);
@@ -144,39 +141,14 @@ public class ResetPassDialog extends JDialog {
 		add(jlblLogoGrey);
 		add(jlblBg);
 		
-		//일단 여기서 내가 값 넣어주고 내가 입력한 값이랑 같은지 비교하려고 해놓는거
-		setInputEmpno(1);
-		setInputEname("홍찬영");
-		setInputSsn("980101-1234567");
+	
 		
 		setBounds(100, 100, 800, 400);
 		setVisible(true);
 	}// constructor
 
 	
-	public int getInputEmpno() {
-		return inputEmpno;
-	}
 
-	public String getInputEname() {
-		return inputEname;
-	}
-
-	public String getInputSsn() {
-		return inputSsn;
-	}
-
-	public void setInputEmpno(int inputEmpno) {
-		this.inputEmpno = inputEmpno;
-	}
-
-	public void setInputEname(String inputEname) {
-		this.inputEname = inputEname;
-	}
-
-	public void setInputSsn(String inputSsn) {
-		this.inputSsn = inputSsn;
-	}
 
 	public void setJtfEmpNo(JTextField jtfEmpNo) {
 		this.jtfEmpNo = jtfEmpNo;
@@ -258,8 +230,6 @@ public class ResetPassDialog extends JDialog {
 		return jlblBg;
 	}
 
-	public static void main(String[] arg) {
-		new ResetPassDialog();
-	}
+	
 	
 }// class

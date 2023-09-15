@@ -85,6 +85,26 @@ public class HCYErpDAO {
 		return flag;
 		
 	}//selectLogin
+	
+	public void updatePassword(EmpVO eVO) throws SQLException {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    
+	    DbConn db=DbConn.getInstance();
+	    try {
+	        con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+	        String sql = "UPDATE emp SET pass = ? WHERE empno = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, eVO.getSsn().substring(0,6));//비밀번호 초기화는 주민번호 앞 6자리
+	        pstmt.setInt(2, eVO.getEmpNo());
+	        
+	        pstmt.execute();
+	        
+	    } finally {
+	        db.dbclose(null, pstmt, con);
+	    }//end finally
+	}//updatePassword
+
 
 	public EmpVO geteVO() {
 		return eVO;

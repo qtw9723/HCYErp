@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,7 +33,9 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 				openServer();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} // catch
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}//catch
 		} // if
 		if (ae.getSource() == hcyfs.getJbtnCloseServer()) {
 			try {
@@ -57,7 +61,19 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 		System.exit(JFrame.ABORT);
 	}// windowClosed
 	
-	public void openServer() throws IOException {
+	public void openServer() throws IOException, SQLException {
+		// 폴더가 존재하지 않으면 폴더 생성
+		File folder = new File("C:/Users/user/HCYErpFile");
+		if (!folder.exists()) {
+			if (folder.mkdirs()) {
+				hcyfs.getJtaConnectList().append("C:/Users/user/HCYErpFile"+"에 폴더가 생성되었습니다.\n");
+			} else {
+				hcyfs.getJtaConnectList().append("폴더 생성에 실패했습니다.\n다시 시도하세요!\n");
+				return;
+			}//else
+		}//if
+		ServerDAO.getInstance().synchronize(folder.listFiles());
+		
 		if (serverThread != null) {
 			JOptionPane.showMessageDialog(hcyfs, "서버가 동작중입니다.");
 			return;
