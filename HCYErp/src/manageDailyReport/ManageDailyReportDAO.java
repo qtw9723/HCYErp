@@ -155,4 +155,33 @@ public class ManageDailyReportDAO {
 		return empList;
 	}//updateDailyReport
 	
+public DailyReportVO selectDailyReport(DailyReportVO drVO) throws SQLException{
+		
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		DbConn db = DbConn.getInstance();
+
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql="select dr.empno,dr.reportdate,dr.reportcontent,e.ename from daily_report dr, emp e where dr.empno= ? and dr.reportdate= ? ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, drVO.getEmpNo());
+			pstmt.setString(2, drVO.getReportDate());
+			rs = pstmt.executeQuery();
+			rs.next();
+				drVO=new DailyReportVO(rs.getInt("empno"),rs.getString("reportdate"),rs.getString("reportcontent"),rs.getString("ename"));
+		} finally {
+			if (db != null) {
+				db.dbclose(rs, pstmt, con);
+			}//if
+		} // try
+		return drVO;
+		
+	}//selectDailyReport
+	
 }//class

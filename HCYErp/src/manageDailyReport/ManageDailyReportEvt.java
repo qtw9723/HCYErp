@@ -27,21 +27,23 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 		//지금 리스트로 하니까 한명은 되는데 두명이상이면 문제가 리를빗
 		String emp = mdr.getJcbEmp().getSelectedItem().toString();
 		String content="";
+		DailyReportVO drVO = new DailyReportVO();
 		try {
-			List<DailyReportVO> list=ManageDailyReportDAO.getInstance().selectDailyReport(Integer.parseInt(emp.substring(0, 4)));
-			 for(DailyReportVO drVO:list) {
-				 content=drVO.getReportContent();
-			 }
+			if(e.getClickCount()==2) {
+			drVO.setEmpNo(Integer.parseInt(emp.substring(0, 4)));
+			drVO.setReportDate(mdr.getDtmReport().getValueAt(mdr.getJtReport().getSelectedRow(), 3).toString());
+			drVO=ManageDailyReportDAO.getInstance().selectDailyReport(drVO);
+			content=drVO.getReportContent();
 			if(e.getSource()==mdr.getJtReport()) {
 				new ManageDailyReportDialog(mdr,content);
-			}
+			}//if
+			}//if
 		} catch (NumberFormatException e1) {
 			e1.printStackTrace();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-		}
-	
-	}
+		}//catch
+	}//mouseClicked
 
 
 	@Override
@@ -78,7 +80,7 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 					}//if
 				
 				for(DailyReportVO drVO : drVOList) {
-					mdr.getDtmReport().addRow(new Object[] {drVO.getEmpNo(),drVO.getEname(),drVO.getReportContent().substring(0,15),drVO.getReportDate()});;
+					mdr.getDtmReport().addRow(new Object[] {drVO.getEmpNo(),drVO.getEname(),drVO.getReportContent().length()<15?drVO.getReportContent().substring(0,15):drVO.getReportContent(),drVO.getReportDate()});;
 				}//for
 			} catch (SQLException e1) {
 				e1.printStackTrace();
@@ -94,7 +96,7 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 			try {
 				List<DailyReportVO> drVOList = ManageDailyReportDAO.getInstance().selectDailyReport(Integer.parseInt(emp.substring(0,emp.indexOf("/"))) );
 				for(DailyReportVO drVO:drVOList) {
-					mdr.getDtmReport().addRow(new Object[] {drVO.getEmpNo(),drVO.getEname(),drVO.getReportContent().substring(0,15),drVO.getReportDate()});
+					mdr.getDtmReport().addRow(new Object[] {drVO.getEmpNo(),drVO.getEname(),(drVO.getReportContent().length()>14)?drVO.getReportContent().substring(0,15):drVO.getReportContent(),drVO.getReportDate()});
 				}//for
 			} catch (SQLException e1) {
 				e1.printStackTrace();

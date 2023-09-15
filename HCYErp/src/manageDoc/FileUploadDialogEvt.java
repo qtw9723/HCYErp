@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
 
 import VO.DocVO;
 import fileServer.HCYFileClient;
-import login.HCYErp;
 
 public class FileUploadDialogEvt extends MouseAdapter implements ActionListener {
 	private FileUploadDialog fud;

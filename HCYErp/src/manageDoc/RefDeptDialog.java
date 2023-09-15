@@ -2,6 +2,8 @@ package manageDoc;
 
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -15,6 +17,7 @@ public class RefDeptDialog extends JDialog {
     private JCheckBox jcbService;
     private JCheckBox jcbBusiness;
     private JCheckBox jcbExecutive;
+    private List<JCheckBox> jcbList;
 
     private JButton jbtnApproveRef;
     private JButton jbtnCancel;
@@ -25,12 +28,20 @@ public class RefDeptDialog extends JDialog {
     	this.md = md;
        setLayout(null);
        
+       jcbList = new ArrayList<JCheckBox>();
+       
        jcbManage=new JCheckBox("경영지원");
+       jcbList.add(jcbManage);
        jcbLaw=new JCheckBox("법무지원");
+       jcbList.add(jcbLaw);
        jcbProduct=new JCheckBox("상품");
+       jcbList.add(jcbProduct);
        jcbService=new JCheckBox("서비스");
+       jcbList.add(jcbService);
        jcbBusiness=new JCheckBox("영업");
+       jcbList.add(jcbBusiness);
        jcbExecutive=new JCheckBox("임원");
+       jcbList.add(jcbExecutive);
        
        jbtnApproveRef=new JButton("권한 부여");
        jbtnCancel=new JButton("취소");
@@ -98,4 +109,14 @@ public class RefDeptDialog extends JDialog {
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
 	}
+	
+
+	public List<JCheckBox> getJcbList() {
+		return jcbList;
+	}
+
+	public ManageDoc getMd() {
+		return md;
+	}
+	
 }
