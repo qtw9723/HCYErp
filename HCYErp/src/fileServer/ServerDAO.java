@@ -64,21 +64,26 @@ public class ServerDAO {
 			
 			//실파일 없는 데이터 지우기
 			StringBuilder deleteSql = new StringBuilder();
-			deleteSql.append("DELETE FROM DOC WHERE DOCNAME = ?");
+			deleteSql.append("DELETE FROM DOC WHERE DOCNAME in (?");
 			for(int i = 0 ; i<removeFile.size()-1;i++) {
 				deleteSql.append(",?");
 			}//for
+			deleteSql.append(")");
 			
-			pstmt = con.prepareStatement(sql);
+			System.out.println(deleteSql.toString()+"/"+removeFile.size());
 			
+			pstmt = con.prepareStatement(deleteSql.toString());
+			
+			if(removeFile.size()!=0) {
 			for(int i = 0 ; i<removeFile.size();i++) {
-				pstmt.setString(i, removeFile.get(i));
+				System.out.println(i);
+				pstmt.setString(i+1, removeFile.get(i));
 			}//for
 			
 			pstmt.execute();
 
 			pstmt.close();
-			
+			}
 			//데이터 없는 실파일 데이터에 추가
 			
 			sql = "INSERT INTO DOC(DEPTNO, DOCNAME) VALUES ( ? , ? )";

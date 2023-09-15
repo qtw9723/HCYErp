@@ -28,15 +28,20 @@ public class HCYFileClient {
 	}// getInstance
 
 	public void uploadFile(File file) throws UnknownHostException, IOException {
-		Socket socket = new Socket(serverIp, 36500);
+		Socket socket = null;
+		PrintWriter writer = null;
+		FileInputStream  fis = null;
+		OutputStream os = null;
+		try {
+		socket = new Socket(serverIp, 36500);
 		// 이름 및 확장자 보내기
 		String filePath = file.getAbsolutePath();
 		String fileNameWithExtension = filePath.substring(filePath.lastIndexOf("\\") + 1); // 파일 이름 및 확장자 설정
-		PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+		writer = new PrintWriter(socket.getOutputStream(), true);
 		writer.println(fileNameWithExtension);
 
-		FileInputStream fis = new FileInputStream(file);
-		OutputStream os = socket.getOutputStream();
+		fis = new FileInputStream(file);
+		os = socket.getOutputStream();
 		byte[] buffer = new byte[4096];
 		int bytesRead = 0;
 
@@ -44,37 +49,46 @@ public class HCYFileClient {
 			os.write(buffer, 0, bytesRead);
 		} // while
 
+		}finally {
 		os.close();
 		fis.close();
 		writer.close();
 		socket.close();
+		}//finally
 	}// uploadFile
 
-	public void downloadFile(String filePath) throws UnknownHostException, IOException {
+	public boolean downloadFile(String filePath) throws UnknownHostException, IOException {
 		Socket socket = null;
 		PrintWriter writer = null;
 		FileOutputStream fos = null;
 		InputStream is = null;
+		
+		boolean flag = false;
 		try {
-			socket = new Socket(serverIp, 36500);
+			socket = new Socket(serverIp, 36600);
 			// 이름 및 확장자 보내기
 			writer = new PrintWriter(socket.getOutputStream(), true);
 			writer.println(filePath.substring(filePath.lastIndexOf("/") + 1));
+			System.out.println("----00--");
 
 			fos = new FileOutputStream(filePath);
 			is = socket.getInputStream();
+			System.out.println("----11--");
 			byte[] buffer = new byte[4096];
 			int bytesRead = 0;
 
 			while ((bytesRead = is.read(buffer)) != -1) {
+				System.out.println("----22--");
 				fos.write(buffer, 0, bytesRead);
 			} // while
+			flag = true;
 		} finally {
 			is.close();
 			fos.close();
 			writer.close();
 			socket.close();
 		} // finally
+		return flag;
 	}// uploadFile
 
 	public boolean deleteFile(String fileName) throws UnknownHostException, IOException {

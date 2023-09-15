@@ -68,6 +68,7 @@ public class FileDeleteHelper extends Thread {
 	        delete(reader);
 			}//while
 		} catch (IOException e) {
+			e.printStackTrace();
 		}//catch
 	}//run
 	

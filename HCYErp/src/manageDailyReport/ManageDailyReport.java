@@ -1,6 +1,7 @@
 package manageDailyReport;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
@@ -33,81 +34,92 @@ public class ManageDailyReport extends JPanel {
 	private JLabel jlblLogoTxt;
 	private HCYErp hcyE;
 	private DefaultTableModel dtmReport;
-	
-	public ManageDailyReport(HCYErp hcyE) {
-		this.hcyE=hcyE;
+
+	public ManageDailyReport(HCYErp hcyE) throws SQLException {
+		this.hcyE = hcyE;
 		ManageDailyReportEvt event = new ManageDailyReportEvt(this);
-		
+
 		setLayout(null);
-		
-		//연월일 콤박
-		//연 콤박
+
+		// 연월일 콤박
+		// 연 콤박
 		jcbYear = new JComboBox<Integer>();
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
-		jcbYear.addItem(year-1);
+		jcbYear.addItem(year - 1);
 		jcbYear.addItem(year);
-		jcbYear.addItem(year+1);
+		jcbYear.addItem(year + 1);
 		jcbYear.setSelectedItem(year);
-		jcbYear.setBounds(100,100,130,40);
+		jcbYear.setBounds(100, 100, 130, 40);
 		jcbYear.setBackground(new Color(0xffffff));
 		add(jcbYear);
-		//월 콤박
+		// 월 콤박
 		jcbMonth = new JComboBox<Integer>();
-		for(int i = 1;i<13;i++) {
+		for (int i = 1; i < 13; i++) {
 			jcbMonth.addItem(i);
-		}//for
-		jcbMonth.setSelectedItem(cal.get(Calendar.MONTH)+1);
-		jcbMonth.setBounds(260,100,130,40);
+		} // for
+		jcbMonth.setSelectedItem(cal.get(Calendar.MONTH) + 1);
+		jcbMonth.setBounds(260, 100, 130, 40);
 		jcbMonth.setBackground(new Color(0xffffff));
 		jcbMonth.addActionListener(event);
 		add(jcbMonth);
-		
-		//일 콤박 
+
+		// 일 콤박
 		jcbDay = new JComboBox<Integer>();
-		for(int i = 1;i<=cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
+		for (int i = 1; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
 			jcbDay.addItem(i);
-		}//for
+		} // for
 		jcbDay.setSelectedItem(cal.get(Calendar.DAY_OF_MONTH));
-		jcbDay.setBounds(420,100,130,40);
+		jcbDay.setBounds(420, 100, 130, 40);
 		jcbDay.setBackground(new Color(0xffffff));
 		add(jcbDay);
-		
-		//일자 조회 버튼
+
+		// 일자 조회 버튼
 		jbtnDateSearch = new JButton("조회");
-		jbtnDateSearch.setBounds(580,100,70,40);
+		jbtnDateSearch.setBounds(580, 100, 70, 40);
 		jbtnDateSearch.setBackground(new Color(0x5E5E5E));
+		Font searchBtnFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnDateSearch.setFont(searchBtnFont);
+		jbtnDateSearch.setForeground(Color.WHITE);
 		jbtnDateSearch.addActionListener(event);
 		add(jbtnDateSearch);
-		
-		//이름 콤박
+
+		// 이름 콤박
 		jcbEmp = new JComboBox<String>();
-		try {
-			List<String> empList = ManageDailyReportDAO.getInstance().selectEmp(Integer.parseInt(hcyE.getJtfEmpNo().getText()));
-			for(String emp : empList) {
-				jcbEmp.addItem(emp);
-			}//for
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}//catch
-		jcbEmp.setBounds(700,100,230,40);
+		int teamno = ManageDailyReportDAO.getInstance().selectTeamno(hcyE.getUser());
+		if (!(teamno == 13 || teamno == 91)) {
+			try {
+				List<String> empList = ManageDailyReportDAO.getInstance().selectEmp(hcyE.getUser());
+				for (String emp : empList) {
+					jcbEmp.addItem(emp.substring(0, emp.indexOf("/", 5)));
+				} // for
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} // catch
+		}else {
+			List<String> empList=ManageDailyReportDAO.getInstance().selectEmpBoss();
+			for (String emp : empList) {
+				jcbEmp.addItem(emp.substring(0, emp.indexOf("/", 5)));
+			} // for
+		}
+		jcbEmp.setBounds(700, 100, 230, 40);
 		jcbEmp.setBackground(new Color(0xffffff));
 		add(jcbEmp);
-		
-		//이름 조회 버튼
+
+		// 이름 조회 버튼
 		jbtnEmpSearch = new JButton("조회");
-		jbtnEmpSearch.setBounds(960,100,70,40);
+		jbtnEmpSearch.setBounds(960, 100, 70, 40);
 		jbtnEmpSearch.setBackground(new Color(0x5E5E5E));
 		jbtnEmpSearch.addActionListener(event);
 		add(jbtnEmpSearch);
-		
-		//업무일지 리스트
-		dtmReport  = new DefaultTableModel() {
-		    @Override
-		    public boolean isCellEditable(int row, int column) {
-		        // 모든 셀을 수정 불가능하게 설정
-		        return false;
-		    }//isCellEditable
+
+		// 업무일지 리스트
+		dtmReport = new DefaultTableModel() {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				// 모든 셀을 수정 불가능하게 설정
+				return false;
+			}// isCellEditable
 		};
 		jtReport = new JTable(dtmReport);
 		dtmReport.addColumn("사원번호");
@@ -115,33 +127,32 @@ public class ManageDailyReport extends JPanel {
 		dtmReport.addColumn("내용 요약");
 		dtmReport.addColumn("일지등록일");
 		jspReport = new JScrollPane(jtReport);
-		jspReport.setBounds(150,160,800,350);
+		jspReport.setBounds(150, 160, 800, 350);
 		add(jspReport);
-		
 
 		jtReport.addMouseListener(event);
-		
-		
 
-
-		//로그아웃 버튼
+		// 로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
-		jbtnLogOut.setBounds(1000,510,150,40);
+		jbtnLogOut.setBounds(1000, 510, 150, 40);
 		jbtnLogOut.setBackground(new Color(0xE0E0E0));
+		Font LogOutFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnLogOut.setFont(LogOutFont);
+		jbtnLogOut.setForeground(Color.BLACK);
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
-		
-		//텍스트 로고
+
+		// 텍스트 로고
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
-		jlblLogoTxt.setBounds(930,450,300,300);
+		jlblLogoTxt.setBounds(930, 450, 300, 300);
 		add(jlblLogoTxt);
-		
+
 		// 배경 설정
 		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 		hcyE.getList().add(this);
-	}//constructor
+	}// constructor
 
 	public JComboBox<Integer> getJcbYear() {
 		return jcbYear;
@@ -194,7 +205,5 @@ public class ManageDailyReport extends JPanel {
 	public void setDtmReport(DefaultTableModel dtmReport) {
 		this.dtmReport = dtmReport;
 	}
-	
-	
 
-}//class
+}// class

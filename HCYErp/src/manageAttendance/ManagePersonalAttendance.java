@@ -92,6 +92,9 @@ public class ManagePersonalAttendance extends JPanel{
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
+		Font LogOutFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnLogOut.setFont(LogOutFont);
+		jbtnLogOut.setForeground(Color.BLACK);
 		jbtnLogOut.setBackground(new Color(0xE0E0E0));
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);

@@ -46,13 +46,13 @@ public class FileUploadDialog extends JDialog {
 		
 		jsp.setBounds(25,0,500,400);
 		jbtnAddFile.setBounds(10,400,100,30);
-		jbtnAddFile.setBackground(new Color(0x8244AD));
+		jbtnAddFile.setBackground(new Color(0x461C90));
 		jbtnDeleteFile.setBounds(140,400,140,30);
-		jbtnDeleteFile.setBackground(new Color(0x8244AD));
+		jbtnDeleteFile.setBackground(new Color(0x461C90));
 		jbtnUpload.setBounds(310,400,100,30);
-		jbtnUpload.setBackground(new Color(0x8244AD));
+		jbtnUpload.setBackground(new Color(0x461C90));
 		jbtnCancel.setBounds(440,400,100,30);
-		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		jbtnCancel.setBackground(new Color(0x461C90));
 		
 		add(jbtnAddFile);
 		add(jbtnDeleteFile);

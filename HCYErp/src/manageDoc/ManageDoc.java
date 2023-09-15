@@ -1,6 +1,7 @@
 package manageDoc;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -64,6 +65,9 @@ public class ManageDoc extends JPanel {
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000, 510, 150, 40);
 		jbtnLogOut.setBackground(new Color(0xE0E0E0));
+		Font LogOutFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnLogOut.setFont(LogOutFont);
+		jbtnLogOut.setForeground(Color.BLACK);
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		// 텍스트 로고
@@ -71,28 +75,37 @@ public class ManageDoc extends JPanel {
 		jlblLogoTxt.setBounds(930, 450, 300, 300);
 		add(jlblLogoTxt);
 
+		Font fileBtnFont = new Font("맑은 고딕", Font.BOLD, 13);
 		// 업로드 버튼
 		jbtnFileUpload = new JButton("파일업로드");
 		jbtnFileUpload.setBounds(930, 100, 130, 55);
-		jbtnFileUpload.setBackground(new Color(0x8244AD));
+		jbtnFileUpload.setBackground(new Color(0x461C90));
+		jbtnFileUpload.setFont(fileBtnFont);
+		jbtnFileUpload.setForeground(Color.WHITE);
 		jbtnFileUpload.addActionListener(event);
 		add(jbtnFileUpload);
 		// 다운로드 버튼
 		jbtnFileDownload = new JButton("다운로드");
 		jbtnFileDownload.setBounds(930, 200, 130, 55);
-		jbtnFileDownload.setBackground(new Color(0x8244AD));
+		jbtnFileDownload.setBackground(new Color(0x461C90));
+		jbtnFileDownload.setFont(fileBtnFont);
+		jbtnFileDownload.setForeground(Color.WHITE);
 		jbtnFileDownload.addActionListener(event);
 		add(jbtnFileDownload);
 		// 파일 삭제
 		jbtnFileDelete = new JButton("파일 삭제");
+		jbtnFileDownload.setBackground(new Color(0x461C90));
+		jbtnFileDownload.setFont(fileBtnFont);
+		jbtnFileDownload.setForeground(Color.WHITE);
 		jbtnFileDelete.setBounds(930, 300, 130, 55);
-		jbtnFileDownload.setBackground(new Color(0x8244AD));
 		jbtnFileDelete.addActionListener(event);
 		add(jbtnFileDelete);
 		// 부서참조
 		jbtnRef = new JButton("부서 참조");
 		jbtnRef.setBounds(930, 400, 130, 55);
-		jbtnRef.setBackground(new Color(0x8244AD));
+		jbtnRef.setBackground(new Color(0x461C90));
+		jbtnRef.setFont(fileBtnFont);
+		jbtnRef.setForeground(Color.WHITE);
 		jbtnRef.addActionListener(event);
 		add(jbtnRef);
 
