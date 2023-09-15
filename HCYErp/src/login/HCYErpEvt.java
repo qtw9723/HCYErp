@@ -9,7 +9,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Map;
 
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
@@ -74,18 +76,19 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		char[] passwordChar=hcyE.getJpfPass().getPassword();
 		String password=new String(passwordChar);
 		empNo=Integer.parseInt(hcyE.getJtfEmpNo().getText());
+		hcyE.setUser(empNo);
 		ManageEmp me=new ManageEmp(hcyE);
+		ManageDoc md=new ManageDoc(hcyE);
 		ManageDailyReport mdr=new ManageDailyReport(hcyE);
 		ManageMonthlyAttendance mma=new ManageMonthlyAttendance(hcyE);
 		ManagePersonalAttendance mpa=new ManagePersonalAttendance(hcyE);
 		if(hcyEDAO.selectLogin(empNo)==true) {
 			if(password.equals(hcyEDAO.geteVO().getPass())) {
-			hcyE.setUser(empNo);
 			hcyE.removeComponent();
 			hcyE.setTabbedPane(new JTabbedPane());
 			hcyE.add(hcyE.getTabbedPane());		
 			hcyE.getTabbedPane().add("출근",new Attendance(hcyE));
-			hcyE.getTabbedPane().add("문서관리",new ManageDoc(hcyE));
+			hcyE.getTabbedPane().add("문서관리",md);
 			hcyE.getTabbedPane().add("업무일지 작성",new DailyReport(hcyE));
 			hcyE.getTabbedPane().add("업무일지 관리",mdr);
 			hcyE.getTabbedPane().add("사원정보 관리",me);
@@ -99,7 +102,11 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 	                int selectedIndex = hcyE.getTabbedPane().getSelectedIndex();
 	                switch(selectedIndex) {
 	                case 1:
-	                	
+	                	JCheckBox jcbMap=null;
+	                	for(Map.Entry<Integer,JCheckBox> entry:md.getJcheckBoxMap().entrySet()) {
+	                		jcbMap=entry.getValue();
+	                		jcbMap.setSelected(false);
+	                	}
 	                case 3:
 	                	Calendar cal = Calendar.getInstance();
 	            		int year = cal.get(Calendar.YEAR);
