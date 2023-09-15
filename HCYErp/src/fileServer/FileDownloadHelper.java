@@ -30,9 +30,7 @@ public class FileDownloadHelper extends Thread {
         byte[] buffer = new byte[4096];
         int bytesRead=0;
         
-        System.out.println("헤헤헤 3331");
         while((bytesRead=fisWriteStream.read(buffer)) != -1) {
-        	System.out.println("헤헤헤 4444");
         	writeStream.write(buffer,0,bytesRead);
         }//while
         //닫기
@@ -55,12 +53,12 @@ public class FileDownloadHelper extends Thread {
 			// 클라이언트로부터 파일 이름 및 확장자 정보 받기
 			reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
 	        fileName = reader.readLine();
-	        System.out.println("헤헤헤 0000");
+	        System.out.println(fileName);
 	        // 보내줄 폴더 경로 지정
 	        StringBuilder folderPath = new StringBuilder();
 	        folderPath.append("C:/Users/user/HCYErpFile").append(File.separator).append(fileName);
 	        File folder = new File(folderPath.toString());
-	        System.out.println("헤헤헤 111");
+	        
 	        
 	        //스트림 생성
 	        fisWriteStream = new FileInputStream(folder);

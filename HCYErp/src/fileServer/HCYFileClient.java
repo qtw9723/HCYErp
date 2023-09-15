@@ -1,7 +1,7 @@
 package fileServer;
 
-import java.awt.FileDialog;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -59,7 +60,7 @@ public class HCYFileClient {
 
 	public boolean downloadFile(String filePath) throws UnknownHostException, IOException {
 		Socket socket = null;
-		PrintWriter writer = null;
+		BufferedWriter writer = null;
 		FileOutputStream fos = null;
 		InputStream is = null;
 		
@@ -67,8 +68,9 @@ public class HCYFileClient {
 		try {
 			socket = new Socket(serverIp, 36600);
 			// 이름 및 확장자 보내기
-			writer = new PrintWriter(socket.getOutputStream(), true);
-			writer.println(filePath.substring(filePath.lastIndexOf("/") + 1));
+			writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			writer.write(filePath.substring(filePath.lastIndexOf("/") + 1));
+			writer.flush();
 			System.out.println("----00--");
 
 			fos = new FileOutputStream(filePath);
