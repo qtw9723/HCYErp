@@ -95,8 +95,11 @@ public class ManageDocDAO {
 
 			pstmt = con.prepareStatement(sql);
 			
-			for(int i=1;i<docNoList.size();i++) {
-				pstmt.setInt(i, docNoList.get(i));
+			System.out.println(docNoList.size());
+			
+			for(int i=1;i<docNoList.size()+1;i++) {
+				pstmt.setInt(i, docNoList.get(i-1));
+				System.out.println(docNoList.get(i-1));
 			}//for
 			
 			pstmt.execute();

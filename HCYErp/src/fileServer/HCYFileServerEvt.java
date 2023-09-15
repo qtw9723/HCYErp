@@ -16,7 +16,8 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 
 	private HCYFileServer hcyfs;
 	private ServerSocket uploadServer;
-	private ServerSocket DownloadServer;
+	private ServerSocket downloadServer;
+	private ServerSocket deleteServer;
 	private Thread serverThread;
 
 	public HCYFileServerEvt(HCYFileServer hcyfs) {
@@ -71,7 +72,7 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 	public void closeServer() throws IOException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		if (uploadServer != null) {uploadServer.close();}
-		if (DownloadServer != null) {DownloadServer.close();} 
+		if (downloadServer != null) {downloadServer.close();} 
 		hcyfs.getJtaConnectList().append(sdf.format(new Date()) + "에 서버가 종료되었습니다.\n");
 	}// startServer
 
@@ -79,14 +80,18 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 	public void run() {
 		try {
 			uploadServer = new ServerSocket(36500);
-			DownloadServer = new ServerSocket(36600);
+			downloadServer = new ServerSocket(36600);
+			deleteServer = new ServerSocket(36700);
 			FileDownloadHelper fdlh = null;
 			FileUploadHelper fulh = null;
+			FileDeleteHelper fdh = null;
 			try {
 				fulh = new FileUploadHelper(uploadServer,hcyfs);
-				fdlh = new FileDownloadHelper(DownloadServer,hcyfs);
+				fdlh = new FileDownloadHelper(downloadServer,hcyfs);
+				fdh = new FileDeleteHelper(deleteServer, hcyfs);
 				fulh.start();
 				fdlh.start();
+				fdh.start();
 			} catch (IOException e1) {
 				System.out.println("Helper에서 예외");
 				e1.printStackTrace();
