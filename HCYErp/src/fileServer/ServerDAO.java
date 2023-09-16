@@ -70,13 +70,11 @@ public class ServerDAO {
 			}//for
 			deleteSql.append(")");
 			
-			System.out.println(deleteSql.toString()+"/"+removeFile.size());
 			
 			pstmt = con.prepareStatement(deleteSql.toString());
 			
 			if(removeFile.size()!=0) {
 			for(int i = 0 ; i<removeFile.size();i++) {
-				System.out.println(i);
 				pstmt.setString(i+1, removeFile.get(i));
 			}//for
 			

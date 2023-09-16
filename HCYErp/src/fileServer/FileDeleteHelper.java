@@ -24,6 +24,7 @@ public class FileDeleteHelper extends Thread {
 	
 	public FileDeleteHelper(ServerSocket server, HCYFileServer hcyfs) throws IOException {
 		this.server=server;
+		this.hcyfs=hcyfs;
 	}//constructor
 
 	private void delete(BufferedReader reader) throws IOException {

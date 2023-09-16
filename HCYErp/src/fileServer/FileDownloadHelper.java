@@ -1,6 +1,7 @@
 package fileServer;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,15 +18,16 @@ public class FileDownloadHelper extends Thread {
 	private ServerSocket server;
 	private OutputStream writeStream;
 	private FileInputStream fisWriteStream;
-	private BufferedReader reader;
+	private DataInputStream reader;
 	private HCYFileServer hcyfs;
 	private String fileName;
 	
 	public FileDownloadHelper(ServerSocket server, HCYFileServer hcyfs) throws IOException {
 		this.server=server;
+		this.hcyfs = hcyfs;
 	}//constructor
 
-	private void download(ServerSocket server, BufferedReader reader) throws IOException {
+	private void download(ServerSocket server, DataInputStream reader) throws IOException {
 		//파일 직렬화 해서 보내기
         byte[] buffer = new byte[4096];
         int bytesRead=0;
@@ -40,7 +42,7 @@ public class FileDownloadHelper extends Thread {
         if(client!=null) { client.close();}
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		hcyfs.getJtaConnectList().append(sdf.format(new Date()) + "에"+client.getInetAddress().getHostAddress()+"님이 \""+fileName+"\" 파일을 업로드 했습니다.\n");
+		hcyfs.getJtaConnectList().append(sdf.format(new Date()) + "에"+client.getInetAddress().getHostAddress()+"님이 \""+fileName+"\" 파일을 다운로드 했습니다.\n");
 	}//upload
 	
 	@Override
@@ -51,9 +53,8 @@ public class FileDownloadHelper extends Thread {
 	        
 			//버퍼리더 선언
 			// 클라이언트로부터 파일 이름 및 확장자 정보 받기
-			reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-	        fileName = reader.readLine();
-	        System.out.println(fileName);
+			reader = new DataInputStream(client.getInputStream());
+	        fileName = reader.readUTF();
 	        // 보내줄 폴더 경로 지정
 	        StringBuilder folderPath = new StringBuilder();
 	        folderPath.append("C:/Users/user/HCYErpFile").append(File.separator).append(fileName);
