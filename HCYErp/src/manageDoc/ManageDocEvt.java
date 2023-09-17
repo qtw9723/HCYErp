@@ -35,10 +35,7 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 			// 다운로드 버튼
 			if (e.getSource() == md.getJbtnFileDownload()) {
 				downloadFile();
-				
-				
 			} // if
-
 			// 파일 삭제 버튼
 			if (e.getSource() == md.getJbtnFileDelete()) {
 				deleteFile();
