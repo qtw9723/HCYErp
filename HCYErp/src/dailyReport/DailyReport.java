@@ -30,13 +30,15 @@ public class DailyReport extends JPanel {
 		jtaReport = new JTextArea("2023-00-00 사원명\n\n\n업무내용\n-\n-\n-");
 		jtaReport.setBounds(190,100,800,350);
 		jtaReport.setBorder(new TitledBorder(""));
+		Font jtaFont = new Font("맑은 고딕", Font.PLAIN, 15);
+		jtaReport.setFont(jtaFont);
 		add(jtaReport);
 		
 		//작성 버튼
 		jbtnReport = new JButton("작성완료");
 		jbtnReport.setBounds(480,470,200,70);
 		jbtnReport.setBackground(new Color(0x461C90));
-		Font ReportBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		Font ReportBtnFont = new Font("맑은 고딕", Font.BOLD, 20);
 		jbtnReport.setFont(ReportBtnFont);
 		jbtnReport.setForeground(Color.WHITE);
 		jbtnReport.addActionListener(event);

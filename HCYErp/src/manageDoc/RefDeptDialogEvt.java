@@ -58,5 +58,7 @@ public class RefDeptDialogEvt extends MouseAdapter implements ActionListener {
 			rdd.dispose();
 		}//if
 	}//actionPerformed
+	
+
 
 }//class

@@ -29,6 +29,9 @@ public class ManageLeaveEvt extends MouseAdapter implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==ml.getJbtnLogOut()) {
+			logOut();
+		}//if
 		
 	}//actionPerformed
 	
@@ -47,4 +50,9 @@ public class ManageLeaveEvt extends MouseAdapter implements ActionListener {
 			select = ml.getJtLeaveProposal().getSelectedRow();
 		}//catch
 	}//clickList
+	public void logOut() {
+		ml.getHcyE().getTabbedPane().setVisible(false);
+		ml.getHcyE().addComponent();
+		ml.getHcyE().setUser(0);
+	}//logOut
 }//class

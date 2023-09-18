@@ -58,18 +58,13 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		new ResetPassDialog().setBounds(hcyE.getX() + 200, hcyE.getY() + 150, 800, 400);
+		new ResetPassDialog().setBounds(hcyE.getX() + 200, hcyE.getY() + 150, 600, 400);
 	}// mouseClicked
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		hcyE.getJlblresetPass().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}// mouseEntered
-
-//	@Override
-//	public void mouseExited(MouseEvent e) {
-//		
-//	}
 
 	public void login() throws SQLException {
 
