@@ -194,7 +194,6 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 							case 4:
 								ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
 								int cnt = 0;
-								int size = 0;
 								me.getDlmDept().removeAllElements();
 								me.getDlmteam().removeAllElements();
 								me.getDlmEmp().removeAllElements();

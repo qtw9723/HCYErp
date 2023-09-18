@@ -16,10 +16,10 @@ public class FileUploadDialog extends JDialog {
 	private JButton jbtnUpload;
 	private JButton jbtnCancel;
 	private DefaultListModel<String> listmodel;
-	private ManageDocEvt mde;
+	private ManageDoc md;
 	
-	public FileUploadDialog(ManageDocEvt mde) {
-		this.mde = mde;
+	public FileUploadDialog(ManageDoc md) {
+		this.md = md;
 		
 		
 		jbtnAddFile=new JButton("파일첨부");
@@ -92,8 +92,8 @@ public class FileUploadDialog extends JDialog {
 		return listmodel;
 	}
 
-	public ManageDocEvt getMde() {
-		return mde;
+	public ManageDoc getMd() {
+		return md;
 	}
 	
 	

@@ -93,7 +93,7 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 			String docPath = filePath.substring(0,filePath.lastIndexOf("\\"));
 			checkLoop : for(String dbDocName : dvDocNameList) {
 				if(docName.equals(dbDocName)){
-					docName = JOptionPane.showInputDialog("선택하신 파일과 같은 이름의 파일이 이미 업로드 되어있습니다. 새로운 이름을 입력해주세요!",docName.substring(0,docName.lastIndexOf("."))+"최종"+docName.substring(docName.lastIndexOf(".")+1));
+					docName = JOptionPane.showInputDialog("선택하신 파일과 같은 이름의 파일이 이미 업로드 되어있습니다. 새로운 이름을 입력해주세요!",docName.substring(0,docName.lastIndexOf("."))+"최종"+docName.substring(docName.lastIndexOf(".")));
 					filePath = docPath+File.separator+docName;
 					continue checkLoop;
 				}//if
@@ -102,10 +102,10 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 			DocVO dVO = null;
 				dVO = new DocVO();
 				dVO.setDocName(docName);
-				dVO.setDeptNo(fud.getMde().getMd().getHcyE().getUser());
+				dVO.setDeptNo(fud.getMd().getHcyE().getUser());
 				
 				mdDAO.insertDoc(dVO);
-			fud.getMde().getMd().getJpDoc().add(new Checkbox(docName));
+			fud.getMd().getJpDoc().add(new Checkbox(docName));
 			fud.repaint();
 		}//for
 		JOptionPane.showMessageDialog(fud, "파일 업로드를 성공적으로 종료했습니다.");
