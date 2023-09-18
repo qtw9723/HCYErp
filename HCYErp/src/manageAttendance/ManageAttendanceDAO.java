@@ -31,7 +31,7 @@ public class ManageAttendanceDAO {
 	}//getInstance
 	
 	
-	public List<AttendanceVO> selectNoAttend(String days) throws SQLException{
+	public List<AttendanceVO> selectNoAttendBoss(String days) throws SQLException{
 		List<AttendanceVO> list=new ArrayList<AttendanceVO>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -46,6 +46,40 @@ public class ManageAttendanceDAO {
 			
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, days);
+			rs=pstmt.executeQuery();
+			AttendanceVO atVO=null;
+			while(rs.next()) {
+				atVO=new AttendanceVO();
+				atVO.setEmpNo(rs.getInt("empno"));
+				atVO.setEname(rs.getString("ename"));
+				atVO.setStartTime(rs.getString("starttime"));
+				atVO.setEndTime(rs.getString("endtime"));
+				atVO.setWorkDate(rs.getString("workdate"));
+				list.add(atVO);
+			}//while
+			
+		}finally {
+			db.dbclose(rs, pstmt, con);
+		}//try
+		return list;
+		
+	}//selectNoAttend
+	public List<AttendanceVO> selectNoAttend(String days,int empno) throws SQLException{
+		List<AttendanceVO> list=new ArrayList<AttendanceVO>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		DbConn db=DbConn.getInstance();
+		
+		try {
+			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+			
+			String sql="select e.empno,e.ename,at.starttime,at.endtime, at.workdate from emp e,attendance at where at.empno=e.empno and substr(at.workdate,1,7) = ? and teamno=(select teamno from emp where empno=?)";
+			
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, days);
+			pstmt.setInt(2, empno);
 			rs=pstmt.executeQuery();
 			AttendanceVO atVO=null;
 			while(rs.next()) {
@@ -153,7 +187,7 @@ public class ManageAttendanceDAO {
 		return attendance;
 	}// selectPersonalAttendance
 	
-	public List<String> selectEmp() throws SQLException{
+	public List<String> selectEmpBoss() throws SQLException{
 		List<String> list = new ArrayList<String>();
 		
 		Connection con=null;
@@ -165,7 +199,7 @@ public class ManageAttendanceDAO {
 		try {
 			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 			
-			String sql="SELECT EMPNO, ENAME FROM EMP";
+			String sql="SELECT EMPNO, ENAME FROM EMP ";
 			
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -182,4 +216,62 @@ public class ManageAttendanceDAO {
 		
 		return list;
 	}//selectEmp
+	public List<String> selectEmp(int empno) throws SQLException{
+		List<String> list = new ArrayList<String>();
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		DbConn db=DbConn.getInstance();
+		
+		try {
+			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+			
+			String sql="SELECT EMPNO, ENAME FROM EMP where teamno=(select teamno from emp where empno=?)";
+			
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, empno);
+			rs=pstmt.executeQuery();
+			StringBuilder sbEmp = new StringBuilder();
+			while(rs.next()) {
+				sbEmp.replace(0, sbEmp.length(), "");
+				sbEmp.append(rs.getInt("empno")).append("/").append(rs.getString("ename"));
+				list.add(sbEmp.toString());
+			}//while
+			
+		}finally {
+			db.dbclose(rs, pstmt, con);
+		}//try
+		
+		return list;
+	}//selectEmp
+	
+	public int selectTeamNo(int empno) throws SQLException {
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		DbConn db=DbConn.getInstance();
+		
+		int teamNo=0;
+		
+		try {
+			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+			
+			String sql="select teamno from emp where empno=?";
+			
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, empno);
+			rs=pstmt.executeQuery();
+			rs.next();
+			teamNo=rs.getInt("teamno");
+		}finally {
+			db.dbclose(rs, pstmt, con);
+		}//try
+		
+		return teamNo;
+		
+	}//selectTeamNo
 }//class
