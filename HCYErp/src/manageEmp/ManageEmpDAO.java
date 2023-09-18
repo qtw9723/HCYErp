@@ -47,60 +47,8 @@ public class ManageEmpDAO {
 		} finally {
 			db.dbclose(rs, pstmt, con);
 		} // try
-		System.out.println(list);
 		return list;
 	}// selectDept
-
-//	public List<String> selectTeam() throws SQLException {
-//		List<String> list = new ArrayList<String>();
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//
-//		DbConn db = DbConn.getInstance();
-//		try {
-//			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-//
-//			String sql = "select tname from team";
-//
-//			pstmt = con.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//
-//			while (rs.next()) {
-//				list.add(rs.getString("tname"));
-//			} // while
-//
-//		} finally {
-//			db.dbclose(rs, pstmt, con);
-//		} // try
-//
-//		return list;
-//	}// selectTeam
-//
-//	public List<String> selectEmp() throws SQLException {
-//		List<String> list = new ArrayList<String>();
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//
-//		DbConn db = DbConn.getInstance();
-//		try {
-//			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-//
-//			String sql = "select ename,empno from emp";
-//
-//			pstmt = con.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//
-//			while (rs.next()) {
-//				list.add(rs.getString("ename")+"/"+rs.getInt("empno"));
-//			}
-//		} finally {
-//			db.dbclose(rs, pstmt, con);
-//		} // try
-//
-//		return list;
-//	}// selectEmp
 
 	public List<String> searchTeam(String dept) throws SQLException {
 		List<String> list = new ArrayList<String>();

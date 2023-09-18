@@ -64,7 +64,7 @@ public class ManageEmpRegister extends JPanel{
 		jspResignAb.setBorder(new TitledBorder("입사자/퇴사 대상자 목록"));
 		add(jspResignAb);
 		
-		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 13);
+		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		//입사자 추가 버튼
 		jbtnEmpRegister = new JButton("입사자 추가");
 		jbtnEmpRegister.setBounds(930,100,130,55);

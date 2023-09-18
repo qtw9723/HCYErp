@@ -1,6 +1,7 @@
 package manageEmpRegister;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -209,9 +210,15 @@ public class AddEmpDialog extends JDialog {
 		jtfLoc.setBounds(500, 180, 100, 30);
 
 		jbtnAddEmp.setBounds(700, 500, 100, 50);
-		jbtnAddEmp.setBackground(new Color(0x8244AD));
+		jbtnAddEmp.setBackground(new Color(0x6D47B0));
+		Font AddEmpBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		jbtnAddEmp.setFont(AddEmpBtnFont);
+		jbtnAddEmp.setForeground(Color.white);
 		jbtnCancel.setBounds(850, 500, 100, 50);
 		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		Font CancelBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		jbtnCancel.setFont(CancelBtnFont);
+		jbtnCancel.setForeground(Color.black);
 
 		// 이벤트 발생
 		AddEmpDialogEvt event = new AddEmpDialogEvt(this);
