@@ -221,15 +221,15 @@ public class ManageEmpDialog extends JDialog{
 		add(jlblLoc);
 		add(jlblSal);
 		
-		jlblEname.setBounds(45,90,100,30);
-		jlblLevel.setBounds(45,140,100,30);
-		jlblTel.setBounds(45,190,100,30);
-		jlblEmail.setBounds(45,240,100,30);
-		jlblDept.setBounds(300,40,100,30);
-		jlblTeam.setBounds(300,90,100,30);
-		jlblJob.setBounds(300,140,100,30);
-		jlblLoc.setBounds(300,190,100,30);
-		jlblSal.setBounds(300,240,100,30);
+		jlblEname.setBounds(45,95,100,30);
+		jlblLevel.setBounds(45,145,100,30);
+		jlblTel.setBounds(45,195,100,30);
+		jlblEmail.setBounds(45,245,100,30);
+		jlblDept.setBounds(285,45,100,30);
+		jlblTeam.setBounds(285,95,100,30);
+		jlblJob.setBounds(285,145,100,30);
+		jlblLoc.setBounds(285,195,100,30);
+		jlblSal.setBounds(285,245,100,30);
 		
 		add(jtfEname);
 		add(jtfLevel);
@@ -241,21 +241,21 @@ public class ManageEmpDialog extends JDialog{
 		add(jtfLoc);
 		add(jtfSal);
 		
-		jtfEname.setBounds(120,90,110,30);
-		jtfLevel.setBounds(120,140,110,30);
-		jtfTel.setBounds(120,190,110,30);
-		jtfEmail.setBounds(120,240,110,30);
-		jtfDept.setBounds(370,40,110,30);
-		jtfTeam.setBounds(370,90,110,30);
-		jtfJob.setBounds(370,140,110,30);
-		jtfLoc.setBounds(370,190,110,30);
-		jtfSal.setBounds(370,240,110,30); 
+		jtfEname.setBounds(120,95,110,30);
+		jtfLevel.setBounds(120,145,110,30);
+		jtfTel.setBounds(120,195,110,30);
+		jtfEmail.setBounds(120,245,110,30);
+		jtfDept.setBounds(355,45,110,30);
+		jtfTeam.setBounds(355,95,110,30);
+		jtfJob.setBounds(355,145,110,30);
+		jtfLoc.setBounds(355,195,110,30);
+		jtfSal.setBounds(355,245,110,30); 
 		
 		add(jbtnModify);
 		add(jbtnOK);
 		add(jbtnCancel);
 		
-		jbtnModify.setBounds(180, 330, 150, 50);
+		jbtnModify.setBounds(180, 320, 150, 50);
 			
 		jbtnOK.setVisible(false);
 		jbtnCancel.setVisible(false);
