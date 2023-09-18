@@ -50,11 +50,7 @@ public class ManageEmpDAO {
 		return list;
 	}// selectDept
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> branch 'main' of https://github.com/qtw9723/HCYErp.git
 	public List<String> searchTeam(String dept) throws SQLException {
 		List<String> list = new ArrayList<String>();
 		Connection con = null;
