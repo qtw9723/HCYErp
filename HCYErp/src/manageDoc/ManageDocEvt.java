@@ -1,5 +1,6 @@
 package manageDoc;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -29,7 +30,7 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// 업로드 버튼
 		if (e.getSource() == md.getJbtnFileUpload()) {
-			new FileUploadDialog(md).setBounds(md.getHcyE().getX() + 100, md.getHcyE().getY() + 100, 500, 500);
+			new FileUploadDialog(md).setBounds(md.getHcyE().getX() + 100, md.getHcyE().getY() + 100, 565, 500);
 		} // if
 		try {
 			// 다운로드 버튼
@@ -55,9 +56,6 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 		if (e.getSource() == md.getJbtnRef()) {
 			new RefDeptDialog(md);
 		} // if
-		if(e.getSource()==md.getJbtnLogOut()) {
-			logOut();
-		}//if
 
 	}// actionPerformed
 
@@ -146,11 +144,5 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 	public ManageDoc getMd() {
 		return md;
 	}
-	
-	public void logOut() {
-		md.getHcyE().getTabbedPane().setVisible(false);
-		md.getHcyE().addComponent();
-		md.getHcyE().setUser(0);
-	}//logOut
 
 }// class

@@ -74,7 +74,7 @@ public class ManageDoc extends JPanel {
 		jlblLogoTxt.setBounds(930, 450, 300, 300);
 		add(jlblLogoTxt);
 
-		Font fileBtnFont = new Font("맑은 고딕", Font.BOLD, 13);
+		Font fileBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		// 업로드 버튼
 		jbtnFileUpload = new JButton("파일업로드");
 		jbtnFileUpload.setBounds(930, 100, 130, 55);

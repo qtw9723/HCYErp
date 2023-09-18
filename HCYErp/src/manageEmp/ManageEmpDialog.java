@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import VO.EmpVO;
+
 public class ManageEmpDialog extends JDialog{
 
 	private JLabel jlblEname;
@@ -43,7 +45,7 @@ public class ManageEmpDialog extends JDialog{
 		
 	}
 	
-	public ManageEmpDialog(ManageEmp me) {
+	public ManageEmpDialog(ManageEmp me,EmpVO eVO) {
 		this.me=me;
 		jlblEname=new JLabel("이름");
 		jlblLevel=new JLabel("직급");
@@ -66,15 +68,15 @@ public class ManageEmpDialog extends JDialog{
 		jlblLoc.setFont(jlblFont);
 		jlblSal.setFont(jlblFont);
 		
-		jtfEname=new JTextField();
-		jtfLevel=new JTextField();
-		jtfTel=new JTextField();
-		jtfEmail=new JTextField();
-		jtfDept=new JTextField();
-		jtfTeam=new JTextField();
-		jtfJob=new JTextField();
-		jtfLoc=new JTextField();
-		jtfSal=new JTextField();
+		jtfEname=new JTextField(eVO.getEname());
+		jtfLevel=new JTextField(eVO.getLevel());
+		jtfTel=new JTextField(eVO.getTel());
+		jtfEmail=new JTextField(eVO.getEmail());
+		jtfDept=new JTextField(eVO.getDept());
+		jtfTeam=new JTextField(eVO.getTeam());
+		jtfJob=new JTextField(eVO.getJob());
+		jtfLoc=new JTextField(eVO.getDeptLoc());
+		jtfSal=new JTextField(String.valueOf(eVO.getSal()));
 		
 		jbtnModify=new JButton("사원정보 수정");
 		jbtnOK=new JButton("수정확인");

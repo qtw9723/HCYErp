@@ -55,10 +55,12 @@ public class AttendanceDAO {
 				if (targetCal.get(Calendar.YEAR) == currentCal.get(Calendar.YEAR)
 						&& targetCal.get(Calendar.MONTH) == currentCal.get(Calendar.MONTH)) {
 					for (int i = 0; i < rs.getInt(2); i++) {
-						System.out.println(targetCal.get(Calendar.DAY_OF_MONTH)+"/"+rs.getInt(2));
+						System.out.println(targetCal.get(Calendar.DAY_OF_MONTH) + "/" + rs.getInt(2));
 						attendance.put(targetCal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.DAY_OFF);
-						targetCal.set(Calendar.DAY_OF_MONTH, targetCal.get(Calendar.DAY_OF_MONTH)+1);
-						if(targetCal.get(Calendar.DAY_OF_MONTH) == 1) {break;}
+						targetCal.set(Calendar.DAY_OF_MONTH, targetCal.get(Calendar.DAY_OF_MONTH) + 1);
+						if (targetCal.get(Calendar.DAY_OF_MONTH) == 1) {
+							break;
+						}
 					} // for
 				} // if
 			} // while
@@ -105,11 +107,11 @@ public class AttendanceDAO {
 				targetCal.setTime(tempDate);
 				if (targetCal.get(Calendar.YEAR) == currentCal.get(Calendar.YEAR)
 						&& targetCal.get(Calendar.MONTH) == currentCal.get(Calendar.MONTH)) {
-				for (int i = 0; i < rs.getInt(2); i++) {
+					for (int i = 0; i < rs.getInt(2); i++) {
 						attendance.put(targetCal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.LEAVE);
 						targetCal.set(Calendar.DAY_OF_MONTH, targetCal.get(Calendar.DAY_OF_MONTH) + 1);
 					} // for
-				} //if
+				} // if
 			} // while
 		} finally {
 			db.dbclose(rs, pstmt, con);
@@ -146,10 +148,9 @@ public class AttendanceDAO {
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}
-		} // try
+			} // if
+		} // finally
 		return days;
-
 	}// selectLeftDayOff
 
 	public void insertAttendance(int empno) throws SQLException {
@@ -183,46 +184,39 @@ public class AttendanceDAO {
 		ResultSet rs = null;
 
 		DbConn db = DbConn.getInstance();
-		EmpVO eVO=null;
+		EmpVO eVO = null;
 
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-			String sql = "select e.empno empno,e.addr addr,e.email email,e.ename ename,to_char(e.hiredate,'yyyy-mm-dd') hiredate,e.input_date input_date, "
-					+ "e.jobno jobno,e.levelno levelno,e.pass pass,e.sal sal "
-					+ ",e.ssn ssn,e.teamno teamno,e.tel tel,e.totaldayoff totaldayoff,e.jobtel jobtel,t.tname tname, "
-					+ "t.deptno deptno,d.dname dname,j.jobname jobname,t.loc loc,jl.lvname lvname "
-					+ "from emp e,team t,dept d,job j,joblevel jl "
-					+ "where (e.teamno=t.teamno(+) and t.deptno=d.deptno(+) and e.jobno=j.jobno(+) and e.levelno=jl.levelno(+)) "
-					+ "and empno=?";
+			String sql = "select * from emp e,team t,dept d,job j,joblevel jl where (e.teamno=t.teamno(+) and t.deptno=d.deptno(+) and e.jobno=j.jobno(+) and e.levelno=jl.levelno(+)) and empno=?";
 
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, empno);
 
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				eVO = new EmpVO();
-				eVO.setEmpNo(rs.getInt("empno"));
-				eVO.setAddr(rs.getString("addr"));
-				eVO.setDept(rs.getString("dname"));
-				eVO.setDeptLoc(rs.getString("loc"));
-				eVO.setEmail(rs.getString("email"));
-				eVO.setEname(rs.getString("ename"));
-				eVO.setHiredate(rs.getString("hiredate"));
-				eVO.setInputDate(rs.getDate("input_date"));
-				eVO.setJob(rs.getString("jobname"));
-				eVO.setLevel(rs.getString("lvname"));
-				eVO.setPass(rs.getString("pass"));
-				eVO.setSal(rs.getInt("sal"));
-				eVO.setSsn(rs.getString("ssn"));
-				eVO.setTeam(rs.getString("tname"));
-				eVO.setTel(rs.getString("tel"));
-				eVO.setTotalDayOff(rs.getInt("totaldayoff"));
-			} // while
+			rs.next();
+			eVO = new EmpVO();
+			eVO.setEmpNo(rs.getInt("empno"));
+			eVO.setAddr(rs.getString("addr"));
+			eVO.setDept(rs.getString("dname"));
+			eVO.setDeptLoc(rs.getString("loc"));
+			eVO.setEmail(rs.getString("email"));
+			eVO.setEname(rs.getString("ename"));
+			eVO.setHiredate(rs.getString("hiredate"));
+			eVO.setInputDate(rs.getDate("input_date"));
+			eVO.setJob(rs.getString("jobname"));
+			eVO.setLevel(rs.getString("lvname"));
+			eVO.setPass(rs.getString("pass"));
+			eVO.setSal(rs.getInt("sal"));
+			eVO.setSsn(rs.getString("ssn"));
+			eVO.setTeam(rs.getString("tname"));
+			eVO.setTel(rs.getString("tel"));
+			eVO.setTotalDayOff(rs.getInt("totaldayoff"));
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
-			}
+			} // if
 		} // try
 		return eVO;
 	}// selectEmp
@@ -260,14 +254,13 @@ public class AttendanceDAO {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
 
 		DbConn db = DbConn.getInstance();
 
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "insert into dayoff_apply(empno, startdate, enddate, dayoffdays,reason,submitdate) values(?,?,?,?,?,sysdate)";
+			String sql = "insert into dayoff_apply(empno, startdate, enddate, dayoffdays,reason) values(?,?,?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -281,7 +274,7 @@ public class AttendanceDAO {
 		} finally {
 			if (db != null) {
 				db.dbclose(null, pstmt, con);
-			}
+			} // if
 		} // try
 	}// insertDayOffApply
 
@@ -305,44 +298,43 @@ public class AttendanceDAO {
 			if (db != null) {
 				db.dbclose(null, pstmt, con);
 			} // if
-
 		} // try
 		return rowCnt;
 	}// updateChangePass
-	
+
 	public boolean selectWorkedFlag(int empno) throws SQLException {
 		boolean flag = false;
-		
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		DbConn db = DbConn.getInstance();
-		
+
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-			
+
 			String sql = "SELECT 1 FROM ATTENDANCE WHERE EMPNO = ? and ENDTIME IS NULL";
 			pstmt = con.prepareStatement(sql);
-			
+
 			pstmt.setInt(1, empno);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				flag = true;
-			}//if
+			} // if
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
 			} // if
 		} // try
-		
+
 		return flag;
-	}//selectWorkedFlag
-	
+	}// selectWorkedFlag
+
 	public boolean selectWorkingFlag(int empno) throws SQLException {
 		boolean flag = false;
-		
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -357,22 +349,21 @@ public class AttendanceDAO {
 
 			pstmt.setInt(1, empno);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				flag = true;
-			}//if
+			} // if
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
 			} // if
 		} // try
-		
 		return flag;
-	}//selectWorkingFlag
-	
+	}// selectWorkingFlag
+
 	public boolean selectTodayWork(int empno) throws SQLException {
 		boolean flag = false;
-		
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -387,19 +378,15 @@ public class AttendanceDAO {
 
 			pstmt.setInt(1, empno);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				flag = true;
-			}//if
+			} // if
 		} finally {
 			if (db != null) {
 				db.dbclose(rs, pstmt, con);
 			} // if
 		} // try
-		
 		return flag;
-	}//selectWorkingFlag
+	}// selectWorkingFlag
 }// class
-
-
-

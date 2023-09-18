@@ -40,7 +40,7 @@ public class ManageDailyReport extends JPanel {
 		setLayout(null);
 
 		// 연월일 콤박
-		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 13);
+		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 14);
 		// 연 콤박
 		jcbYear = new JComboBox<Integer>();
 		Calendar cal = Calendar.getInstance();
@@ -79,8 +79,8 @@ public class ManageDailyReport extends JPanel {
 		// 일자 조회 버튼
 		jbtnDateSearch = new JButton("조회");
 		jbtnDateSearch.setBounds(580, 100, 70, 40);
-		jbtnDateSearch.setBackground(new Color(0x5E5E5E));
-		Font searchBtnFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnDateSearch.setBackground(new Color(0x6D47B0));
+		Font searchBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		jbtnDateSearch.setFont(searchBtnFont);
 		jbtnDateSearch.setForeground(Color.WHITE);
 		jbtnDateSearch.addActionListener(event);
@@ -112,7 +112,7 @@ public class ManageDailyReport extends JPanel {
 		// 이름 조회 버튼
 		jbtnEmpSearch = new JButton("조회");
 		jbtnEmpSearch.setBounds(960, 100, 70, 40);
-		jbtnEmpSearch.setBackground(new Color(0x5E5E5E));
+		jbtnEmpSearch.setBackground(new Color(0x6D47B0));
 		jbtnEmpSearch.setFont(searchBtnFont);
 		jbtnEmpSearch.setForeground(Color.WHITE);
 		jbtnEmpSearch.addActionListener(event);
