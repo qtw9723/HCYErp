@@ -1,6 +1,7 @@
 package manageEmp;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -54,6 +55,17 @@ public class ManageEmpDialog extends JDialog{
 		jlblLoc=new JLabel("근무지");
 		jlblSal=new JLabel("연봉");
 		
+		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 12);
+		jlblEname.setFont(jlblFont);
+		jlblLevel.setFont(jlblFont);
+		jlblTel.setFont(jlblFont);
+		jlblEmail.setFont(jlblFont);
+		jlblDept.setFont(jlblFont);
+		jlblTeam.setFont(jlblFont);
+		jlblJob.setFont(jlblFont);
+		jlblLoc.setFont(jlblFont);
+		jlblSal.setFont(jlblFont);
+		
 		jtfEname=new JTextField();
 		jtfLevel=new JTextField();
 		jtfTel=new JTextField();
@@ -68,9 +80,16 @@ public class ManageEmpDialog extends JDialog{
 		jbtnOK=new JButton("수정확인");
 		jbtnCancel=new JButton("취소");
 		
-		jbtnModify.setBackground(new Color(0x8244AD));
-		jbtnOK.setBackground(new Color(0x8244AD));
-		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnModify.setBackground(new Color(0x461C90));
+		jbtnModify.setFont(jbtnFont);
+		jbtnModify.setForeground(Color.white);
+		jbtnOK.setBackground(new Color(0x461C90));
+		jbtnOK.setFont(jbtnFont);
+		jbtnOK.setForeground(Color.white);
+		jbtnCancel.setBackground(new Color(0x461C90));
+		jbtnCancel.setFont(jbtnFont);
+		jbtnCancel.setForeground(Color.white);
 		
 		//텍스트 필드 디자인
 		Border focusField=BorderFactory.createLineBorder(new Color(0xEE82EE),2);// Line border
@@ -206,15 +225,15 @@ public class ManageEmpDialog extends JDialog{
 		add(jlblLoc);
 		add(jlblSal);
 		
-		jlblEname.setBounds(45,60,100,30);
-		jlblLevel.setBounds(45,110,100,30);
-		jlblTel.setBounds(45,160,100,30);
-		jlblEmail.setBounds(45,210,100,30);
-		jlblDept.setBounds(300,10,100,30);
-		jlblTeam.setBounds(300,60,100,30);
-		jlblJob.setBounds(300,110,100,30);
-		jlblLoc.setBounds(300,160,100,30);
-		jlblSal.setBounds(300,210,100,30);
+		jlblEname.setBounds(45,95,100,30);
+		jlblLevel.setBounds(45,145,100,30);
+		jlblTel.setBounds(45,195,100,30);
+		jlblEmail.setBounds(45,245,100,30);
+		jlblDept.setBounds(285,45,100,30);
+		jlblTeam.setBounds(285,95,100,30);
+		jlblJob.setBounds(285,145,100,30);
+		jlblLoc.setBounds(285,195,100,30);
+		jlblSal.setBounds(285,245,100,30);
 		
 		add(jtfEname);
 		add(jtfLevel);
@@ -226,21 +245,21 @@ public class ManageEmpDialog extends JDialog{
 		add(jtfLoc);
 		add(jtfSal);
 		
-		jtfEname.setBounds(120,60,110,30);
-		jtfLevel.setBounds(120,110,110,30);
-		jtfTel.setBounds(120,160,110,30);
-		jtfEmail.setBounds(120,210,110,30);
-		jtfDept.setBounds(370,10,110,30);
-		jtfTeam.setBounds(370,60,110,30);
-		jtfJob.setBounds(370,110,110,30);
-		jtfLoc.setBounds(370,160,110,30);
-		jtfSal.setBounds(370,210,110,30); 
+		jtfEname.setBounds(120,95,110,30);
+		jtfLevel.setBounds(120,145,110,30);
+		jtfTel.setBounds(120,195,110,30);
+		jtfEmail.setBounds(120,245,110,30);
+		jtfDept.setBounds(355,45,110,30);
+		jtfTeam.setBounds(355,95,110,30);
+		jtfJob.setBounds(355,145,110,30);
+		jtfLoc.setBounds(355,195,110,30);
+		jtfSal.setBounds(355,245,110,30); 
 		
 		add(jbtnModify);
 		add(jbtnOK);
 		add(jbtnCancel);
 		
-		jbtnModify.setBounds(180, 330, 150, 50);
+		jbtnModify.setBounds(180, 320, 150, 50);
 			
 		jbtnOK.setVisible(false);
 		jbtnCancel.setVisible(false);
@@ -250,7 +269,7 @@ public class ManageEmpDialog extends JDialog{
 		jbtnOK.addActionListener(event);
 		jbtnCancel.addActionListener(event);
 		
-		setBounds(me.getX()+300,me.getY()+100,680,450);
+		setBounds(me.getX()+300,me.getY()+100,540,450);
 		setVisible(true);
 		
 	}//constructor

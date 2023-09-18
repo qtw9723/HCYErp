@@ -66,7 +66,7 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 		File folder = new File("C:/Users/user/HCYErpFile");
 		if (!folder.exists()) {
 			if (folder.mkdirs()) {
-				hcyfs.getJtaConnectList().append("C:/Users/user/HCYErpFile"+"에 폴더가 생성되었습니다.\n");
+				hcyfs.getJtaConnectList().append("C:/Users/user/HCYErpFile 에 폴더가 생성되었습니다.\n");
 			} else {
 				hcyfs.getJtaConnectList().append("폴더 생성에 실패했습니다.\n다시 시도하세요!\n");
 				return;

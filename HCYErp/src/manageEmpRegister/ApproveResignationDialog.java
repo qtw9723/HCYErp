@@ -54,7 +54,7 @@ public class ApproveResignationDialog extends JDialog {
 		//사원번호/이름 콤보박스 선언
 		jcbEmpNoName=new JComboBox<String>();
 		try {
-			List<String> empList=ManageDailyReportDAO.getInstance().selectEmp();
+			List<String> empList=ManageDailyReportDAO.getInstance().selectEmp(mer.getHcyE().getUser());
 			for(String emp:empList) {
 				jcbEmpNoName.addItem(emp);
 			}//end for

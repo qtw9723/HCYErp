@@ -71,7 +71,11 @@ public class ManagePersonalAttendance extends JPanel{
 		jcbEmp = new JComboBox<String>();
 		List<String> empList = new ArrayList<String>();
 		try {
-			empList = ManageAttendanceDAO.getInstance().selectEmp();
+			if(ManageAttendanceDAO.getInstance().selectTeamNo(hcyE.getUser())==13||ManageAttendanceDAO.getInstance().selectTeamNo(hcyE.getUser())==91) {
+			empList = ManageAttendanceDAO.getInstance().selectEmpBoss();
+			}else {
+			empList = ManageAttendanceDAO.getInstance().selectEmp(hcyE.getUser());
+			}
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(jlblmonth, "데이터 베이스에 오류가 발생했습니다.");
 		}//catch
