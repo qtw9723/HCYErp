@@ -20,7 +20,9 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		if(e.getSource()==me.getJbtnLogOut()) {
+			logOut();
+		}//if
 	}// actionPerformed
 
 	@Override
@@ -114,4 +116,9 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 			// 사원을 눌렀을 때 기본 정보가 띄워져야하잖아 ?
 		
 	}// mouseClicked
+	public void logOut() {
+		me.getHcyE().getTabbedPane().setVisible(false);
+		me.getHcyE().addComponent();
+		me.getHcyE().setUser(0);
+	}//logOut
 }// class

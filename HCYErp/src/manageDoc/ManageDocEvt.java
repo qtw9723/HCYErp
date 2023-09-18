@@ -55,6 +55,9 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 		if (e.getSource() == md.getJbtnRef()) {
 			new RefDeptDialog(md);
 		} // if
+		if(e.getSource()==md.getJbtnLogOut()) {
+			logOut();
+		}//if
 
 	}// actionPerformed
 
@@ -143,5 +146,11 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 	public ManageDoc getMd() {
 		return md;
 	}
+	
+	public void logOut() {
+		md.getHcyE().getTabbedPane().setVisible(false);
+		md.getHcyE().addComponent();
+		md.getHcyE().setUser(0);
+	}//logOut
 
 }// class

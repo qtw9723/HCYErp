@@ -122,7 +122,15 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 			} // for
 			mdr.getJcbDay().setSelectedIndex(num);
 		} // if
+		if(e.getSource()==mdr.getJbtnLogOut()) {
+			logOut();
+		}//if
 
 	}// actionPerformed
+	public void logOut() {
+		mdr.getHcyE().getTabbedPane().setVisible(false);
+		mdr.getHcyE().addComponent();
+		mdr.getHcyE().setUser(0);
+	}//logOut
 
 }// class
