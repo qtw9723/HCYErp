@@ -6,18 +6,16 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import VO.EmpVO;
 import login.HCYErp;
 
 @SuppressWarnings("serial")
@@ -42,6 +40,7 @@ public class ManageDailyReport extends JPanel {
 		setLayout(null);
 
 		// 연월일 콤박
+		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 13);
 		// 연 콤박
 		jcbYear = new JComboBox<Integer>();
 		Calendar cal = Calendar.getInstance();
@@ -52,6 +51,7 @@ public class ManageDailyReport extends JPanel {
 		jcbYear.setSelectedItem(year);
 		jcbYear.setBounds(100, 100, 130, 40);
 		jcbYear.setBackground(new Color(0xffffff));
+		jcbYear.setFont(jcbFont);
 		add(jcbYear);
 		// 월 콤박
 		jcbMonth = new JComboBox<Integer>();
@@ -62,6 +62,7 @@ public class ManageDailyReport extends JPanel {
 		jcbMonth.setBounds(260, 100, 130, 40);
 		jcbMonth.setBackground(new Color(0xffffff));
 		jcbMonth.addActionListener(event);
+		jcbMonth.setFont(jcbFont);
 		add(jcbMonth);
 
 		// 일 콤박
@@ -72,6 +73,7 @@ public class ManageDailyReport extends JPanel {
 		jcbDay.setSelectedItem(cal.get(Calendar.DAY_OF_MONTH));
 		jcbDay.setBounds(420, 100, 130, 40);
 		jcbDay.setBackground(new Color(0xffffff));
+		jcbDay.setFont(jcbFont);
 		add(jcbDay);
 
 		// 일자 조회 버튼
@@ -104,6 +106,7 @@ public class ManageDailyReport extends JPanel {
 		}
 		jcbEmp.setBounds(700, 100, 230, 40);
 		jcbEmp.setBackground(new Color(0xffffff));
+		jcbEmp.setFont(jcbFont);
 		add(jcbEmp);
 
 		// 이름 조회 버튼
@@ -128,6 +131,8 @@ public class ManageDailyReport extends JPanel {
 		dtmReport.addColumn("사원이름");
 		dtmReport.addColumn("내용 요약");
 		dtmReport.addColumn("일지등록일");
+		
+		jtReport.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		jspReport = new JScrollPane(jtReport);
 		jspReport.setBounds(150, 160, 800, 350);
 		add(jspReport);

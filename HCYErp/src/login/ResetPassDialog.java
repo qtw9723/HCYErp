@@ -99,6 +99,7 @@ public class ResetPassDialog extends JDialog {
 
 		// 버튼 폰트 설정
 		jbtnResetPass.setFont(font);
+		jbtnResetPass.setForeground(Color.white);
 		jbtnCancel.setFont(font);
 
 		// 로고이미지 삽입
