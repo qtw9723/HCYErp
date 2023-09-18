@@ -19,61 +19,59 @@ import javax.swing.border.Border;
 public class ChangePassDialog extends JDialog{
 
 	private JPasswordField jpfCurrentPass;
-	private JPasswordField jpfNewPass;
 	private JPasswordField jpfCheckNewPass;
-	private JTextField jtfCurrentPass;
-	private JTextField jtfNewPass;
 	private JTextField jtfCheckNewPass;
-	private JLabel jlblNewHide;
-	private JLabel jlblNewView;
+	private JPasswordField jpfNewPass;
+	private JTextField jtfCurrentPass;
 	private JLabel jlblCheckNewHide;
 	private JLabel jlblCheckNewView;
-	private JLabel jlblCurrentPass;
-	private JLabel jlblNewPass;
 	private JLabel jlblCheckNewPass;
-	private JButton jbtnOK;
+	private JLabel jlblCurrentPass;
+	private JTextField jtfNewPass;
 	private JButton jbtnCancel;
+	private JLabel jlblNewHide;
+	private JLabel jlblNewView;
+	private JLabel jlblNewPass;
+	private JButton jbtnOK;
 	private Attendance ad;
 	
 	public ChangePassDialog(Attendance ad) {
 		this.ad=ad;
 		//패스워드필드 선언
+		jpfCheckNewPass=new JPasswordField();
 		jpfCurrentPass=new JPasswordField();
 		jpfNewPass=new JPasswordField();
-		jpfCheckNewPass=new JPasswordField();
 		//텍스트필드 선언
+		jtfCheckNewPass=new JTextField();
 		jtfCurrentPass=new JTextField();
 		jtfNewPass=new JTextField();
-		jtfCheckNewPass=new JTextField();
 		//버튼선언
-		jbtnOK=new JButton("변경확인");
 		jbtnCancel=new JButton("취소");
+		jbtnOK=new JButton("변경확인");
 		//라벨선언
-		jlblNewHide=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리.png"));
-		jlblNewView=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리1.png"));
-		jlblCheckNewHide=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리.png"));
 		jlblCheckNewView=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리1.png"));
+		jlblCheckNewHide=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리.png"));
+		jlblNewView=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리1.png"));
+		jlblNewHide=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리.png"));
+		jlblCheckNewPass=new JLabel("비밀번호 확인 : ");
 		jlblCurrentPass=new JLabel("현재비밀번호 : ");
 		jlblNewPass=new JLabel("새 비밀번호 : ");
-		jlblCheckNewPass=new JLabel("비밀번호 확인 : ");
 		//숨기기 버튼 숨겨놓기
-		jlblNewHide.setVisible(false);
 		jlblCheckNewHide.setVisible(false);
-		
+		jlblNewHide.setVisible(false);
 		//텍스트필드 숨겨놓기
-		jtfNewPass.setVisible(false);
 		jtfCheckNewPass.setVisible(false);
-		
+		jtfNewPass.setVisible(false);
+		//레이아웃 설정
 		setLayout(null);
-		
-		ChangePassDialogEvt cpde=new ChangePassDialogEvt(this);
-		jbtnOK.addActionListener(cpde);
-		jbtnCancel.addActionListener(cpde);
-		
-		jlblNewHide.addMouseListener(cpde);
-		jlblNewView.addMouseListener(cpde);
-		jlblCheckNewHide.addMouseListener(cpde);
-		jlblCheckNewView.addMouseListener(cpde);
+		//이벤트 등록
+		ChangePassDialogEvt event=new ChangePassDialogEvt(this);
+		jlblCheckNewHide.addMouseListener(event);
+		jlblCheckNewView.addMouseListener(event);
+		jbtnCancel.addActionListener(event);
+		jlblNewHide.addMouseListener(event);
+		jlblNewView.addMouseListener(event);
+		jbtnOK.addActionListener(event);
 		
 		//텍스트 필드 디자인
 		Border focusField=BorderFactory.createLineBorder(new Color(0xBC5BC2),2);// Line border
