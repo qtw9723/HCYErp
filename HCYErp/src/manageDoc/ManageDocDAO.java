@@ -26,6 +26,35 @@ public class ManageDocDAO {
 		return mdDAO;
 	}// getInstance
 
+	//업로드시 이름 중복 검사용
+	public List<String> selectDoc() throws SQLException {
+		List<String> list = new ArrayList<String>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		DbConn db = DbConn.getInstance();
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+			
+			String sql = "select docname from doc";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(rs.getString("docname"));
+			} // while
+			
+		} finally {
+			db.dbclose(rs, pstmt, con);
+		} // try
+		
+		return list;
+		
+	}// selectDoc
+	
+	//열람 문서 목록 조회용
 	public List<DocVO> selectDoc(int empno) throws SQLException {
 		List<DocVO> list = new ArrayList<DocVO>();
 		Connection con = null;
@@ -36,7 +65,7 @@ public class ManageDocDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "select e.empno,t.teamno ,dp.deptno,dc.docno,dc.docname, dc.INPUT_DATE from emp e,team t,dept dp,doc dc where (e.teamno=t.teamno(+) and t.deptno=dp.deptno(+) and dc.deptno=dp.deptno(+)) and e.empno=?";
+			String sql = "select dc.deptno,dc.docno,dc.docname, dc.INPUT_DATE from doc dc where dc.docno in (select dp.docno from DOC_PERMISSION dp where dp.deptno = case  when ((select t.deptno from team t where t.teamno = (select e.teamno from emp e where e.empno = 4702 ))) = 90 then dp.deptno else ((select t.deptno from team t where t.teamno = (select e.teamno from emp e where e.empno = ? ))) end )";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -50,7 +79,6 @@ public class ManageDocDAO {
 				dVO.setDeptNo(rs.getInt("deptno"));
 				dVO.setDocName(rs.getString("docname"));
 				dVO.setInputDate(rs.getDate("input_date"));
-				System.out.println(dVO.getDocNo());
 				list.add(dVO);
 			} // while
 
@@ -120,8 +148,8 @@ public class ManageDocDAO {
 
 	}// deleteDoc
 
-	public List<String> selectDept() throws SQLException {
-		List<String> list = new ArrayList<String>();
+	public String selectDept(String docName) throws SQLException {
+		String result = "";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -130,20 +158,22 @@ public class ManageDocDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "select dname from dept";
+			String sql = "select d.dname from doc dc, dept d where dc.deptno = d.deptno(+) and dc.docname= ? ";
 
 			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, docName);
+			
 			rs = pstmt.executeQuery();
 
-			while (rs.next()) {
-				list.add(rs.getString("dname"));
-			}//while
-
+			rs.next();
+				
+			result = rs.getString("dname");
 		} finally {
 			db.dbclose(rs, pstmt, con);
 		} // try
 
-		return list;
+		return result;
 
 	}// selectDept
 
