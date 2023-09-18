@@ -24,6 +24,8 @@ public class EmpVO {
 	public EmpVO() {
 
 	}// constructor
+	
+	
 
 	public EmpVO(int empNo, String team, String job, String dept, String deptLoc, String level, int sal, Date inputDate,
 			String ename, String email, String addr, String ssn, String tel, String pass, String hiredate,

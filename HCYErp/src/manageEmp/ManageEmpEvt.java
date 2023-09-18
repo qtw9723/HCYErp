@@ -5,12 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.JOptionPane;
+
+import VO.EmpVO;
 
 public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 
@@ -29,12 +27,32 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 	public void mouseClicked(MouseEvent e) {
 		ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
 		if (e.getSource() == me.getJlName()) {
+			//사원정보 가져오려고 추가
+			  String selectedEmpName = me.getJlName().getSelectedValue().toString();
 			try {
+				EmpVO empDetail = meDAO.getEmpDetails(selectedEmpName);
+
+		        if (empDetail != null) {
+		            // 가져온 직원 정보를 화면의 라벨에 설정합니다.
+		        	ManageEmpDialog med=new ManageEmpDialog();
+		        	med.getJtfEname().setText(empDetail.getEname());
+		        	med.getJtfLevel().setText(empDetail.getLevel());
+		        	med.getJtfTel().setText(empDetail.getTel());
+		        	med.getJtfEmail().setText(empDetail.getEmail());
+		        	med.getJtfDept().setText(empDetail.getDept());
+		        	med.getJtfTeam().setText(empDetail.getTeam());
+		        	med.getJtfJob().setText(empDetail.getJob());
+		        	med.getJtfLoc().setText( empDetail.getDeptLoc());
+		        	med.getJtfSal().setText(String.valueOf(empDetail.getSal()));
+		        } else {
+		            // 선택된 직원의 정보가 없을 경우에는 메시지를 표시합니다.
+		            JOptionPane.showMessageDialog(me, "선택된 직원의 정보가 없습니다.");
+		        }
 				if (meDAO.selectTeamName(me.getHcyE().getUser()) == 13
 						|| meDAO.selectTeamName(me.getHcyE().getUser()) == 91) {
-					
-					for(String empno : me.getListName()) {
-					System.out.println(empno);
+
+					for (String empno : me.getListName()) {
+						System.out.println(empno);
 					}
 					new ManageEmpDialog(me);
 				} else {
@@ -91,5 +109,7 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 			} // try
 
 		} // valueChanged
+			// 사원을 눌렀을 때 기본 정보가 띄워져야하잖아 ?
+		
 	}// mouseClicked
 }// class

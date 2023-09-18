@@ -192,7 +192,7 @@ public class ManageEmpDAO {
 
 		return rowCnt;
 
-	}
+	}//updateEmpInfo
 	
 	public int updateEmpModifyInfo(EmpVO eVO) throws SQLException {
 		Connection con = null;
@@ -224,7 +224,7 @@ public class ManageEmpDAO {
 
 		return rowCnt;
 
-	}
+	}//updateEmpModifyInfo
 
 	public int selectTeamName(int empno) throws SQLException {
 		Connection con = null;
@@ -253,6 +253,44 @@ public class ManageEmpDAO {
 			} // if
 		} // finally
 		return teamno;
-	}// updateDailyReport
+	}// selectTeamName
+	
+	//사원정보 들고오려고
+	 public EmpVO getEmpDetails(String empName) throws SQLException {
+	        EmpVO empVO = null;
+	        Connection con = null;
+	        PreparedStatement pstmt = null;
+	        ResultSet rs = null;
+
+	        DbConn db = DbConn.getInstance();
+
+	        try {
+	            con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+	            String sql = "SELECT ename, level, tel, email,jobno, dept, team, job, loc, sal FROM emp WHERE ename = ?";
+
+	            pstmt = con.prepareStatement(sql);
+	            pstmt.setString(1, empName);
+
+	            rs = pstmt.executeQuery();
+
+	            if (rs.next()) {
+	                empVO = new EmpVO();
+	                empVO.setEname(rs.getString("ename"));
+	                empVO.setLevel(rs.getString("level"));
+	                empVO.setTel(rs.getString("tel"));
+	                empVO.setEmail(rs.getString("email"));
+	                empVO.setDept(rs.getString("dept"));
+	                empVO.setTeam(rs.getString("team"));
+	                empVO.setJob(rs.getString("job"));
+	                empVO.setSal(rs.getInt("sal"));
+	            }
+	        } finally {
+	            if (db != null) {
+	                db.dbclose(rs, pstmt, con);
+	            }
+	        }
+	        return empVO;
+	    }
 
 }// class

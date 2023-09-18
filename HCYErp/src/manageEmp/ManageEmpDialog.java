@@ -38,6 +38,10 @@ public class ManageEmpDialog extends JDialog{
 	private JButton jbtnCancel;
 	private ManageEmp me;
 	
+	public ManageEmpDialog() {
+		
+	}
+	
 	public ManageEmpDialog(ManageEmp me) {
 		this.me=me;
 		jlblEname=new JLabel("이름");
