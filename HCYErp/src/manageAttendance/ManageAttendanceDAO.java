@@ -75,11 +75,12 @@ public class ManageAttendanceDAO {
 		try {
 			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 			
-			String sql="select e.empno,e.ename,at.starttime,at.endtime, at.workdate from emp e,attendance at where at.empno=e.empno and substr(at.workdate,1,7) = ? and teamno=(select teamno from emp where empno=?)";
+			String sql="select e.empno,e.ename,at.starttime,at.endtime, at.workdate from emp e,attendance at where at.empno=e.empno and substr(at.workdate,1,7) = ? and e.teamno=(select teamno from emp where empno=?) and e.levelno>=(select levelno from emp where empno=?)";
 			
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, days);
 			pstmt.setInt(2, empno);
+			pstmt.setInt(3, empno);
 			rs=pstmt.executeQuery();
 			AttendanceVO atVO=null;
 			while(rs.next()) {
@@ -228,10 +229,11 @@ public class ManageAttendanceDAO {
 		try {
 			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 			
-			String sql="SELECT EMPNO, ENAME FROM EMP where teamno=(select teamno from emp where empno=?)";
+			String sql="SELECT EMPNO, ENAME FROM EMP where teamno=(select teamno from emp where empno=?) and levelno>=(select levelno from emp where empno=?)";
 			
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, empno);
+			pstmt.setInt(2, empno);
 			rs=pstmt.executeQuery();
 			StringBuilder sbEmp = new StringBuilder();
 			while(rs.next()) {
