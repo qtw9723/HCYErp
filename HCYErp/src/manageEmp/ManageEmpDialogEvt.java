@@ -57,18 +57,18 @@ public class ManageEmpDialogEvt extends MouseAdapter implements ActionListener{
 		eVO.setDeptLoc(med.getJtfLoc().getText());
 		
 		
-		 // 연봉 수정
-	    try {
-	        eVO.setSal(Integer.parseInt(med.getJtfSal().getText()));
-	    } catch (NumberFormatException e) {
-	        // 정수로 변환할 수 없는 경우 예외 처리
-	        JOptionPane.showMessageDialog(med, "연봉은 정수로 입력해야 합니다.");
-	        return;
+		// 연봉 수정
+	    eVO.setSal(Integer.parseInt(med.getJtfSal().getText()));
+	    
+	    //사원번호 수정
+	    for(String name : med.getMe().getListName()) {
+	    	if(med.getMe().getJlName().getSelectedValue().equals(name.substring(0, name.indexOf("/")))) {
+	    		eVO.setEmpNo(Integer.parseInt(name.substring(name.indexOf("/")+1)));
+	    	}
 	    }
-
 	    try {
-	        int rowCnt = ManageEmpDAO.getInstance().updateEmpInfo(eVO);
-	        
+	    	int rowCnt = ManageEmpDAO.getInstance().updateEmpModifyInfo(eVO);
+	        System.out.println(rowCnt);
 	        if (rowCnt > 0) {
 	            JOptionPane.showMessageDialog(med, "사원정보가 변경되었습니다.");
 	        } else {

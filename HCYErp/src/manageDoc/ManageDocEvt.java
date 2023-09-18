@@ -1,22 +1,21 @@
 package manageDoc;
 
-import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.io.File;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.JCheckBox;
-import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileSystemView;
 
-import VO.DocPermissionVO;
 import fileServer.HCYFileClient;
 
 public class ManageDocEvt extends MouseAdapter implements ActionListener {
@@ -37,7 +36,6 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 			if (e.getSource() == md.getJbtnFileDownload()) {
 				downloadFile();
 			} // if
-
 			// 파일 삭제 버튼
 			if (e.getSource() == md.getJbtnFileDelete()) {
 				deleteFile();
@@ -88,7 +86,9 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 			} // for
 			if (!failList.toString().isEmpty()) {
 				JOptionPane.showMessageDialog(md, failList.toString() + "파일 삭제에 실패했습니다.");
+				return;
 			} // if
+			JOptionPane.showMessageDialog(md, "파일 삭제를 완료했습니다!");
 			break;
 		default:
 		}// switch
@@ -113,10 +113,20 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 		case JOptionPane.OK_OPTION:
 
 			StringBuilder failList = new StringBuilder();
-			String path = new FileDialog(md.getHcyE()).getDirectory();
-			System.out.println(path);
+			JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+	        fileChooser.setDialogTitle("다운로드 받을 디렉토리 선택"); // 다이얼로그 제목 설정
+	        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+	        
+	        int choose = fileChooser.showOpenDialog(null);
+			String path = "";
+			if (choose == JFileChooser.APPROVE_OPTION) {
+	            // 선택한 파일의 경로를 얻어옵니다.
+	            path = fileChooser.getSelectedFile().getAbsolutePath();
+	        } else {
+	        	return;
+	        }//else
 			for (int i = 0; i < docNoList.size(); i++) {
-				if (!HCYFileClient.getInstance().deleteFile(path+fileNameList.get(i))) {
+				if (!(HCYFileClient.getInstance().downloadFile(path+File.separator+fileNameList.get(i)))) {
 					failList.append(fileNameList.get(i)).append("\n");
 				} else {
 					ManageDocDAO.getInstance().deleteDoc(docNoList.get(i));

@@ -1,6 +1,7 @@
 package manageDailyReport;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
@@ -77,6 +78,9 @@ public class ManageDailyReport extends JPanel {
 		jbtnDateSearch = new JButton("조회");
 		jbtnDateSearch.setBounds(580, 100, 70, 40);
 		jbtnDateSearch.setBackground(new Color(0x5E5E5E));
+		Font searchBtnFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnDateSearch.setFont(searchBtnFont);
+		jbtnDateSearch.setForeground(Color.WHITE);
 		jbtnDateSearch.addActionListener(event);
 		add(jbtnDateSearch);
 
@@ -106,6 +110,8 @@ public class ManageDailyReport extends JPanel {
 		jbtnEmpSearch = new JButton("조회");
 		jbtnEmpSearch.setBounds(960, 100, 70, 40);
 		jbtnEmpSearch.setBackground(new Color(0x5E5E5E));
+		jbtnEmpSearch.setFont(searchBtnFont);
+		jbtnEmpSearch.setForeground(Color.WHITE);
 		jbtnEmpSearch.addActionListener(event);
 		add(jbtnEmpSearch);
 
@@ -132,6 +138,9 @@ public class ManageDailyReport extends JPanel {
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000, 510, 150, 40);
 		jbtnLogOut.setBackground(new Color(0xE0E0E0));
+		Font LogOutFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnLogOut.setFont(LogOutFont);
+		jbtnLogOut.setForeground(Color.BLACK);
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 

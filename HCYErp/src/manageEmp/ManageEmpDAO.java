@@ -86,15 +86,14 @@ public class ManageEmpDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "select ename from emp";
+			String sql = "select ename,empno from emp";
 
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				list.add(rs.getString("ename"));
+				list.add(rs.getString("ename")+"/"+rs.getInt("empno"));
 			}
-
 		} finally {
 			db.dbclose(rs, pstmt, con);
 		} // try
@@ -194,9 +193,40 @@ public class ManageEmpDAO {
 		return rowCnt;
 
 	}
+	
+	public int updateEmpModifyInfo(EmpVO eVO) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		int rowCnt = 0;
+		
+
+		DbConn db = DbConn.getInstance();
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql = "update emp set TEAMNO=(select teamno from team where tname=?), JOBNO=(select jobno from job where jobname=?), LEVELNO=(select levelno from joblevel where lvname=?), SAL=?, ENAME=?, EMAIL=?, TEL=? where empno=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, eVO.getTeam());
+			pstmt.setString(2, eVO.getJob());
+			pstmt.setString(3, eVO.getLevel());
+			pstmt.setInt(4, eVO.getSal());
+			pstmt.setString(5, eVO.getEname());
+			pstmt.setString(6, eVO.getEmail());
+			pstmt.setString(7, eVO.getTel());
+			pstmt.setInt(8, eVO.getEmpNo());
+
+			rowCnt = pstmt.executeUpdate();
+		} finally {
+			db.dbclose(rs, pstmt, con);
+		} // try
+
+		return rowCnt;
+
+	}
 
 	public int selectTeamName(int empno) throws SQLException {
-		StringBuilder sbEmp = new StringBuilder();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

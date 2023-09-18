@@ -1,7 +1,9 @@
 package manageEmp;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -39,6 +41,7 @@ public class ManageEmp extends JPanel {
 	private DefaultListModel<String> dlmDept;
 	private DefaultListModel<String> dlmteam;
 	private DefaultListModel<String> dlmEmp;
+	private List<String> listName;
 	
 
 	public ManageEmp(HCYErp hcyE) {
@@ -95,8 +98,9 @@ public class ManageEmp extends JPanel {
 //			dlmEmp.addElement("사원"+i);
 //		}//이거 다오 들어오면 삭제
 		try {
-			for (String emp : meDAO.selectEmp()) {
-				dlmEmp.addElement(emp);
+			listName=meDAO.selectEmp();
+			for (String emp : listName) {
+				dlmEmp.addElement(emp.substring(0,emp.indexOf("/")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -111,6 +115,9 @@ public class ManageEmp extends JPanel {
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000, 510, 150, 40);
 		jbtnLogOut.setBackground(new Color(0xE0E0E0));
+		Font LogOutFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnLogOut.setFont(LogOutFont);
+		jbtnLogOut.setForeground(Color.BLACK);
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		
@@ -176,6 +183,10 @@ public class ManageEmp extends JPanel {
 
 	public void setDlmDept(DefaultListModel<String> dlmDept) {
 		this.dlmDept = dlmDept;
+	}
+
+	public List<String> getListName() {
+		return listName;
 	}
 	
 }// class

@@ -144,7 +144,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 								me.getDlmEmp().removeAllElements();
 								try {
 									for (String emp : meDAO.selectEmp()) {
-										me.getDlmEmp().addElement(emp);
+										me.getDlmEmp().addElement(emp.substring(0,emp.indexOf("/")));
 									}
 								} catch (SQLException se) {
 									// TODO Auto-generated catch block
@@ -216,7 +216,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 								me.getDlmEmp().removeAllElements();
 								try {
 									for (String emp : meDAO.selectEmp()) {
-										me.getDlmEmp().addElement(emp);
+										me.getDlmEmp().addElement(emp.substring(0,emp.indexOf("/")));
 									}
 								} catch (SQLException se) {
 									// TODO Auto-generated catch block
