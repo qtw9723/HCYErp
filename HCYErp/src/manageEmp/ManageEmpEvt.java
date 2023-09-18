@@ -25,7 +25,7 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
+		ManageEmpDAO meDAO = ManageEmpDAO.getInstance(); 
 		if (e.getSource() == me.getJlName()) {
 			//사원정보 가져오려고 추가
 			  String selectedEmpName = me.getJlName().getSelectedValue().toString();
@@ -44,6 +44,8 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 		        	med.getJtfJob().setText(empDetail.getJob());
 		        	med.getJtfLoc().setText( empDetail.getDeptLoc());
 		        	med.getJtfSal().setText(String.valueOf(empDetail.getSal()));
+		        	
+		        	ManageEmpDAO.getInstance().getEmpDetails(selectedEmpName);
 		        } else {
 		            // 선택된 직원의 정보가 없을 경우에는 메시지를 표시합니다.
 		            JOptionPane.showMessageDialog(me, "선택된 직원의 정보가 없습니다.");
