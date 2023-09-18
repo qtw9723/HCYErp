@@ -68,71 +68,33 @@ public class ChangePassDialog extends JDialog{
 		ChangePassDialogEvt event=new ChangePassDialogEvt(this);
 		jlblCheckNewHide.addMouseListener(event);
 		jlblCheckNewView.addMouseListener(event);
+		jpfCheckNewPass.addFocusListener(event);
+		jpfCurrentPass.addFocusListener(event);
 		jbtnCancel.addActionListener(event);
 		jlblNewHide.addMouseListener(event);
 		jlblNewView.addMouseListener(event);
+		jpfNewPass.addFocusListener(event);
 		jbtnOK.addActionListener(event);
-		
-		//텍스트 필드 디자인
-		Border focusField=BorderFactory.createLineBorder(new Color(0xBC5BC2),2);// Line border
-		Border unfocusField=BorderFactory.createLineBorder(Color.LIGHT_GRAY);// Line border
-		
-		jpfCurrentPass.addFocusListener(new FocusListener() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				jpfCurrentPass.setBorder(unfocusField);
-			}
-			
-			@Override
-			public void focusGained(FocusEvent e) {
-				jpfCurrentPass.setBorder(focusField);
-			}
-		});
-		
-		jpfNewPass.addFocusListener(new FocusListener() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				jpfNewPass.setBorder(unfocusField);
-			}
-			
-			@Override
-			public void focusGained(FocusEvent e) {
-				jpfNewPass.setBorder(focusField);
-			}
-		});
-		
-		jpfCheckNewPass.addFocusListener(new FocusListener() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				jpfCheckNewPass.setBorder(unfocusField);
-			}
-			
-			@Override
-			public void focusGained(FocusEvent e) {
-				jpfCheckNewPass.setBorder(focusField);
-			}
-		});
-		
 		//컴포넌트 크기설정
+		jpfCheckNewPass.setBounds(100,300,150,30);
 		jpfCurrentPass.setBounds(100,100,150,30);
 		jpfNewPass.setBounds(100,200,150,30);
-		jpfCheckNewPass.setBounds(100,300,150,30);
 		
-		jtfNewPass.setBounds(100,200,150,30);
 		jtfCheckNewPass.setBounds(100,300,150,30);
+		jtfNewPass.setBounds(100,200,150,30);
 		
-		jlblNewHide.setBounds(250,200,30,30);
-		jlblNewView.setBounds(250,200,30,30);
 		jlblCheckNewHide.setBounds(250,300,30,30);
 		jlblCheckNewView.setBounds(250,300,30,30);
-		jlblCurrentPass.setBounds(0,100,100,30);
-		jlblNewPass.setBounds(0,200,100,30);
 		jlblCheckNewPass.setBounds(0,300,100,30);
+		jlblCurrentPass.setBounds(0,100,100,30);
+		jlblNewHide.setBounds(250,200,30,30);
+		jlblNewView.setBounds(250,200,30,30);
+		jlblNewPass.setBounds(0,200,100,30);
 		
-		jbtnOK.setBounds(100,400,100,30);
+		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		jbtnOK.setBackground(new Color(0x5E5E5E));
 		jbtnCancel.setBounds(300,400,100,30);
-		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		jbtnOK.setBounds(100,400,100,30);
 		//컴포넌트 추가
 		add(jpfCurrentPass);
 		add(jpfNewPass);
@@ -156,70 +118,54 @@ public class ChangePassDialog extends JDialog{
 		
 	}//constructor
 
-	public JPasswordField getJpfCurrentPass() {
-		return jpfCurrentPass;
-	}
-
-	public JPasswordField getJpfNewPass() {
-		return jpfNewPass;
-	}
-
 	public JPasswordField getJpfCheckNewPass() {
 		return jpfCheckNewPass;
 	}
-
-	public JTextField getJtfCurrentPass() {
-		return jtfCurrentPass;
+	public JPasswordField getJpfCurrentPass() {
+		return jpfCurrentPass;
 	}
-
-	public JTextField getJtfNewPass() {
-		return jtfNewPass;
-	}
-
 	public JTextField getJtfCheckNewPass() {
 		return jtfCheckNewPass;
 	}
-
-	public JLabel getJlblNewHide() {
-		return jlblNewHide;
+	public JPasswordField getJpfNewPass() {
+		return jpfNewPass;
 	}
-
-	public JLabel getJlblNewView() {
-		return jlblNewView;
+	public JTextField getJtfCurrentPass() {
+		return jtfCurrentPass;
 	}
-
 	public JLabel getJlblCheckNewHide() {
 		return jlblCheckNewHide;
 	}
-
 	public JLabel getJlblCheckNewView() {
 		return jlblCheckNewView;
 	}
-
-	public JLabel getJlblCurrentPass() {
-		return jlblCurrentPass;
-	}
-
-	public JLabel getJlblNewPass() {
-		return jlblNewPass;
-	}
-
 	public JLabel getJlblCheckNewPass() {
 		return jlblCheckNewPass;
 	}
-
-	public JButton getJbtnOK() {
-		return jbtnOK;
+	public JLabel getJlblCurrentPass() {
+		return jlblCurrentPass;
 	}
-
+	public JTextField getJtfNewPass() {
+		return jtfNewPass;
+	}
+	public JLabel getJlblNewPass() {
+		return jlblNewPass;
+	}
+	public JLabel getJlblNewHide() {
+		return jlblNewHide;
+	}
+	public JLabel getJlblNewView() {
+		return jlblNewView;
+	}
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
 	}
-
+	public JButton getJbtnOK() {
+		return jbtnOK;
+	}
 	public Attendance getAd() {
 		return ad;
 	}
-
 }//class
 
 
