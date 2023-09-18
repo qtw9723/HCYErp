@@ -1,6 +1,7 @@
 package manageEmp;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -64,9 +65,16 @@ public class ManageEmpDialog extends JDialog{
 		jbtnOK=new JButton("수정확인");
 		jbtnCancel=new JButton("취소");
 		
-		jbtnModify.setBackground(new Color(0x8244AD));
-		jbtnOK.setBackground(new Color(0x8244AD));
-		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnModify.setBackground(new Color(0x461C90));
+		jbtnModify.setFont(jbtnFont);
+		jbtnModify.setForeground(Color.white);
+		jbtnOK.setBackground(new Color(0x461C90));
+		jbtnOK.setFont(jbtnFont);
+		jbtnOK.setForeground(Color.white);
+		jbtnCancel.setBackground(new Color(0x461C90));
+		jbtnCancel.setFont(jbtnFont);
+		jbtnCancel.setForeground(Color.white);
 		
 		//텍스트 필드 디자인
 		Border focusField=BorderFactory.createLineBorder(new Color(0xEE82EE),2);// Line border
