@@ -30,7 +30,7 @@ public class ResetPassDialog extends JDialog {
 
 	public ResetPassDialog() {
 
-		Border focusField = BorderFactory.createLineBorder(new Color(0xEE82EE)); // Line border
+		Border focusField = BorderFactory.createLineBorder(new Color(0xE15799),2); // Line border
 		Border unfocusField = BorderFactory.createLineBorder(Color.LIGHT_GRAY); // Line border
 
 		Font font = new Font("맑은 고딕", Font.BOLD, 15);
@@ -118,15 +118,15 @@ public class ResetPassDialog extends JDialog {
 		jtfEname.setBounds(160, 125, 150, 30);
 		jtfSsn.setBounds(160, 195, 150, 30);
 
-		jbtnResetPass.setBounds(80, 275, 150, 35);
+		jbtnResetPass.setBounds(120, 275, 150, 35);
 		jbtnResetPass.setBackground(new Color(0x6D47B0));
-		jbtnCancel.setBounds(300, 275, 120, 35);
+		jbtnCancel.setBounds(340, 275, 120, 35);
 		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		
 		jlblEmpNo.setBounds(40, 55, 80, 30);
 		jlblEname.setBounds(40, 125, 80, 30);
 		jlblSsn.setBounds(40, 195, 120, 30);
-		jlblLogoGrey.setBounds(360, 35, 200, 200);
+		jlblLogoGrey.setBounds(355, 35, 200, 200);
 		jlblBg.setBounds(0,0,800,800);
 
 		add(jtfEmpNo);
@@ -142,14 +142,9 @@ public class ResetPassDialog extends JDialog {
 		add(jlblLogoGrey);
 		add(jlblBg);
 		
-	
-		
-		setBounds(100, 100, 600, 400);
+		setTitle("비밀번호 초기화");
 		setVisible(true);
 	}// constructor
-
-	
-
 
 	public void setJtfEmpNo(JTextField jtfEmpNo) {
 		this.jtfEmpNo = jtfEmpNo;
