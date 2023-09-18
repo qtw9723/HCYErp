@@ -114,19 +114,19 @@ public class ResetPassDialog extends JDialog {
 		jbtnResetPass.addActionListener(event);
 		jbtnCancel.addActionListener(event);
 		
-		jtfEmpNo.setBounds(160, 50, 150, 30);
-		jtfEname.setBounds(160, 120, 150, 30);
-		jtfSsn.setBounds(160, 190, 150, 30);
+		jtfEmpNo.setBounds(160, 55, 150, 30);
+		jtfEname.setBounds(160, 125, 150, 30);
+		jtfSsn.setBounds(160, 195, 150, 30);
 
-		jbtnResetPass.setBounds(80, 250, 150, 35);
-		jbtnResetPass.setBackground(new Color(0x5E5E5E));
-		jbtnCancel.setBounds(300, 250, 120, 35);
+		jbtnResetPass.setBounds(80, 275, 150, 35);
+		jbtnResetPass.setBackground(new Color(0x6D47B0));
+		jbtnCancel.setBounds(300, 275, 120, 35);
 		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		
-		jlblEmpNo.setBounds(40, 50, 80, 30);
-		jlblEname.setBounds(40, 120, 80, 30);
-		jlblSsn.setBounds(40, 190, 120, 30);
-		jlblLogoGrey.setBounds(450, 10, 300, 300);
+		jlblEmpNo.setBounds(40, 55, 80, 30);
+		jlblEname.setBounds(40, 125, 80, 30);
+		jlblSsn.setBounds(40, 195, 120, 30);
+		jlblLogoGrey.setBounds(360, 35, 200, 200);
 		jlblBg.setBounds(0,0,800,800);
 
 		add(jtfEmpNo);
@@ -144,7 +144,7 @@ public class ResetPassDialog extends JDialog {
 		
 	
 		
-		setBounds(100, 100, 800, 400);
+		setBounds(100, 100, 600, 400);
 		setVisible(true);
 	}// constructor
 
