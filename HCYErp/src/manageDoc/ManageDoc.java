@@ -93,9 +93,9 @@ public class ManageDoc extends JPanel {
 		add(jbtnFileDownload);
 		// 파일 삭제
 		jbtnFileDelete = new JButton("파일 삭제");
-		jbtnFileDownload.setBackground(new Color(0x461C90));
-		jbtnFileDownload.setFont(fileBtnFont);
-		jbtnFileDownload.setForeground(Color.WHITE);
+		jbtnFileDelete.setBackground(new Color(0x461C90));
+		jbtnFileDelete.setFont(fileBtnFont);
+		jbtnFileDelete.setForeground(Color.WHITE);
 		jbtnFileDelete.setBounds(930, 300, 130, 55);
 		jbtnFileDelete.addActionListener(event);
 		add(jbtnFileDelete);

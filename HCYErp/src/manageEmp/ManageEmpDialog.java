@@ -36,7 +36,7 @@ public class ManageEmpDialog extends JDialog{
 	
 	private JButton jbtnModify;
 	private JButton jbtnOK;
-	private JButton jbtnCancel;
+	private JButton jbtnCancel; 
 	private ManageEmp me;
 	
 	public ManageEmpDialog() {
