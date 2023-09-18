@@ -57,13 +57,7 @@ public class ManageEmp extends JPanel {
 //		for(int i =1;i<100;i++) {
 //			dlmDept.addElement("부서"+i);
 //		}//이거 다오 들어오면 삭제
-		try {
-			for (String dept : meDAO.selectDept()) {
-				dlmDept.addElement(dept);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}//catch
+		
 		
 		jspDepartment = new JScrollPane(jlDepartment);
 		jspDepartment.setBounds(150, 100, 230, 400);
@@ -77,13 +71,13 @@ public class ManageEmp extends JPanel {
 //		for(int i =1;i<100;i++) {
 //			dlmteam.addElement("팀"+i);
 //		}//이거 다오 들어오면 삭제
-		try {
-			for (String team : meDAO.selectTeam()) {
-				dlmteam.addElement(team);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}//catch
+//		try {
+//			for (String team : meDAO.selectTeam()) {
+//				dlmteam.addElement(team);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}//catch
 
 		jspTeam = new JScrollPane(jlTeam);
 		jspTeam.setBounds(430, 100, 230, 400);
@@ -97,14 +91,36 @@ public class ManageEmp extends JPanel {
 //		for(int i =1;i<100;i++) {
 //			dlmEmp.addElement("사원"+i);
 //		}//이거 다오 들어오면 삭제
+//		try {
+//			listName=meDAO.selectEmp();
+//			for (String emp : listName) {
+//				dlmEmp.addElement(emp.substring(0,emp.indexOf("/")));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}//catch
+		int cnt=0;
 		try {
-			listName=meDAO.selectEmp();
-			for (String emp : listName) {
-				dlmEmp.addElement(emp.substring(0,emp.indexOf("/")));
+			List<String> list=meDAO.selectDept();
+			for (String dept : list) {
+				if(dept.substring(0,dept.indexOf("/")).equals("0")) {
+					cnt++;
+					continue;
+				}
+				if(cnt==0) {
+				dlmDept.addElement(dept.substring(dept.indexOf("/")+1));
+				}
+				if(cnt==1) {
+				dlmteam.addElement(dept.substring(dept.indexOf("/")+1));
+				}
+				if(cnt==2) {
+				dlmEmp.addElement(dept.substring(dept.indexOf("/")+1));
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}//catch
+		
 		jspName = new JScrollPane(jlName);
 		jspName.setBounds(710, 100, 230, 400);
 		jspName.setBorder(new TitledBorder("사원"));

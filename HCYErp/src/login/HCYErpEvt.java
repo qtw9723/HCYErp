@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JCheckBox;
@@ -85,10 +86,10 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		ManagePersonalAttendance mpa = new ManagePersonalAttendance(hcyE);
 		EmpVO eVO = new EmpVO();
 		AttendanceDAO aDAO = AttendanceDAO.getInstance();
-		eVO=aDAO.selectEmp(hcyE.getUser());
+		eVO = aDAO.selectEmp(hcyE.getUser());
 		if (hcyEDAO.selectLogin(empNo) == true) {
 			if (password.equals(hcyEDAO.geteVO().getPass())) {
-				if (eVO.getTeam().equals("인사")||eVO.getTeam().equals("임원")) {
+				if (eVO.getTeam().equals("인사") || eVO.getTeam().equals("임원")) {
 					hcyE.removeComponent();
 					hcyE.setTabbedPane(new JTabbedPane());
 					hcyE.add(hcyE.getTabbedPane());
@@ -123,33 +124,35 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 							case 4:
 								ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
+								int cnt = 0;
+								int size = 0;
 								me.getDlmDept().removeAllElements();
-								try {
-									for (String dept : meDAO.selectDept()) {
-										me.getDlmDept().addElement(dept);
-									}
-								} catch (SQLException se) {
-									// TODO Auto-generated catch block
-									se.printStackTrace();
-								}
 								me.getDlmteam().removeAllElements();
-								try {
-									for (String team : meDAO.selectTeam()) {
-										me.getDlmteam().addElement(team);
-									}
-								} catch (SQLException se) {
-									// TODO Auto-generated catch block
-									se.printStackTrace();
-								}
 								me.getDlmEmp().removeAllElements();
 								try {
-									for (String emp : meDAO.selectEmp()) {
-										me.getDlmEmp().addElement(emp.substring(0,emp.indexOf("/")));
+									List<String> list = meDAO.selectDept();
+									for (String dept : list) {
+										if (dept.substring(0, dept.indexOf("/")).equals("0")) {
+											cnt++;
+											continue;
+										}
+										if (cnt == 0) {
+											me.getDlmDept().addElement(dept.substring(dept.indexOf("/") + 1));
+										}
+										if (cnt == 1) {
+											me.getDlmteam().addElement(dept.substring(dept.indexOf("/") + 1));
+										}
+										if (cnt == 2) {
+											me.getDlmEmp().addElement(dept.substring(dept.indexOf("/") + 1));
+										}
 									}
-								} catch (SQLException se) {
+								} catch (NumberFormatException e1) {
 									// TODO Auto-generated catch block
-									se.printStackTrace();
-								} // catch
+									e1.printStackTrace();
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 							case 5:
 								Calendar cal1 = Calendar.getInstance();
 								int year1 = cal1.get(Calendar.YEAR);
@@ -195,33 +198,35 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 							case 4:
 								ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
+								int cnt = 0;
+								int size = 0;
 								me.getDlmDept().removeAllElements();
-								try {
-									for (String dept : meDAO.selectDept()) {
-										me.getDlmDept().addElement(dept);
-									}
-								} catch (SQLException se) {
-									// TODO Auto-generated catch block
-									se.printStackTrace();
-								}
 								me.getDlmteam().removeAllElements();
-								try {
-									for (String team : meDAO.selectTeam()) {
-										me.getDlmteam().addElement(team);
-									}
-								} catch (SQLException se) {
-									// TODO Auto-generated catch block
-									se.printStackTrace();
-								}
 								me.getDlmEmp().removeAllElements();
 								try {
-									for (String emp : meDAO.selectEmp()) {
-										me.getDlmEmp().addElement(emp.substring(0,emp.indexOf("/")));
+									List<String> list = meDAO.selectDept();
+									for (String dept : list) {
+										if (dept.substring(0, dept.indexOf("/")).equals("0")) {
+											cnt++;
+											continue;
+										}
+										if (cnt == 0) {
+											me.getDlmDept().addElement(dept.substring(dept.indexOf("/") + 1));
+										}
+										if (cnt == 1) {
+											me.getDlmteam().addElement(dept.substring(dept.indexOf("/") + 1));
+										}
+										if (cnt == 2) {
+											me.getDlmEmp().addElement(dept.substring(dept.indexOf("/") + 1));
+										}
 									}
-								} catch (SQLException se) {
+								} catch (NumberFormatException e1) {
 									// TODO Auto-generated catch block
-									se.printStackTrace();
-								} // catch
+									e1.printStackTrace();
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 							case 6:
 								Calendar cal1 = Calendar.getInstance();
 								int year1 = cal1.get(Calendar.YEAR);
@@ -229,13 +234,13 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 								mma.getJcbYear().setSelectedItem(year1);
 								mma.getJcbMonth().setSelectedItem(month1 + 1);
 							case 7:
-								if(mpa.getJcbEmp().getItemCount()!=0) {
-								mpa.getJcbEmp().setSelectedIndex(0);
+								if (mpa.getJcbEmp().getItemCount() != 0) {
+									mpa.getJcbEmp().setSelectedIndex(0);
 								}
 							}// switch
 						}// stateChanged
 					});
-				}//else
+				} // else
 			} else {
 				JOptionPane.showMessageDialog(hcyE, "아이디혹은 비밀번호가 잘못되었습니다.");
 			} // else
