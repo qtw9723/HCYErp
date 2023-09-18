@@ -43,6 +43,7 @@ public class ManageEmp extends JPanel {
 	private DefaultListModel<String> dlmEmp;
 	private List<String> listName;
 	
+	
 
 	public ManageEmp(HCYErp hcyE) {
 		this.hcyE = hcyE;
@@ -101,8 +102,8 @@ public class ManageEmp extends JPanel {
 //		}//catch
 		int cnt=0;
 		try {
-			List<String> list=meDAO.selectDept();
-			for (String dept : list) {
+			listName=meDAO.selectDept();
+			for (String dept : listName) {
 				if(dept.substring(0,dept.indexOf("/")).equals("0")) {
 					cnt++;
 					continue;

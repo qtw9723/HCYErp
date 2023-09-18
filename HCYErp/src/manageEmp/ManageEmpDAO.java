@@ -47,60 +47,10 @@ public class ManageEmpDAO {
 		} finally {
 			db.dbclose(rs, pstmt, con);
 		} // try
-		System.out.println(list);
 		return list;
 	}// selectDept
 
-//	public List<String> selectTeam() throws SQLException {
-//		List<String> list = new ArrayList<String>();
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//
-//		DbConn db = DbConn.getInstance();
-//		try {
-//			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-//
-//			String sql = "select tname from team";
-//
-//			pstmt = con.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//
-//			while (rs.next()) {
-//				list.add(rs.getString("tname"));
-//			} // while
-//
-//		} finally {
-//			db.dbclose(rs, pstmt, con);
-//		} // try
-//
-//		return list;
-//	}// selectTeam
-//
-//	public List<String> selectEmp() throws SQLException {
-//		List<String> list = new ArrayList<String>();
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//
-//		DbConn db = DbConn.getInstance();
-//		try {
-//			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
-//
-//			String sql = "select ename,empno from emp";
-//
-//			pstmt = con.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//
-//			while (rs.next()) {
-//				list.add(rs.getString("ename")+"/"+rs.getInt("empno"));
-//			}
-//		} finally {
-//			db.dbclose(rs, pstmt, con);
-//		} // try
-//
-//		return list;
-//	}// selectEmp
+
 
 	public List<String> searchTeam(String dept) throws SQLException {
 		List<String> list = new ArrayList<String>();
@@ -216,7 +166,7 @@ public class ManageEmpDAO {
 			pstmt.setString(5, eVO.getEname());
 			pstmt.setString(6, eVO.getEmail());
 			pstmt.setString(7, eVO.getTel());
-			pstmt.setInt(8, eVO.getEmpNo());
+			pstmt.setInt(8, eVO.getEmpNo()); 
 
 			rowCnt = pstmt.executeUpdate();
 		} finally {
@@ -257,7 +207,7 @@ public class ManageEmpDAO {
 	}// selectTeamName
 	
 	//사원정보 들고오려고
-	 public EmpVO getEmpDetails(String empName) throws SQLException {
+	 public EmpVO getEmpDetails(int empno) throws SQLException {
 	        EmpVO empVO = null;
 	        Connection con = null;
 	        PreparedStatement pstmt = null;
@@ -268,22 +218,23 @@ public class ManageEmpDAO {
 	        try {
 	            con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-	            String sql = "SELECT ename, level, tel, email,jobno, dept, team, job, loc, sal FROM emp WHERE ename = ?";
+	            String sql ="SELECT e.ENAME,j.JOBNAME ,l.levelno ,e.TEL ,e.EMAIL,d.DNAME,t.TNAME,t.loc,e.SAL FROM emp e,job j,dept d,team t,joblevel l WHERE e.JOBNO = j.JOBNO(+)AND t.DEPTNO = d.DEPTNO(+)AND e.TEAMNO = t.TEAMNO(+)AND e.levelno = l.levelno(+) AND empno=?";
 
 	            pstmt = con.prepareStatement(sql);
-	            pstmt.setString(1, empName);
+	            pstmt.setInt(1, empno);
 
 	            rs = pstmt.executeQuery();
 
 	            if (rs.next()) {
 	                empVO = new EmpVO();
 	                empVO.setEname(rs.getString("ename"));
-	                empVO.setLevel(rs.getString("level"));
+	                empVO.setLevel(rs.getString("levelno"));
 	                empVO.setTel(rs.getString("tel"));
 	                empVO.setEmail(rs.getString("email"));
-	                empVO.setDept(rs.getString("dept"));
-	                empVO.setTeam(rs.getString("team"));
-	                empVO.setJob(rs.getString("job"));
+	                empVO.setJob(rs.getString("JOBNAME"));
+	                empVO.setDept(rs.getString("DNAME"));
+	                empVO.setTeam(rs.getString("TNAME"));
+	                empVO.setDeptLoc(rs.getString("loc"));
 	                empVO.setSal(rs.getInt("sal"));
 	            }
 	        } finally {
