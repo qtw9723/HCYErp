@@ -37,6 +37,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		ManageMonthlyAttendanceEvt event = new ManageMonthlyAttendanceEvt(this);
 		
 		//연월일 콤박
+		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 13);
 		//연 콤박
 		jcbYear = new JComboBox<Integer>();
 		Calendar cal = Calendar.getInstance();
@@ -47,6 +48,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		jcbYear.setSelectedItem(year);
 		jcbYear.setBounds(300,70,130,40);
 		jcbYear.setBackground(new Color(0xffffff));
+		jcbYear.setFont(jcbFont);
 		add(jcbYear);
 		//월 콤박
 		jcbMonth = new JComboBox<Integer>();
@@ -56,12 +58,16 @@ public class ManageMonthlyAttendance extends JPanel{
 		jcbMonth.setSelectedItem(cal.get(Calendar.MONTH)+1);
 		jcbMonth.setBounds(460,70,130,40);
 		jcbMonth.setBackground(new Color(0xffffff));
+		jcbMonth.setFont(jcbFont);
 		add(jcbMonth);
 		
 		//날짜 검색 버튼
+		Font searchFont = new Font("맑은 고딕", Font.BOLD, 13);
 		jbtnAttendDate = new JButton("조회");
 		jbtnAttendDate.setBounds(630,70,150,40);
 		jbtnAttendDate.setBackground(new Color(0x5E5E5E));
+		jbtnAttendDate.setFont(searchFont);
+		jbtnAttendDate.setForeground(Color.white);
 		jbtnAttendDate.addActionListener(event);
 		add(jbtnAttendDate);
 		

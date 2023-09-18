@@ -67,6 +67,8 @@ public class ManagePersonalAttendance extends JPanel{
 		jlblmonth.setFont(ymFont);
 		add(jlblmonth);
 		
+		
+		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 13);
 		//사원 콤박
 		jcbEmp = new JComboBox<String>();
 		List<String> empList = new ArrayList<String>();
@@ -82,6 +84,7 @@ public class ManagePersonalAttendance extends JPanel{
 		for(String emp:empList) {
 			jcbEmp.addItem(emp);
 		}//for
+		jcbEmp.setFont(jcbFont);
 		jcbEmp.setBounds(300,70,130,40);
 		jcbEmp.setBackground(new Color(0xffffff));
 		add(jcbEmp);
@@ -90,6 +93,9 @@ public class ManagePersonalAttendance extends JPanel{
 		jbtnAttendName = new JButton("조회");
 		jbtnAttendName.setBounds(700,70,130,40);
 		jbtnAttendName.setBackground(new Color(0x5E5E5E));
+		Font AttendBtnFont = new Font("맑은 고딕",  Font.BOLD, 13);
+		jbtnAttendName.setFont(AttendBtnFont);
+		jbtnAttendName.setForeground(Color.white);
 		jbtnAttendName.addActionListener(event);
 		add(jbtnAttendName);
 		
