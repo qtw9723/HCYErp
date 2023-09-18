@@ -1,6 +1,7 @@
 package manageEmpRegister;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,17 +64,22 @@ public class ManageEmpRegister extends JPanel{
 		jspResignAb.setBorder(new TitledBorder("입사자/퇴사 대상자 목록"));
 		add(jspResignAb);
 		
+		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 13);
 		//입사자 추가 버튼
 		jbtnEmpRegister = new JButton("입사자 추가");
 		jbtnEmpRegister.setBounds(930,100,130,55);
-		jbtnEmpRegister.setBackground(new Color(0x8244AD));
+		jbtnEmpRegister.setBackground(new Color(0x461C90));
+		jbtnEmpRegister.setFont(jbtnFont);
+		jbtnEmpRegister.setForeground(Color.white);
 		jbtnEmpRegister.addActionListener(event);
 		add(jbtnEmpRegister);
 		
 		//퇴사 처리 버튼
 		jbtnResign = new JButton("퇴사 처리");
 		jbtnResign.setBounds(930,200,130,55);
-		jbtnResign.setBackground(new Color(0x8244AD));
+		jbtnResign.setBackground(new Color(0x461C90));
+		jbtnResign.setFont(jbtnFont);
+		jbtnResign.setForeground(Color.white);
 		jbtnResign.addActionListener(event);
 		add(jbtnResign);
 		
@@ -81,13 +87,18 @@ public class ManageEmpRegister extends JPanel{
 		jbtnAbsence = new JButton("휴직");
 		jbtnAbsence.addActionListener(event);
 		jbtnAbsence.setBounds(930,300,130,55);
-		jbtnAbsence.setBackground(new Color(0x8244AD));
+		jbtnAbsence.setFont(jbtnFont);
+		jbtnAbsence.setForeground(Color.white);
+		jbtnAbsence.setBackground(new Color(0x461C90));
 		add(jbtnAbsence);
 		
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000,510,150,40);
 		jbtnLogOut.setBackground(new Color(0xE0E0E0));
+		Font LogOutFont = new Font("맑은 고딕", Font.BOLD, 13);
+		jbtnLogOut.setFont(LogOutFont);
+		jbtnLogOut.setForeground(Color.BLACK);
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		
