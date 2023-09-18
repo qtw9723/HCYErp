@@ -88,7 +88,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		eVO=aDAO.selectEmp(hcyE.getUser());
 		if (hcyEDAO.selectLogin(empNo) == true) {
 			if (password.equals(hcyEDAO.geteVO().getPass())) {
-				if (eVO.getTeam().equals("인사")) {
+				if (eVO.getTeam().equals("인사")||eVO.getTeam().equals("임원")) {
 					hcyE.removeComponent();
 					hcyE.setTabbedPane(new JTabbedPane());
 					hcyE.add(hcyE.getTabbedPane());
@@ -229,7 +229,9 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 								mma.getJcbYear().setSelectedItem(year1);
 								mma.getJcbMonth().setSelectedItem(month1 + 1);
 							case 7:
+								if(mpa.getJcbEmp().getItemCount()!=0) {
 								mpa.getJcbEmp().setSelectedIndex(0);
+								}
 							}// switch
 						}// stateChanged
 					});

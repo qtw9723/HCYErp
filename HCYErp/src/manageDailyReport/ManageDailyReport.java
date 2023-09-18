@@ -110,6 +110,8 @@ public class ManageDailyReport extends JPanel {
 		jbtnEmpSearch = new JButton("조회");
 		jbtnEmpSearch.setBounds(960, 100, 70, 40);
 		jbtnEmpSearch.setBackground(new Color(0x5E5E5E));
+		jbtnEmpSearch.setFont(searchBtnFont);
+		jbtnEmpSearch.setForeground(Color.WHITE);
 		jbtnEmpSearch.addActionListener(event);
 		add(jbtnEmpSearch);
 
