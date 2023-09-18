@@ -70,7 +70,7 @@ public class ApproveAbsenceDialog extends JDialog {
 		//이름 콤박
 		jcbEmpNoName=new JComboBox<String>();
 		try {
-			List<String> empList = ManageDailyReportDAO.getInstance().selectEmp();
+			List<String> empList = ManageDailyReportDAO.getInstance().selectEmp(mer.getHcyE().getUser());
 			for(String emp : empList) {
 				jcbEmpNoName.addItem(emp);
 			}//for
