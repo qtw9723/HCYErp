@@ -32,6 +32,7 @@ public class ManageLeaveDialog extends JDialog {
 		//타이틀 제목
 		setTitle("휴가 신청 관리");
 		
+		getContentPane().setBackground(new Color(255,245,245));
 		//휴가신청 사원 정보
 		Font infoFont = new Font("맑은 고딕",Font.PLAIN,15);
 		jlblInfoPerson = new JLabel();
