@@ -84,7 +84,7 @@ public class ManageEmpRegister extends JPanel{
 		add(jbtnResign);
 		
 		//휴직 버튼
-		jbtnAbsence = new JButton("휴직");
+		jbtnAbsence = new JButton("휴직 처리");
 		jbtnAbsence.addActionListener(event);
 		jbtnAbsence.setBounds(930,300,130,55);
 		jbtnAbsence.setFont(jbtnFont);

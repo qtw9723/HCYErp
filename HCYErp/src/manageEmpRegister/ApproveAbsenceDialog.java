@@ -1,6 +1,7 @@
 package manageEmpRegister;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
@@ -77,11 +78,6 @@ public class ApproveAbsenceDialog extends JDialog {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}//catch
-		jcbEmpNoName.setBounds(600,70,150,40);
-		
-		add(jcbEmpNoName);
-		
-
 		
 		// 현재 년을 설정
 		int year = cal.get(Calendar.YEAR);
@@ -110,11 +106,41 @@ public class ApproveAbsenceDialog extends JDialog {
 		jcbReason.addItem("자기계발 휴직");
 		jcbReason.addItem("배우자 동반 휴직");
 		jcbReason.addItem("기타(직접입력)");
-
 		
 		setLayout(null);
 		
+		//폰트
+		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 14);
+		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 15);
+		Font jtaFont = new Font("맑은 고딕", Font.PLAIN, 15);
+		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		
+		jcbStartYear.setFont(jcbFont);
+		jcbStartMonth.setFont(jcbFont);
+		jcbStartDay.setFont(jcbFont);
+		jcbEndYear.setFont(jcbFont);
+		jcbEndMonth.setFont(jcbFont);
+		jcbEndDay.setFont(jcbFont);
+		jcbReason.setFont(jcbFont);
+		jcbEmpNoName.setFont(jcbFont);
+
+		jlblPeriod.setFont(jlblFont);
+		jlblDuring.setFont(jlblFont);
+		jlblReason.setFont(jlblFont);
+		jlblStartYear.setFont(jlblFont);
+		jlblStartMonth.setFont(jlblFont);
+		jlblStartDay.setFont(jlblFont);
+		jlblEndYear.setFont(jlblFont);
+		jlblEndMonth.setFont(jlblFont);
+		jlblEndDay.setFont(jlblFont);
+		
+		jtaWriteReason.setFont(jtaFont);
+		
+		jbtnApprove.setFont(jbtnFont);
+		jbtnCancel.setFont(jbtnFont);
+		
 		//add
+		add(jcbEmpNoName);
 		add(jcbStartYear);
 		add(jcbStartMonth);
 		add(jcbStartDay);
@@ -139,32 +165,35 @@ public class ApproveAbsenceDialog extends JDialog {
 		add(jbtnCancel);
 
 		// 컴포넌트 크기 및 위치 설정
-		jcbStartYear.setBounds(170, 20, 100, 30);
-		jcbStartMonth.setBounds(320, 20, 100, 30);
-		jcbStartDay.setBounds(470, 20, 100, 30);
-		jcbEndYear.setBounds(170, 100, 100, 30);
-		jcbEndMonth.setBounds(320, 100, 100, 30);
-		jcbEndDay.setBounds(470, 100, 100, 30);
+		jcbEmpNoName.setBounds(600,70,150,30);
+		jcbStartYear.setBounds(140, 20, 80, 30);
+		jcbStartMonth.setBounds(290, 20, 50, 30);
+		jcbStartDay.setBounds(440, 20, 50, 30);
+		jcbEndYear.setBounds(140, 100, 80, 30);
+		jcbEndMonth.setBounds(290, 100, 50, 30);
+		jcbEndDay.setBounds(440, 100, 50, 30);
 		jcbReason.setBounds(120, 150, 120, 30);
 		
 		jlblPeriod.setBounds(35, 20, 100, 30);
 		jlblDuring.setBounds(370, 50, 50, 50);
 		jlblReason.setBounds(35, 150, 100, 30);
 		
-		jlblStartYear.setBounds(280, 20, 100, 30);
-		jlblStartMonth.setBounds(430, 20, 100, 30);
-		jlblStartDay.setBounds(580, 20, 100, 30);
-		jlblEndYear.setBounds(280, 100, 100, 30);
-		jlblEndMonth.setBounds(430, 100, 100, 30);
-		jlblEndDay.setBounds(580, 100, 100, 30);
+		jlblStartYear.setBounds(240, 20, 100, 30);
+		jlblStartMonth.setBounds(390, 20, 100, 30);
+		jlblStartDay.setBounds(540, 20, 100, 30);
+		jlblEndYear.setBounds(240, 100, 100, 30);
+		jlblEndMonth.setBounds(390, 100, 100, 30);
+		jlblEndDay.setBounds(540, 100, 100, 30);
 		
 		jtaWriteReason.setBounds(250,150,420,200);
 		
 		jbtnApprove.setBounds(80,230,100,30);
 		jbtnApprove.setBackground(new Color(0x8244AD));
+		jbtnApprove.setForeground(Color.white);
 		jbtnCancel.setBounds(80,300,100,30);
 		jbtnCancel.setBackground(new Color(0x5E5E5E));
-
+		jbtnCancel.setForeground(Color.black);
+		
 		ApproveAbsenceDialogEvt event=new ApproveAbsenceDialogEvt(this);
 		jcbReason.addActionListener(event);
 		jcbStartMonth.addActionListener(event);
@@ -173,6 +202,7 @@ public class ApproveAbsenceDialog extends JDialog {
 		jbtnApprove.addActionListener(event);
 		jbtnCancel.addActionListener(event);
 		
+		setTitle("휴직 처리");
 		setBounds(mer.getX()+100, mer.getY()+100, 800, 400);
 		setVisible(true);
 		
