@@ -2,6 +2,7 @@ package manageEmpRegister;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
@@ -26,6 +27,9 @@ public class ApproveResignationDialog extends JDialog {
 	JComboBox<Integer> jcbYear;
 	JComboBox<Integer> jcbMonth;
 	JComboBox<Integer> jcbDay;
+	JLabel jlblYear;
+	JLabel jlblMonth;
+	JLabel jlblDay;
 	
 	private ManageEmpRegister mer;
 	
@@ -42,13 +46,16 @@ public class ApproveResignationDialog extends JDialog {
 		
 		//JLabel
 		jlblLastDate=new JLabel("퇴사일 : ");
-		
+		jlblYear=new JLabel("년");
+		jlblMonth=new JLabel("월");
+		jlblDay=new JLabel("일");
+				
 		//JButton선언
 		jbtnApprove=new JButton("퇴사처리");
 		jbtnCancel=new JButton("취소");
 		
 		//JTextarea선언
-		jtaReason=new JTextArea();
+		jtaReason=new JTextArea("퇴사 사유를 적어주세요.");
 		jtaReason.setLineWrap(true);
 		
 		//사원번호/이름 콤보박스 선언
@@ -62,7 +69,6 @@ public class ApproveResignationDialog extends JDialog {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}//end catch
-		jcbEmpNoName.setBounds(100, 40, 150, 40);
 		
 		//현재 년 설정
 		int year=cal.get(Calendar.YEAR);
@@ -82,6 +88,24 @@ public class ApproveResignationDialog extends JDialog {
 		
 		setLayout(null);
 		
+		//폰트
+		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 14);
+		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 15);
+		Font jtaFont = new Font("맑은 고딕", Font.PLAIN, 13);
+		
+		jcbEmpNoName.setFont(jcbFont);
+		jcbYear.setFont(jcbFont);
+		jcbMonth.setFont(jcbFont);
+		jcbDay.setFont(jcbFont);
+		jbtnApprove.setFont(jbtnFont);
+		jbtnCancel.setFont(jbtnFont);
+		jlblLastDate.setFont(jlblFont);
+		jlblYear.setFont(jlblFont);
+		jlblMonth.setFont(jlblFont);
+		jlblDay.setFont(jlblFont);
+		jtaReason.setFont(jtaFont);
+		
 		add(jcbEmpNoName);
 		add(jbtnApprove);
 		add(jbtnCancel);
@@ -89,17 +113,26 @@ public class ApproveResignationDialog extends JDialog {
 		add(jcbMonth);
 		add(jcbDay);
 		add(jlblLastDate);
+		add(jlblYear);
+		add(jlblMonth);
+		add(jlblDay);
 		add(jtaReason);
 		
-		jtaReason.setBounds(30,100,300,200);
+		jtaReason.setBounds(30,100,305,220);
 		jlblLastDate.setBounds(30,350,100,30);
-		jcbYear.setBounds(110,350,100,30);
-		jcbMonth.setBounds(230,350,100,30);
-		jcbDay.setBounds(350,350,100,30);
-		jbtnApprove.setBounds(50,400,100,30);
+		jcbEmpNoName.setBounds(110, 40, 150, 30);
+		jcbYear.setBounds(90,350,70,30);
+		jcbMonth.setBounds(190,350,50,30);
+		jcbDay.setBounds(270,350,50,30);
+		jlblYear.setBounds(165,350,50,30);
+		jlblMonth.setBounds(245,350,50,30);
+		jlblDay.setBounds(325,350,50,30 );
+		jbtnApprove.setBounds(40,410,135,40);
 		jbtnApprove.setBackground(new Color(0x8244AD));
-		jbtnCancel.setBounds(200,400,100,30);
+		jbtnApprove.setForeground(Color.white);
+		jbtnCancel.setBounds(190,410,135,40);
 		jbtnCancel.setBackground(new Color(0x5E5E5E));
+		jbtnCancel.setForeground(Color.white);
 		
 		ApproveResignationDialogEvt event=new ApproveResignationDialogEvt(this);
 		jcbYear.addActionListener(event);
@@ -108,8 +141,9 @@ public class ApproveResignationDialog extends JDialog {
 		jbtnApprove.addActionListener(event);
 		jbtnCancel.addActionListener(event);
 		
+		setTitle("퇴사 처리");
 		setVisible(true);
-		setBounds(mer.getX()+150,mer.getY()+150,500,500);
+		setBounds(mer.getX()+150,mer.getY()+150,385,520);
 		
 	}// constructor
 
