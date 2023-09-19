@@ -126,7 +126,7 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 		String docName = "";
 		String docPath = "";
 		List<String> dvDocNameList = null;
-		ManageDocDAO mdDAO=null;
+		ManageDocDAO mdDAO = null;
 		// 추가된 파일 하나씩 for문
 		for (String filePath : selectPathList) {
 			mdDAO = ManageDocDAO.getInstance();
@@ -142,14 +142,20 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 					docName = JOptionPane.showInputDialog("선택하신 파일과 같은 이름의 파일이 이미 업로드 되어있습니다. 새로운 이름을 입력해주세요!",
 							docName.substring(0, docName.lastIndexOf(".")) + "_최종"
 									+ docName.substring(docName.lastIndexOf(".")));
-					if(docName!=null) {
-					selectPathList.remove(filePath);
-					filePath = docPath + File.separator + docName;
-					fud.getListmodel().addElement(docName);
-					selectPathList.add(filePath);
-					JOptionPane.showMessageDialog(fud, "파일 이름이 변경되어 등록되었습니다. 실제 파일 제목과는 다를 수 있습니다.");
+					if (docName != null) {
+						File file = new File(filePath);
+						if (file.renameTo(new File(docPath + File.separator + docName))) {
+							selectPathList.remove(filePath);
+							filePath = docPath + File.separator + docName;
+							fud.getListmodel().addElement(docName);
+							selectPathList.add(filePath);
+							JOptionPane.showMessageDialog(fud, "파일 이름을 "+docName+"으로 바꿨습니다! 업로드를 다시 시도해주세요!");
+							return;
+						} // if
+						JOptionPane.showMessageDialog(fud, "파일 이름 바꾸기를 실패했습니다. 다시 시도해주세요!");
+						return;
+					} // if
 					return;
-					}//if
 				} // if
 			} // for
 			HCYFileClient.getInstance().uploadFile(new File(filePath));
@@ -157,8 +163,6 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 			dVO = new DocVO();
 			dVO.setDocName(docName);
 			dVO.setDeptNo(fud.getMd().getHcyE().getUser());
-			System.out.println(fud.getMd().getHcyE().getUser());
-
 			mdDAO.insertDoc(dVO);
 			fud.getMd().getJpDoc().add(new Checkbox(docName));
 			fud.repaint();
