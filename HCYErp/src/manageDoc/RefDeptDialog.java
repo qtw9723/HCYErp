@@ -52,13 +52,17 @@ public class RefDeptDialog extends JDialog {
 				} // if
 			} // for
 			String Dept = "";
+			String comp = "";
 			for (String fileName : fileNameList) {
+				comp = ManageDocDAO.getInstance().selectDept(fileNameList.get(0));
 				Dept = ManageDocDAO.getInstance().selectDept(fileName);
-				if (!fileNameList.get(0).equals(Dept)) {
+				System.out.println(Dept);
+				if (!comp.equals(Dept)) {
 					throw new Exception("다른 부서의 문서 선택");
 				} // if
 			} // for
 			for (JCheckBox jcb : jcbList) {
+				System.out.println(jcb.getText() + Dept);
 				if (jcb.getText().equals(Dept)) {
 					jcb.setSelected(true);
 					jcb.setEnabled(false);
