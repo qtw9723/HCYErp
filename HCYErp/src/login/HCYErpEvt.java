@@ -91,7 +91,6 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 					@Override
 					public void stateChanged(ChangeEvent e) {
 						selectedIndex = hcyE.getTabbedPane().getSelectedIndex();
-						System.out.println(selectedIndex);
 					}// stateChanged
 				});
 				hcyE.add(hcyE.getTabbedPane());
