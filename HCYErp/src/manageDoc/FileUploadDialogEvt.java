@@ -123,14 +123,15 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 	}// deleteFile
 
 	public void uploadFile() throws UnknownHostException, IOException, SQLException {
-		String originPath = "";
 		String docName = "";
 		String docPath = "";
+		List<String> dvDocNameList = null;
+		ManageDocDAO mdDAO=null;
 		// 추가된 파일 하나씩 for문
 		for (String filePath : selectPathList) {
-			ManageDocDAO mdDAO = ManageDocDAO.getInstance();
+			mdDAO = ManageDocDAO.getInstance();
 			// 업로드된 문서목록 받기
-			List<String> dvDocNameList = mdDAO.selectDoc();
+			dvDocNameList = mdDAO.selectDoc();
 			// 문서 이름, 경로 저장
 			docName = filePath.substring(filePath.lastIndexOf("\\") + 1);
 			docPath = filePath.substring(0, filePath.lastIndexOf("\\"));
@@ -141,25 +142,22 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 					docName = JOptionPane.showInputDialog("선택하신 파일과 같은 이름의 파일이 이미 업로드 되어있습니다. 새로운 이름을 입력해주세요!",
 							docName.substring(0, docName.lastIndexOf(".")) + "_최종"
 									+ docName.substring(docName.lastIndexOf(".")));
+					if(docName!=null) {
 					selectPathList.remove(filePath);
-					originPath = filePath;
 					filePath = docPath + File.separator + docName;
 					fud.getListmodel().addElement(docName);
 					selectPathList.add(filePath);
-					uploadFile();
-					break;
+					JOptionPane.showMessageDialog(fud, "파일 이름이 변경되어 등록되었습니다. 실제 파일 제목과는 다를 수 있습니다.");
+					return;
+					}//if
 				} // if
-				originPath = "";
 			} // for
-			if (originPath.isEmpty()) {
-				HCYFileClient.getInstance().uploadFile(new File(filePath));
-			} else {
-				HCYFileClient.getInstance().uploadFile(new File(originPath));
-			} // else
+			HCYFileClient.getInstance().uploadFile(new File(filePath));
 			DocVO dVO = null;
 			dVO = new DocVO();
 			dVO.setDocName(docName);
 			dVO.setDeptNo(fud.getMd().getHcyE().getUser());
+			System.out.println(fud.getMd().getHcyE().getUser());
 
 			mdDAO.insertDoc(dVO);
 			fud.getMd().getJpDoc().add(new Checkbox(docName));
