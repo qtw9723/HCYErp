@@ -164,14 +164,7 @@ public class ManageEmp extends JPanel {
 		jlDepartment.setFont(font);
 		jlTeam.setFont(font);
 		jlName.setFont(font);
-		if(this.getHcyE().getEvent().getSelectedIndex()!=5) {
-			try {
-				refresh(this.getHcyE().getEvent().getSelectedIndex());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		
 	}// constructor
 
 	public JList<String> getJlDepartment() {
