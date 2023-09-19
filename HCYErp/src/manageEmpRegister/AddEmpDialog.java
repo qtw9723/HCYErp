@@ -169,6 +169,47 @@ public class AddEmpDialog extends JDialog {
 		add(jbtnAddEmp);
 		add(jbtnCancel);
 
+		//폰트
+		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 14);
+		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 14);
+		Font jtfFont = new Font("맑은 고딕", Font.PLAIN, 14);
+				
+		jlblEname.setFont(jlblFont);
+		jlblEmail.setFont(jlblFont);
+		jlblHyphenEmail.setFont(jlblFont);
+		jlblAddr.setFont(jlblFont);
+		jlblSsn.setFont(jlblFont);
+		jlblHyphenSsn.setFont(jlblFont);
+		jlblDept.setFont(jlblFont);
+		jlblTeam.setFont(jlblFont);
+		jlblJob.setFont(jlblFont);
+		jlblTel.setFont(jlblFont);
+		jlblJobTel.setFont(jlblFont);
+		jlblLevel.setFont(jlblFont);
+		jlblYearHiredate.setFont(jlblFont);
+		jlblMonthHiredate.setFont(jlblFont);
+		jlblDayHiredate.setFont(jlblFont);
+		jlblSal.setFont(jlblFont);
+		jlblLoc.setFont(jlblFont);
+		
+		jcbYearHiredate.setFont(jcbFont);
+		jcbMonthHiredate.setFont(jcbFont);
+		jcbDayHiredate.setFont(jcbFont);
+		
+		jtfEname.setFont(jtfFont);
+		jtfStartEmail.setFont(jtfFont);
+		jtfEndEmail.setFont(jtfFont);
+		jtfAddr.setFont(jtfFont);
+		jtfDetailAddr.setFont(jtfFont);
+		jtfStartSsn.setFont(jtfFont);
+		jtfEndSsn.setFont(jtfFont);
+		jtfDept.setFont(jtfFont);
+		jtfTeam.setFont(jtfFont);
+		jtfJob.setFont(jtfFont);
+		jtfTel.setFont(jtfFont);
+		jtfJobTel.setFont(jtfFont);
+		jtfLevel.setFont(jtfFont);
+		
 		// 배치
 		jlblEname.setBounds(30, 50, 100, 50);
 		jlblEmail.setBounds(30, 90, 100, 50);
@@ -202,19 +243,19 @@ public class AddEmpDialog extends JDialog {
 		jtfJobTel.setBounds(130, 420, 150, 30);
 		jtfLevel.setBounds(130, 460, 100, 30);
 
-		jcbYearHiredate.setBounds(400, 10, 100, 50);
-		jcbMonthHiredate.setBounds(550, 10, 100, 50);
-		jcbDayHiredate.setBounds(700, 10, 100, 50);
+		jcbYearHiredate.setBounds(400, 10, 100, 35);
+		jcbMonthHiredate.setBounds(550, 10, 100, 35);
+		jcbDayHiredate.setBounds(700, 10, 100, 35);
 
 		jtfSal.setBounds(500, 140, 150, 30);
 		jtfLoc.setBounds(500, 180, 100, 30);
 
-		jbtnAddEmp.setBounds(700, 500, 100, 50);
+		jbtnAddEmp.setBounds(700, 500, 100, 40);
 		jbtnAddEmp.setBackground(new Color(0x6D47B0));
 		Font AddEmpBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		jbtnAddEmp.setFont(AddEmpBtnFont);
 		jbtnAddEmp.setForeground(Color.white);
-		jbtnCancel.setBounds(850, 500, 100, 50);
+		jbtnCancel.setBounds(850, 500, 100, 40);
 		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		Font CancelBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		jbtnCancel.setFont(CancelBtnFont);
@@ -227,6 +268,7 @@ public class AddEmpDialog extends JDialog {
 		jcbMonthHiredate.addActionListener(event);
 		jcbDayHiredate.addActionListener(event);
 
+		setTitle("입사자 추가");
 		setVisible(true);
 		setSize(1000, 600);
 
