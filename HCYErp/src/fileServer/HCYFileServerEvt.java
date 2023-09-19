@@ -86,10 +86,7 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 	}// startServer
 
 	public void closeServer() throws IOException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		if (uploadServer != null) {uploadServer.close();}
-		if (downloadServer != null) {downloadServer.close();} 
-		hcyfs.getJtaConnectList().append(sdf.format(new Date()) + "에 서버가 종료되었습니다.\n");
+		System.exit(0);
 	}// startServer
 
 	@Override

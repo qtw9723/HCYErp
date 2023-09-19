@@ -51,15 +51,15 @@ public class RefDeptDialog extends JDialog {
 					fileNameList.add(entry.getValue().getText());
 				} // if
 			} // for
-			String userDept = "";
+			String Dept = "";
 			for (String fileName : fileNameList) {
-				String tempDept = ManageDocDAO.getInstance().selectDept(fileName);
-				if (!userDept.equals(tempDept)) {
-					new Exception("다른 부서의 문서 선택");
+				Dept = ManageDocDAO.getInstance().selectDept(fileName);
+				if (!fileNameList.get(0).equals(Dept)) {
+					throw new Exception("다른 부서의 문서 선택");
 				} // if
 			} // for
 			for (JCheckBox jcb : jcbList) {
-				if (jcb.getText().equals(userDept)) {
+				if (jcb.getText().equals(Dept)) {
 					jcb.setSelected(true);
 					jcb.setEnabled(false);
 				} // if
@@ -67,9 +67,9 @@ public class RefDeptDialog extends JDialog {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
-			e.printStackTrace();
 			JOptionPane.showMessageDialog(md, "여러 문서에 대한 열람 권한 부여는 같은 부서에서 제작한 문서끼리만 가능합니다.");
 			dispose();
+			return;
 		} // catch
 
 		jbtnApproveRef = new JButton("권한 부여");
@@ -80,7 +80,6 @@ public class RefDeptDialog extends JDialog {
 		add(jcbProduct);
 		add(jcbService);
 		add(jcbBusiness);
-		add(jcbExecutive);
 		add(jbtnApproveRef);
 		add(jbtnCancel);
 
@@ -89,7 +88,6 @@ public class RefDeptDialog extends JDialog {
 		jcbProduct.setBounds(10, 110, 100, 60);
 		jcbService.setBounds(10, 160, 100, 60);
 		jcbBusiness.setBounds(10, 210, 100, 60);
-		jcbExecutive.setBounds(10, 260, 100, 60);
 
 		jbtnApproveRef.setBounds(135, 190, 120, 50);
 		jbtnApproveRef.setBackground(new Color(0x8244AD));
