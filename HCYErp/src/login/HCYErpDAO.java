@@ -35,8 +35,6 @@ public class HCYErpDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		System.out.println("asd");
-		
 		DbConn db=DbConn.getInstance();
 		
 		
