@@ -1,5 +1,6 @@
 package manageEmp;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
@@ -47,6 +48,10 @@ public class ManageEmpDialog extends JDialog{
 	
 	public ManageEmpDialog(ManageEmp me,EmpVO eVO) {
 		this.me=me;
+		
+		setTitle("사원 정보");
+		getContentPane().setBackground(new Color(255,245,245));
+		//JLabel
 		jlblEname=new JLabel("이름");
 		jlblLevel=new JLabel("직급");
 		jlblTel=new JLabel("전화");
@@ -57,7 +62,8 @@ public class ManageEmpDialog extends JDialog{
 		jlblLoc=new JLabel("근무지");
 		jlblSal=new JLabel("연봉");
 		
-		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 12);
+		//JLabel font설정
+		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 14);
 		jlblEname.setFont(jlblFont);
 		jlblLevel.setFont(jlblFont);
 		jlblTel.setFont(jlblFont);
@@ -68,6 +74,7 @@ public class ManageEmpDialog extends JDialog{
 		jlblLoc.setFont(jlblFont);
 		jlblSal.setFont(jlblFont);
 		
+		//JTextField
 		jtfEname=new JTextField(eVO.getEname());
 		jtfLevel=new JTextField(eVO.getLevel());
 		jtfTel=new JTextField(eVO.getTel());
@@ -77,6 +84,18 @@ public class ManageEmpDialog extends JDialog{
 		jtfJob=new JTextField(eVO.getJob());
 		jtfLoc=new JTextField(eVO.getDeptLoc());
 		jtfSal=new JTextField(String.valueOf(eVO.getSal()));
+		
+		//JTextField font설정
+		Font jtfFont = new Font("맑은 고딕", Font.PLAIN, 14);
+		jtfEname.setFont(jtfFont);
+		jtfLevel.setFont(jtfFont);
+		jtfTel.setFont(jtfFont);
+		jtfEmail.setFont(jtfFont);
+		jtfDept.setFont(jtfFont);
+		jtfTeam.setFont(jtfFont);
+		jtfJob.setFont(jtfFont);
+		jtfLoc.setFont(jtfFont);
+		jtfSal.setFont(jtfFont);
 		
 		jbtnModify=new JButton("사원정보 수정");
 		jbtnOK=new JButton("수정확인");
@@ -89,12 +108,12 @@ public class ManageEmpDialog extends JDialog{
 		jbtnOK.setBackground(new Color(0x461C90));
 		jbtnOK.setFont(jbtnFont);
 		jbtnOK.setForeground(Color.white);
-		jbtnCancel.setBackground(new Color(0x461C90));
+		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		jbtnCancel.setFont(jbtnFont);
-		jbtnCancel.setForeground(Color.white);
+		jbtnCancel.setForeground(Color.BLACK);
 		
 		//텍스트 필드 디자인
-		Border focusField=BorderFactory.createLineBorder(new Color(0xEE82EE),2);// Line border
+		Border focusField=BorderFactory.createLineBorder(new Color(255,72,72),2);// Line border
 		Border unfocusField=BorderFactory.createLineBorder(Color.LIGHT_GRAY);// Line border
 		
 		
@@ -227,15 +246,15 @@ public class ManageEmpDialog extends JDialog{
 		add(jlblLoc);
 		add(jlblSal);
 		
-		jlblEname.setBounds(45,95,100,30);
-		jlblLevel.setBounds(45,145,100,30);
-		jlblTel.setBounds(45,195,100,30);
-		jlblEmail.setBounds(45,245,100,30);
-		jlblDept.setBounds(285,45,100,30);
-		jlblTeam.setBounds(285,95,100,30);
-		jlblJob.setBounds(285,145,100,30);
-		jlblLoc.setBounds(285,195,100,30);
-		jlblSal.setBounds(285,245,100,30);
+		jlblEname.setBounds(35,50,100,30);
+		jlblLevel.setBounds(35,100,100,30);
+		jlblTel.setBounds(35,150,100,30);
+		jlblEmail.setBounds(35,200,100,30);
+		jlblDept.setBounds(295,50,100,30);
+		jlblTeam.setBounds(295,100,100,30);
+		jlblJob.setBounds(295,150,100,30);
+		jlblLoc.setBounds(295,200,100,30);
+		jlblSal.setBounds(295,250,100,30);
 		
 		add(jtfEname);
 		add(jtfLevel);
@@ -247,15 +266,15 @@ public class ManageEmpDialog extends JDialog{
 		add(jtfLoc);
 		add(jtfSal);
 		
-		jtfEname.setBounds(120,95,110,30);
-		jtfLevel.setBounds(120,145,110,30);
-		jtfTel.setBounds(120,195,110,30);
-		jtfEmail.setBounds(120,245,110,30);
-		jtfDept.setBounds(355,45,110,30);
-		jtfTeam.setBounds(355,95,110,30);
-		jtfJob.setBounds(355,145,110,30);
-		jtfLoc.setBounds(355,195,110,30);
-		jtfSal.setBounds(355,245,110,30); 
+		jtfEname.setBounds(90,45,170,40);
+		jtfLevel.setBounds(90,95,170,40);
+		jtfTel.setBounds(90,145,170,40);
+		jtfEmail.setBounds(90,195,170,40);
+		jtfDept.setBounds(355,45,130,40);
+		jtfTeam.setBounds(355,95,130,40);
+		jtfJob.setBounds(355,145,130,40);
+		jtfLoc.setBounds(355,195,130,40);
+		jtfSal.setBounds(355,245,130,40); 
 		
 		add(jbtnModify);
 		add(jbtnOK);
@@ -273,7 +292,7 @@ public class ManageEmpDialog extends JDialog{
 		
 		setBounds(me.getX()+300,me.getY()+100,540,450);
 		setVisible(true);
-		
+		setResizable(false);
 	}//constructor
 	
 

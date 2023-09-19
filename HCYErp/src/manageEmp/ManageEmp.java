@@ -1,10 +1,12 @@
 package manageEmp;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -51,7 +53,16 @@ public class ManageEmp extends JPanel {
 		ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
 
 		setLayout(null);
-
+		
+		//타이틀바 디자인
+		TitledBorder titleBorderDept=BorderFactory.createTitledBorder("부서");
+		TitledBorder titleBorderTeam=BorderFactory.createTitledBorder("팀");
+		TitledBorder titleBorderEmp=BorderFactory.createTitledBorder("사원");
+		Font titleFont=new Font("맑은 고딕",Font.BOLD,15);
+		titleBorderDept.setTitleFont(titleFont);
+		titleBorderTeam.setTitleFont(titleFont);
+		titleBorderEmp.setTitleFont(titleFont);
+		
 		// 부서 리스트
 		dlmDept = new DefaultListModel<String>();
 		jlDepartment = new JList<String>(dlmDept);
@@ -62,7 +73,7 @@ public class ManageEmp extends JPanel {
 		
 		jspDepartment = new JScrollPane(jlDepartment);
 		jspDepartment.setBounds(150, 100, 230, 400);
-		jspDepartment.setBorder(new TitledBorder("부서"));
+		jspDepartment.setBorder(titleBorderDept);
 		jlDepartment.addMouseListener(event);
 		add(jspDepartment);
 
@@ -82,7 +93,7 @@ public class ManageEmp extends JPanel {
 
 		jspTeam = new JScrollPane(jlTeam);
 		jspTeam.setBounds(430, 100, 230, 400);
-		jspTeam.setBorder(new TitledBorder("팀"));
+		jspTeam.setBorder(titleBorderTeam);
 		jlTeam.addMouseListener(event);
 		add(jspTeam);
 
@@ -124,7 +135,7 @@ public class ManageEmp extends JPanel {
 		
 		jspName = new JScrollPane(jlName);
 		jspName.setBounds(710, 100, 230, 400);
-		jspName.setBorder(new TitledBorder("사원"));
+		jspName.setBorder(titleBorderEmp);
 		jlName.addMouseListener(event);
 		add(jspName);
 
@@ -148,6 +159,11 @@ public class ManageEmp extends JPanel {
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 		
+		//글꼴 폰트 설정
+		Font font=new Font("맑은 고딕",Font.PLAIN,14);
+		jlDepartment.setFont(font);
+		jlTeam.setFont(font);
+		jlName.setFont(font);
 	}// constructor
 
 	public JList<String> getJlDepartment() {
