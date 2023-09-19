@@ -1,9 +1,11 @@
 package manageLeave;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.SQLException;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -27,27 +29,39 @@ public class ManageLeaveDialog extends JDialog {
 		ManageLeaveDialogEvt event = new ManageLeaveDialogEvt(this);
 		setLayout(null);
 		
+		//타이틀 제목
+		setTitle("휴가 신청 관리");
+		
 		//휴가신청 사원 정보
-		Font infoFont = new Font("맑은 고딕",Font.BOLD,17);
+		Font infoFont = new Font("맑은 고딕",Font.PLAIN,15);
 		jlblInfoPerson = new JLabel();
 		doaVO= ManageLeaveDAO.getInstance().selectPersonalDayOffApply(ml.getDoaVOList().get(ml.getJtLeaveProposal().getSelectedRow()).getDayOffNo());
 		StringBuilder sbDoaVO = new StringBuilder();
-		sbDoaVO.append("<html>사원번호&nbsp;:&nbsp;").append(doaVO.getEmpNo()).append("<br>사원이름&nbsp;:&nbsp;").append(doaVO.getEname()).append("<br>휴가 시작 일&nbsp;:&nbsp;")
-		.append(doaVO.getStartDate()).append("<br>휴가 끝 일&nbsp;:&nbsp;").append(doaVO.getEndDate()).append("<br>신청사유&nbsp;:&nbsp;").append(doaVO.getReason()).append("</html>");
+		sbDoaVO.append("<html><b>사원번호&nbsp;:&nbsp;</b>").append(doaVO.getEmpNo()).append("<br>").append("<br><b>사원이름&nbsp;:&nbsp;</b>").append(doaVO.getEname()).append("<br>").append("<br><b>휴가 시작일&nbsp;:&nbsp;</b>")
+		.append(doaVO.getStartDate()).append("<br>").append("<br><b>휴가 종료일&nbsp;:&nbsp;</b>").append(doaVO.getEndDate()).append("<br>").append("<br><b>신청사유&nbsp;:&nbsp;</b>").append(doaVO.getReason()).append("</html>");
 		jlblInfoPerson.setText(sbDoaVO.toString());
-		jlblInfoPerson.setBounds(70,10,1000,200);
+		jlblInfoPerson.setBounds(70,43,1000,200);
 		jlblInfoPerson.setFont(infoFont);
 		add(jlblInfoPerson);
 		
 		//반려 사유 입력창
 		jtaRejectReason = new JTextArea();
+		Font jtaFont=new Font("맑은 고딕",Font.PLAIN,13);
+		jtaRejectReason.setFont(jtaFont);
 		jtaRejectReason.setBounds(400,40,340,240);
-		jtaRejectReason.setBorder(new TitledBorder("반려 사유"));
+		TitledBorder titleBorder=BorderFactory.createTitledBorder("휴가 신청 목록");
+		Font titleFont=new Font("맑은 고딕",Font.BOLD,15);
+		titleBorder.setTitleFont(titleFont);
+		titleBorder.setTitleJustification(titleBorder.CENTER);
+		jtaRejectReason.setBorder(titleBorder);
 		add(jtaRejectReason);
 		
 		//승인버튼
 		jbtnApprove = new JButton("승인");
+		Font buttonFont=new Font("맑은 고딕",Font.BOLD,15);
 		jbtnApprove.setBounds(400,300,100,40);
+		jbtnApprove.setFont(buttonFont);
+		jbtnApprove.setForeground(Color.white);
 		jbtnApprove.setBackground(new Color(0x8244AD));
 		jbtnApprove.addActionListener(event);
 		add(jbtnApprove);
@@ -55,6 +69,7 @@ public class ManageLeaveDialog extends JDialog {
 		//취소버튼
 		jbtnCancel = new JButton("취소");
 		jbtnCancel.setBounds(640,300,100,40);
+		jbtnCancel.setFont(buttonFont);
 		jbtnCancel.setBackground(new Color(0xE0E0E0));
 		jbtnCancel.addActionListener(event);
 		add(jbtnCancel);
@@ -62,6 +77,8 @@ public class ManageLeaveDialog extends JDialog {
 		//반려버튼
 		jbtnReject = new JButton("반려");
 		jbtnReject.setBounds(520,300,100,40);
+		jbtnReject.setFont(buttonFont);
+		jbtnReject.setForeground(Color.white);
 		jbtnReject.setBackground(new Color(0x5E5E5E));
 		jbtnReject.addActionListener(event);
 		add(jbtnReject);
@@ -70,6 +87,7 @@ public class ManageLeaveDialog extends JDialog {
 		//다이얼로그 설정
 		setBounds(ml.getHcyE().getX()+100,ml.getHcyE().getY()+100, 800, 400);
 		setVisible(true);
+		setResizable(false);
 	}//Constructor 
 
 	public JButton getJbtnApprove() {

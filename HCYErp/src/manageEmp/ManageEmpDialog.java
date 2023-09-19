@@ -47,6 +47,10 @@ public class ManageEmpDialog extends JDialog{
 	
 	public ManageEmpDialog(ManageEmp me,EmpVO eVO) {
 		this.me=me;
+		
+		setTitle("사원 정보");
+		
+		//JLabel
 		jlblEname=new JLabel("이름");
 		jlblLevel=new JLabel("직급");
 		jlblTel=new JLabel("전화");
@@ -57,7 +61,8 @@ public class ManageEmpDialog extends JDialog{
 		jlblLoc=new JLabel("근무지");
 		jlblSal=new JLabel("연봉");
 		
-		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 12);
+		//JLabel font설정
+		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 14);
 		jlblEname.setFont(jlblFont);
 		jlblLevel.setFont(jlblFont);
 		jlblTel.setFont(jlblFont);
@@ -68,6 +73,7 @@ public class ManageEmpDialog extends JDialog{
 		jlblLoc.setFont(jlblFont);
 		jlblSal.setFont(jlblFont);
 		
+		//JTextField
 		jtfEname=new JTextField(eVO.getEname());
 		jtfLevel=new JTextField(eVO.getLevel());
 		jtfTel=new JTextField(eVO.getTel());
@@ -77,6 +83,18 @@ public class ManageEmpDialog extends JDialog{
 		jtfJob=new JTextField(eVO.getJob());
 		jtfLoc=new JTextField(eVO.getDeptLoc());
 		jtfSal=new JTextField(String.valueOf(eVO.getSal()));
+		
+		//JTextField font설정
+		Font jtfFont = new Font("맑은 고딕", Font.BOLD, 14);
+		jtfEname.setFont(jtfFont);
+		jtfLevel.setFont(jtfFont);
+		jtfTel.setFont(jtfFont);
+		jtfEmail.setFont(jtfFont);
+		jtfDept.setFont(jtfFont);
+		jtfTeam.setFont(jtfFont);
+		jtfJob.setFont(jtfFont);
+		jtfLoc.setFont(jtfFont);
+		jtfSal.setFont(jtfFont);
 		
 		jbtnModify=new JButton("사원정보 수정");
 		jbtnOK=new JButton("수정확인");
@@ -273,7 +291,7 @@ public class ManageEmpDialog extends JDialog{
 		
 		setBounds(me.getX()+300,me.getY()+100,540,450);
 		setVisible(true);
-		
+		setResizable(false);
 	}//constructor
 	
 

@@ -88,8 +88,8 @@ public class ManageEmpDialogEvt extends MouseAdapter implements ActionListener{
 		med.getJbtnModify().setVisible(false);
 		med.getJbtnOK().setVisible(true);
 		med.getJbtnCancel().setVisible(true);
-		med.getJbtnOK().setBounds(180,320,150,50);
-		med.getJbtnCancel().setBounds(350, 320, 150, 50);
+		med.getJbtnOK().setBounds(130,320,120,50);
+		med.getJbtnCancel().setBounds(300, 320, 120, 50);
 		
 	}//modifyEmpInfo
 	
