@@ -37,7 +37,7 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 			if (e.getSource() == md.getJbtnFileDownload()) {
 				downloadFile();
 			} // if
-			// 파일 삭제 버튼
+				// 파일 삭제 버튼
 			if (e.getSource() == md.getJbtnFileDelete()) {
 				deleteFile();
 			} // if
@@ -51,10 +51,13 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 			JOptionPane.showMessageDialog(md, "데이터 베이스에 문제가 생겼습니다. 기술팀에 문의하세요!");
 			e1.printStackTrace();
 		} // catch
-		
+
 		// 참조 버튼
 		if (e.getSource() == md.getJbtnRef()) {
 			new RefDeptDialog(md);
+		} // if
+		if (e.getSource() == md.getJbtnLogOut()) {
+			logOut();
 		} // if
 
 	}// actionPerformed
@@ -115,19 +118,19 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 
 			StringBuilder failList = new StringBuilder();
 			JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-	        fileChooser.setDialogTitle("다운로드 받을 디렉토리 선택"); // 다이얼로그 제목 설정
-	        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-	        
-	        int choose = fileChooser.showOpenDialog(null);
+			fileChooser.setDialogTitle("다운로드 받을 디렉토리 선택"); // 다이얼로그 제목 설정
+			fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+			int choose = fileChooser.showOpenDialog(null);
 			String path = "";
 			if (choose == JFileChooser.APPROVE_OPTION) {
-	            // 선택한 파일의 경로를 얻어옵니다.
-	            path = fileChooser.getSelectedFile().getAbsolutePath();
-	        } else {
-	        	return;
-	        }//else
+				// 선택한 파일의 경로를 얻어옵니다.
+				path = fileChooser.getSelectedFile().getAbsolutePath();
+			} else {
+				return;
+			} // else
 			for (int i = 0; i < docNoList.size(); i++) {
-				if (!(HCYFileClient.getInstance().downloadFile(path+File.separator+fileNameList.get(i)))) {
+				if (!(HCYFileClient.getInstance().downloadFile(path + File.separator + fileNameList.get(i)))) {
 					failList.append(fileNameList.get(i)).append("\n");
 				} else {
 					ManageDocDAO.getInstance().deleteDoc(docNoList.get(i));
@@ -140,6 +143,12 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 		default:
 		}// switch
 	}// downloadFile
+
+	public void logOut() {
+		md.getHcyE().getTabbedPane().setVisible(false);
+		md.getHcyE().addComponent();
+		md.getHcyE().setUser(0);
+	}// logOut
 
 	public ManageDoc getMd() {
 		return md;

@@ -165,32 +165,33 @@ public class ApproveAbsenceDialog extends JDialog {
 		add(jbtnCancel);
 
 		// 컴포넌트 크기 및 위치 설정
-		jcbEmpNoName.setBounds(600,70,150,30);
-		jcbStartYear.setBounds(140, 20, 80, 30);
-		jcbStartMonth.setBounds(290, 20, 50, 30);
-		jcbStartDay.setBounds(440, 20, 50, 30);
-		jcbEndYear.setBounds(140, 100, 80, 30);
-		jcbEndMonth.setBounds(290, 100, 50, 30);
-		jcbEndDay.setBounds(440, 100, 50, 30);
-		jcbReason.setBounds(120, 150, 120, 30);
+		jcbEmpNoName.setBounds(35,30,180,30);
 		
-		jlblPeriod.setBounds(35, 20, 100, 30);
-		jlblDuring.setBounds(370, 50, 50, 50);
-		jlblReason.setBounds(35, 150, 100, 30);
+		jcbStartYear.setBounds(120, 82, 70, 30);
+		jcbStartMonth.setBounds(230, 82, 50, 30);
+		jcbStartDay.setBounds(320, 82, 50, 30);
+		jcbEndYear.setBounds(445, 82, 80, 30);
+		jcbEndMonth.setBounds(565, 82, 50, 30);
+		jcbEndDay.setBounds(655, 82, 50, 30);
+		jcbReason.setBounds(120, 130, 200, 30);
 		
-		jlblStartYear.setBounds(240, 20, 100, 30);
-		jlblStartMonth.setBounds(390, 20, 100, 30);
-		jlblStartDay.setBounds(540, 20, 100, 30);
-		jlblEndYear.setBounds(240, 100, 100, 30);
-		jlblEndMonth.setBounds(390, 100, 100, 30);
-		jlblEndDay.setBounds(540, 100, 100, 30);
+		jlblPeriod.setBounds(35, 80, 80, 30);
+		jlblDuring.setBounds(413, 70, 50, 50);
+		jlblReason.setBounds(35, 130, 100, 30);
 		
-		jtaWriteReason.setBounds(250,150,420,200);
+		jlblStartYear.setBounds(195, 80, 100, 30);
+		jlblStartMonth.setBounds(285, 80, 100, 30);
+		jlblStartDay.setBounds(375, 80, 100, 30);
+		jlblEndYear.setBounds(530, 80, 100, 30);
+		jlblEndMonth.setBounds(620, 80, 100, 30);
+		jlblEndDay.setBounds(710, 80, 100, 30);
 		
-		jbtnApprove.setBounds(80,230,100,30);
+		jtaWriteReason.setBounds(35,180,520,150);
+		
+		jbtnApprove.setBounds(590,200,135,40);
 		jbtnApprove.setBackground(new Color(0x8244AD));
 		jbtnApprove.setForeground(Color.white);
-		jbtnCancel.setBounds(80,300,100,30);
+		jbtnCancel.setBounds(590,270,135,40);
 		jbtnCancel.setBackground(new Color(0x5E5E5E));
 		jbtnCancel.setForeground(Color.black);
 		
@@ -203,7 +204,7 @@ public class ApproveAbsenceDialog extends JDialog {
 		jbtnCancel.addActionListener(event);
 		
 		setTitle("휴직 처리");
-		setBounds(mer.getX()+100, mer.getY()+100, 800, 400);
+		setBounds(mer.getX()+100, mer.getY()+100, 780, 400);
 		setVisible(true);
 		
 	}// constructor

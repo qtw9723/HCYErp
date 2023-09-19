@@ -235,6 +235,6 @@ public class HCYErp extends JFrame {
 		this.list = list;
 	}
 	
-	
+
 
 }// class

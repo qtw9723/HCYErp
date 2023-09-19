@@ -1,6 +1,5 @@
 package manageDoc;
 
-import java.awt.Checkbox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -14,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -127,6 +127,11 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 		String docPath = "";
 		List<String> dvDocNameList = null;
 		ManageDocDAO mdDAO = null;
+		if(selectPathList==null) {
+			JOptionPane.showMessageDialog(fud, "파일을 등록한 후에 업로드 할 수 있습니다.");
+			return;
+			}// if
+		
 		// 추가된 파일 하나씩 for문
 		for (String filePath : selectPathList) {
 			mdDAO = ManageDocDAO.getInstance();
@@ -149,7 +154,7 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 							filePath = docPath + File.separator + docName;
 							fud.getListmodel().addElement(docName);
 							selectPathList.add(filePath);
-							JOptionPane.showMessageDialog(fud, "파일 이름을 "+docName+"으로 바꿨습니다! 업로드를 다시 시도해주세요!");
+							JOptionPane.showMessageDialog(fud, "파일 이름을 " + docName + "으로 바꿨습니다! 업로드를 다시 시도해주세요!");
 							return;
 						} // if
 						JOptionPane.showMessageDialog(fud, "파일 이름 바꾸기를 실패했습니다. 다시 시도해주세요!");
@@ -164,7 +169,10 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 			dVO.setDocName(docName);
 			dVO.setDeptNo(fud.getMd().getHcyE().getUser());
 			mdDAO.insertDoc(dVO);
-			fud.getMd().getJpDoc().add(new Checkbox(docName));
+			fud.getMd().getJpDoc().add(new JCheckBox(docName));
+			fud.getMd().getJcheckBoxMap().put(dVO.getDocNo(), new JCheckBox(docName));
+			fud.getMd().revalidate();
+			fud.getMd().repaint();
 			fud.repaint();
 		} // for
 		JOptionPane.showMessageDialog(fud, "파일 업로드를 성공적으로 종료했습니다.");
@@ -177,5 +185,6 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 	public void cancelFileUpload() {
 		fud.dispose();
 	}// cancelFileUpload
+
 
 }// class
