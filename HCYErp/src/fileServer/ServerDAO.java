@@ -81,7 +81,7 @@ public class ServerDAO {
 			pstmt.execute();
 
 			pstmt.close();
-			}
+			}//if
 			//데이터 없는 실파일 데이터에 추가
 			
 			sql = "INSERT INTO DOC(DEPTNO, DOCNAME) VALUES ( ? , ? )";
@@ -91,6 +91,20 @@ public class ServerDAO {
 			for(String name:addFile) {
 				pstmt.setInt(1, 10);
 				pstmt.setString(2, name);
+				pstmt.execute();
+			}//for
+			
+			con.commit();
+			pstmt.close();
+			
+			//권한 추가
+			sql = "INSERT INTO DOC_PERMISSION(DOCNO, DEPTNO) VALUES ( (select docno from doc where docname = ? ) , ? )";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			for(String name:addFile) {
+				pstmt.setString(1, name);
+				pstmt.setInt(2, 10);
 				pstmt.execute();
 			}//for
 			
