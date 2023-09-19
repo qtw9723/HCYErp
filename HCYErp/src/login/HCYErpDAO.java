@@ -43,13 +43,7 @@ public class HCYErpDAO {
 		try {
 			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 			
-			String sql="select e.empno empno,e.addr addr,e.email email,e.ename ename,e.hiredate hiredate,e.input_date input_date, "
-					+ "e.jobno jobno,e.levelno levelno,e.pass pass,e.sal sal "
-					+ ",e.ssn ssn,e.teamno teamno,e.tel tel,e.totaldayoff totaldayoff,e.jobtel jobtel,t.tname tname, "
-					+ "t.deptno deptno,d.dname dname,j.jobname jobname,t.loc loc,jl.lvname lvname "
-					+ "from emp e,team t,dept d,job j,joblevel jl "
-					+ "where (e.teamno=t.teamno(+) and t.deptno=d.deptno(+) and e.jobno=j.jobno(+) and e.levelno=jl.levelno(+)) "
-					+ "and empno=?";
+			String sql="select * from emp e,team t,dept d,job j,joblevel jl where (e.teamno=t.teamno(+) and t.deptno=d.deptno(+) and e.jobno=j.jobno(+) and e.levelno=jl.levelno(+)) and empno=?";
 					
 			
 			pstmt=con.prepareStatement(sql);

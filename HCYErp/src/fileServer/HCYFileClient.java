@@ -32,31 +32,31 @@ public class HCYFileClient {
 	public void uploadFile(File file) throws UnknownHostException, IOException {
 		Socket socket = null;
 		PrintWriter writer = null;
-		FileInputStream  fis = null;
+		FileInputStream fis = null;
 		OutputStream os = null;
 		try {
-		socket = new Socket(serverIp, 36500);
-		// 이름 및 확장자 보내기
-		String filePath = file.getAbsolutePath();
-		String fileNameWithExtension = filePath.substring(filePath.lastIndexOf("\\") + 1); // 파일 이름 및 확장자 설정
-		writer = new PrintWriter(socket.getOutputStream(), true);
-		writer.println(fileNameWithExtension);
+			socket = new Socket(serverIp, 36500);
+			// 이름 및 확장자 보내기
+			String filePath = file.getAbsolutePath();
+			String fileNameWithExtension = filePath.substring(filePath.lastIndexOf("\\") + 1); // 파일 이름 및 확장자 설정
+			writer = new PrintWriter(socket.getOutputStream(), true);
+			writer.println(fileNameWithExtension);
 
-		fis = new FileInputStream(file);
-		os = socket.getOutputStream();
-		byte[] buffer = new byte[4096];
-		int bytesRead = 0;
+			fis = new FileInputStream(file);
+			os = socket.getOutputStream();
+			byte[] buffer = new byte[4096];
+			int bytesRead = 0;
 
-		while ((bytesRead = fis.read(buffer)) != -1) {
-			os.write(buffer, 0, bytesRead);
-		} // while
+			while ((bytesRead = fis.read(buffer)) != -1) {
+				os.write(buffer, 0, bytesRead);
+			} // while
 
-		}finally {
-		os.close();
-		fis.close();
-		writer.close();
-		socket.close();
-		}//finally
+		} finally {
+			if (os != null) {os.close();}//if
+			if (fis != null) {fis.close();}//if
+			if (writer != null) {writer.close();}//if
+			if (socket != null) {socket.close();}//if
+		} // finally
 	}// uploadFile
 
 	public boolean downloadFile(String filePath) throws UnknownHostException, IOException {
@@ -64,7 +64,6 @@ public class HCYFileClient {
 		DataOutputStream writer = null;
 		FileOutputStream fos = null;
 		InputStream is = null;
-		
 		boolean flag = false;
 		try {
 			socket = new Socket(serverIp, 36600);
@@ -83,31 +82,34 @@ public class HCYFileClient {
 			} // while
 			flag = true;
 		} finally {
-			is.close();
-			fos.close();
-			writer.close();
-			socket.close();
+			if (is != null) {is.close();}//if
+			if (fos != null) {fos.close();}//if
+			if (writer != null) {writer.close();}//if
+			if (socket != null) {socket.close();}//if
 		} // finally
 		return flag;
 	}// uploadFile
 
 	public boolean deleteFile(String fileName) throws UnknownHostException, IOException {
+		PrintWriter writer = null;
+		Socket socket = null;
 		boolean flag = false;
-		Socket socket = new Socket(serverIp, 36700);
-		// 이름 및 확장자 보내기
-		PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-		writer.println(fileName);
+		try {
+			socket = new Socket(serverIp, 36700);
+			// 이름 및 확장자 보내기
+			writer = new PrintWriter(socket.getOutputStream(), true);
+			writer.println(fileName);
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		switch (reader.readLine()) {
-		case "success":
-			flag = true;
-			break;
-		}// switch
-
-		writer.close();
-		socket.close();
-
+			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			switch (reader.readLine()) {
+			case "success":
+				flag = true;
+				break;
+			}// switch
+		} finally {
+			if (writer != null) {writer.close();}//if
+			if (socket != null) {socket.close();}//if
+		} // finally
 		return flag;
 	}// deleteFile
 }// class
