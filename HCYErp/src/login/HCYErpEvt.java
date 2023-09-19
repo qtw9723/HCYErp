@@ -91,7 +91,6 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 					@Override
 					public void stateChanged(ChangeEvent e) {
 						selectedIndex = hcyE.getTabbedPane().getSelectedIndex();
-						refresh(selectedIndex);
 					}// stateChanged
 				});
 				hcyE.add(hcyE.getTabbedPane());
@@ -119,16 +118,5 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		return selectedIndex;
 	}
 
-	public void refresh(int index) {
-//		hcyE.getTabbedPane().setVisible(false);
-//		hcyE.addComponent();
-		try {
-			hcyE.getEvent().login();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		hcyE.getTabbedPane().setSelectedIndex(index);
-	}
 
 }// class
