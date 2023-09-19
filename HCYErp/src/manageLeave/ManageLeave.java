@@ -48,6 +48,7 @@ public class ManageLeave extends JPanel{
 		        return false;
 		    }//isCellEditable
 		};
+		
 		jtLeaveProposal = new JTable(dtmLeave);
 		
 		//셀 간격
