@@ -43,6 +43,7 @@ public class ApproveResignationDialogEvt extends MouseAdapter implements ActionL
 			ManageEmpRegisterDAO.getInstance().deleteRsignationEmp(eVO);
 			
 			JOptionPane.showMessageDialog(ard, "퇴사되었습니다.");
+			refresh(ard.getMer().getHcyE().getEvent().getSelectedIndex());
 		}
 		
 	}//approveResignation
@@ -85,4 +86,10 @@ public class ApproveResignationDialogEvt extends MouseAdapter implements ActionL
 		}//end if
 	}
 
+	public void refresh(int index) throws SQLException {
+		ard.getMer().getHcyE().getTabbedPane().setVisible(false);
+		ard.getMer().getHcyE().addComponent();
+		ard.getMer().getHcyE().getEvent().login();
+		ard.getMer().getHcyE().getTabbedPane().setSelectedIndex(index);
+	}
 }//class

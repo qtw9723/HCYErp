@@ -54,9 +54,11 @@ public class ManageLeaveDialogEvt implements ActionListener {
 		msgVO.setMsgCheck("N");
 		msgVO.setMsgContent(mld.getJtaRejectReason().getText());
 		RejectDayOffVO rdoVO = new RejectDayOffVO(msgVO, mld.getDoaVO().getDayOffNo());
+		System.out.println(mld.getMl().getHcyE().getEvent().getSelectedIndex()+"/나가라");
 		try {
 			if(ManageLeaveDAO.getInstance().rejectDayOff(rdoVO)) {
 				JOptionPane.showMessageDialog(mld, "성공적으로 반려되었습니다.");
+				refresh(mld.getMl().getHcyE().getEvent().getSelectedIndex());
 			}else {
 				JOptionPane.showMessageDialog(mld, "반려가 실패되었습니다.");
 			}//else
@@ -77,5 +79,13 @@ public class ManageLeaveDialogEvt implements ActionListener {
 		mld.getMl().addApplyList();
 		mld.dispose();
 	}//approve
+	
+	public void refresh(int index) throws SQLException {
+		mld.getMl().getHcyE().getTabbedPane().setVisible(false);
+		mld.getMl().getHcyE().addComponent();
+		mld.getMl().getHcyE().getEvent().login();
+		mld.getMl().getHcyE().getTabbedPane().setSelectedIndex(index);
+		
+	}
 	
 }//class

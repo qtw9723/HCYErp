@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
@@ -19,11 +20,18 @@ import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import VO.EmpVO;
 import attendance.Attendance;
+import attendance.AttendanceDAO;
 import dailyReport.DailyReport;
+import manageAttendance.ManageMonthlyAttendance;
+import manageAttendance.ManagePersonalAttendance;
 import manageDailyReport.ManageDailyReport;
 import manageDoc.ManageDoc;
+import manageEmp.ManageEmp;
 import manageEmp.ManageEmpDAO;
+import manageEmpRegister.ManageEmpRegister;
+import manageLeave.ManageLeave;
 
 @SuppressWarnings("serial")
 public class HCYErp extends JFrame {
@@ -44,11 +52,11 @@ public class HCYErp extends JFrame {
 	private boolean getOffFlag = false;
 	private boolean attendFlag = false;
 	private List<JPanel> list;
-	
+	private HCYErpEvt event;
 	public HCYErp() {
 		super("마 자신있나");
 		// 이벤트 객체 생성
-		HCYErpEvt event = new HCYErpEvt(this);
+		event = new HCYErpEvt(this);
 		//리스트 객체 생성
 		list=new ArrayList<JPanel>();
 		// 로고 설정
@@ -234,7 +242,12 @@ public class HCYErp extends JFrame {
 	public void setList(List<JPanel> list) {
 		this.list = list;
 	}
-	
 
+	public HCYErpEvt getEvent() {
+		return event;
+	}
+	
+	
+	
 
 }// class

@@ -88,6 +88,7 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener{
 		ManageEmpRegisterDAO.getInstance().insertEmp(eVO);
 
 		JOptionPane.showMessageDialog(aed, "입사자 추가가 성공적으로 되었습니다.");
+		refresh(aed.getMer().getHcyE().getEvent().getSelectedIndex());
 	}// okAdd
 
 	
@@ -128,7 +129,12 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener{
 	}
 	
 	
-	
+	public void refresh(int index) throws SQLException {
+		aed.getMer().getHcyE().getTabbedPane().setVisible(false);
+		aed.getMer().getHcyE().addComponent();
+		aed.getMer().getHcyE().getEvent().login();
+		aed.getMer().getHcyE().getTabbedPane().setSelectedIndex(index);
+	}
 	
 
 }//class

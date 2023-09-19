@@ -169,11 +169,12 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 			dVO.setDocName(docName);
 			dVO.setDeptNo(fud.getMd().getHcyE().getUser());
 			mdDAO.insertDoc(dVO);
-			fud.getMd().getJpDoc().add(new JCheckBox(docName));
-			fud.getMd().getJcheckBoxMap().put(dVO.getDocNo(), new JCheckBox(docName));
-			fud.getMd().revalidate();
-			fud.getMd().repaint();
-			fud.repaint();
+			refresh(fud.getMd().getHcyE().getEvent().getSelectedIndex());
+//			fud.getMd().getJpDoc().add(new JCheckBox(docName));
+//			fud.getMd().getJcheckBoxMap().put(dVO.getDocNo(), new JCheckBox(docName));
+//			fud.getMd().revalidate();
+//			fud.getMd().repaint();
+//			fud.repaint();
 		} // for
 		JOptionPane.showMessageDialog(fud, "파일 업로드를 성공적으로 종료했습니다.");
 	}// uploadFile
@@ -185,6 +186,11 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 	public void cancelFileUpload() {
 		fud.dispose();
 	}// cancelFileUpload
-
+	public void refresh(int index) throws SQLException {
+		fud.getMd().getHcyE().getTabbedPane().setVisible(false);
+		fud.getMd().getHcyE().addComponent();
+		fud.getMd().getHcyE().getEvent().login();
+		fud.getMd().getHcyE().getTabbedPane().setSelectedIndex(index);
+	}
 
 }// class

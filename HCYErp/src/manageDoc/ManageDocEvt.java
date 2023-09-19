@@ -93,6 +93,7 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 				return;
 			} // if
 			JOptionPane.showMessageDialog(md, "파일 삭제를 완료했습니다!");
+			refresh(md.getHcyE().getEvent().getSelectedIndex());
 			break;
 		default:
 		}// switch
@@ -154,4 +155,10 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 		return md;
 	}
 
+	public void refresh(int index) throws SQLException {
+		md.getHcyE().getTabbedPane().setVisible(false);
+		md.getHcyE().addComponent();
+		md.getHcyE().getEvent().login();
+		md.getHcyE().getTabbedPane().setSelectedIndex(index);
+	}
 }// class
