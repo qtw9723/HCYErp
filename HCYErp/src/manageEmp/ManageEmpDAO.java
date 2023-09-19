@@ -51,28 +51,35 @@ public class ManageEmpDAO {
 	}// selectDept
 
 
-	public List<String> searchTeam(String dept) throws SQLException {
-		List<String> list = new ArrayList<String>();
+	public List<EmpVO> searchTeam(String dept) throws SQLException {
+		List<EmpVO> list = new ArrayList<EmpVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		System.out.println(dept);
+
 		DbConn db = DbConn.getInstance();
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "select t.tname,e.ename from team t,dept d,emp e where (t.deptno=d.deptno(+) and e.teamno(+)=t.teamno) and dname=?";
+			String sql = "select * from emp e,team t,job j, joblevel l,dept d where e.JOBNO = j.JOBNO(+)AND t.DEPTNO = d.DEPTNO(+)AND e.TEAMNO(+) = t.TEAMNO AND e.levelno = l.levelno(+) and dname=?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dept);
 			rs = pstmt.executeQuery();
-
+			EmpVO eVO=null;
 			while (rs.next()) {
-				if (rs.getString("ename") != null) {
-					list.add(rs.getString("tname") + "/" + rs.getString("ename"));
-				} else {
-					list.add(rs.getString("tname") + "/");
-				} // if
+				eVO=new EmpVO();
+				eVO.setEmpNo(rs.getInt("empno"));
+				eVO.setEname(rs.getString("ename"));
+				eVO.setLevel(rs.getString("levelno"));
+				eVO.setTel(rs.getString("tel"));
+				eVO.setEmail(rs.getString("email"));
+				eVO.setJob(rs.getString("JOBNAME"));
+				eVO.setDept(rs.getString("DNAME"));
+				eVO.setTeam(rs.getString("TNAME"));
+				eVO.setDeptLoc(rs.getString("loc"));
+				eVO.setSal(rs.getInt("sal"));
+				list.add(eVO);
 			} // while
 
 		} finally {
@@ -81,8 +88,8 @@ public class ManageEmpDAO {
 		return list;
 	}// searchTeam
 
-	public List<String> searchEmp(String team) throws SQLException {
-		List<String> list = new ArrayList<String>();
+	public List<EmpVO> searchEmp(String team) throws SQLException {
+		List<EmpVO> list = new ArrayList<EmpVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -91,14 +98,25 @@ public class ManageEmpDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "select ename from emp e,team t where e.teamno=t.teamno(+) and tname=?";
+			String sql = "select * from emp e,team t,job j, joblevel l,dept d where e.JOBNO = j.JOBNO(+)AND t.DEPTNO = d.DEPTNO(+)AND e.TEAMNO = t.TEAMNO(+)AND e.levelno = l.levelno(+) and tname=?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, team);
 			rs = pstmt.executeQuery();
-
+			EmpVO eVO=null;
 			while (rs.next()) {
-				list.add(rs.getString("ename"));
+				eVO=new EmpVO();
+				eVO.setEmpNo(rs.getInt("empno"));
+				eVO.setEname(rs.getString("ename"));
+				eVO.setLevel(rs.getString("levelno"));
+				eVO.setTel(rs.getString("tel"));
+				eVO.setEmail(rs.getString("email"));
+				eVO.setJob(rs.getString("JOBNAME"));
+				eVO.setDept(rs.getString("DNAME"));
+				eVO.setTeam(rs.getString("TNAME"));
+				eVO.setDeptLoc(rs.getString("loc"));
+				eVO.setSal(rs.getInt("sal"));
+				list.add(eVO);
 			} // while
 
 		} finally {
