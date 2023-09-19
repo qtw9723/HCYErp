@@ -12,17 +12,36 @@ import java.net.ConnectException;
 import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import VO.DocVO;
+import VO.EmpVO;
+import attendance.Attendance;
+import attendance.AttendanceDAO;
+import dailyReport.DailyReport;
 import fileServer.HCYFileClient;
+import login.HCYErpDAO;
+import manageAttendance.ManageMonthlyAttendance;
+import manageAttendance.ManagePersonalAttendance;
+import manageDailyReport.ManageDailyReport;
+import manageEmp.ManageEmp;
+import manageEmp.ManageEmpDAO;
+import manageEmpRegister.ManageEmpRegister;
+import manageLeave.ManageLeave;
 
 public class FileUploadDialogEvt extends MouseAdapter implements ActionListener {
 	private List<String> selectPathList;
 	private FileUploadDialog fud;
+	private int selectedIndex;
 
 	public FileUploadDialogEvt(FileUploadDialog fud) {
 		this.fud = fud;
@@ -149,7 +168,7 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 							filePath = docPath + File.separator + docName;
 							fud.getListmodel().addElement(docName);
 							selectPathList.add(filePath);
-							JOptionPane.showMessageDialog(fud, "파일 이름을 "+docName+"으로 바꿨습니다! 업로드를 다시 시도해주세요!");
+							JOptionPane.showMessageDialog(fud, "파일 이름을 " + docName + "으로 바꿨습니다! 업로드를 다시 시도해주세요!");
 							return;
 						} // if
 						JOptionPane.showMessageDialog(fud, "파일 이름 바꾸기를 실패했습니다. 다시 시도해주세요!");
@@ -164,8 +183,11 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 			dVO.setDocName(docName);
 			dVO.setDeptNo(fud.getMd().getHcyE().getUser());
 			mdDAO.insertDoc(dVO);
-			fud.getMd().getJpDoc().add(new Checkbox(docName));
-			fud.repaint();
+//			fud.getMd().getJpDoc().add(new Checkbox(docName));
+//			fud.getMd().getJcheckBoxMap().put(dVO.getDocNo(), new JCheckBox(docName));
+//			fud.getMd().revalidate();
+//			fud.getMd().repaint();
+//			fud.repaint();
 		} // for
 		JOptionPane.showMessageDialog(fud, "파일 업로드를 성공적으로 종료했습니다.");
 	}// uploadFile
@@ -177,5 +199,6 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 	public void cancelFileUpload() {
 		fud.dispose();
 	}// cancelFileUpload
+
 
 }// class
