@@ -67,7 +67,7 @@ public class ManageEmpRegister extends JPanel{
 		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		//입사자 추가 버튼
 		jbtnEmpRegister = new JButton("입사자 추가");
-		jbtnEmpRegister.setBounds(930,100,130,55);
+		jbtnEmpRegister.setBounds(930,130,130,55);
 		jbtnEmpRegister.setBackground(new Color(0x461C90));
 		jbtnEmpRegister.setFont(jbtnFont);
 		jbtnEmpRegister.setForeground(Color.white);
@@ -76,17 +76,17 @@ public class ManageEmpRegister extends JPanel{
 		
 		//퇴사 처리 버튼
 		jbtnResign = new JButton("퇴사 처리");
-		jbtnResign.setBounds(930,200,130,55);
+		jbtnResign.setBounds(930,230,130,55);
 		jbtnResign.setBackground(new Color(0x461C90));
 		jbtnResign.setFont(jbtnFont);
 		jbtnResign.setForeground(Color.white);
 		jbtnResign.addActionListener(event);
 		add(jbtnResign);
 		
-		//휴직 버튼
+		//휴직 처리 버튼
 		jbtnAbsence = new JButton("휴직 처리");
 		jbtnAbsence.addActionListener(event);
-		jbtnAbsence.setBounds(930,300,130,55);
+		jbtnAbsence.setBounds(930,330,130,55);
 		jbtnAbsence.setFont(jbtnFont);
 		jbtnAbsence.setForeground(Color.white);
 		jbtnAbsence.setBackground(new Color(0x461C90));
