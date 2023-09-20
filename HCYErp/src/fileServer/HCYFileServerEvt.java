@@ -106,11 +106,10 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 				fdlh.start();
 				fdh.start();
 			} catch (IOException e1) {
-				System.out.println("Helper에서 예외");
 				e1.printStackTrace();
 			} // try
 		} catch (IOException e1) {
-			System.out.println("서버종료");
+			e1.printStackTrace();
 		} // catch
 	}// run
 

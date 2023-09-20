@@ -127,25 +127,20 @@ public class ManageLeaveDAO {
 			con.setAutoCommit(false);
 			pstmt = con.prepareStatement(updateDayOffReject);
 			pstmt.setString(1, Integer.toString(rdoVO.getDayOffNo()));
-			System.out.println(rdoVO.getDayOffNo());
 			cnt = pstmt.executeUpdate();
-			System.out.println("괜찮니?");
 			if(cnt==0) {
 				flag=true;
 				con.rollback();
-				System.out.println(cnt+"반려처리 안댐");
 				return false;
 			}//if
 			
 			pstmt.close();
 			//메세지 추가
-			System.out.println("가즈아");
 			String insertMSG = "INSERT INTO MSG(EMPNO, MSGCONTENT, MSGCHECK) VALUES (?,?,?)";
 			pstmt = con.prepareStatement(insertMSG);
 			pstmt.setString(1, Integer.toString(rdoVO.getMsgVO().getEmpNo()));
 			pstmt.setString(2, rdoVO.getMsgVO().getMsgContent());
 			pstmt.setString(3, rdoVO.getMsgVO().getMsgCheck());
-			System.out.println(Integer.toString(rdoVO.getMsgVO().getEmpNo())+"/"+rdoVO.getMsgVO().getMsgContent()+"/"+ rdoVO.getMsgVO().getMsgCheck());
 			
 			pstmt.execute();
 				con.commit();

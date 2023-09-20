@@ -54,7 +54,6 @@ public class ManageLeaveDialogEvt implements ActionListener {
 		msgVO.setMsgCheck("N");
 		msgVO.setMsgContent(mld.getJtaRejectReason().getText());
 		RejectDayOffVO rdoVO = new RejectDayOffVO(msgVO, mld.getDoaVO().getDayOffNo());
-		System.out.println(mld.getMl().getHcyE().getEvent().getSelectedIndex()+"/나가라");
 		try {
 			if(ManageLeaveDAO.getInstance().rejectDayOff(rdoVO)) {
 				JOptionPane.showMessageDialog(mld, "성공적으로 반려되었습니다.");

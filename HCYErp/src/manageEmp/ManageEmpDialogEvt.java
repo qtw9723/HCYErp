@@ -69,7 +69,6 @@ public class ManageEmpDialogEvt extends MouseAdapter implements ActionListener{
 	    }
 	    try {
 	    	int rowCnt = ManageEmpDAO.getInstance().updateEmpModifyInfo(eVO);
-	        System.out.println(rowCnt);
 	        if (rowCnt > 0) {
 	            JOptionPane.showMessageDialog(med, "사원정보가 변경되었습니다.");
 	        } else {

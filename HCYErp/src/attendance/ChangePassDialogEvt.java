@@ -200,7 +200,6 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 			tempPass = checkPassword;
 			eVO.setPass(tempPass);
 			int updatedRows = AttendanceDAO.getInstance().updateChangePass(eVO);
-			System.out.println("업데이트 행수  " + updatedRows);
 			if (updatedRows >= 0) {
 				JOptionPane.showMessageDialog(cpd, "비밀번호가 변경되었습니다.");
 			} else {

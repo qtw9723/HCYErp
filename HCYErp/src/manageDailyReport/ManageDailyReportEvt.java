@@ -70,9 +70,7 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 				sbDate.append(mdr.getJcbYear().getSelectedItem()).append("-").append(sbMonth.toString()).append("-")
 						.append(sbDay.toString());
 				List<DailyReportVO> drVOList = new ArrayList<DailyReportVO>();
-				System.out.println(sbDate.toString());
 				drVOList = ManageDailyReportDAO.getInstance().selectDailyReport(sbDate.toString());
-
 				// 작성된 업무일지 업음
 				if (drVOList.isEmpty()) {
 					JOptionPane.showMessageDialog(mdr, "해당 일에는 작성된 업무일지가 없습니다.");
@@ -82,7 +80,7 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 				for (DailyReportVO drVO : drVOList) {
 					mdr.getDtmReport()
 							.addRow(new Object[] { drVO.getEmpNo(), drVO.getEname(),
-									drVO.getReportContent().length() < 15 ? drVO.getReportContent().substring(0, 15)
+									drVO.getReportContent().length() > 15 ? drVO.getReportContent().substring(0, 15)
 											: drVO.getReportContent(),
 									drVO.getReportDate() });
 					;
