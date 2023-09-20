@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -37,7 +38,7 @@ public class ManageDoc extends JPanel {
 		ManageDocEvt event = new ManageDocEvt(this);
 
 		setLayout(null);
-
+		
 		jpDoc = new JPanel();
 		// 문서 리스트 추가
 		List<DocVO> dVOList = null;
@@ -53,13 +54,34 @@ public class ManageDoc extends JPanel {
 			jpDoc.add(jcbdVO);
 			jcheckBoxMap.put(dVO.getDocNo(), jcbdVO);
 		} // for
+		
+		//jpanel 배경색
+		jpDoc.setBackground(new Color(0xECEBFF));
+		
+		//체크박스 폰트
+		Font checkboxFont = new Font("맑은 고딕", Font.PLAIN, 15);
+		
+		//체크박스hashmap 배경색
+        Color newBackgroundColor = new Color(0xECEBFF); 
+        for (JCheckBox checkBox : jcheckBoxMap.values()) {
+            checkBox.setBackground(newBackgroundColor);
+            checkBox.setFont(checkboxFont);
+        }//end for
+		
 			// 문서 목록 체크박스
 		jpDoc.setLayout(new BoxLayout(jpDoc, BoxLayout.Y_AXIS));// 세로 정렬
 		jspDocList = new JScrollPane(jpDoc);
 		add(jspDocList);
 		jspDocList.setBounds(100, 50, 800, 500);
-		jspDocList.setBorder(new TitledBorder("문서 목록"));
-
+		
+		//타이틀바 디자인
+		TitledBorder titleBorder=BorderFactory.createTitledBorder("문서 목록");
+		Font titleFont=new Font("맑은 고딕",Font.BOLD,18);
+		titleBorder.setTitleFont(titleFont);
+		titleBorder.setTitleJustification(titleBorder.LEFT);
+		
+		jspDocList.setBorder(titleBorder);
+		
 		// 로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
 		jbtnLogOut.setBounds(1000, 510, 150, 40);
@@ -69,12 +91,15 @@ public class ManageDoc extends JPanel {
 		jbtnLogOut.setForeground(Color.BLACK);
 		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
+		
 		// 텍스트 로고
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
 		jlblLogoTxt.setBounds(930, 450, 300, 300);
 		add(jlblLogoTxt);
-
+		
+		//버튼 폰트
 		Font fileBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		
 		// 업로드 버튼
 		jbtnFileUpload = new JButton("파일업로드");
 		jbtnFileUpload.setBounds(930, 100, 130, 55);
@@ -83,6 +108,7 @@ public class ManageDoc extends JPanel {
 		jbtnFileUpload.setForeground(Color.WHITE);
 		jbtnFileUpload.addActionListener(event);
 		add(jbtnFileUpload);
+		
 		// 다운로드 버튼
 		jbtnFileDownload = new JButton("다운로드");
 		jbtnFileDownload.setBounds(930, 200, 130, 55);
@@ -91,6 +117,7 @@ public class ManageDoc extends JPanel {
 		jbtnFileDownload.setForeground(Color.WHITE);
 		jbtnFileDownload.addActionListener(event);
 		add(jbtnFileDownload);
+		
 		// 파일 삭제
 		jbtnFileDelete = new JButton("파일 삭제");
 		jbtnFileDelete.setBackground(new Color(0x461C90));
@@ -99,6 +126,7 @@ public class ManageDoc extends JPanel {
 		jbtnFileDelete.setBounds(930, 300, 130, 55);
 		jbtnFileDelete.addActionListener(event);
 		add(jbtnFileDelete);
+		
 		// 부서참조
 		jbtnRef = new JButton("부서 참조");
 		jbtnRef.setBounds(930, 400, 130, 55);

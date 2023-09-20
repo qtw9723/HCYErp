@@ -130,8 +130,6 @@ public class ManageLeave extends JPanel{
 		//JTable 밑에 빈 공간들 색
 		jspLeave.getViewport().setBackground(new Color(0xECEBFF));
 		
-		
-		
 	}//Constructor
 
 	public void addApplyList() {
