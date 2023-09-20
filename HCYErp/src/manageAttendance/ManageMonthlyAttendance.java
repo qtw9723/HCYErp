@@ -50,8 +50,8 @@ public class ManageMonthlyAttendance extends JPanel{
 		jlblMonth.setFont(jlblFont);
 		add(jlblYear);
 		add(jlblMonth);
-		jlblYear.setBounds(410, 70, 40, 35);
-		jlblMonth.setBounds(530, 70, 40, 35);
+		jlblYear.setBounds(425, 70, 40, 35);
+		jlblMonth.setBounds(545, 70, 40, 35);
 		
 		//연월 콤박
 		Font jcbFont = new Font("맑은 고딕", Font.BOLD, 15);
@@ -63,7 +63,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		jcbYear.addItem(year);
 		jcbYear.addItem(year+1);
 		jcbYear.setSelectedItem(year);
-		jcbYear.setBounds(300,70,100,35);
+		jcbYear.setBounds(320,70,100,40);
 		jcbYear.setBackground(new Color(0xffffff));
 		jcbYear.setFont(jcbFont);
 		add(jcbYear);
@@ -73,16 +73,16 @@ public class ManageMonthlyAttendance extends JPanel{
 			jcbMonth.addItem(i);
 		}//for
 		jcbMonth.setSelectedItem(cal.get(Calendar.MONTH)+1);
-		jcbMonth.setBounds(450,70,70,35);
+		jcbMonth.setBounds(470,70,70,40);
 		jcbMonth.setBackground(new Color(0xffffff));
 		jcbMonth.setFont(jcbFont);
 		add(jcbMonth);
 		
 		//날짜 검색 버튼
-		Font searchFont = new Font("맑은 고딕", Font.BOLD, 13);
+		Font searchFont = new Font("맑은 고딕", Font.BOLD, 15);
 		jbtnAttendDate = new JButton("조회");
-		jbtnAttendDate.setBounds(630,70,150,40);
-		jbtnAttendDate.setBackground(new Color(0x5E5E5E));
+		jbtnAttendDate.setBounds(610,70,100,40);
+		jbtnAttendDate.setBackground(new Color(0x6D47B0));
 		jbtnAttendDate.setFont(searchFont);
 		jbtnAttendDate.setForeground(Color.white);
 		jbtnAttendDate.addActionListener(event);
