@@ -16,25 +16,23 @@ import javax.swing.JTextArea;
 import manageDailyReport.ManageDailyReportDAO;
 
 public class ApproveResignationDialog extends JDialog {
-	JComboBox<String> jcbEmpNoName;
-	JTextArea jtaReason;
-	
-	JButton jbtnApprove;
-	JButton jbtnCancel;
-	
-	JLabel jlblLastDate;
-	
-	JComboBox<Integer> jcbYear;
-	JComboBox<Integer> jcbMonth;
-	JComboBox<Integer> jcbDay;
-	JLabel jlblYear;
-	JLabel jlblMonth;
-	JLabel jlblDay;
-	
 	private ManageEmpRegister mer;
+	private JComboBox<String> jcbEmpNoName;
+	private JComboBox<Integer> jcbYear;
+	private JComboBox<Integer> jcbMonth;
+	private JComboBox<Integer> jcbDay;
+	private JTextArea jtaReason;
+	private JButton jbtnApprove;
+	private JButton jbtnCancel;
+	private JLabel jlblLastDate;
+	private JLabel jlblYear;
+	private JLabel jlblMonth;
+	private JLabel jlblDay;
 	
 	public ApproveResignationDialog(ManageEmpRegister mer) {
 		this.mer=mer;
+		
+		getContentPane().setBackground(new Color(255,245,245));
 		
 		//Calendar선언
 		Calendar cal=Calendar.getInstance();
@@ -65,7 +63,6 @@ public class ApproveResignationDialog extends JDialog {
 			for(String emp:empList) {
 				jcbEmpNoName.addItem(emp);
 			}//end for
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}//end catch
@@ -92,7 +89,7 @@ public class ApproveResignationDialog extends JDialog {
 		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 14);
 		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 15);
-		Font jtaFont = new Font("맑은 고딕", Font.PLAIN, 13);
+		Font jtaFont = new Font("맑은 고딕", Font.PLAIN, 15);
 		
 		jcbEmpNoName.setFont(jcbFont);
 		jcbYear.setFont(jcbFont);
@@ -128,7 +125,7 @@ public class ApproveResignationDialog extends JDialog {
 		jlblMonth.setBounds(245,350,50,30);
 		jlblDay.setBounds(325,350,50,30 );
 		jbtnApprove.setBounds(40,410,135,40);
-		jbtnApprove.setBackground(new Color(0x8244AD));
+		jbtnApprove.setBackground(new Color(0x6D47B0));
 		jbtnApprove.setForeground(Color.white);
 		jbtnCancel.setBounds(190,410,135,40);
 		jbtnCancel.setBackground(new Color(0x5E5E5E));

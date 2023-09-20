@@ -36,6 +36,8 @@ public class ApproveAbsenceDialog extends JDialog {
 	public ApproveAbsenceDialog(ManageEmpRegister mer) {
 		this.mer = mer;
 
+		getContentPane().setBackground(new Color(255,245,245));
+		
 		// Calendar 선언
 		Calendar cal = Calendar.getInstance();
 
@@ -189,11 +191,11 @@ public class ApproveAbsenceDialog extends JDialog {
 		jtaWriteReason.setBounds(35,180,520,150);
 		
 		jbtnApprove.setBounds(590,200,135,40);
-		jbtnApprove.setBackground(new Color(0x8244AD));
+		jbtnApprove.setBackground(new Color(0x6D47B0));
 		jbtnApprove.setForeground(Color.white);
 		jbtnCancel.setBounds(590,270,135,40);
 		jbtnCancel.setBackground(new Color(0x5E5E5E));
-		jbtnCancel.setForeground(Color.black);
+		jbtnCancel.setForeground(Color.white);
 		
 		ApproveAbsenceDialogEvt event=new ApproveAbsenceDialogEvt(this);
 		jcbReason.addActionListener(event);
@@ -208,77 +210,62 @@ public class ApproveAbsenceDialog extends JDialog {
 		setVisible(true);
 		
 	}// constructor
-
 	
 	public JComboBox<Integer> getJcbStartYear() {
 		return jcbStartYear;
 	}
 
-
 	public JComboBox<Integer> getJcbStartMonth() {
 		return jcbStartMonth;
 	}
-
 
 	public JComboBox<Integer> getJcbStartDay() {
 		return jcbStartDay;
 	}
 
-
 	public JComboBox<Integer> getJcbEndYear() {
 		return jcbEndYear;
 	}
-
 
 	public JComboBox<Integer> getJcbEndMonth() {
 		return jcbEndMonth;
 	}
 
-
 	public JComboBox<Integer> getJcbEndDay() {
 		return jcbEndDay;
 	}
-
 
 	public JComboBox<String> getJcbReason() {
 		return jcbReason;
 	}
 
-
 	public JTextArea getJtaWriteReason() {
 		return jtaWriteReason;
 	}
-
 
 	public JLabel getJlblPeriod() {
 		return jlblPeriod;
 	}
 
-
 	public JLabel getJlblDuring() {
 		return jlblDuring;
 	}
-
 
 	public JLabel getJlblReason() {
 		return jlblReason;
 	}
 
-
 	public JButton getJbtnApprove() {
 		return jbtnApprove;
 	}
-
 
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
 	}
 
-
 	public ManageEmpRegister getMer() {
 		return mer;
 	}
-
 
 	public JComboBox<String> getJcbEmpNoName() {
 		return jcbEmpNoName;
