@@ -6,14 +6,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import VO.EmpVO;
 import login.HCYErp;
@@ -41,13 +46,11 @@ public class ManageEmpRegister extends JPanel{
 		        // 모든 셀을 수정 불가능하게 설정
 		        return false;
 		    }//isCellEditable
-		};;
-		dtmRefiAbInfo.addColumn("사원번호");
-		dtmRefiAbInfo.addColumn("사원이름");
-		dtmRefiAbInfo.addColumn("부서");
-		dtmRefiAbInfo.addColumn("직급");
-		dtmRefiAbInfo.addColumn("입사일");
-		dtmRefiAbInfo.addColumn("연봉");
+		};
+		
+		jtRegiAbInfo = new JTable(dtmRefiAbInfo);
+		jspResignAb = new JScrollPane(jtRegiAbInfo);
+		
 		//다오에서 추가
 		List<EmpVO> empVOList = null;
 		try {
@@ -58,13 +61,61 @@ public class ManageEmpRegister extends JPanel{
 		for(int i = 0; i< empVOList.size();i++) {
 			dtmRefiAbInfo.addRow(new Object[] {empVOList.get(i).getEmpNo(),empVOList.get(i).getEname(),empVOList.get(i).getJob(),empVOList.get(i).getLevel(),empVOList.get(i).getHiredate(),empVOList.get(i).getSal()});
 		}//for
-		jtRegiAbInfo = new JTable(dtmRefiAbInfo);
-		jspResignAb = new JScrollPane(jtRegiAbInfo);
+		dtmRefiAbInfo.addColumn("사원번호");
+		dtmRefiAbInfo.addColumn("사원이름");
+		dtmRefiAbInfo.addColumn("부서");
+		dtmRefiAbInfo.addColumn("직급");
+		dtmRefiAbInfo.addColumn("입사일");
+		dtmRefiAbInfo.addColumn("연봉");
+		
+		//이동,크기 조절 불가
+		jtRegiAbInfo.getTableHeader().setReorderingAllowed(false);
+		jtRegiAbInfo.getTableHeader().setResizingAllowed(false);
+		
 		jspResignAb.setBounds(100,50,800,500);
 		jspResignAb.setBorder(new TitledBorder("입사자/퇴사 대상자 목록"));
 		add(jspResignAb);
 		
+		//셀 간격 고정
+		jtRegiAbInfo.setRowHeight(25);
+			
+		//JTable header font설정
+		Font headerFont=new Font("맑은 고딕",Font.BOLD,15);
+		JTableHeader tableHeader=jtRegiAbInfo.getTableHeader();
+		tableHeader.setFont(headerFont);
+		tableHeader.setBackground(new Color(213,232,212));
+		
+		//JTable cell 간격
+		TableColumnModel columnModel =jtRegiAbInfo.getColumnModel();
+		columnModel.getColumn(0).setPreferredWidth(100);
+		columnModel.getColumn(1).setPreferredWidth(100);
+		columnModel.getColumn(2).setPreferredWidth(150);
+		columnModel.getColumn(3).setPreferredWidth(100);
+		columnModel.getColumn(4).setPreferredWidth(190);
+		columnModel.getColumn(5).setPreferredWidth(150);
+		
+		//cell font설정
+		Font jtFont=new Font("맑은 고딕",Font.PLAIN,15);
+		jtRegiAbInfo.setFont(jtFont);
+		
+		//JTable cell 가운데 정렬
+		DefaultTableCellRenderer cellCenter=new DefaultTableCellRenderer();
+		cellCenter.setHorizontalAlignment(SwingConstants.CENTER);
+		for(int i=0;i<jtRegiAbInfo.getColumnCount();i++) {
+			jtRegiAbInfo.getColumnModel().getColumn(i).setCellRenderer(cellCenter);
+		}//for
+		
+		//타이틀바 디자인
+		TitledBorder titleBorder=BorderFactory.createTitledBorder("입사자/퇴사 대상자 목록");
+		Font titleFont=new Font("맑은 고딕",Font.BOLD,18);
+		titleBorder.setTitleFont(titleFont);
+		titleBorder.setTitleJustification(titleBorder.LEFT);
+		
+		jspResignAb.setBorder(titleBorder);
+		
+		//버튼 폰트
 		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		
 		//입사자 추가 버튼
 		jbtnEmpRegister = new JButton("입사자 추가");
 		jbtnEmpRegister.setBounds(930,130,130,55);
@@ -111,6 +162,9 @@ public class ManageEmpRegister extends JPanel{
 		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);hcyE.getList().add(this);
+		
+		//jTable 배경색
+		jspResignAb.getViewport().setBackground(new Color(0xECEBFF));
 	}//constructor
 
 	public JButton getJbtnEmpRegister() {

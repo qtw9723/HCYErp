@@ -29,6 +29,9 @@ public class RefDeptDialog extends JDialog {
 
 	public RefDeptDialog(ManageDoc md) {
 		this.md = md;
+		
+		getContentPane().setBackground(new Color(255,245,245));
+		
 		setLayout(null);
 
 		jcbList = new ArrayList<JCheckBox>();
