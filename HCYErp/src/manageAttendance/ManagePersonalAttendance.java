@@ -68,7 +68,7 @@ public class ManagePersonalAttendance extends JPanel{
 		add(jlblmonth);
 		
 		
-		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 13);
+		Font jcbFont = new Font("맑은 고딕", Font.BOLD, 15);
 		//사원 콤박
 		jcbEmp = new JComboBox<String>();
 		List<String> empList = new ArrayList<String>();

@@ -15,7 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import login.HCYErp;
 
@@ -28,6 +32,8 @@ public class ManageMonthlyAttendance extends JPanel{
 	private JLabel jlblLogoTxt;
 	private JTable jtMonthlyAttend;
 	private DefaultTableModel dtmMonthlyAttend;
+	private JLabel jlblYear;
+	private JLabel jlblMonth;
 
 	private HCYErp hcyE;
 	
@@ -36,8 +42,19 @@ public class ManageMonthlyAttendance extends JPanel{
 		setLayout(null);
 		ManageMonthlyAttendanceEvt event = new ManageMonthlyAttendanceEvt(this);
 		
-		//연월일 콤박
-		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 13);
+		//연월 라벨
+		jlblYear = new JLabel("년");
+		jlblMonth = new JLabel("월");
+		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 15);
+		jlblYear.setFont(jlblFont);
+		jlblMonth.setFont(jlblFont);
+		add(jlblYear);
+		add(jlblMonth);
+		jlblYear.setBounds(410, 70, 40, 35);
+		jlblMonth.setBounds(530, 70, 40, 35);
+		
+		//연월 콤박
+		Font jcbFont = new Font("맑은 고딕", Font.BOLD, 15);
 		//연 콤박
 		jcbYear = new JComboBox<Integer>();
 		Calendar cal = Calendar.getInstance();
@@ -46,7 +63,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		jcbYear.addItem(year);
 		jcbYear.addItem(year+1);
 		jcbYear.setSelectedItem(year);
-		jcbYear.setBounds(300,70,130,40);
+		jcbYear.setBounds(300,70,100,35);
 		jcbYear.setBackground(new Color(0xffffff));
 		jcbYear.setFont(jcbFont);
 		add(jcbYear);
@@ -56,7 +73,7 @@ public class ManageMonthlyAttendance extends JPanel{
 			jcbMonth.addItem(i);
 		}//for
 		jcbMonth.setSelectedItem(cal.get(Calendar.MONTH)+1);
-		jcbMonth.setBounds(460,70,130,40);
+		jcbMonth.setBounds(450,70,70,35);
 		jcbMonth.setBackground(new Color(0xffffff));
 		jcbMonth.setFont(jcbFont);
 		add(jcbMonth);
@@ -84,6 +101,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		dtmMonthlyAttend.addColumn("출근시간");
 		dtmMonthlyAttend.addColumn("퇴근시간");
 		dtmMonthlyAttend.addColumn("출근일");
+
 		//내용 생성
 		List<Object[]> ojList = new ArrayList<Object[]>();
 		
@@ -91,10 +109,38 @@ public class ManageMonthlyAttendance extends JPanel{
 		dtmMonthlyAttend.addRow(oj);
 		}//for
 		jtMonthlyAttend = new JTable(dtmMonthlyAttend);
-		//스트롤패인 부착
+		//스크롤패인 부착
 		JScrollPane jspMonthlyAttend = new JScrollPane(jtMonthlyAttend);
 		jspMonthlyAttend.setBounds(120,150,800,400);
 		add(jspMonthlyAttend);
+		
+		//셀 간격
+		jtMonthlyAttend.setRowHeight(25);
+		
+		//JTable header font설정
+		Font headerFont=new Font("맑은 고딕",Font.BOLD,15);
+		JTableHeader tableHeader=jtMonthlyAttend.getTableHeader();
+		tableHeader.setFont(headerFont);
+		tableHeader.setBackground(new Color(213,232,212));
+		
+		//JTable cell 간격
+		TableColumnModel columnModel =jtMonthlyAttend.getColumnModel();
+		columnModel.getColumn(0).setPreferredWidth(100);
+		columnModel.getColumn(1).setPreferredWidth(100);
+		columnModel.getColumn(2).setPreferredWidth(200);
+		columnModel.getColumn(3).setPreferredWidth(200);
+		columnModel.getColumn(4).setPreferredWidth(200);
+		
+		//cell font설정
+		Font jtFont=new Font("맑은 고딕",Font.PLAIN,15);
+		jtMonthlyAttend.setFont(jtFont);
+		
+		//JTable cell 가운데 정렬
+		DefaultTableCellRenderer cellCenter=new DefaultTableCellRenderer();
+		cellCenter.setHorizontalAlignment(SwingConstants.CENTER);
+		for(int i=0;i<jtMonthlyAttend.getColumnCount();i++) {
+			jtMonthlyAttend.getColumnModel().getColumn(i).setCellRenderer(cellCenter);
+		}//for
 		
 		//로그아웃 버튼
 		jbtnLogOut = new JButton("로그아웃");
@@ -103,7 +149,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		jbtnLogOut.setFont(LogOutFont);
 		jbtnLogOut.setForeground(Color.BLACK);
 		jbtnLogOut.setBackground(new Color(0xE0E0E0));
-				jbtnLogOut.addActionListener(event);
+		jbtnLogOut.addActionListener(event);
 		add(jbtnLogOut);
 		
 		//텍스트 로고

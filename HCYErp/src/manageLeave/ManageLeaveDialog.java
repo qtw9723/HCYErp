@@ -63,7 +63,7 @@ public class ManageLeaveDialog extends JDialog {
 		jbtnApprove.setBounds(400,300,100,40);
 		jbtnApprove.setFont(buttonFont);
 		jbtnApprove.setForeground(Color.white);
-		jbtnApprove.setBackground(new Color(0x8244AD));
+		jbtnApprove.setBackground(new Color(0x6D47B0));
 		jbtnApprove.addActionListener(event);
 		add(jbtnApprove);
 		

@@ -140,6 +140,15 @@ public class AddEmpDialog extends JDialog {
 		jcbJob = new JComboBox<String>();
 		jcbLevel = new JComboBox<String>();
 				
+		//콤박 배경색
+		jcbDayHiredate.setBackground(Color.white);
+		jcbDept.setBackground(Color.white);
+		jcbJob.setBackground(Color.white);
+		jcbLevel.setBackground(Color.white);
+		jcbMonthHiredate.setBackground(Color.white);
+		jcbTeam.setBackground(Color.white);
+		jcbYearHiredate.setBackground(Color.white);
+		
 		// add
 		add(jlblEname);
 		add(jlblEmail);

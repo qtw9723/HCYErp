@@ -85,6 +85,12 @@ public class ApproveResignationDialog extends JDialog {
 		
 		setLayout(null);
 		
+		//콤보박스 배경색
+		jcbEmpNoName.setBackground(Color.white);
+		jcbYear.setBackground(Color.white);
+		jcbMonth.setBackground(Color.white);
+		jcbDay.setBackground(Color.white);
+		
 		//폰트
 		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 14);
 		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
@@ -103,6 +109,7 @@ public class ApproveResignationDialog extends JDialog {
 		jlblDay.setFont(jlblFont);
 		jtaReason.setFont(jtaFont);
 		
+		//add
 		add(jcbEmpNoName);
 		add(jbtnApprove);
 		add(jbtnCancel);

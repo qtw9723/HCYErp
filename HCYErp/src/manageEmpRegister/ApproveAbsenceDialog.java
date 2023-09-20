@@ -111,6 +111,16 @@ public class ApproveAbsenceDialog extends JDialog {
 		
 		setLayout(null);
 		
+		//콤보박스 배경색
+		jcbStartYear.setBackground(Color.white);
+		jcbStartMonth.setBackground(Color.white);
+		jcbStartDay.setBackground(Color.white);
+		jcbEndYear.setBackground(Color.white);
+		jcbEndMonth.setBackground(Color.white);
+		jcbEndDay.setBackground(Color.white);
+		jcbEmpNoName.setBackground(Color.white);
+		jcbReason.setBackground(Color.white);
+		
 		//폰트
 		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 14);
 		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 15);
