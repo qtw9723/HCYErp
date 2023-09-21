@@ -60,7 +60,6 @@ public class HCYErp extends JFrame {
 		//이미지 다운로드
 		try {
 			HCYFileClient.getInstance().imageLoad();
-			System.out.println("아아");
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
