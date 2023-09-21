@@ -18,7 +18,7 @@ import java.net.UnknownHostException;
 
 public class HCYFileClient {
 	private static HCYFileClient hcyFC;
-	private String serverIp = "192.168.10.145";
+	private String serverIp = "192.168.10.146";
 
 	private HCYFileClient() {
 	}// constructor
@@ -123,24 +123,36 @@ public class HCYFileClient {
 			socket = new Socket(serverIp, 36800);
 			// 이름 및 확장자 보내기
 			
-			File dir = new File("C:/Users/user/HCYErpFile/images");
+			File dir = new File("C:/Users/user/HCYErpFile/image");
 			// 폴더생성
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}//if
-			dis = new DataInputStream(socket.getInputStream());
+			is = socket.getInputStream();
+			dis = new DataInputStream(is);
+			System.out.println("11");
 			int length = dis.readInt();
 			String fileName = "";
 			for(int i = 0 ; i<length;i++) {
-				fileName = dis.readUTF();
-				fos = new FileOutputStream(dir.getAbsoluteFile()+File.separator+fileName);
 				is = socket.getInputStream();
+				dis = new DataInputStream(is);
+				System.out.println(length);
+				fileName = dis.readUTF();
+				System.out.println(fileName);
+				fos = new FileOutputStream(dir.getAbsoluteFile()+File.separator+fileName);
 				byte[] buffer = new byte[4096];
 				int bytesRead = 0;
 				
+				int cnt = 0;
 				while ((bytesRead = is.read(buffer)) != -1) {
 					fos.write(buffer, 0, bytesRead);
+					System.out.println("시작"+bytesRead+"/"+cnt);
+					cnt++;
 				} // while
+				if (is != null) {is.close();}//if
+				if (fos != null) {fos.close();}//if
+				if (socket != null) {socket.close();}//if
+				socket = new Socket(serverIp, 36800);
 			}//for
 		} finally {
 			if (is != null) {is.close();}//if
