@@ -55,7 +55,6 @@ public class AttendanceDAO {
 				if (targetCal.get(Calendar.YEAR) == currentCal.get(Calendar.YEAR)
 						&& targetCal.get(Calendar.MONTH) == currentCal.get(Calendar.MONTH)) {
 					for (int i = 0; i < rs.getInt(2); i++) {
-						System.out.println(targetCal.get(Calendar.DAY_OF_MONTH) + "/" + rs.getInt(2));
 						attendance.put(targetCal.get(Calendar.DAY_OF_MONTH), AttendanceStatus.DAY_OFF);
 						targetCal.set(Calendar.DAY_OF_MONTH, targetCal.get(Calendar.DAY_OF_MONTH) + 1);
 						if (targetCal.get(Calendar.DAY_OF_MONTH) == 1) {

@@ -71,15 +71,15 @@ public class ApproveAbsenceDialog extends JDialog {
 		jtaWriteReason.setEditable(false);
 
 		//이름 콤박
-		jcbEmpNoName=new JComboBox<String>();
-		try {
-			List<String> empList = ManageDailyReportDAO.getInstance().selectEmp(mer.getHcyE().getUser());
-			for(String emp : empList) {
-				jcbEmpNoName.addItem(emp);
-			}//for
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}//catch
+		jcbEmpNoName = new JComboBox<String>();
+	        try {
+	            List<String> empList = ManageEmpRegisterDAO.getInstance().selectAbsenceResignation();
+	            for (String emp : empList) {
+	                jcbEmpNoName.addItem(emp);
+	            } // for
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } // catch
 		
 		// 현재 년을 설정
 		int year = cal.get(Calendar.YEAR);

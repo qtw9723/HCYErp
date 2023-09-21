@@ -26,7 +26,12 @@ public class ManageEmpRegisterEvt extends MouseAdapter implements ActionListener
 
 		//휴직처리
 		if (ae.getSource() == mer.getJbtnAbsence()) {
-			new ApproveAbsenceDialog(mer);
+			try {
+				new ApproveAbsenceDialog(mer);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}//if
 		
 		// 로그아웃
