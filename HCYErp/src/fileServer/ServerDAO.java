@@ -14,6 +14,9 @@ public class ServerDAO {
 	private static ServerDAO sDAO;
 	
 	private ServerDAO() {
+		
+		
+		
 	}//class
 	
 	public static ServerDAO getInstance() {
@@ -44,6 +47,7 @@ public class ServerDAO {
 			List<String> addFile = new ArrayList<String>();
 			
 			for(File file:files) {
+				if(file.isDirectory()) {continue;}
 				String filePath = file.getAbsolutePath();
 				addFile.add(filePath.substring(filePath.lastIndexOf("\\")+1));
 			}//for
