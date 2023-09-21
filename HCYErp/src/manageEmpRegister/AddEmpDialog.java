@@ -364,6 +364,14 @@ public class AddEmpDialog extends JDialog {
 		jcbMonthHiredate.addActionListener(event);
 		jcbDayHiredate.addActionListener(event);
 		jcbDept.addActionListener(event);
+		jtfStartSsn.addKeyListener(event);
+		jtfEndSsn.addKeyListener(event);
+		jtfTelF.addKeyListener(event);
+		jtfTelS.addKeyListener(event);
+		jtfTelT.addKeyListener(event);
+		jtfJobTelF.addKeyListener(event);
+		jtfJobTelS.addKeyListener(event);
+		jtfJobTelT.addKeyListener(event);
 		
 		setTitle("입사자 추가");
 		setResizable(false);
