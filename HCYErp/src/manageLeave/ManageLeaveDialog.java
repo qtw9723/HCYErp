@@ -87,7 +87,7 @@ public class ManageLeaveDialog extends JDialog {
 		
 		
 		//다이얼로그 설정
-		setBounds(ml.getHcyE().getX()+200,ml.getHcyE().getY()+150, 830, 430);
+		setBounds(ml.getHcyE().getX()+180,ml.getHcyE().getY()+150, 830, 430);
 		setVisible(true);
 		setResizable(false);
 	}//Constructor 
