@@ -123,7 +123,7 @@ public class HCYFileClient {
 			socket = new Socket(serverIp, 36800);
 			// 이름 및 확장자 보내기
 			
-			File dir = new File("C:/Users/user/HCYErpFile/image");
+			File dir = new File("C:/Users/user/HCYErpFile/images");
 			// 폴더생성
 			if (!dir.exists()) {
 				dir.mkdirs();
