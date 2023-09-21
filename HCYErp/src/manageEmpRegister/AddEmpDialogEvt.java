@@ -71,6 +71,7 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener {
 
 		// 주소 추가
 		eVO.setAddr(aed.getJtfAddr().getText() + "/" + aed.getJtfDetailAddr().getText());
+		
 		// 주민번호 추가
 		eVO.setSsn(aed.getJtfStartSsn().getText() + "-" + aed.getJtfEndSsn().getText());
 
@@ -84,10 +85,10 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener {
 		eVO.setJob(aed.getJtfJob().getText());
 
 		// 전화번호 추가
-		eVO.setTel(aed.getJtfTel().getText());
+		eVO.setTel(aed.getJtfTelF().getText()+"-"+aed.getJtfTelS().getText()+"-"+aed.getJtfTelT().getText());
 
 		// 회사번호 추가
-		eVO.setJobTel(aed.getJtfJobTel().getText());
+		eVO.setJobTel(aed.getJtfJobTelF().getText()+"-"+aed.getJtfJobTelS().getText()+"-"+aed.getJtfJobTelT().getText()+"-");
 
 		// 직급 추가
 		eVO.setLevel(aed.getJtfLevel().getText());
