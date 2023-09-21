@@ -75,6 +75,8 @@ public class ChangePassDialog extends JDialog{
 		jlblCheckNewView.addMouseListener(event);
 		jpfCheckNewPass.addFocusListener(event);
 		jpfCurrentPass.addFocusListener(event);
+		jtfNewPass.addFocusListener(event);
+		jtfCheckNewPass.addFocusListener(event);
 		jbtnCancel.addActionListener(event);
 		jlblNewHide.addMouseListener(event);
 		jlblNewView.addMouseListener(event);
