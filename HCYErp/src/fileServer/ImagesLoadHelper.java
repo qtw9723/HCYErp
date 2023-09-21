@@ -38,17 +38,21 @@ public class ImagesLoadHelper extends Thread {
 				outStream.write(buffer, 0, bytesRead);
 			} // while
 		} finally {
-			if (client != null) {
-				client.close();
-			} // if
-			if (fisWriteStream != null) {
-				fisWriteStream.close();
-			} // if
-			if (outStream != null) {
-				outStream.close();
-			} // if
+			close();
 		} // finally
 	}// upload
+
+	private void close() throws IOException {
+		if (client != null) {
+			client.close();
+		} // if
+		if (fisWriteStream != null) {
+			fisWriteStream.close();
+		} // if
+		if (outStream != null) {
+			outStream.close();
+		} // if
+	}//close
 
 	@Override
 	public void run() {
@@ -62,8 +66,9 @@ public class ImagesLoadHelper extends Thread {
 				dos = new DataOutputStream(outStream);
 				dos.writeInt(fileArr.length);
 				dos.flush();
-				System.out.println(fileArr.length);
+				close();
 				for (File file : fileArr) {
+					client = server.accept();
 					outStream = client.getOutputStream();
 					dos = new DataOutputStream(outStream);
 					String fullPath = file.getAbsolutePath();
@@ -73,7 +78,6 @@ public class ImagesLoadHelper extends Thread {
 					fisWriteStream = new FileInputStream(fullPath);
 					System.out.println("키딩");
 					ImageLoad();
-					client = server.accept();
 				} // for
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 				hcyfs.getJtaConnectList().append(

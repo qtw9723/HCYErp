@@ -130,34 +130,30 @@ public class HCYFileClient {
 			}//if
 			is = socket.getInputStream();
 			dis = new DataInputStream(is);
-			System.out.println("11");
 			int length = dis.readInt();
 			String fileName = "";
+			close(socket, fos, is);
 			for(int i = 0 ; i<length;i++) {
+				socket = new Socket(serverIp, 36800);
 				is = socket.getInputStream();
 				dis = new DataInputStream(is);
-				System.out.println(length);
 				fileName = dis.readUTF();
-				System.out.println(fileName);
 				fos = new FileOutputStream(dir.getAbsoluteFile()+File.separator+fileName);
 				byte[] buffer = new byte[4096];
 				int bytesRead = 0;
-				
-				int cnt = 0;
 				while ((bytesRead = is.read(buffer)) != -1) {
 					fos.write(buffer, 0, bytesRead);
-					System.out.println("시작"+bytesRead+"/"+cnt);
-					cnt++;
 				} // while
-				if (is != null) {is.close();}//if
-				if (fos != null) {fos.close();}//if
-				if (socket != null) {socket.close();}//if
-				socket = new Socket(serverIp, 36800);
+				close(socket, fos, is);
 			}//for
 		} finally {
-			if (is != null) {is.close();}//if
-			if (fos != null) {fos.close();}//if
-			if (socket != null) {socket.close();}//if
+			close(socket, fos, is);
 		} // finally
 	}//imageLoad
+
+	private void close(Socket socket, FileOutputStream fos, InputStream is) throws IOException {
+		if (is != null) {is.close();}//if
+		if (fos != null) {fos.close();}//if
+		if (socket != null) {socket.close();}//if
+	}
 }// class

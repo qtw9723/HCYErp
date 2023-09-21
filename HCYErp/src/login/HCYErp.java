@@ -62,6 +62,7 @@ public class HCYErp extends JFrame {
 			HCYFileClient.getInstance().imageLoad();
 		} catch (IOException e) {
 			e.printStackTrace();
+			return;
 		}//catch
 		
 		// 이벤트 객체 생성
