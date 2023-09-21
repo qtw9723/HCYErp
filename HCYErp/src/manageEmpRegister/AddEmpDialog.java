@@ -100,6 +100,11 @@ public class AddEmpDialog extends JDialog {
 		jlblSal = new JLabel("연봉");
 		jlblLoc = new JLabel("근무지");
 		jlblHiredate = new JLabel("입사일");
+		JLabel jlblSsn1=new JLabel("-");
+		JLabel jlblTel1=new JLabel("-");
+		JLabel jlblTel2=new JLabel("-");
+		JLabel jlblJobTel1=new JLabel("-");
+		JLabel jlblJobTel2=new JLabel("-");
 
 		// 입사일 날짜 콤보박스
 		jcbYearHiredate = new JComboBox<Integer>();
@@ -217,6 +222,11 @@ public class AddEmpDialog extends JDialog {
 		add(jlblSal);
 		add(jlblLoc);
 		add(jlblHiredate);
+		add(jlblSsn1);
+		add(jlblTel1);
+		add(jlblTel2);
+		add(jlblJobTel1);
+		add(jlblJobTel2);
 
 		add(jtfEname);
 		add(jtfStartEmail);
@@ -274,6 +284,11 @@ public class AddEmpDialog extends JDialog {
 		jlblSal.setFont(jlblFont);
 		jlblLoc.setFont(jlblFont);
 		jlblHiredate.setFont(jlblFont);
+		jlblSsn1.setFont(jlblFont);
+		jlblTel1.setFont(jlblFont);
+		jlblTel2.setFont(jlblFont);
+		jlblJobTel1.setFont(jlblFont);
+		jlblJobTel2.setFont(jlblFont);
 		
 		jcbYearHiredate.setFont(jcbFont);
 		jcbMonthHiredate.setFont(jcbFont);
@@ -313,8 +328,13 @@ public class AddEmpDialog extends JDialog {
 		jlblTeam.setBounds(40, 330, 100, 50);
 		jlblHiredate.setBounds(40,370,100,50);
 		jlblSal.setBounds(40, 410, 100, 50);
+		jlblSsn1.setBounds(222,210,30,50);
+		jlblTel1.setBounds(144,250,30,50);
+		jlblTel2.setBounds(204,250,30,50);
 		
 		jlblJobTel.setBounds(330, 250, 100, 50);
+		jlblJobTel1.setBounds(433,250,30,50);
+		jlblJobTel2.setBounds(493,250,30,50);
 		jlblDept.setBounds(330, 290, 100, 50);
 		jlblJob.setBounds(330, 330, 100, 50);
 		jlblLevel.setBounds(610, 330, 100, 50);

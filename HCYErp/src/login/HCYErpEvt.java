@@ -12,7 +12,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Map.Entry;
 
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
@@ -36,6 +39,13 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 	private HCYErp hcyE;
 	private int empNo;
 	private int selectedIndex;
+	private static final int ManageDoc=1;
+	private static final int ManageDailyReport=3;
+	private static final int ManageEmp=4;
+	private static final int ManageMonthlyAttendance=5;
+	private static final int ManagePersonalAttendance=6;
+	private static final int ManageEmpRegister=7;
+	private static final int ManageLeave=8;
 
 	public HCYErpEvt(HCYErp hcyE) {
 		this.hcyE = hcyE;
@@ -70,6 +80,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 	public void login() throws SQLException {
 	
 		HCYErpDAO hcyEDAO = HCYErpDAO.getInstance();
+		Calendar cal=Calendar.getInstance();
 
 		char[] passwordChar = hcyE.getJpfPass().getPassword();
 		String password = new String(passwordChar);
@@ -80,6 +91,8 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		ManageDailyReport mdr = new ManageDailyReport(hcyE);
 		ManageMonthlyAttendance mma = new ManageMonthlyAttendance(hcyE);
 		ManagePersonalAttendance mpa = new ManagePersonalAttendance(hcyE);
+		ManageEmpRegister mer=new ManageEmpRegister(hcyE);
+		ManageLeave ml=new ManageLeave(hcyE);
 		EmpVO eVO = new EmpVO();
 		AttendanceDAO aDAO = AttendanceDAO.getInstance();
 		eVO = aDAO.selectEmp(hcyE.getUser());
@@ -93,6 +106,48 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 					@Override
 					public void stateChanged(ChangeEvent e) {
 						selectedIndex = hcyE.getTabbedPane().getSelectedIndex();
+						switch (selectedIndex) {
+						case ManageDoc:
+							for (Entry<Integer, JCheckBox> entry : md.getJcheckBoxMap().entrySet()) {
+								entry.getValue().setSelected(false);
+							}
+						case ManageDailyReport:
+							mdr.getJcbYear().setSelectedItem(cal.get(Calendar.YEAR));
+							mdr.getJcbMonth().setSelectedItem(cal.get(Calendar.MONTH)+1);
+							mdr.getJcbDay().setSelectedItem(cal.get(Calendar.DAY_OF_MONTH));
+							mdr.getJcbEmp().setSelectedIndex(0);
+						case ManageEmp:
+							int cnt=0;
+							me.getDlmDept().removeAllElements();
+							me.getDlmteam().removeAllElements();
+							me.getDlmEmp().removeAllElements();
+							for (String dept : me.getListName()) {
+								if(dept.substring(0,dept.indexOf("/")).equals("0")) {
+									cnt++;
+									continue;
+								}
+								if(cnt==0) {
+								me.getDlmDept().addElement(dept.substring(dept.indexOf("/")+1));
+								}
+								if(cnt==1) {
+								me.getDlmteam().addElement(dept.substring(dept.indexOf("/")+1));
+								}
+								if(cnt==2) {
+								me.getDlmEmp().addElement(dept.substring(dept.indexOf("/")+1));
+								}
+							}
+						case ManageMonthlyAttendance:
+							mma.getJcbYear().setSelectedItem(cal.get(Calendar.YEAR));
+							mma.getJcbMonth().setSelectedItem(cal.get(Calendar.MONTH)+1);
+						case ManagePersonalAttendance:
+							mpa.getJcbEmp().setSelectedIndex(0);
+						case ManageEmpRegister:
+							mer.getJtRegiAbInfo().clearSelection();
+						case ManageLeave:
+							ml.getJtLeaveProposal().clearSelection();
+							break;
+
+						}
 					}// stateChanged
 				});
 				  // JTabbedPane 가져오기
@@ -114,8 +169,8 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 				hcyE.getTabbedPane().add("월별 사원근태 관리", mma);
 				hcyE.getTabbedPane().add("사원명별 사원근태 관리", mpa);
 				if (eVO.getTeam().equals("인사") || eVO.getTeam().equals("임원")) {
-					hcyE.getTabbedPane().add("입퇴사 관리", new ManageEmpRegister(hcyE));
-					hcyE.getTabbedPane().add("휴가 관리", new ManageLeave(hcyE));
+					hcyE.getTabbedPane().add("입퇴사 관리", mer);
+					hcyE.getTabbedPane().add("휴가 관리", ml);
 				}
 
 //				} // else
