@@ -49,7 +49,7 @@ public class ManageDailyReportDialog extends JDialog {
 		jbtnModify.setBounds(230,500,100,40);
 		jbtnModify.setBackground(new Color(0x6D47B0));
 		jbtnCancel.setBounds(370,500,100,40);
-		jbtnCancel.setBackground(new Color(0x5E5E5E));
+		jbtnCancel.setBackground(new Color(0x919191));
 		
 		add(jtaDailyReport);
 		add(jbtnModify);

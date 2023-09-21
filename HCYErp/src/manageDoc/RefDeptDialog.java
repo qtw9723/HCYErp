@@ -122,7 +122,7 @@ public class RefDeptDialog extends JDialog {
 		jbtnApproveRef.setForeground(Color.white);
 		jbtnCancel.setBounds(150, 300, 120, 40);
 		jbtnCancel.setFont(jbtnFont);
-		jbtnCancel.setBackground(new Color(0x5E5E5E));
+		jbtnCancel.setBackground(new Color(0x919191));
 		jbtnCancel.setForeground(Color.white);;
 
 		RefDeptDialogEvt rdde = new RefDeptDialogEvt(this);

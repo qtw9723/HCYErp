@@ -82,7 +82,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		Font searchFont = new Font("맑은 고딕", Font.BOLD, 15);
 		jbtnAttendDate = new JButton("조회");
 		jbtnAttendDate.setBounds(610,70,100,40);
-		jbtnAttendDate.setBackground(new Color(0x6D47B0));
+		jbtnAttendDate.setBackground(new Color(0x6252CD));
 		jbtnAttendDate.setFont(searchFont);
 		jbtnAttendDate.setForeground(Color.white);
 		jbtnAttendDate.addActionListener(event);
@@ -112,6 +112,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		//스크롤패인 부착
 		JScrollPane jspMonthlyAttend = new JScrollPane(jtMonthlyAttend);
 		jspMonthlyAttend.setBounds(120,150,800,400);
+		jspMonthlyAttend.getViewport().setBackground(new Color(0xECEBFF));
 		add(jspMonthlyAttend);
 		
 		//크기,이동 조절 불가

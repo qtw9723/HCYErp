@@ -71,7 +71,8 @@ public class ManageLeaveDialog extends JDialog {
 		jbtnCancel = new JButton("취소");
 		jbtnCancel.setBounds(640,300,100,40);
 		jbtnCancel.setFont(buttonFont);
-		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		jbtnCancel.setBackground(new Color(0x919191));
+		jbtnCancel.setForeground(Color.white);
 		jbtnCancel.addActionListener(event);
 		add(jbtnCancel);
 		

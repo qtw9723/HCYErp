@@ -372,7 +372,7 @@ public class AddEmpDialog extends JDialog {
 		jbtnAddEmp.setFont(AddEmpBtnFont);
 		jbtnAddEmp.setForeground(Color.white);
 		jbtnCancel.setBounds(455, 480, 135, 40);
-		jbtnCancel.setBackground(new Color(0x5E5E5E));
+		jbtnCancel.setBackground(new Color(0x919191));
 		Font CancelBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		jbtnCancel.setFont(CancelBtnFont);
 		jbtnCancel.setForeground(Color.white);

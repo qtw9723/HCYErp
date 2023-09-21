@@ -77,7 +77,7 @@ public class ManageDoc extends JPanel {
 		//타이틀바 디자인
 		TitledBorder titleBorder=BorderFactory.createTitledBorder("문서 목록");
 		Font titleFont=new Font("맑은 고딕",Font.BOLD,18);
-		titleBorder.setBorder(BorderFactory.createLineBorder(new Color(0x5C1DB5)));
+		titleBorder.setBorder(BorderFactory.createLineBorder(new Color(0xE6FFFF)));
 		titleBorder.setTitleFont(titleFont);
 		titleBorder.setTitleJustification(titleBorder.LEFT);
 		
@@ -104,7 +104,7 @@ public class ManageDoc extends JPanel {
 		// 업로드 버튼
 		jbtnFileUpload = new JButton("파일업로드");
 		jbtnFileUpload.setBounds(930, 100, 130, 55);
-		jbtnFileUpload.setBackground(new Color(0x461C90));
+		jbtnFileUpload.setBackground(new Color(0x3322A8));
 		jbtnFileUpload.setFont(fileBtnFont);
 		jbtnFileUpload.setForeground(Color.WHITE);
 		jbtnFileUpload.addActionListener(event);
@@ -113,7 +113,7 @@ public class ManageDoc extends JPanel {
 		// 다운로드 버튼
 		jbtnFileDownload = new JButton("다운로드");
 		jbtnFileDownload.setBounds(930, 200, 130, 55);
-		jbtnFileDownload.setBackground(new Color(0x461C90));
+		jbtnFileDownload.setBackground(new Color(0x3322A8));
 		jbtnFileDownload.setFont(fileBtnFont);
 		jbtnFileDownload.setForeground(Color.WHITE);
 		jbtnFileDownload.addActionListener(event);
@@ -121,7 +121,7 @@ public class ManageDoc extends JPanel {
 		
 		// 파일 삭제
 		jbtnFileDelete = new JButton("파일 삭제");
-		jbtnFileDelete.setBackground(new Color(0x461C90));
+		jbtnFileDelete.setBackground(new Color(0x3322A8));
 		jbtnFileDelete.setFont(fileBtnFont);
 		jbtnFileDelete.setForeground(Color.WHITE);
 		jbtnFileDelete.setBounds(930, 300, 130, 55);
@@ -131,7 +131,7 @@ public class ManageDoc extends JPanel {
 		// 부서참조
 		jbtnRef = new JButton("부서 참조");
 		jbtnRef.setBounds(930, 400, 130, 55);
-		jbtnRef.setBackground(new Color(0x461C90));
+		jbtnRef.setBackground(new Color(0x3322A8));
 		jbtnRef.setFont(fileBtnFont);
 		jbtnRef.setForeground(Color.WHITE);
 		jbtnRef.addActionListener(event);

@@ -135,7 +135,7 @@ public class ApproveResignationDialog extends JDialog {
 		jbtnApprove.setBackground(new Color(0x6D47B0));
 		jbtnApprove.setForeground(Color.white);
 		jbtnCancel.setBounds(190,410,135,40);
-		jbtnCancel.setBackground(new Color(0x5E5E5E));
+		jbtnCancel.setBackground(new Color(0x919191));
 		jbtnCancel.setForeground(Color.white);
 		
 		ApproveResignationDialogEvt event=new ApproveResignationDialogEvt(this);

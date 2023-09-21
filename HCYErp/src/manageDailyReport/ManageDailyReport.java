@@ -102,7 +102,7 @@ public class ManageDailyReport extends JPanel {
 		// 일자 조회 버튼
 		jbtnDateSearch = new JButton("조회");
 		jbtnDateSearch.setBounds(530, 80, 70, 40);
-		jbtnDateSearch.setBackground(new Color(0x6D47B0));
+		jbtnDateSearch.setBackground(new Color(0x6252CD));
 		Font searchBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		jbtnDateSearch.setFont(searchBtnFont);
 		jbtnDateSearch.setForeground(Color.WHITE);
@@ -136,7 +136,7 @@ public class ManageDailyReport extends JPanel {
 		// 이름 조회 버튼
 		jbtnEmpSearch = new JButton("조회");
 		jbtnEmpSearch.setBounds(880, 80, 70, 40);
-		jbtnEmpSearch.setBackground(new Color(0x6D47B0));
+		jbtnEmpSearch.setBackground(new Color(0x6252CD));
 		jbtnEmpSearch.setFont(searchBtnFont);
 		jbtnEmpSearch.setForeground(Color.WHITE);
 		jbtnEmpSearch.addActionListener(event);

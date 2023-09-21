@@ -152,7 +152,7 @@ public class ApplyDayOffDialog extends JDialog {
 
 		//버튼색
 		jbtnApply.setBackground(new Color(0x6D47B0));
-		jbtnCancel.setBackground(new Color(0x5E5E5E));
+		jbtnCancel.setBackground(new Color(0x919191));
 		jbtnApply.setForeground(Color.white);
 		jbtnCancel.setForeground(Color.white);
 		
