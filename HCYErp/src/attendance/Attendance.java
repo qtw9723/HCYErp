@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import login.HCYErp;
@@ -96,7 +97,7 @@ public class Attendance extends JPanel {
 		add(jlblLogoTxt);
 		// 이번달 근태 현황 라벨
 		jlblMonthlyAttendance = new JLabel("이번달 근태 현황");
-		jlblMonthlyAttendance.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		jlblMonthlyAttendance.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		jlblMonthlyAttendance.setBounds(200, 130, 200, 20);
 		add(jlblMonthlyAttendance);
 
@@ -180,7 +181,8 @@ public class Attendance extends JPanel {
 		add(jlblCalendar);
 
 		// 남은 연가 폰트
-		Font leftDayOffFont = new Font("맑은 고딕", Font.BOLD, 20);
+		Font leftDayOffFont = new Font("맑은 고딕", Font.BOLD, 18);
+		Font leftDayOffContFont = new Font("맑은 고딕", Font.PLAIN, 17);
 		// 남은 연가
 		StringBuilder leftDayOff = new StringBuilder();
 		try {
@@ -195,8 +197,9 @@ public class Attendance extends JPanel {
 		tb.setTitleFont(leftDayOffFont);
 		jlblLeftDayOff.setBorder(tb);
 		// 남은 연가 라벨
-		jlblLeftDayOff.setBounds(800, 220, 300, 100);
-		jlblLeftDayOff.setFont(leftDayOffFont);
+		jlblLeftDayOff.setBounds(800, 220, 150, 100);
+		jlblLeftDayOff.setFont(leftDayOffContFont);
+		jlblLeftDayOff.setHorizontalAlignment(SwingConstants.CENTER);
 		add(jlblLeftDayOff);
 
 		// 배경 설정

@@ -91,7 +91,7 @@ public class RefDeptDialog extends JDialog {
 		jbtnCancel = new JButton("취소");
 
 		//체크박스 폰트
-		Font jcbFont = new Font("맑은 고딕", Font.BOLD, 17);
+		Font jcbFont = new Font("맑은 고딕", Font.BOLD, 15);
 		jcbManage.setFont(jcbFont);
 		jcbLaw.setFont(jcbFont);
 		jcbProduct.setFont(jcbFont);
