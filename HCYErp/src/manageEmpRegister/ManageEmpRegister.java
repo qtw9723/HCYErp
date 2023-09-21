@@ -3,7 +3,6 @@ package manageEmpRegister;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -26,12 +25,12 @@ import login.HCYErp;
 @SuppressWarnings("serial")
 public class ManageEmpRegister extends JPanel{
 	private JButton jbtnEmpRegister;
-	private JButton jbtnResign;
+	private JScrollPane jspResignAb;
 	private JButton jbtnAbsence;
 	private JTable jtRegiAbInfo;
+	private JButton jbtnResign;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
-	private JScrollPane jspResignAb;
 	private HCYErp hcyE;
 	
 	public ManageEmpRegister(HCYErp hcyE) {
@@ -51,7 +50,15 @@ public class ManageEmpRegister extends JPanel{
 		jtRegiAbInfo = new JTable(dtmRefiAbInfo);
 		jspResignAb = new JScrollPane(jtRegiAbInfo);
 		
-		//다오에서 추가
+		// 테이블 설정
+		dtmRefiAbInfo.addColumn("사원번호");
+		dtmRefiAbInfo.addColumn("사원이름");
+		dtmRefiAbInfo.addColumn("부서");
+		dtmRefiAbInfo.addColumn("직급");
+		dtmRefiAbInfo.addColumn("입사일");
+		dtmRefiAbInfo.addColumn("연봉");
+		
+		// 사원 추가
 		List<EmpVO> empVOList = null;
 		try {
 			empVOList = ManageEmpRegisterDAO.getInstance().selectEmp();
@@ -61,12 +68,6 @@ public class ManageEmpRegister extends JPanel{
 		for(int i = 0; i< empVOList.size();i++) {
 			dtmRefiAbInfo.addRow(new Object[] {empVOList.get(i).getEmpNo(),empVOList.get(i).getEname(),empVOList.get(i).getJob(),empVOList.get(i).getLevel(),empVOList.get(i).getHiredate(),empVOList.get(i).getSal()});
 		}//for
-		dtmRefiAbInfo.addColumn("사원번호");
-		dtmRefiAbInfo.addColumn("사원이름");
-		dtmRefiAbInfo.addColumn("부서");
-		dtmRefiAbInfo.addColumn("직급");
-		dtmRefiAbInfo.addColumn("입사일");
-		dtmRefiAbInfo.addColumn("연봉");
 		
 		//이동,크기 조절 불가
 		jtRegiAbInfo.getTableHeader().setReorderingAllowed(false);
@@ -109,7 +110,7 @@ public class ManageEmpRegister extends JPanel{
 		TitledBorder titleBorder=BorderFactory.createTitledBorder("입사자/퇴사 대상자 목록");
 		Font titleFont=new Font("맑은 고딕",Font.BOLD,18);
 		titleBorder.setTitleFont(titleFont);
-		titleBorder.setTitleJustification(titleBorder.LEFT);
+		titleBorder.setTitleJustification(TitledBorder.LEFT);
 		
 		jspResignAb.setBorder(titleBorder);
 		
@@ -170,33 +171,25 @@ public class ManageEmpRegister extends JPanel{
 	public JButton getJbtnEmpRegister() {
 		return jbtnEmpRegister;
 	}
-
-	public JButton getJbtnResign() {
-		return jbtnResign;
-	}
-
-	public JButton getJbtnAbsence() {
-		return jbtnAbsence;
-	}
-
-	public JTable getJtRegiAbInfo() {
-		return jtRegiAbInfo;
-	}
-
-	public JButton getJbtnLogOut() {
-		return jbtnLogOut;
-	}
-
-	public JLabel getJlblLogoTxt() {
-		return jlblLogoTxt;
-	}
-
 	public JScrollPane getJspResignAb() {
 		return jspResignAb;
 	}
-
+	public JButton getJbtnAbsence() {
+		return jbtnAbsence;
+	}
+	public JTable getJtRegiAbInfo() {
+		return jtRegiAbInfo;
+	}
+	public JButton getJbtnResign() {
+		return jbtnResign;
+	}
+	public JButton getJbtnLogOut() {
+		return jbtnLogOut;
+	}
+	public JLabel getJlblLogoTxt() {
+		return jlblLogoTxt;
+	}
 	public HCYErp getHcyE() {
 		return hcyE;
 	}
-	
 }//class
