@@ -63,7 +63,7 @@ public class FileUploadDialog extends JDialog {
 		jbtnUpload.setBounds(310,400,100,40);
 		jbtnUpload.setFont(jbtnFont);
 		//취소버튼
-		jbtnCancel.setBackground(new Color(0x5E5E5E));
+		jbtnCancel.setBackground(new Color(0x919191));
 		jbtnCancel.setForeground(Color.white);
 		jbtnCancel.setBounds(440,400,100,40);
 		jbtnCancel.setFont(jbtnFont);

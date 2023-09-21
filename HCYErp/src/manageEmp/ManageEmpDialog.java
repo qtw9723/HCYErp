@@ -105,15 +105,15 @@ public class ManageEmpDialog extends JDialog{
 		jbtnCancel=new JButton("취소");
 		
 		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 13);
-		jbtnModify.setBackground(new Color(0x461C90));
+		jbtnModify.setBackground(new Color(0x6D47B0));
 		jbtnModify.setFont(jbtnFont);
 		jbtnModify.setForeground(Color.white);
-		jbtnOK.setBackground(new Color(0x461C90));
+		jbtnOK.setBackground(new Color(0x6D47B0));
 		jbtnOK.setFont(jbtnFont);
 		jbtnOK.setForeground(Color.white);
-		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		jbtnCancel.setBackground(new Color(0x919191));
+		jbtnCancel.setForeground(Color.white);
 		jbtnCancel.setFont(jbtnFont);
-		jbtnCancel.setForeground(Color.BLACK);
 		
 		//텍스트 필드 디자인
 		Border focusField=BorderFactory.createLineBorder(new Color(255,72,72),2);// Line border

@@ -121,7 +121,8 @@ public class ResetPassDialog extends JDialog {
 		jbtnResetPass.setBounds(120, 275, 150, 35);
 		jbtnResetPass.setBackground(new Color(0x6D47B0));
 		jbtnCancel.setBounds(340, 275, 120, 35);
-		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		jbtnCancel.setForeground(Color.white);
+		jbtnCancel.setBackground(new Color(0x919191));
 		
 		jlblEmpNo.setBounds(40, 55, 80, 30);
 		jlblEname.setBounds(40, 125, 80, 30);
