@@ -163,8 +163,6 @@ public class ManageEmpRegisterDAO {
 			pstmt.setString(10, eVO.getTel());
 			pstmt.setString(11, eVO.getSsn().substring(0,6));
 			pstmt.setString(12, eVO.getHiredate());
-//			pstmt.setInt(13, eVO.getTotalDayOff());
-			
 			pstmt.execute();
 		}finally {
 			if(db!=null) {

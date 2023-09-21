@@ -78,23 +78,23 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener, Key
 		eVO.setSsn(aed.getJtfStartSsn().getText() + "-" + aed.getJtfEndSsn().getText());
 
 		// 부서추가
-		eVO.setDept(aed.getJtfDept().getText());
+		eVO.setDept(aed.getJcbDept().getSelectedItem().toString());
 
 		// 팀 추가
-		eVO.setTeam(aed.getJtfTeam().getText());
+		eVO.setTeam(aed.getJcbTeam().getSelectedItem().toString());
 
 		// 직무 추가
-		eVO.setJob(aed.getJtfJob().getText());
+		eVO.setJob(aed.getJcbJob().getSelectedItem().toString());
 
 		// 전화번호 추가
 		eVO.setTel(aed.getJtfTelF().getText() + "-" + aed.getJtfTelS().getText() + "-" + aed.getJtfTelT().getText());
 
 		// 회사번호 추가
 		eVO.setJobTel(aed.getJtfJobTelF().getText() + "-" + aed.getJtfJobTelS().getText() + "-"
-				+ aed.getJtfJobTelT().getText() + "-");
+				+ aed.getJtfJobTelT().getText());
 
 		// 직급 추가
-		eVO.setLevel(aed.getJtfLevel().getText());
+		eVO.setLevel(aed.getJcbLevel().getSelectedItem().toString());
 
 		// 시작날짜 추가
 		StringBuilder tempMonth = new StringBuilder();
