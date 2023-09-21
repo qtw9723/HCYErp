@@ -20,26 +20,12 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 
 	public ManageDailyReportEvt(ManageDailyReport mdr) {
 		this.mdr = mdr;
-		
 	}// constructor
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		String emp = mdr.getJcbEmp().getSelectedItem().toString();
-		String content = "";
-		DailyReportVO drVO = new DailyReportVO();
 		try {
-			if (e.getClickCount() == 2) {
-				drVO.setEmpNo(Integer.parseInt(emp.substring(0, 4)));
-				drVO.setReportDate(mdr.getDtmReport().getValueAt(mdr.getJtReport().getSelectedRow(), 3).toString());
-				drVO = ManageDailyReportDAO.getInstance().selectDailyReport(drVO);
-				content = drVO.getReportContent();
-				if (e.getSource() == mdr.getJtReport()) {
-					new ManageDailyReportDialog(mdr, content);
-				} // if
-			} // if
-		} catch (NumberFormatException e1) {
-			e1.printStackTrace();
+			selectDailyReport(e);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} // catch
@@ -49,42 +35,8 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		// 날짜 조회
 		if (e.getSource() == mdr.getJbtnDateSearch()) {
-			for (int i = mdr.getDtmReport().getRowCount() - 1; i >= 0; i--) {
-				mdr.getDtmReport().removeRow(i);
-			} // for
 			try {
-				StringBuilder sbDate = new StringBuilder();
-				StringBuilder sbMonth = new StringBuilder();
-				StringBuilder sbDay = new StringBuilder();
-
-				if (mdr.getJcbMonth().getSelectedItem().toString().length() == 1) {
-					sbMonth.append("0");
-				} // if
-				sbMonth.append(mdr.getJcbMonth().getSelectedItem());
-
-				if (mdr.getJcbDay().getSelectedItem().toString().length() == 1) {
-					sbDay.append("0");
-				} // if
-				sbDay.append(mdr.getJcbDay().getSelectedItem());
-
-				sbDate.append(mdr.getJcbYear().getSelectedItem()).append("-").append(sbMonth.toString()).append("-")
-						.append(sbDay.toString());
-				List<DailyReportVO> drVOList = new ArrayList<DailyReportVO>();
-				drVOList = ManageDailyReportDAO.getInstance().selectDailyReport(sbDate.toString());
-				// 작성된 업무일지 업음
-				if (drVOList.isEmpty()) {
-					JOptionPane.showMessageDialog(mdr, "해당 일에는 작성된 업무일지가 없습니다.");
-					return;
-				} // if
-
-				for (DailyReportVO drVO : drVOList) {
-					mdr.getDtmReport()
-							.addRow(new Object[] { drVO.getEmpNo(), drVO.getEname(),
-									drVO.getReportContent().length() > 15 ? drVO.getReportContent().substring(0, 15)
-											: drVO.getReportContent(),
-									drVO.getReportDate() });
-					;
-				} // for
+				dateSearch();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			} // catch
@@ -92,43 +44,109 @@ public class ManageDailyReportEvt extends MouseAdapter implements ActionListener
 
 		// 사원별 조회
 		if (e.getSource() == mdr.getJbtnEmpSearch()) {
-			for (int i = mdr.getDtmReport().getRowCount() - 1; i >= 0; i--) {
-				mdr.getDtmReport().removeRow(i);
-			} // for
-			String emp = mdr.getJcbEmp().getSelectedItem().toString();
 			try {
-				List<DailyReportVO> drVOList = ManageDailyReportDAO.getInstance()
-						.selectDailyReport(Integer.parseInt(emp.substring(0, emp.indexOf("/"))));
-				for (DailyReportVO drVO : drVOList) {
-					mdr.getDtmReport()
-							.addRow(new Object[] { drVO.getEmpNo(), drVO.getEname(),
-									(drVO.getReportContent().length() > 14) ? drVO.getReportContent().substring(0, 15)
-											: drVO.getReportContent(),
-									drVO.getReportDate() });
-				} // for
+				empSearch();
+			} catch (NumberFormatException e1) {
+				e1.printStackTrace();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			} // catch
 		} // if
-		if (e.getSource() == mdr.getJcbMonth()) {
-			Calendar cal = Calendar.getInstance();
-			int num = mdr.getJcbDay().getSelectedIndex();
-			mdr.getJcbDay().removeAllItems();
-			cal.set(Calendar.MONTH, mdr.getJcbMonth().getSelectedIndex());
-			for (int i = 1; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-				mdr.getJcbDay().addItem(i);
-			} // for
-			mdr.getJcbDay().setSelectedIndex(num);
-		} // if
-		if(e.getSource()==mdr.getJbtnLogOut()) {
-			logOut();
-		}//if
 
+		// 월 선택
+		if (e.getSource() == mdr.getJcbMonth()) {
+			selectMonth();
+		} // if
+
+		// 로그아웃
+		if (e.getSource() == mdr.getJbtnLogOut()) {
+			logOut();
+		} // if
 	}// actionPerformed
+
+	private void selectMonth() {
+		Calendar cal = Calendar.getInstance();
+		int num = mdr.getJcbDay().getSelectedIndex();
+		mdr.getJcbDay().removeAllItems();
+		cal.set(Calendar.MONTH, mdr.getJcbMonth().getSelectedIndex());
+		for (int i = 1; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+			mdr.getJcbDay().addItem(i);
+		} // for
+		mdr.getJcbDay().setSelectedIndex(num);
+	}// selectMonth
+
+	private void empSearch() throws NumberFormatException, SQLException {
+		for (int i = mdr.getDtmReport().getRowCount() - 1; i >= 0; i--) {
+			mdr.getDtmReport().removeRow(i);
+		} // for
+		String emp = mdr.getJcbEmp().getSelectedItem().toString();
+		List<DailyReportVO> drVOList = ManageDailyReportDAO.getInstance()
+				.selectDailyReport(Integer.parseInt(emp.substring(0, emp.indexOf("/"))));
+		for (DailyReportVO drVO : drVOList) {
+			mdr.getDtmReport()
+					.addRow(new Object[] { drVO.getEmpNo(), drVO.getEname(),
+							(drVO.getReportContent().length() > 14) ? drVO.getReportContent().substring(0, 15)
+									: drVO.getReportContent(),
+							drVO.getReportDate() });
+		} // for
+	}// empSearch
+
+	private void dateSearch() throws SQLException {
+		for (int i = mdr.getDtmReport().getRowCount() - 1; i >= 0; i--) {
+			mdr.getDtmReport().removeRow(i);
+		} // for
+		StringBuilder sbDate = new StringBuilder();
+		StringBuilder sbMonth = new StringBuilder();
+		StringBuilder sbDay = new StringBuilder();
+
+		if (mdr.getJcbMonth().getSelectedItem().toString().length() == 1) {
+			sbMonth.append("0");
+		} // if
+		sbMonth.append(mdr.getJcbMonth().getSelectedItem());
+
+		if (mdr.getJcbDay().getSelectedItem().toString().length() == 1) {
+			sbDay.append("0");
+		} // if
+		sbDay.append(mdr.getJcbDay().getSelectedItem());
+
+		sbDate.append(mdr.getJcbYear().getSelectedItem()).append("-").append(sbMonth.toString()).append("-")
+				.append(sbDay.toString());
+		List<DailyReportVO> drVOList = new ArrayList<DailyReportVO>();
+		drVOList = ManageDailyReportDAO.getInstance().selectDailyReport(sbDate.toString());
+		// 작성된 업무일지 업음
+		if (drVOList.isEmpty()) {
+			JOptionPane.showMessageDialog(mdr, "해당 일에는 작성된 업무일지가 없습니다.");
+			return;
+		} // if
+
+		for (DailyReportVO drVO : drVOList) {
+			mdr.getDtmReport()
+					.addRow(new Object[] { drVO.getEmpNo(), drVO.getEname(),
+							drVO.getReportContent().length() > 15 ? drVO.getReportContent().substring(0, 15)
+									: drVO.getReportContent(),
+							drVO.getReportDate() });
+		} // for
+	}// dateSearch
+
+	private void selectDailyReport(MouseEvent e) throws SQLException {
+		String emp = mdr.getDtmReport().getValueAt(mdr.getJtReport().getSelectedRow(), 0).toString();
+		String content = "";
+		DailyReportVO drVO = new DailyReportVO();
+		if (e.getClickCount() == 2) {
+			drVO.setEmpNo(Integer.parseInt(emp.substring(0, 4)));
+			drVO.setReportDate(mdr.getDtmReport().getValueAt(mdr.getJtReport().getSelectedRow(), 3).toString());
+			drVO = ManageDailyReportDAO.getInstance().selectDailyReport(drVO);
+			content = drVO.getReportContent();
+			if (e.getSource() == mdr.getJtReport()) {
+				new ManageDailyReportDialog(mdr, content);
+			} // if
+		} // if
+	}// selectDailyReport
+
 	public void logOut() {
 		mdr.getHcyE().getTabbedPane().setVisible(false);
 		mdr.getHcyE().addComponent();
 		mdr.getHcyE().setUser(0);
-	}//logOut
+	}// logOut
 
 }// class
