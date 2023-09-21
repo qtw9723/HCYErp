@@ -22,9 +22,11 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 
 	private ChangePassDialog cpd;
 	//텍스트 필드 디자인
-	private Border focusField=BorderFactory.createLineBorder(new Color(255,72,72),2);// Line border
+	private Border focusField=BorderFactory.createLineBorder(new Color(0xBC5BC2),2);// Line border
 	private Border unfocusField=BorderFactory.createLineBorder(Color.LIGHT_GRAY);// Line border
-
+	private int cnt;
+	
+	
 	public ChangePassDialogEvt(ChangePassDialog cpd) {
 		this.cpd = cpd;
 		cpd.addWindowListener(new WindowAdapter() {
@@ -63,9 +65,6 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 		if (e.getSource() == cpd.getJlblCheckNewHide()) {
 			passwordStateCheck();
 		}//if
-		if (e.getSource() == cpd.getJtfNewPass()) {
-			System.out.println("asfasd");
-		}//
 	}// mouseClicked
 
 	@Override
@@ -79,8 +78,7 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 			if(cpd.getJtfNewPass().getBorder().equals(focusField)) {
 				cpd.getJtfNewPass().setBorder(unfocusField);
 			}
-			
-			
+		
 		}//if
 		//새 패스워드 필드
 		if(e.getSource()==cpd.getJpfNewPass()) {
@@ -88,6 +86,7 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 			if(cpd.getJtfCheckNewPass().getBorder().equals(focusField)) {
 				cpd.getJtfCheckNewPass().setBorder(unfocusField);
 			}
+			cnt=1;
 		}//if
 		//새 패스워드 확인 필드
 		if(e.getSource()==cpd.getJpfCheckNewPass()) {
@@ -95,7 +94,7 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 			if(cpd.getJtfNewPass().getBorder().equals(focusField)) {
 				cpd.getJtfNewPass().setBorder(unfocusField);
 			}
-			
+			cnt=2;
 		}//if
 	}//focusGained
 
@@ -110,9 +109,6 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 			
 			if(cpd.getJtfNewPass().getBorder().equals(unfocusField)) {
 				cpd.getJtfNewPass().setBorder(focusField);
-			}
-			if(cpd.getJtfCheckNewPass().getBorder().equals(focusField)&&cpd.getJtfNewPass().getBorder().equals(focusField)) {
-				
 			}
 		}//if
 		//새 패스워드 필드
@@ -200,8 +196,10 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 		
 		cpd.getJlblNewHide().setVisible(false);
 		cpd.getJlblNewView().setVisible(true);
+		if(	cpd.getJtfNewPass().getBorder().equals(focusField)) {
+			cpd.getJtfNewPass().setBorder(unfocusField);
+		}
 		cpd.getJpfNewPass().requestFocus();
-		
 	}// passwordState
 	
 	public void passwordStateCheck() {
@@ -209,6 +207,9 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 		cpd.getJtfCheckNewPass().setVisible(false);
 		cpd.getJlblCheckNewHide().setVisible(false);
 		cpd.getJlblCheckNewView().setVisible(true);
+		if(	cpd.getJtfCheckNewPass().getBorder().equals(focusField)) {
+			cpd.getJtfCheckNewPass().setBorder(unfocusField);
+		}
 		cpd.getJpfCheckNewPass().requestFocus();
 		
 	}// passwordStateCheck
