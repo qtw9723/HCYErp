@@ -114,6 +114,10 @@ public class ManageMonthlyAttendance extends JPanel{
 		jspMonthlyAttend.setBounds(120,150,800,400);
 		add(jspMonthlyAttend);
 		
+		//크기,이동 조절 불가
+		jtMonthlyAttend.getTableHeader().setReorderingAllowed(false);
+		jtMonthlyAttend.getTableHeader().setResizingAllowed(false);
+		
 		//셀 간격
 		jtMonthlyAttend.setRowHeight(25);
 		

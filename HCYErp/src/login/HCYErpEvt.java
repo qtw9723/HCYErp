@@ -1,6 +1,9 @@
 package login;
 
+import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -8,11 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
 
-import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
@@ -27,7 +26,6 @@ import manageAttendance.ManagePersonalAttendance;
 import manageDailyReport.ManageDailyReport;
 import manageDoc.ManageDoc;
 import manageEmp.ManageEmp;
-import manageEmp.ManageEmpDAO;
 import manageEmpRegister.ManageEmpRegister;
 import manageLeave.ManageLeave;
 
@@ -87,12 +85,18 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 			if (password.equals(hcyEDAO.geteVO().getPass())) {
 				hcyE.removeComponent();
 				hcyE.setTabbedPane(new JTabbedPane());
+				// JTabbedPane의 너비와 높이를 설정
+
 				hcyE.getTabbedPane().addChangeListener(new ChangeListener() {
 					@Override
 					public void stateChanged(ChangeEvent e) {
 						selectedIndex = hcyE.getTabbedPane().getSelectedIndex();
 					}// stateChanged
 				});
+				Font tabFont=new Font("맑은 고딕",Font.BOLD,16);
+				hcyE.getTabbedPane().setFont(tabFont);
+				hcyE.getTabbedPane().setForeground(Color.white);
+				hcyE.getTabbedPane().setBackground(new Color(0x9D78DB));
 				hcyE.add(hcyE.getTabbedPane());
 				hcyE.getTabbedPane().add("출근", new Attendance(hcyE));
 				hcyE.getTabbedPane().add("문서관리", md);
