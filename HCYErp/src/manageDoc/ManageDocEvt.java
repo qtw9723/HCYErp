@@ -77,7 +77,7 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 		msg.append("위의 파일들을 삭제 하시겠습니까?");
 
 		// 삭제 의사 확인
-		switch (JOptionPane.showConfirmDialog(md, msg.toString())) {
+		switch (JOptionPane.showConfirmDialog(md, msg.toString(),"삭제",JOptionPane.INFORMATION_MESSAGE)) {
 		case JOptionPane.OK_OPTION:
 
 			StringBuilder failList = new StringBuilder();
@@ -89,10 +89,10 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 				} // else
 			} // for
 			if (!failList.toString().isEmpty()) {
-				JOptionPane.showMessageDialog(md, failList.toString() + "파일 삭제에 실패했습니다.");
+				JOptionPane.showMessageDialog(md, failList.toString() + "파일 삭제에 실패했습니다.","삭제",JOptionPane.INFORMATION_MESSAGE);
 				return;
 			} // if
-			JOptionPane.showMessageDialog(md, "파일 삭제를 완료했습니다!");
+			JOptionPane.showMessageDialog(md, "파일 삭제를 완료했습니다!","삭제",JOptionPane.INFORMATION_MESSAGE);
 			refresh(md.getHcyE().getEvent().getSelectedIndex());
 			break;
 		default:
@@ -114,7 +114,7 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 		msg.append("위의 파일들을 다운로드 하시겠습니까?");
 
 		// 삭제 의사 확인
-		switch (JOptionPane.showConfirmDialog(md, msg.toString())) {
+		switch (JOptionPane.showConfirmDialog(md, msg.toString(),"다운로드",JOptionPane.INFORMATION_MESSAGE)) {
 		case JOptionPane.OK_OPTION:
 
 			StringBuilder failList = new StringBuilder();

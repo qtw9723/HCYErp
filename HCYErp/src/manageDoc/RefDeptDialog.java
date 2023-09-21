@@ -133,6 +133,7 @@ public class RefDeptDialog extends JDialog {
 		setTitle("부서 참조");
 		setBounds(md.getHcyE().getX() + 400, md.getHcyE().getY() + 200, 305, 400);
 		setVisible(true);
+		setResizable(false);
 
 	}// constructor
 

@@ -60,23 +60,23 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 		boolean toDayFlag = AttendanceDAO.getInstance().selectTodayWork(ad.getHcyE().getUser());
 		// 전에 퇴근 눌렀는지 확인
 		if (workdFlag) {
-			JOptionPane.showMessageDialog(ad, "퇴근처리하지 않은 날이 있습니다. 자동으로 퇴근처리 합니다. 다시 출근을 눌러주세요!");
+			JOptionPane.showMessageDialog(ad, "퇴근처리하지 않은 날이 있습니다. 자동으로 퇴근처리 합니다. 다시 출근을 눌러주세요!","출근",JOptionPane.INFORMATION_MESSAGE);
 			int updateFlag = AttendanceDAO.getInstance().updateGetOff(ad.getHcyE().getUser());
 			if (updateFlag == 1) {
-				JOptionPane.showMessageDialog(ad, "정상적으로 퇴근처리 되었습니다! ");
+				JOptionPane.showMessageDialog(ad, "정상적으로 퇴근처리 되었습니다! ","퇴근",JOptionPane.INFORMATION_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(ad, "오류가 발생했습니다. 출근버튼을 눌렀는지 확인해주세요!");
+				JOptionPane.showMessageDialog(ad, "오류가 발생했습니다. 출근버튼을 눌렀는지 확인해주세요!","출근",JOptionPane.INFORMATION_MESSAGE);
 			} // else
 			return;
 		} // if
 			// 이미 출근 눌렀는지 확인
 		if (workingFlag) {
-			JOptionPane.showMessageDialog(ad, "이미 출근 했습니다!");
+			JOptionPane.showMessageDialog(ad, "이미 출근 했습니다!","출근",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		} // if
 			// 이미 퇴근 눌렀는지 확인
 		if (toDayFlag) {
-			JOptionPane.showMessageDialog(ad, "이미 퇴근했습니다!");
+			JOptionPane.showMessageDialog(ad, "이미 퇴근했습니다!","퇴근",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		} // if
 
@@ -85,11 +85,11 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 
 		JLabel jlblAttend = null;
 		if (Calendar.getInstance().get(Calendar.HOUR) < AttendanceDAO.WORK_START_TIME) {
-			JOptionPane.showMessageDialog(ad, "정상적으로 출근처리 되었습니다.");
+			JOptionPane.showMessageDialog(ad, "정상적으로 출근처리 되었습니다.","출근",JOptionPane.INFORMATION_MESSAGE);
 			jlblAttend = new JLabel(ad.getAttend());
 		} else {
 			// 지각처리
-			JOptionPane.showMessageDialog(ad, "지각!!");
+			JOptionPane.showMessageDialog(ad, "지각!!","지각",JOptionPane.INFORMATION_MESSAGE);
 			jlblAttend = new JLabel(ad.getTardy());
 		} // else
 
@@ -105,7 +105,7 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 	private void getOff() throws SQLException {
 		// 업무 일지 작성했을 때만 퇴근 가능
 		if (!ad.getHcyE().isGetOffFlag()) {
-			JOptionPane.showMessageDialog(ad, "업무일지를 작성해주세요.");
+			JOptionPane.showMessageDialog(ad, "업무일지를 작성해주세요.","업무일지",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		} // if
 			// 출근 버튼 눌렀을 때 발생할 수 있는 예외처리
