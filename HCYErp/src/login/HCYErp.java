@@ -61,31 +61,31 @@ public class HCYErp extends JFrame {
 		list=new ArrayList<JPanel>();
 		// 로고 설정
 		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/hcytravel_mainlogo_3cm.png"));
-		jlblMainImg.setBounds(480, 20, 180, 150);
+		jlblMainImg.setBounds(500, 20, 180, 150);
 		
 		// 텍스트 로고 설정
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/HCYErpTextLogoSmall.png"));
-		jlblLogoTxt.setBounds(470, 140, 180, 150);
+		jlblLogoTxt.setBounds(490, 140, 180, 150);
 
 		// 로그인 폰트
 		Font loginFont = new Font("맑은 고딕", Font.BOLD, 20);
 		// 사원번호 입력
 		jlblEmpNo = new JLabel("사원번호");
-		jlblEmpNo.setBounds(320, 295, 180, 60);
+		jlblEmpNo.setBounds(330, 295, 180, 60);
 		jlblEmpNo.setFont(loginFont);
 
 		jtfEmpNo = new JTextField();
-		jtfEmpNo.setBounds(410, 305, 300, 40);
+		jtfEmpNo.setBounds(420, 305, 290, 40);
 		jtfEmpNo.setFont(loginFont);
 		jtfEmpNo.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.LOWERED));
 
 		// 비밀번호 입력
 		jlblPass = new JLabel("비밀번호");
-		jlblPass.setBounds(320, 370, 180, 60);
+		jlblPass.setBounds(330, 370, 180, 60);
 		jlblPass.setFont(loginFont);
 
 		jpfPass = new JPasswordField();
-		jpfPass.setBounds(410, 380, 300, 40);
+		jpfPass.setBounds(420, 380, 290, 40);
 		jpfPass.setFont(loginFont);
 		jpfPass.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.LOWERED));
 		jpfPass.addActionListener(event);
