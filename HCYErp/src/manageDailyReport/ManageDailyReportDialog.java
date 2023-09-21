@@ -59,6 +59,7 @@ public class ManageDailyReportDialog extends JDialog {
 		setTitle("업무일지 조회");
 		setBounds(mdr.getX()+600,mdr.getY()+200,698,600);
 		setVisible(true);
+		setResizable(false);
 		
 	}//constructor
 	

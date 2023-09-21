@@ -115,6 +115,7 @@ public class ChangePassDialog extends JDialog{
 		add(jbtnCancel);
 		setSize(500,500);
 		setVisible(true);
+		setResizable(false);
 		
 	}//constructor
 

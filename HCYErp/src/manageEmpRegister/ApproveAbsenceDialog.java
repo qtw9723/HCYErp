@@ -216,6 +216,7 @@ public class ApproveAbsenceDialog extends JDialog {
 		jbtnCancel.addActionListener(event);
 		
 		setTitle("휴직 처리");
+		setResizable(false);
 		setBounds(mer.getX()+100, mer.getY()+100, 780, 400);
 		setVisible(true);
 		
