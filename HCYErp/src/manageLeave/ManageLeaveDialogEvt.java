@@ -75,6 +75,7 @@ public class ManageLeaveDialogEvt implements ActionListener {
 		//성공 메세지
 		JOptionPane.showMessageDialog(mld, mld.getDoaVO().getEname()+"님이 신청하신 "+mld.getDoaVO().getStartDate()+"부터 "+mld.getDoaVO().getEndDate()+"까지의 휴가를 승인하였습니다.");
 		//리스트 초기화
+		refresh(mld.getMl().getHcyE().getEvent().getSelectedIndex());
 		mld.getMl().addApplyList();
 		mld.dispose();
 	}//approve
