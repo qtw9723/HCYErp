@@ -65,11 +65,12 @@ public class ManageDocDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "select dc.deptno,dc.docno,dc.docname, dc.INPUT_DATE from doc dc where dc.docno in (select dp.docno from DOC_PERMISSION dp where dp.deptno = case  when ((select t.deptno from team t where t.teamno = (select e.teamno from emp e where e.empno = 4702 ))) = 90 then dp.deptno else ((select t.deptno from team t where t.teamno = (select e.teamno from emp e where e.empno = ? ))) end )";
+			String sql = "select dc.deptno,dc.docno,dc.docname, dc.INPUT_DATE from doc dc where dc.docno in (select dp.docno from DOC_PERMISSION dp where dp.deptno = case  when ((select t.deptno from team t where t.teamno = (select e.teamno from emp e where e.empno = ? ))) = 90 then dp.deptno else ((select t.deptno from team t where t.teamno = (select e.teamno from emp e where e.empno = ? ))) end )";
 
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, empno);
+			pstmt.setInt(2, empno);
 
 			rs = pstmt.executeQuery();
 			DocVO dVO = null;

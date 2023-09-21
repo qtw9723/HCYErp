@@ -60,11 +60,11 @@ public class HCYErp extends JFrame {
 		//리스트 객체 생성
 		list=new ArrayList<JPanel>();
 		// 로고 설정
-		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/hcytravel_mainlogo_3cm.png"));
+		jlblMainImg = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/hcytravel_mainlogo_3cm.png"));
 		jlblMainImg.setBounds(480, 20, 180, 150);
 		
 		// 텍스트 로고 설정
-		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErpTextLogoSmall.png"));
+		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/HCYErpTextLogoSmall.png"));
 		jlblLogoTxt.setBounds(470, 140, 180, 150);
 
 		// 로그인 폰트
@@ -114,7 +114,7 @@ public class HCYErp extends JFrame {
 		jlblQEmail.setFont(resetPWFont);
 
 		// 배경 설정
-		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
+		jlblBG = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 735);
 		
 		

@@ -42,13 +42,13 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 				deleteFile();
 			} // if
 		} catch (UnknownHostException e1) {
-			JOptionPane.showMessageDialog(md, "서버 연결에 문제가 생겼습니다. 기술팀에 문의하세요!");
+			JOptionPane.showMessageDialog(md, "서버 연결에 문제가 생겼습니다. 기술팀에 문의하세요!","*삐용*오류 발생*삐용*",JOptionPane.INFORMATION_MESSAGE);
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			JOptionPane.showMessageDialog(md, "서버 스트림 연결에 문제가 생겼습니다. 기술팀에 문의하세요!");
+			JOptionPane.showMessageDialog(md, "서버 스트림 연결에 문제가 생겼습니다. 기술팀에 문의하세요!","*삐용*오류 발생*삐용*",JOptionPane.INFORMATION_MESSAGE);
 			e1.printStackTrace();
 		} catch (SQLException e1) {
-			JOptionPane.showMessageDialog(md, "데이터 베이스에 문제가 생겼습니다. 기술팀에 문의하세요!");
+			JOptionPane.showMessageDialog(md, "데이터 베이스에 문제가 생겼습니다. 기술팀에 문의하세요!","*삐용*오류 발생*삐용*",JOptionPane.INFORMATION_MESSAGE);
 			e1.printStackTrace();
 		} // catch
 
