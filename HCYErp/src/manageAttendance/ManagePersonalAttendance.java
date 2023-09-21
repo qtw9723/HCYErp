@@ -92,7 +92,7 @@ public class ManagePersonalAttendance extends JPanel{
 		//조회버튼
 		jbtnAttendName = new JButton("조회");
 		jbtnAttendName.setBounds(700,70,90,40);
-		jbtnAttendName.setBackground(new Color(109,71,176));
+		jbtnAttendName.setBackground(new Color(0x6252CD));
 		Font AttendBtnFont = new Font("맑은 고딕",  Font.BOLD, 15);
 		jbtnAttendName.setFont(AttendBtnFont);
 		jbtnAttendName.setForeground(Color.white);

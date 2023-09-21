@@ -97,6 +97,7 @@ public class ManageLeave extends JPanel{
 		TitledBorder titleBorder=BorderFactory.createTitledBorder("휴가 신청 목록");
 		Font titleFont=new Font("맑은 고딕",Font.BOLD,18);
 		titleBorder.setTitleFont(titleFont);
+		titleBorder.setBorder(BorderFactory.createLineBorder(new Color(0xE6FFFF)));
 		titleBorder.setTitleJustification(titleBorder.LEFT);
 		
 		jspLeave.setBorder(titleBorder);

@@ -109,6 +109,8 @@ public class ManageEmpRegister extends JPanel{
 		//타이틀바 디자인
 		TitledBorder titleBorder=BorderFactory.createTitledBorder("입사자/퇴사 대상자 목록");
 		Font titleFont=new Font("맑은 고딕",Font.BOLD,18);
+		titleBorder.setBorder(BorderFactory.createLineBorder(new Color(0xE6FFFF)));
+		titleBorder.setBorder(BorderFactory.createLineBorder(new Color(0xE6FFFF)));
 		titleBorder.setTitleFont(titleFont);
 		titleBorder.setTitleJustification(TitledBorder.LEFT);
 		
@@ -120,7 +122,7 @@ public class ManageEmpRegister extends JPanel{
 		//입사자 추가 버튼
 		jbtnEmpRegister = new JButton("입사자 추가");
 		jbtnEmpRegister.setBounds(930,130,130,55);
-		jbtnEmpRegister.setBackground(new Color(0x461C90));
+		jbtnEmpRegister.setBackground(new Color(0x3322A8));
 		jbtnEmpRegister.setFont(jbtnFont);
 		jbtnEmpRegister.setForeground(Color.white);
 		jbtnEmpRegister.addActionListener(event);
@@ -129,7 +131,7 @@ public class ManageEmpRegister extends JPanel{
 		//퇴사 처리 버튼
 		jbtnResign = new JButton("퇴사 처리");
 		jbtnResign.setBounds(930,230,130,55);
-		jbtnResign.setBackground(new Color(0x461C90));
+		jbtnResign.setBackground(new Color(0x3322A8));
 		jbtnResign.setFont(jbtnFont);
 		jbtnResign.setForeground(Color.white);
 		jbtnResign.addActionListener(event);
@@ -141,7 +143,7 @@ public class ManageEmpRegister extends JPanel{
 		jbtnAbsence.setBounds(930,330,130,55);
 		jbtnAbsence.setFont(jbtnFont);
 		jbtnAbsence.setForeground(Color.white);
-		jbtnAbsence.setBackground(new Color(0x461C90));
+		jbtnAbsence.setBackground(new Color(0x3322A8));
 		add(jbtnAbsence);
 		
 		//로그아웃 버튼

@@ -59,6 +59,9 @@ public class ManageEmp extends JPanel {
 		TitledBorder titleBorderTeam=BorderFactory.createTitledBorder("팀");
 		TitledBorder titleBorderEmp=BorderFactory.createTitledBorder("사원");
 		Font titleFont=new Font("맑은 고딕",Font.BOLD,15);
+		titleBorderDept.setBorder(BorderFactory.createLineBorder(new Color(0xE6FFFF)));
+		titleBorderTeam.setBorder(BorderFactory.createLineBorder(new Color(0xE6FFFF)));
+		titleBorderEmp.setBorder(BorderFactory.createLineBorder(new Color(0xE6FFFF)));
 		titleBorderDept.setTitleFont(titleFont);
 		titleBorderTeam.setTitleFont(titleFont);
 		titleBorderEmp.setTitleFont(titleFont);
