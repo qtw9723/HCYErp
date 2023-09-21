@@ -1,5 +1,7 @@
 package fileServer;
 
+import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,6 +15,7 @@ public class ImagesLoadHelper extends Thread {
 
 	private FileInputStream fisWriteStream;
 	private OutputStream outStream;
+	private DataOutputStream dos;
 	private HCYFileServer hcyfs;
 	private ServerSocket server;
 	private Socket client;
@@ -48,8 +51,14 @@ public class ImagesLoadHelper extends Thread {
 				// 저장할 폴더 경로 지정
 				String folderPath = "C:/Users/user/HCYErpFile/images";
 				File[] fileArr = new File(folderPath).listFiles();
+				dos = new DataOutputStream(outStream);
+				dos.writeInt(fileArr.length);
+				dos.flush();
 				for (File file : fileArr) {
-					fisWriteStream = new FileInputStream(file.getAbsoluteFile());
+					String fullPath=file.getAbsolutePath();
+					dos.writeUTF(fullPath.substring(fullPath.lastIndexOf(File.separator)+1));
+					dos.flush();
+					fisWriteStream = new FileInputStream(fullPath);
 					ImageLoad();
 				} // for
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
