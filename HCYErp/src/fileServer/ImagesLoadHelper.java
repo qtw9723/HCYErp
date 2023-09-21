@@ -30,15 +30,23 @@ public class ImagesLoadHelper extends Thread {
 		// 파일 받아서 쓰기
 		byte[] buffer = new byte[4096];
 		int bytesRead = 0;
+		int cnt = 0;
 		try {
 			while ((bytesRead = fisWriteStream.read(buffer)) != -1) {
+				System.out.println(cnt+"/"+bytesRead);
+				cnt++;
 				outStream.write(buffer, 0, bytesRead);
 			} // while
 		} finally {
-			// 닫기
-			if (fisWriteStream != null) {fisWriteStream.close();}
-			if (outStream != null) {outStream.close();}
-			if (client != null) {client.close();}
+			if (client != null) {
+				client.close();
+			} // if
+			if (fisWriteStream != null) {
+				fisWriteStream.close();
+			} // if
+			if (outStream != null) {
+				outStream.close();
+			} // if
 		} // finally
 	}// upload
 
@@ -54,19 +62,26 @@ public class ImagesLoadHelper extends Thread {
 				dos = new DataOutputStream(outStream);
 				dos.writeInt(fileArr.length);
 				dos.flush();
+				System.out.println(fileArr.length);
 				for (File file : fileArr) {
-					String fullPath=file.getAbsolutePath();
-					dos.writeUTF(fullPath.substring(fullPath.lastIndexOf(File.separator)+1));
+					outStream = client.getOutputStream();
+					dos = new DataOutputStream(outStream);
+					String fullPath = file.getAbsolutePath();
+					dos.writeUTF(fullPath.substring(fullPath.lastIndexOf(File.separator) + 1));
+					System.out.println(fullPath);
 					dos.flush();
 					fisWriteStream = new FileInputStream(fullPath);
+					System.out.println("키딩");
 					ImageLoad();
+					client = server.accept();
 				} // for
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				hcyfs.getJtaConnectList().append(sdf.format(new Date()) + "에" + client.getInetAddress().getHostAddress()
-						+ "님이 서버에 접속하셨습니다.\n");
+				hcyfs.getJtaConnectList().append(
+						sdf.format(new Date()) + "에" + client.getInetAddress().getHostAddress() + "님이 서버에 접속하셨습니다.\n");
 			} // while
 		} catch (IOException e) {
 			e.printStackTrace();
-		} // catch
+		} finally {
+		} // finally
 	}// run
 }// class
