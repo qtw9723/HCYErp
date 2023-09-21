@@ -120,6 +120,9 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 		//비밀번호 꺼내기
 		String password = new String(cpd.getJpfNewPass().getPassword());
 		cpd.getJtfNewPass().setText(password);
+		
+		cpd.getJtfNewPass().requestFocus();
+		cpd.getJtfNewPass().setBorder(focusField);
 	}// textfieldState
 	
 	public void textfieldStateCheck() {
@@ -145,13 +148,18 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 		String password = new String(passwordChars);
 		
 		cpd.getJtfCheckNewPass().setText(password);
+		cpd.getJtfCheckNewPass().setVisible(true);
+		cpd.getJtfCheckNewPass().requestFocus();
+		cpd.getJtfCheckNewPass().setBorder(focusField);
 	}// textfieldStateCheck
 	
 	public void passwordState() {
 		cpd.getJpfNewPass().setVisible(true);
 		cpd.getJtfNewPass().setVisible(false);
+		
 		cpd.getJlblNewHide().setVisible(false);
 		cpd.getJlblNewView().setVisible(true);
+		cpd.getJpfNewPass().requestFocus();
 	}// passwordState
 	
 	public void passwordStateCheck() {
@@ -159,6 +167,7 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 		cpd.getJtfCheckNewPass().setVisible(false);
 		cpd.getJlblCheckNewHide().setVisible(false);
 		cpd.getJlblCheckNewView().setVisible(true);
+		cpd.getJpfCheckNewPass().requestFocus();
 	}// passwordStateCheck
 	
 	public void cancelChangePass() {
