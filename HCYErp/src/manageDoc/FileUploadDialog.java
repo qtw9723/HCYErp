@@ -82,6 +82,7 @@ public class FileUploadDialog extends JDialog {
 		setTitle("파일업로드");
 		setSize(580,500);
 		setVisible(true);
+		setResizable(false);
 	}//constructor
 	
 	public DefaultListModel<String> getListmodel() {

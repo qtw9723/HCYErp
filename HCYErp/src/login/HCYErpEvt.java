@@ -1,6 +1,9 @@
 package login;
 
+import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,6 +18,8 @@ import java.util.Map;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -108,7 +113,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 //				} // else
 			} else {
-				JOptionPane.showMessageDialog(hcyE, "아이디혹은 비밀번호가 잘못되었습니다.");
+				JOptionPane.showMessageDialog(hcyE, "아이디 혹은 비밀번호가 잘못되었습니다.");
 			} // else
 		} // if
 
