@@ -57,13 +57,13 @@ public class ManagePersonalAttendance extends JPanel{
 		//연도 라벨
 		Font ymFont = new Font("맑은 고딕",Font.BOLD,17);
 		JLabel jlblyear =new JLabel(Integer.toString(cal.get(Calendar.YEAR)));
-		jlblyear.setBounds(260,137,100,100);
+		jlblyear.setBounds(270,137,100,100);
 		jlblyear.setFont(ymFont);
 		add(jlblyear);
 		
 		//월 라벨
 		JLabel jlblmonth =new JLabel(Integer.toString(cal.get(Calendar.MONTH)+1));
-		jlblmonth.setBounds(380,137,100,100);
+		jlblmonth.setBounds(390,137,100,100);
 		jlblmonth.setFont(ymFont);
 		add(jlblmonth);
 		

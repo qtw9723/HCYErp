@@ -98,7 +98,7 @@ public class Attendance extends JPanel {
 		// 이번달 근태 현황 라벨
 		jlblMonthlyAttendance = new JLabel("이번달 근태 현황");
 		jlblMonthlyAttendance.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-		jlblMonthlyAttendance.setBounds(200, 130, 200, 20);
+		jlblMonthlyAttendance.setBounds(225, 133, 200, 20);
 		add(jlblMonthlyAttendance);
 
 		// 달력날짜
@@ -117,13 +117,13 @@ public class Attendance extends JPanel {
 		// 연도 라벨
 		Font ymFont = new Font("맑은 고딕", Font.BOLD, 17);
 		JLabel jlblyear = new JLabel(Integer.toString(cal.get(Calendar.YEAR)));
-		jlblyear.setBounds(260, 137, 100, 100);
+		jlblyear.setBounds(270, 137, 100, 100);
 		jlblyear.setFont(ymFont);
 		add(jlblyear);
 
 		// 월 라벨
 		JLabel jlblmonth = new JLabel(Integer.toString(cal.get(Calendar.MONTH) + 1));
-		jlblmonth.setBounds(380, 137, 100, 100);
+		jlblmonth.setBounds(390, 137, 100, 100);
 		jlblmonth.setFont(ymFont);
 		add(jlblmonth);
 
