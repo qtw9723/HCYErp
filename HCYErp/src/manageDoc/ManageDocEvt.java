@@ -30,7 +30,7 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// 업로드 버튼
 		if (e.getSource() == md.getJbtnFileUpload()) {
-			new FileUploadDialog(md).setBounds(md.getHcyE().getX() + 100, md.getHcyE().getY() + 100, 565, 500);
+			new FileUploadDialog(md).setBounds(md.getHcyE().getX() + 300, md.getHcyE().getY() + 150, 565, 500);
 		} // if
 		try {
 			// 다운로드 버튼

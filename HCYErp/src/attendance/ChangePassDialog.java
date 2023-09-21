@@ -97,7 +97,7 @@ public class ChangePassDialog extends JDialog{
 		jlblNewPass.setBounds(30,90,180,30);
 		
 		jbtnCancel.setBackground(new Color(0x919191));
-		jbtnOK.setBackground(new Color(0x6252CD));
+		jbtnOK.setBackground(new Color(0x6D47B0));
 		jbtnOK.setForeground(Color.white);
 		jbtnCancel.setForeground(Color.white);
 		jbtnCancel.setBounds(185,210,120,35);

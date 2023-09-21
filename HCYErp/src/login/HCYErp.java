@@ -2,6 +2,7 @@ package login;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ import VO.EmpVO;
 import attendance.Attendance;
 import attendance.AttendanceDAO;
 import dailyReport.DailyReport;
+import fileServer.HCYFileClient;
 import manageAttendance.ManageMonthlyAttendance;
 import manageAttendance.ManagePersonalAttendance;
 import manageDailyReport.ManageDailyReport;
@@ -55,6 +57,13 @@ public class HCYErp extends JFrame {
 	private HCYErpEvt event;
 	public HCYErp() {
 		super("HCY TRAVEL");
+		//이미지 다운로드
+		try {
+			HCYFileClient.getInstance().imageLoad();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//catch
+		
 		// 이벤트 객체 생성
 		event = new HCYErpEvt(this);
 		//리스트 객체 생성
