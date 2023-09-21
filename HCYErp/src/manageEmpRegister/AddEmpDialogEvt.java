@@ -7,30 +7,59 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import VO.EmpVO;
 
-public class AddEmpDialogEvt extends MouseAdapter implements ActionListener{
+public class AddEmpDialogEvt extends MouseAdapter implements ActionListener {
 
 	private AddEmpDialog aed;
-	
-	public AddEmpDialogEvt(AddEmpDialog aed) {
-		this.aed=aed;
-		
-		aed.addWindowListener(new WindowAdapter() {
 
+	public AddEmpDialogEvt(AddEmpDialog aed) {
+		this.aed = aed;
+		aed.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				aed.dispose();
-			}
-			
-		});//addWindowListener
-	}//constructor
+			}// windowClosing
+		});// addWindowListener
+	}// constructor
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// 입사자 추가 버튼
+		if (e.getSource() == aed.getJbtnAddEmp()) {
+			try {
+				okAdd();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			} // catch
+		} // if
+
+		// 취소 버튼
+		if (e.getSource() == aed.getJbtnCancel()) {
+			cancel();
+		} // if
+
+		// 입사 달 선택
+		if (e.getSource() == aed.getJcbMonthHiredate()) {
+			startUpdateDays();
+		} // if
+
+		// 부서 선택
+		if (e.getSource() == aed.getJcbDept()) {
+			try {
+				setTeam();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			} // catch
+		} // if
+	}// actionPerformed
 
 	public void okAdd() throws SQLException {
-		//휴가일수 같이 생각해보기
+		// 휴가일수 같이 생각해보기
 		EmpVO eVO = new EmpVO();
 		StringBuilder sbTemp = new StringBuilder();
 
@@ -91,11 +120,10 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener{
 		refresh(aed.getMer().getHcyE().getEvent().getSelectedIndex());
 	}// okAdd
 
-	
 	public void cancel() {
 		aed.dispose();
-	}//cancel
-	
+	}// cancel
+
 	public void startUpdateDays() {
 
 		int selectedYear = (int) aed.getJcbYearHiredate().getSelectedItem();
@@ -109,32 +137,22 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener{
 		aed.getJcbDayHiredate().removeAllItems();
 		for (int i = 1; i <= maxDay; i++) {
 			aed.getJcbDayHiredate().addItem(i);
-		}//end for
+		} // end for
 	}// startUpdateDays
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==aed.getJbtnAddEmp()) {
-			try {
-				okAdd();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-		}if(e.getSource()==aed.getJbtnCancel()) {
-			cancel();
-		}if(e.getSource()==aed.getJcbMonthHiredate()) {
-			startUpdateDays();
-		}
-		
-	}
-	
-	
+	private void setTeam() throws SQLException {
+		aed.getJcbTeam().removeAllItems();
+		List<String> teamList = ManageEmpRegisterDAO.getInstance()
+				.selectTeam(aed.getJcbDept().getSelectedItem().toString());
+		for (String team : teamList) {
+			aed.getJcbTeam().addItem(team);
+		} // for
+	}// setTeam
+
 	public void refresh(int index) throws SQLException {
 		aed.getMer().getHcyE().getTabbedPane().setVisible(false);
 		aed.getMer().getHcyE().addComponent();
 		aed.getMer().getHcyE().getEvent().login();
 		aed.getMer().getHcyE().getTabbedPane().setSelectedIndex(index);
-	}
-	
-
-}//class
+	}// refresh
+}// class

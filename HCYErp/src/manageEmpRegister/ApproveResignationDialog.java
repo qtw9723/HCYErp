@@ -148,7 +148,7 @@ public class ApproveResignationDialog extends JDialog {
 		setTitle("퇴사 처리");
 		setResizable(false);
 		setVisible(true);
-		setBounds(mer.getX()+150,mer.getY()+150,385,520);
+		setBounds(mer.getHcyE().getX()+370,mer.getHcyE().getY()+100,385,520);
 		
 	}// constructor
 
