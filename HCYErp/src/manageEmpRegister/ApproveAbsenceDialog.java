@@ -218,7 +218,7 @@ public class ApproveAbsenceDialog extends JDialog {
 		
 		setTitle("휴직 처리");
 		setResizable(false);
-		setBounds(mer.getHcyE().getX()+200, mer.getHcyE().getY()+120, 780, 400);
+		setBounds(mer.getHcyE().getX()+200, mer.getHcyE().getY()+150, 780, 400);
 		setVisible(true);
 	}// constructor
 	

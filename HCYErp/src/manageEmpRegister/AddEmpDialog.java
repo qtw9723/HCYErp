@@ -396,7 +396,7 @@ public class AddEmpDialog extends JDialog {
 		setTitle("입사자 추가");
 		setResizable(false);
 		setVisible(true);
-		setBounds(mer.getHcyE().getX()+200,mer.getHcyE().getY()+80, 870, 600);
+		setBounds(mer.getHcyE().getX()+150,mer.getHcyE().getY()+80, 870, 600);
 
 	}// constructor
 
