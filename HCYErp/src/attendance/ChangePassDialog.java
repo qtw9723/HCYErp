@@ -96,12 +96,12 @@ public class ChangePassDialog extends JDialog{
 		jlblNewView.setBounds(290,92,30,30);
 		jlblNewPass.setBounds(30,90,180,30);
 		
-		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		jbtnCancel.setBackground(new Color(0x919191));
 		jbtnOK.setBackground(new Color(0x6252CD));
 		jbtnOK.setForeground(Color.white);
 		jbtnCancel.setForeground(Color.white);
-		jbtnCancel.setBounds(187,210,120,35);
-		jbtnOK.setBounds(42,210,120,35);
+		jbtnCancel.setBounds(185,210,120,35);
+		jbtnOK.setBounds(40,210,120,35);
 		
 		//font 
 		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 15);

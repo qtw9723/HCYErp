@@ -22,7 +22,7 @@ public class ChangePassDialogEvt extends MouseAdapter implements ActionListener,
 
 	private ChangePassDialog cpd;
 	//텍스트 필드 디자인
-	private Border focusField=BorderFactory.createLineBorder(new Color(0xBC5BC2),2);// Line border
+	private Border focusField=BorderFactory.createLineBorder(new Color(255,72,72),2);// Line border
 	private Border unfocusField=BorderFactory.createLineBorder(Color.LIGHT_GRAY);// Line border
 
 	public ChangePassDialogEvt(ChangePassDialog cpd) {
