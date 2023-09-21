@@ -30,11 +30,8 @@ public class ImagesLoadHelper extends Thread {
 		// 파일 받아서 쓰기
 		byte[] buffer = new byte[4096];
 		int bytesRead = 0;
-		int cnt = 0;
 		try {
 			while ((bytesRead = fisWriteStream.read(buffer)) != -1) {
-				System.out.println(cnt+"/"+bytesRead);
-				cnt++;
 				outStream.write(buffer, 0, bytesRead);
 			} // while
 		} finally {
@@ -60,8 +57,8 @@ public class ImagesLoadHelper extends Thread {
 			while (true) {
 				client = server.accept();
 				outStream = client.getOutputStream();
-				// 저장할 폴더 경로 지정
-				String folderPath = "C:/Users/user/HCYErpFile/images";
+				// 저장된 이미지 경로
+				String folderPath = "C:/Users/user/HCYErpFile/image";
 				File[] fileArr = new File(folderPath).listFiles();
 				dos = new DataOutputStream(outStream);
 				dos.writeInt(fileArr.length);
@@ -73,10 +70,8 @@ public class ImagesLoadHelper extends Thread {
 					dos = new DataOutputStream(outStream);
 					String fullPath = file.getAbsolutePath();
 					dos.writeUTF(fullPath.substring(fullPath.lastIndexOf(File.separator) + 1));
-					System.out.println(fullPath);
 					dos.flush();
 					fisWriteStream = new FileInputStream(fullPath);
-					System.out.println("키딩");
 					ImageLoad();
 				} // for
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");

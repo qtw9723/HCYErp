@@ -127,7 +127,7 @@ public class HCYFileClient {
 			// 폴더생성
 			if (!dir.exists()) {
 				dir.mkdirs();
-			}//if
+			}// if
 			is = socket.getInputStream();
 			dis = new DataInputStream(is);
 			int length = dis.readInt();
