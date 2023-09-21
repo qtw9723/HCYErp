@@ -47,8 +47,8 @@ public class Attendance extends JPanel {
 
 		Font AttendanceBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		// 출근버튼
-		jbtnAttend = new JButton("출근");
-		jbtnAttend.setBackground(new Color(0x461C90));
+		jbtnAttend = new JButton("출근"); 
+		jbtnAttend.setBackground(new Color(0x3322A8));
 		jbtnAttend.setBounds(265, 50, 150, 50);
 		jbtnAttend.setFont(AttendanceBtnFont);
 		jbtnAttend.setForeground(Color.WHITE);
@@ -56,7 +56,7 @@ public class Attendance extends JPanel {
 		add(jbtnAttend);
 		// 퇴근버튼
 		jbtnOffWork = new JButton("퇴근");
-		jbtnOffWork.setBackground(new Color(0x461C90));
+		jbtnOffWork.setBackground(new Color(0x3322A8));
 		jbtnOffWork.setBounds(515, 50, 150, 50);
 		jbtnOffWork.setFont(AttendanceBtnFont);
 		jbtnOffWork.setForeground(Color.white);
@@ -64,7 +64,7 @@ public class Attendance extends JPanel {
 		add(jbtnOffWork);
 		// 휴가신청버튼
 		jbtnApplyDayOff = new JButton("휴가신청");
-		jbtnApplyDayOff.setBackground(new Color(0x461C90));
+		jbtnApplyDayOff.setBackground(new Color(0x3322A8));
 		jbtnApplyDayOff.setBounds(765, 50, 150, 50);
 		jbtnApplyDayOff.setFont(AttendanceBtnFont);
 		jbtnApplyDayOff.setForeground(Color.white);
