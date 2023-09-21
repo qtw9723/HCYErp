@@ -45,8 +45,12 @@ public class AddEmpDialog extends JDialog {
 	private JTextField jtfDept;
 	private JTextField jtfTeam;
 	private JTextField jtfJob;
-	private JTextField jtfTel;
-	private JTextField jtfJobTel;
+	private JTextField jtfTelF;
+	private JTextField jtfTelS;
+	private JTextField jtfTelT;
+	private JTextField jtfJobTelF;
+	private JTextField jtfJobTelS;
+	private JTextField jtfJobTelT;
 	private JTextField jtfLevel;
 
 	private JComboBox<Integer> jcbYearHiredate;
@@ -134,8 +138,12 @@ public class AddEmpDialog extends JDialog {
 		jtfDept = new JTextField();
 		jtfTeam = new JTextField();
 		jtfJob = new JTextField();
-		jtfTel = new JTextField();
-		jtfJobTel = new JTextField();
+		jtfTelF = new JTextField();
+		jtfTelS = new JTextField();
+		jtfTelT = new JTextField();
+		jtfJobTelF = new JTextField();
+		jtfJobTelS = new JTextField();
+		jtfJobTelT = new JTextField();
 		jtfLevel = new JTextField();
 		jtfSal = new JTextField();
 		jtfLoc = new JTextField();
@@ -220,8 +228,12 @@ public class AddEmpDialog extends JDialog {
 		add(jtfDept);
 		add(jtfTeam);
 		add(jtfJob);
-		add(jtfTel);
-		add(jtfJobTel);
+		add(jtfTelF);
+		add(jtfTelS);
+		add(jtfTelT);
+		add(jtfJobTelF);
+		add(jtfJobTelS);
+		add(jtfJobTelT);
 		add(jtfLevel);
 
 		add(jcbYearHiredate);
@@ -281,8 +293,12 @@ public class AddEmpDialog extends JDialog {
 		jtfDept.setFont(jtfFont);
 		jtfTeam.setFont(jtfFont);
 		jtfJob.setFont(jtfFont);
-		jtfTel.setFont(jtfFont);
-		jtfJobTel.setFont(jtfFont);
+		jtfTelF.setFont(jtfFont);
+		jtfTelS.setFont(jtfFont);
+		jtfTelT.setFont(jtfFont);
+		jtfJobTelF.setFont(jtfFont);
+		jtfJobTelS.setFont(jtfFont);
+		jtfJobTelT.setFont(jtfFont);
 		jtfLevel.setFont(jtfFont);
 		
 		// 배치
@@ -313,10 +329,14 @@ public class AddEmpDialog extends JDialog {
 		jtfDetailAddr.setBounds(110, 180, 200, 30);
 		jtfStartSsn.setBounds(110, 220, 100, 30);
 		jtfEndSsn.setBounds(240, 220, 100, 30);
-		jtfTel.setBounds(110, 260, 150, 30);
+		jtfTelF.setBounds(110, 260, 30, 30);
+		jtfTelS.setBounds(155, 260, 45, 30);
+		jtfTelT.setBounds(215, 260, 45, 30);
 		jtfLoc.setBounds(110, 300, 150, 30);
 		jtfSal.setBounds(110, 420, 150, 30);
-		jtfJobTel.setBounds(400, 260, 150, 30);
+		jtfJobTelF.setBounds(400, 260, 30, 30);
+		jtfJobTelS.setBounds(445, 260, 45, 30);
+		jtfJobTelT.setBounds(505, 260, 45, 30);
 
 		jcbDept.setBounds(400, 300, 150, 30);
 		jcbTeam.setBounds(110, 340, 150, 30);
@@ -344,6 +364,14 @@ public class AddEmpDialog extends JDialog {
 		jcbMonthHiredate.addActionListener(event);
 		jcbDayHiredate.addActionListener(event);
 		jcbDept.addActionListener(event);
+		jtfStartSsn.addKeyListener(event);
+		jtfEndSsn.addKeyListener(event);
+		jtfTelF.addKeyListener(event);
+		jtfTelS.addKeyListener(event);
+		jtfTelT.addKeyListener(event);
+		jtfJobTelF.addKeyListener(event);
+		jtfJobTelS.addKeyListener(event);
+		jtfJobTelT.addKeyListener(event);
 		
 		setTitle("입사자 추가");
 		setResizable(false);
@@ -465,12 +493,12 @@ public class AddEmpDialog extends JDialog {
 		return jtfJob;
 	}
 
-	public JTextField getJtfTel() {
-		return jtfTel;
+	public JTextField getJtfTelF() {
+		return jtfTelF;
 	}
 
-	public JTextField getJtfJobTel() {
-		return jtfJobTel;
+	public JTextField getJtfJobTelF() {
+		return jtfJobTelF;
 	}
 
 	public JTextField getJtfLevel() {
@@ -524,5 +552,22 @@ public class AddEmpDialog extends JDialog {
 	public JComboBox<String> getJcbLevel() {
 		return jcbLevel;
 	}
+
+	public JTextField getJtfTelS() {
+		return jtfTelS;
+	}
+
+	public JTextField getJtfTelT() {
+		return jtfTelT;
+	}
+
+	public JTextField getJtfJobTelS() {
+		return jtfJobTelS;
+	}
+
+	public JTextField getJtfJobTelT() {
+		return jtfJobTelT;
+	}
+	
 	
 }// class

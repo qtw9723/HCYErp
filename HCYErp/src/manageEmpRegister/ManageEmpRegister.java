@@ -56,7 +56,7 @@ public class ManageEmpRegister extends JPanel{
 		dtmRefiAbInfo.addColumn("부서");
 		dtmRefiAbInfo.addColumn("직급");
 		dtmRefiAbInfo.addColumn("입사일");
-		dtmRefiAbInfo.addColumn("연봉");
+		dtmRefiAbInfo.addColumn("연봉(만원)");
 		
 		// 사원 추가
 		List<EmpVO> empVOList = null;

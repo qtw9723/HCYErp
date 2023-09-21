@@ -2,6 +2,8 @@ package manageEmpRegister;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -13,7 +15,7 @@ import javax.swing.JOptionPane;
 
 import VO.EmpVO;
 
-public class AddEmpDialogEvt extends MouseAdapter implements ActionListener {
+public class AddEmpDialogEvt extends MouseAdapter implements ActionListener, KeyListener {
 
 	private AddEmpDialog aed;
 
@@ -26,7 +28,7 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener {
 			}// windowClosing
 		});// addWindowListener
 	}// constructor
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// 입사자 추가 버튼
@@ -71,6 +73,7 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener {
 
 		// 주소 추가
 		eVO.setAddr(aed.getJtfAddr().getText() + "/" + aed.getJtfDetailAddr().getText());
+
 		// 주민번호 추가
 		eVO.setSsn(aed.getJtfStartSsn().getText() + "-" + aed.getJtfEndSsn().getText());
 
@@ -84,10 +87,11 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener {
 		eVO.setJob(aed.getJtfJob().getText());
 
 		// 전화번호 추가
-		eVO.setTel(aed.getJtfTel().getText());
+		eVO.setTel(aed.getJtfTelF().getText() + "-" + aed.getJtfTelS().getText() + "-" + aed.getJtfTelT().getText());
 
 		// 회사번호 추가
-		eVO.setJobTel(aed.getJtfJobTel().getText());
+		eVO.setJobTel(aed.getJtfJobTelF().getText() + "-" + aed.getJtfJobTelS().getText() + "-"
+				+ aed.getJtfJobTelT().getText() + "-");
 
 		// 직급 추가
 		eVO.setLevel(aed.getJtfLevel().getText());
@@ -155,4 +159,128 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener {
 		aed.getMer().getHcyE().getEvent().login();
 		aed.getMer().getHcyE().getTabbedPane().setSelectedIndex(index);
 	}// refresh
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// 주민번호 앞자리
+		if (e.getSource() == aed.getJtfStartSsn()) {
+			if (aed.getJtfStartSsn().getText().length() >= 6) {
+				e.consume();
+			} // if
+		} // if
+
+		// 주민번호 뒷자리
+		if (e.getSource() == aed.getJtfEndSsn()) {
+			if (aed.getJtfEndSsn().getText().length() >= 7) {
+				e.consume();
+				aed.getJtfEndSsn().requestFocus();
+			} // if
+		} // if
+
+		// 전화번호 1번째
+		if (e.getSource() == aed.getJtfTelF()) {
+			if (aed.getJtfTelF().getText().length() >= 3) {
+				e.consume();
+			} // if
+		} // if
+
+		// 전화번호 2번째
+		if (e.getSource() == aed.getJtfTelS()) {
+			if (aed.getJtfTelS().getText().length() >= 4) {
+				e.consume();
+			} // if
+		} // if
+
+		// 전화번호 3번째
+		if (e.getSource() == aed.getJtfTelT()) {
+			if (aed.getJtfTelT().getText().length() >= 4) {
+				e.consume();
+			} // if
+		} // if
+		
+		// 업무용 전화 1번째
+		if (e.getSource() == aed.getJtfJobTelF()) {
+			if (aed.getJtfJobTelF().getText().length() >= 3) {
+				e.consume();
+			} // if
+		} // if
+		
+		// 업무용 전화 2번째
+		if (e.getSource() == aed.getJtfJobTelS()) {
+			if (aed.getJtfJobTelS().getText().length() >= 4) {
+				e.consume();
+			} // if
+		} // if
+		
+		// 업무용 전화 3번째
+		if (e.getSource() == aed.getJtfJobTelT()) {
+			if (aed.getJtfJobTelT().getText().length() >= 4) {
+				e.consume();
+			} // if
+		} // if
+	}// keyTyped
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// 주민번호 앞자리
+		if (e.getSource() == aed.getJtfStartSsn()) {
+			if (aed.getJtfStartSsn().getText().length() == 6) {
+				aed.getJtfEndSsn().requestFocus();
+			} // if
+		} // if
+
+		// 주민번호 뒷자리
+		if (e.getSource() == aed.getJtfEndSsn()) {
+			if (aed.getJtfEndSsn().getText().length() == 7) {
+				aed.getJtfTelF().requestFocus();
+			} // if
+		} // if
+
+		// 전화번호 1번째
+		if (e.getSource() == aed.getJtfTelF()) {
+			if (aed.getJtfTelF().getText().length() == 3) {
+				aed.getJtfTelS().requestFocus();
+			} // if
+		} // if
+
+		// 전화번호 2번째
+		if (e.getSource() == aed.getJtfTelS()) {
+			if (aed.getJtfTelS().getText().length() == 4) {
+				aed.getJtfTelT().requestFocus();
+			} // if
+		} // if
+
+		// 전화번호 3번째
+		if (e.getSource() == aed.getJtfTelT()) {
+			if (aed.getJtfTelT().getText().length() == 4) {
+				aed.getJtfJobTelF().requestFocus();
+			} // if
+		} // if
+		
+		// 업무용 전화 1번째
+		if (e.getSource() == aed.getJtfJobTelF()) {
+			if (aed.getJtfJobTelF().getText().length() == 3) {
+				aed.getJtfJobTelS().requestFocus();
+			} // if
+		} // if
+		
+		// 업무용 전화 2번째
+		if (e.getSource() == aed.getJtfJobTelS()) {
+			if (aed.getJtfJobTelS().getText().length() == 4) {
+				aed.getJtfJobTelT().requestFocus();
+			} // if
+		} // if
+		
+		// 업무용 전화 3번째
+		if (e.getSource() == aed.getJtfJobTelT()) {
+			if (aed.getJtfJobTelT().getText().length() == 4) {
+				aed.getJtfLoc().requestFocus();
+			} // if
+		} // if
+	}// keyReleased
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+
+	}
 }// class

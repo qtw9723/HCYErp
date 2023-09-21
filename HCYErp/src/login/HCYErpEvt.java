@@ -2,8 +2,13 @@ package login;
 
 import java.awt.Color;
 import java.awt.Cursor;
+<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.Font;
+=======
+import java.awt.Font;
+import java.awt.Insets;
+>>>>>>> branch 'main' of https://github.com/qtw9723/HCYErp.git
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -14,6 +19,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -112,7 +119,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 //				} // else
 			} else {
-				JOptionPane.showMessageDialog(hcyE, "아이디혹은 비밀번호가 잘못되었습니다.");
+				JOptionPane.showMessageDialog(hcyE, "아이디 혹은 비밀번호가 잘못되었습니다.");
 			} // else
 		} // if
 
