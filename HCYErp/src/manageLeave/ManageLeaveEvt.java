@@ -20,7 +20,7 @@ public class ManageLeaveEvt extends MouseAdapter implements ActionListener {
 	@Override
 	public void mouseClicked(MouseEvent me) {
 		// 리스트 클릭
-		if (me.getSource() == ml.getJtLeaveProposal() || me.getClickCount() == 2) {
+		if (me.getSource() == ml.getJtLeaveProposal() && me.getClickCount() == 2) {
 			clickLeaveList();
 		} // if
 	}// mouseClicked
