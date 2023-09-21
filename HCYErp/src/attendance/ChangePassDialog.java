@@ -3,6 +3,7 @@ package attendance;
 
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -37,6 +38,10 @@ public class ChangePassDialog extends JDialog{
 	
 	public ChangePassDialog(Attendance ad) {
 		this.ad=ad;
+		
+		//배경색
+		getContentPane().setBackground(new Color(255,245,245));
+		
 		//패스워드필드 선언
 		jpfCheckNewPass=new JPasswordField();
 		jpfCurrentPass=new JPasswordField();
@@ -54,7 +59,7 @@ public class ChangePassDialog extends JDialog{
 		jlblNewView=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리1.png"));
 		jlblNewHide=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리.png"));
 		jlblCheckNewPass=new JLabel("비밀번호 확인 : ");
-		jlblCurrentPass=new JLabel("현재비밀번호 : ");
+		jlblCurrentPass=new JLabel("현재 비밀번호 : ");
 		jlblNewPass=new JLabel("새 비밀번호 : ");
 		//숨기기 버튼 숨겨놓기
 		jlblCheckNewHide.setVisible(false);
@@ -76,25 +81,46 @@ public class ChangePassDialog extends JDialog{
 		jpfNewPass.addFocusListener(event);
 		jbtnOK.addActionListener(event);
 		//컴포넌트 크기설정
-		jpfCheckNewPass.setBounds(100,300,150,30);
-		jpfCurrentPass.setBounds(100,100,150,30);
-		jpfNewPass.setBounds(100,200,150,30);
+		jpfCheckNewPass.setBounds(140,152,150,30);
+		jpfCurrentPass.setBounds(140,32,150,30);
+		jpfNewPass.setBounds(140,92,150,30);
 		
-		jtfCheckNewPass.setBounds(100,300,150,30);
-		jtfNewPass.setBounds(100,200,150,30);
+		jtfCheckNewPass.setBounds(140,152,150,30);
+		jtfNewPass.setBounds(140,92,150,30);
 		
-		jlblCheckNewHide.setBounds(250,300,30,30);
-		jlblCheckNewView.setBounds(250,300,30,30);
-		jlblCheckNewPass.setBounds(0,300,100,30);
-		jlblCurrentPass.setBounds(0,100,100,30);
-		jlblNewHide.setBounds(250,200,30,30);
-		jlblNewView.setBounds(250,200,30,30);
-		jlblNewPass.setBounds(0,200,100,30);
+		jlblCheckNewHide.setBounds(290,152,30,30);
+		jlblCheckNewView.setBounds(290,152,30,30);
+		jlblCheckNewPass.setBounds(30,150,180,30);
+		jlblCurrentPass.setBounds(30,30,180,30);
+		jlblNewHide.setBounds(290,92,30,30);
+		jlblNewView.setBounds(290,92,30,30);
+		jlblNewPass.setBounds(30,90,180,30);
 		
 		jbtnCancel.setBackground(new Color(0xE0E0E0));
-		jbtnOK.setBackground(new Color(0x5E5E5E));
-		jbtnCancel.setBounds(300,400,100,30);
-		jbtnOK.setBounds(100,400,100,30);
+		jbtnOK.setBackground(new Color(0x6252CD));
+		jbtnOK.setForeground(Color.white);
+		jbtnCancel.setForeground(Color.white);
+		jbtnCancel.setBounds(187,210,120,35);
+		jbtnOK.setBounds(42,210,120,35);
+		
+		//font 
+		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 15);
+		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		Font jtfjpfFont = new Font("맑은 고딕", Font.PLAIN, 15);
+		
+		jpfCurrentPass.setFont(jtfjpfFont);
+		jpfCheckNewPass.setFont(jtfjpfFont);
+		jpfNewPass.setFont(jtfjpfFont);
+		jtfNewPass.setFont(jtfjpfFont);
+		jtfCheckNewPass.setFont(jtfjpfFont);
+		
+		jbtnOK.setFont(jbtnFont);
+		jbtnCancel.setFont(jbtnFont);
+		
+		jlblNewPass.setFont(jlblFont);
+		jlblCheckNewPass.setFont(jlblFont);		
+		jlblCurrentPass.setFont(jlblFont);
+		
 		//컴포넌트 추가
 		add(jpfCurrentPass);
 		add(jpfNewPass);
@@ -113,7 +139,8 @@ public class ChangePassDialog extends JDialog{
 		
 		add(jbtnOK);
 		add(jbtnCancel);
-		setSize(500,500);
+		
+		setTitle("비밀번호 변경");
 		setVisible(true);
 		setResizable(false);
 		
