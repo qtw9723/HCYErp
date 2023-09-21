@@ -110,17 +110,17 @@ public class ManagePersonalAttendance extends JPanel{
 		add(jbtnLogOut);
 		
 		//텍스트 로고
-		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
+		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/HCYTextLogo.png"));
 		jlblLogoTxt.setBounds(913,450,300,300);
 		add(jlblLogoTxt);
 		
 		// 달력배경
-		jlblCalendar = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceCalendar.png"));
+		jlblCalendar = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/HCYAttendanceCalendar.png"));
 		jlblCalendar.setBounds(200, 180, 580, 400);
 		add(jlblCalendar);
 		
 		// 배경 설정
-		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
+		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 		hcyE.getList().add(this);

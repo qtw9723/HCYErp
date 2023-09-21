@@ -46,10 +46,10 @@ public class ManagePersonalAttendanceEvt extends MouseAdapter implements ActionL
 
 	private void searchAttendanceName() {
 		// 도장 선언
-		ImageIcon attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceStamp.png");
-		ImageIcon leave = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYLeaveStamp.png");
-		ImageIcon dayOff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYDayoffStamp.png");
-		ImageIcon tardy = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTardyStamp.png");
+		ImageIcon attend = new ImageIcon("C:/Users/user/HCYErpFile/images/HCYAttendanceStamp.png");
+		ImageIcon leave = new ImageIcon("C:/Users/user/HCYErpFile/images/HCYLeaveStamp.png");
+		ImageIcon dayOff = new ImageIcon("C:/Users/user/HCYErpFile/images/HCYDayoffStamp.png");
+		ImageIcon tardy = new ImageIcon("C:/Users/user/HCYErpFile/images/HCYTardyStamp.png");
 		JLabel jlblAttend = null;
 
 		if (ma.getJlblAttendList() == null) {

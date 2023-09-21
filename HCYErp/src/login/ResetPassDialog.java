@@ -106,7 +106,7 @@ public class ResetPassDialog extends JDialog {
 
 		// 로고이미지 삽입
 		jlblLogoGrey = new JLabel(
-				new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/grey_logo_3_3cm-removebg.png"));
+				new ImageIcon("C:/Users/user/HCYErpFile/images/grey_logo_3_3cm-removebg.png"));
 
 		setLayout(null);
 		

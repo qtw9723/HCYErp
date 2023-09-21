@@ -92,7 +92,7 @@ public class Attendance extends JPanel {
 		add(jbtnLogOut);
 
 		// 텍스트 로고
-		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
+		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/HCYTextLogo.png"));
 		jlblLogoTxt.setBounds(913, 450, 300, 300);
 		add(jlblLogoTxt);
 		// 이번달 근태 현황 라벨
@@ -129,10 +129,10 @@ public class Attendance extends JPanel {
 
 		// 출근도장
 		// 도장 선언
-		attend = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceStamp.png");
-		dayOff = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYDayoffStamp.png");
-		leave = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYLeaveStamp.png");
-		tardy = new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTardyStamp.png");
+		attend = new ImageIcon("C:/Users/user/HCYErpFile/images/HCYAttendanceStamp.png");
+		dayOff = new ImageIcon("C:/Users/user/HCYErpFile/images/HCYDayoffStamp.png");
+		leave = new ImageIcon("C:/Users/user/HCYErpFile/images/HCYLeaveStamp.png");
+		tardy = new ImageIcon("C:/Users/user/HCYErpFile/images/HCYTardyStamp.png");
 		jlblAttend = null;
 		List<JLabel> jlblList = new ArrayList<JLabel>();
 
@@ -176,7 +176,7 @@ public class Attendance extends JPanel {
 		} // for
 
 		// 달력배경
-		jlblCalendar = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYAttendanceCalendar.png"));
+		jlblCalendar = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/HCYAttendanceCalendar.png"));
 		jlblCalendar.setBounds(200, 180, 580, 400);
 		add(jlblCalendar);
 
@@ -203,7 +203,7 @@ public class Attendance extends JPanel {
 		add(jlblLeftDayOff);
 
 		// 배경 설정
-		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
+		JLabel jlblBG = new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/HCYErp배경.png"));
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 

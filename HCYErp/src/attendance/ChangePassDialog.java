@@ -54,10 +54,10 @@ public class ChangePassDialog extends JDialog{
 		jbtnCancel=new JButton("취소");
 		jbtnOK=new JButton("변경확인");
 		//라벨선언
-		jlblCheckNewView=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리1.png"));
-		jlblCheckNewHide=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리.png"));
-		jlblNewView=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리1.png"));
-		jlblNewHide=new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/눈까리.png"));
+		jlblCheckNewView=new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/눈까리1.png"));
+		jlblCheckNewHide=new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/눈까리.png"));
+		jlblNewView=new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/눈까리1.png"));
+		jlblNewHide=new JLabel(new ImageIcon("C:/Users/user/HCYErpFile/images/눈까리.png"));
 		jlblCheckNewPass=new JLabel("비밀번호 확인 : ");
 		jlblCurrentPass=new JLabel("현재 비밀번호 : ");
 		jlblNewPass=new JLabel("새 비밀번호 : ");
