@@ -69,7 +69,7 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		new ResetPassDialog().setBounds(hcyE.getX() + 200, hcyE.getY() + 150, 600, 400);
+		new ResetPassDialog().setBounds(hcyE.getX() + 300, hcyE.getY() + 150, 600, 400);
 	}// mouseClicked
 
 	@Override

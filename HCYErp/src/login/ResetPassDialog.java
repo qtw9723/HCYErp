@@ -136,7 +136,7 @@ public class ResetPassDialog extends JDialog {
 
 		add(jbtnResetPass);
 		add(jbtnCancel);
-
+ 
 		add(jlblEmpNo);
 		add(jlblEname);
 		add(jlblSsn);

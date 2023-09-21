@@ -219,7 +219,7 @@ public class ApplyDayOffDialog extends JDialog {
 		//페널 설정
 		setTitle("휴가 신청");
 		setResizable(false);
-		setBounds(ad.getHcyE().getX()+100, ad.getHcyE().getY()+100, 740, 390);
+		setBounds(ad.getHcyE().getX()+250, ad.getHcyE().getY()+150, 740, 390);
 		setVisible(true);
 	}// constructor
 

@@ -293,7 +293,7 @@ public class ManageEmpDialog extends JDialog{
 		jbtnOK.addActionListener(event);
 		jbtnCancel.addActionListener(event);
 		
-		setBounds(me.getX()+300,me.getY()+100,540,450);
+		setBounds(me.getX()+700,me.getY()+250,540,450);
 		setVisible(true);
 		setResizable(false);
 	}//constructor
