@@ -1,6 +1,5 @@
 package manageEmp;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -34,13 +33,15 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 
 		if (e.getSource() == me.getJlDepartment()) {
 			selectDept();
-		}//if
+		} // if
 		if (e.getSource() == me.getJlTeam()) {
 			selectTeam();
-		}//if
+		} // if
 		if (e.getSource() == me.getJlName()) {
-			selectEmp();
-		}//if
+			if (e.getClickCount() == 2) {
+				selectEmp();
+			}
+		} // if
 	}// mouseClicked
 
 	public void selectDept() {
@@ -66,14 +67,14 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 				} else {
 					me.getDlmteam().addElement(eVO.getTeam());
 					me.getDlmEmp().addElement(eVO.getEname());
-				}//if
+				} // if
 			} // for
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} // try
-	}//selectDept
+	}// selectDept
 
 	public void selectTeam() {
 		ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
@@ -89,7 +90,7 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} // try
-	}//selectTeam
+	}// selectTeam
 
 	public void selectEmp() {
 		ManageEmpDAO meDAO = ManageEmpDAO.getInstance();
@@ -103,12 +104,12 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}//try
+			} // try
 			for (String emp : list) {
 				if (emp.substring(0, emp.indexOf("/")).equals("0")) {
 					cnt++;
 					continue;
-				} //if
+				} // if
 				if (cnt == 2) {
 					cnt2++;
 					if (cnt2 == selectedEmpName + 1) {
@@ -119,7 +120,7 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 							e1.printStackTrace();
 						} catch (SQLException e1) {
 							e1.printStackTrace();
-						}//try
+						} // try
 					} // if
 				} // if
 			} // for
@@ -135,9 +136,9 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}//try
-				}//if
-			}//for
+					} // try
+				} // if
+			} // for
 		} else if (me.getJlDepartment().getSelectedValue() != null && me.getJlTeam().getSelectedValue() == null) {
 			for (String emp : list) {
 				cnt++;
@@ -150,21 +151,21 @@ public class ManageEmpEvt extends MouseAdapter implements ActionListener {
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}//try
-				}//if
-			}//for
-		}//if
+					} // try
+				} // if
+			} // for
+		} // if
 		try {
 			if (meDAO.selectTeamName(me.getHcyE().getUser()) == 13
 					|| meDAO.selectTeamName(me.getHcyE().getUser()) == 91) {
 				new ManageEmpDialog(me, eVO);
 			} else {
 				new ManageEmpDialog(me, eVO).getJbtnModify().setEnabled(false);
-			}//if
+			} // if
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}//try
+		} // try
 	} // selectEmp
 
 	public void logOut() {

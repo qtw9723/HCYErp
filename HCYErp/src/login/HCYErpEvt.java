@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import VO.EmpVO;
 import attendance.Attendance;
@@ -97,6 +99,12 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 						selectedIndex = hcyE.getTabbedPane().getSelectedIndex();
 					}// stateChanged
 				});
+				  // JTabbedPane 가져오기
+		        JTabbedPane tabbedPane = hcyE.getTabbedPane();
+
+		        // 사용자 정의 UI 클래스를 설정합니다.
+		        tabbedPane.setUI(new CustomTabbedPaneUI());
+		        
 				Font tabFont=new Font("맑은 고딕",Font.BOLD,16);
 				hcyE.getTabbedPane().setFont(tabFont);
 				hcyE.getTabbedPane().setForeground(Color.white);
@@ -121,7 +129,19 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		} // if
 
 	}// login
-
+	class CustomTabbedPaneUI extends BasicTabbedPaneUI {
+	    @Override
+	    protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
+	        if (isSelected) {
+	            // 선택된 탭의 배경색을 파란색으로 설정합니다.
+	            g.setColor(new Color(0xCBD38E));
+	            g.fillRect(x, y, w, h);
+	        } else {
+	            // 선택되지 않은 탭은 기본색을 사용합니다.
+	            super.paintTabBackground(g, tabPlacement, tabIndex, x, y, w, h, isSelected);
+	        }
+	    }
+	}
 	public int getSelectedIndex() {
 		return selectedIndex;
 	}
