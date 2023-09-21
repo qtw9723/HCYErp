@@ -27,6 +27,36 @@ public class ManageEmpRegisterDAO {
 		return merDAO;
 	}//getInstance
 	
+	public List<String> selectAbsenceResignation() throws SQLException {
+	    List<String> empList = new ArrayList<String>();
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    DbConn db = DbConn.getInstance();
+
+	    try {
+	        con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+	        String sql = "SELECT E.EMPNO, E.ENAME FROM EMP E";
+
+	        pstmt = con.prepareStatement(sql);
+
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            int empNo = rs.getInt("empno");
+	            String ename = rs.getString("ename");
+	            String empInfo = empNo + "/" + ename ; 
+	            empList.add(empInfo);
+	        } // while
+	    } finally {
+	        if (db != null) {
+	            db.dbclose(rs, pstmt, con);
+	        }//if
+	    } // try
+	    return empList;
+	}
+
+	
 	public List<EmpVO> selectEmp() throws SQLException {
 		List<EmpVO>  empVOList = new ArrayList<EmpVO>();
 		Connection con = null;
@@ -142,6 +172,36 @@ public class ManageEmpRegisterDAO {
 			}//end if
 		}//end finally
 	}//insertEmp
+	
+	public List<String> selectEmp1() throws SQLException {
+	    List<String> empList = new ArrayList<String>();
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    DbConn db = DbConn.getInstance();
+
+	    try {
+	        con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+	        String sql = "SELECT E.EMPNO, E.ENAME FROM EMP E";
+
+	        pstmt = con.prepareStatement(sql);
+
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            int empNo = rs.getInt("empno");
+	            String ename = rs.getString("ename");
+	            String empInfo = ename + "/" + empNo; // 이름과 사원 번호를 합쳐서 저장
+	            empList.add(empInfo);
+	        } // while
+	    } finally {
+	        if (db != null) {
+	            db.dbclose(rs, pstmt, con);
+	        }//if
+	    } // try
+	    return empList;
+	}// selectEmp
+
 	
 	
 }//class

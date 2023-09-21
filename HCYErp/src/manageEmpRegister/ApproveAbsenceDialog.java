@@ -36,6 +36,8 @@ public class ApproveAbsenceDialog extends JDialog {
 	public ApproveAbsenceDialog(ManageEmpRegister mer) {
 		this.mer = mer;
 
+		getContentPane().setBackground(new Color(255,245,245));
+		
 		// Calendar 선언
 		Calendar cal = Calendar.getInstance();
 
@@ -69,15 +71,15 @@ public class ApproveAbsenceDialog extends JDialog {
 		jtaWriteReason.setEditable(false);
 
 		//이름 콤박
-		jcbEmpNoName=new JComboBox<String>();
-		try {
-			List<String> empList = ManageDailyReportDAO.getInstance().selectEmp(mer.getHcyE().getUser());
-			for(String emp : empList) {
-				jcbEmpNoName.addItem(emp);
-			}//for
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}//catch
+		jcbEmpNoName = new JComboBox<String>();
+	        try {
+	            List<String> empList = ManageEmpRegisterDAO.getInstance().selectAbsenceResignation();
+	            for (String emp : empList) {
+	                jcbEmpNoName.addItem(emp);
+	            } // for
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } // catch
 		
 		// 현재 년을 설정
 		int year = cal.get(Calendar.YEAR);
@@ -108,6 +110,16 @@ public class ApproveAbsenceDialog extends JDialog {
 		jcbReason.addItem("기타(직접입력)");
 		
 		setLayout(null);
+		
+		//콤보박스 배경색
+		jcbStartYear.setBackground(Color.white);
+		jcbStartMonth.setBackground(Color.white);
+		jcbStartDay.setBackground(Color.white);
+		jcbEndYear.setBackground(Color.white);
+		jcbEndMonth.setBackground(Color.white);
+		jcbEndDay.setBackground(Color.white);
+		jcbEmpNoName.setBackground(Color.white);
+		jcbReason.setBackground(Color.white);
 		
 		//폰트
 		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 14);
@@ -189,11 +201,11 @@ public class ApproveAbsenceDialog extends JDialog {
 		jtaWriteReason.setBounds(35,180,520,150);
 		
 		jbtnApprove.setBounds(590,200,135,40);
-		jbtnApprove.setBackground(new Color(0x8244AD));
+		jbtnApprove.setBackground(new Color(0x6D47B0));
 		jbtnApprove.setForeground(Color.white);
 		jbtnCancel.setBounds(590,270,135,40);
 		jbtnCancel.setBackground(new Color(0x5E5E5E));
-		jbtnCancel.setForeground(Color.black);
+		jbtnCancel.setForeground(Color.white);
 		
 		ApproveAbsenceDialogEvt event=new ApproveAbsenceDialogEvt(this);
 		jcbReason.addActionListener(event);
@@ -204,81 +216,67 @@ public class ApproveAbsenceDialog extends JDialog {
 		jbtnCancel.addActionListener(event);
 		
 		setTitle("휴직 처리");
+		setResizable(false);
 		setBounds(mer.getX()+100, mer.getY()+100, 780, 400);
 		setVisible(true);
 		
 	}// constructor
-
 	
 	public JComboBox<Integer> getJcbStartYear() {
 		return jcbStartYear;
 	}
 
-
 	public JComboBox<Integer> getJcbStartMonth() {
 		return jcbStartMonth;
 	}
-
 
 	public JComboBox<Integer> getJcbStartDay() {
 		return jcbStartDay;
 	}
 
-
 	public JComboBox<Integer> getJcbEndYear() {
 		return jcbEndYear;
 	}
-
 
 	public JComboBox<Integer> getJcbEndMonth() {
 		return jcbEndMonth;
 	}
 
-
 	public JComboBox<Integer> getJcbEndDay() {
 		return jcbEndDay;
 	}
-
 
 	public JComboBox<String> getJcbReason() {
 		return jcbReason;
 	}
 
-
 	public JTextArea getJtaWriteReason() {
 		return jtaWriteReason;
 	}
-
 
 	public JLabel getJlblPeriod() {
 		return jlblPeriod;
 	}
 
-
 	public JLabel getJlblDuring() {
 		return jlblDuring;
 	}
-
 
 	public JLabel getJlblReason() {
 		return jlblReason;
 	}
 
-
 	public JButton getJbtnApprove() {
 		return jbtnApprove;
 	}
-
 
 	public JButton getJbtnCancel() {
 		return jbtnCancel;
 	}
 
-
 	public ManageEmpRegister getMer() {
 		return mer;
 	}
-
 
 	public JComboBox<String> getJcbEmpNoName() {
 		return jcbEmpNoName;

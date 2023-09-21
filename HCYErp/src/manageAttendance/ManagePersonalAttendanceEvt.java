@@ -87,7 +87,6 @@ public class ManagePersonalAttendanceEvt extends MouseAdapter implements ActionL
 					ma.setComponentZOrder(jlblAttend, 0);
 					ma.repaint();
 					ma.getJlblAttendList().add(jlblAttend);
-					System.out.println("왜이랴"+i);
 					break;
 				// 지각도장 쾅
 				case ABSENCE:

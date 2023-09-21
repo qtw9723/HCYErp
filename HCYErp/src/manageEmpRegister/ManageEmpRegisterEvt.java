@@ -14,19 +14,23 @@ public class ManageEmpRegisterEvt extends MouseAdapter implements ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		//입사자 추가
+		if (ae.getSource() == mer.getJbtnEmpRegister()) {
+			new AddEmpDialog(mer);
+		}//if
+		
 		//퇴사처리
 		if (ae.getSource() == mer.getJbtnResign()) {
 			new ApproveResignationDialog(mer);
 		}//if
 
-		//입사자 추가
-		if (ae.getSource() == mer.getJbtnEmpRegister()) {
-			new AddEmpDialog(mer);
-		}//if
-
 		//휴직처리
 		if (ae.getSource() == mer.getJbtnAbsence()) {
-			new ApproveAbsenceDialog(mer);
+			try {
+				new ApproveAbsenceDialog(mer);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}// catch
 		}//if
 		
 		// 로그아웃
@@ -36,5 +40,4 @@ public class ManageEmpRegisterEvt extends MouseAdapter implements ActionListener
 			mer.getHcyE().setUser(0);
 		} // if
 	}// actionPerformed
-
 }// class

@@ -29,6 +29,7 @@ public class AddEmpDialog extends JDialog {
 	private JLabel jlblDayHiredate;
 	private JLabel jlblSal;
 	private JLabel jlblLoc;
+	private JLabel jlblHiredate;
 
 	private JTextField jtfEname;
 	private JTextField jtfStartEmail;
@@ -46,7 +47,11 @@ public class AddEmpDialog extends JDialog {
 
 	private JComboBox<Integer> jcbYearHiredate;
 	private JComboBox<Integer> jcbMonthHiredate;
-	private JComboBox<Integer> jcbDayHiredate;
+	private JComboBox<Integer> jcbDayHiredate; 
+	private JComboBox<String> jcbDept;
+	private JComboBox<String> jcbTeam;
+	private JComboBox<String> jcbJob;
+	private JComboBox<String> jcbLevel;
 
 	private JTextField jtfSal;
 	private JTextField jtfLoc;
@@ -62,6 +67,8 @@ public class AddEmpDialog extends JDialog {
 
 		setLayout(null);
 
+		getContentPane().setBackground(new Color(255,245,245));
+		
 		// JLabel 선언
 		jlblEname = new JLabel("이름");
 		jlblEmail = new JLabel("이메일");
@@ -80,8 +87,9 @@ public class AddEmpDialog extends JDialog {
 		jlblDayHiredate = new JLabel("일");
 		jlblSal = new JLabel("연봉");
 		jlblLoc = new JLabel("근무지");
+		jlblHiredate = new JLabel("입사일");
 
-		// 입사일
+		// 입사일 날짜 콤보박스
 		jcbYearHiredate = new JComboBox<Integer>();
 		jcbMonthHiredate = new JComboBox<Integer>();
 		jcbDayHiredate = new JComboBox<Integer>();
@@ -126,6 +134,21 @@ public class AddEmpDialog extends JDialog {
 		jtfAddr.setHorizontalAlignment(JTextField.CENTER);
 		jtfDetailAddr.setHorizontalAlignment(JTextField.CENTER);
 
+		//부서 등 콤보박스 선언
+		jcbDept = new JComboBox<String>();
+		jcbTeam = new JComboBox<String>();
+		jcbJob = new JComboBox<String>();
+		jcbLevel = new JComboBox<String>();
+				
+		//콤박 배경색
+		jcbDayHiredate.setBackground(Color.white);
+		jcbDept.setBackground(Color.white);
+		jcbJob.setBackground(Color.white);
+		jcbLevel.setBackground(Color.white);
+		jcbMonthHiredate.setBackground(Color.white);
+		jcbTeam.setBackground(Color.white);
+		jcbYearHiredate.setBackground(Color.white);
+		
 		// add
 		add(jlblEname);
 		add(jlblEmail);
@@ -144,6 +167,7 @@ public class AddEmpDialog extends JDialog {
 		add(jlblDayHiredate);
 		add(jlblSal);
 		add(jlblLoc);
+		add(jlblHiredate);
 
 		add(jtfEname);
 		add(jtfStartEmail);
@@ -163,6 +187,11 @@ public class AddEmpDialog extends JDialog {
 		add(jcbMonthHiredate);
 		add(jcbDayHiredate);
 
+		add(jcbDept);
+		add(jcbTeam);
+		add(jcbJob);
+		add(jcbLevel);
+		
 		add(jtfSal);
 		add(jtfLoc);
 
@@ -191,10 +220,15 @@ public class AddEmpDialog extends JDialog {
 		jlblDayHiredate.setFont(jlblFont);
 		jlblSal.setFont(jlblFont);
 		jlblLoc.setFont(jlblFont);
+		jlblHiredate.setFont(jlblFont);
 		
 		jcbYearHiredate.setFont(jcbFont);
 		jcbMonthHiredate.setFont(jcbFont);
 		jcbDayHiredate.setFont(jcbFont);
+		jcbDept.setFont(jcbFont);
+		jcbTeam.setFont(jcbFont);
+		jcbJob.setFont(jcbFont);
+		jcbLevel.setFont(jcbFont);
 		
 		jtfEname.setFont(jtfFont);
 		jtfStartEmail.setFont(jtfFont);
@@ -211,55 +245,56 @@ public class AddEmpDialog extends JDialog {
 		jtfLevel.setFont(jtfFont);
 		
 		// 배치
-		jlblEname.setBounds(30, 50, 100, 50);
-		jlblEmail.setBounds(30, 90, 100, 50);
-		jlblHyphenEmail.setBounds(280, 90, 100, 50);
-		jlblAddr.setBounds(30, 130, 100, 50);
-		jlblSsn.setBounds(30, 210, 100, 50);
+		jlblEname.setBounds(40, 50, 100, 50);
+		jlblEmail.setBounds(40, 90, 100, 50);
+		jlblHyphenEmail.setBounds(260, 90, 100, 50);
+		jlblAddr.setBounds(40, 130, 100, 50);
+		jlblSsn.setBounds(40, 210, 100, 50);
 		jlblHyphenSsn.setBounds(240, 210, 100, 50);
-		jlblDept.setBounds(30, 250, 100, 50);
-		jlblTeam.setBounds(30, 290, 100, 50);
-		jlblJob.setBounds(30, 330, 100, 50);
-		jlblTel.setBounds(30, 370, 100, 50);
-		jlblJobTel.setBounds(30, 410, 100, 50);
-		jlblLevel.setBounds(30, 450, 100, 50);
-		jlblYearHiredate.setBounds(510, 20, 100, 30);
-		jlblMonthHiredate.setBounds(670, 20, 100, 30);
-		jlblDayHiredate.setBounds(820, 20, 100, 30);
-		jlblSal.setBounds(400, 130, 100, 50);
-		jlblLoc.setBounds(400, 170, 100, 50);
+		jlblTel.setBounds(40, 250, 100, 50);
+		jlblLoc.setBounds(40, 290, 100, 50);
+		jlblTeam.setBounds(40, 330, 100, 50);
+		jlblHiredate.setBounds(40,370,100,50);
+		jlblSal.setBounds(40, 410, 100, 50);
+		
+		jlblJobTel.setBounds(330, 250, 100, 50);
+		jlblDept.setBounds(330, 290, 100, 50);
+		jlblJob.setBounds(330, 330, 100, 50);
+		jlblLevel.setBounds(610, 330, 100, 50);
+		jlblYearHiredate.setBounds(183, 380, 30, 30);
+		jlblMonthHiredate.setBounds(263, 380, 30, 30);
+		jlblDayHiredate.setBounds(343, 380, 30, 30);
 
-		jtfEname.setBounds(130, 60, 100, 30);
-		jtfStartEmail.setBounds(130, 100, 150, 30);
-		jtfEndEmail.setBounds(295, 100, 150, 30);
-		jtfAddr.setBounds(130, 140, 200, 30);
-		jtfDetailAddr.setBounds(130, 180, 200, 30);
-		jtfStartSsn.setBounds(130, 220, 100, 30);
-		jtfEndSsn.setBounds(260, 220, 100, 30);
-		jtfDept.setBounds(130, 260, 100, 30);
-		jtfTeam.setBounds(130, 300, 100, 30);
-		jtfJob.setBounds(130, 340, 100, 30);
-		jtfTel.setBounds(130, 380, 150, 30);
-		jtfJobTel.setBounds(130, 420, 150, 30);
-		jtfLevel.setBounds(130, 460, 100, 30);
+		jtfEname.setBounds(110, 60, 100, 30);
+		jtfStartEmail.setBounds(110, 100, 150, 30);
+		jtfEndEmail.setBounds(275, 100, 200, 30);
+		jtfAddr.setBounds(110, 140, 315, 30);
+		jtfDetailAddr.setBounds(110, 180, 200, 30);
+		jtfStartSsn.setBounds(110, 220, 100, 30);
+		jtfEndSsn.setBounds(240, 220, 100, 30);
+		jtfTel.setBounds(110, 260, 150, 30);
+		jtfLoc.setBounds(110, 300, 150, 30);
+		jtfSal.setBounds(110, 420, 150, 30);
+		jtfJobTel.setBounds(400, 260, 150, 30);
 
-		jcbYearHiredate.setBounds(400, 10, 100, 35);
-		jcbMonthHiredate.setBounds(550, 10, 100, 35);
-		jcbDayHiredate.setBounds(700, 10, 100, 35);
+		jcbDept.setBounds(400, 300, 150, 30);
+		jcbTeam.setBounds(110, 340, 150, 30);
+		jcbJob.setBounds(400, 340, 150, 30);
+		jcbLevel.setBounds(660, 340, 150, 30);
+		jcbYearHiredate.setBounds(110, 380, 70, 30);
+		jcbMonthHiredate.setBounds(210, 380, 50, 30);
+		jcbDayHiredate.setBounds(290, 380, 50, 30);
 
-		jtfSal.setBounds(500, 140, 150, 30);
-		jtfLoc.setBounds(500, 180, 100, 30);
-
-		jbtnAddEmp.setBounds(700, 500, 100, 40);
+		jbtnAddEmp.setBounds(265, 480, 135, 40);
 		jbtnAddEmp.setBackground(new Color(0x6D47B0));
 		Font AddEmpBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		jbtnAddEmp.setFont(AddEmpBtnFont);
 		jbtnAddEmp.setForeground(Color.white);
-		jbtnCancel.setBounds(850, 500, 100, 40);
-		jbtnCancel.setBackground(new Color(0xE0E0E0));
+		jbtnCancel.setBounds(455, 480, 135, 40);
+		jbtnCancel.setBackground(new Color(0x5E5E5E));
 		Font CancelBtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		jbtnCancel.setFont(CancelBtnFont);
-		jbtnCancel.setForeground(Color.black);
+		jbtnCancel.setForeground(Color.white);
 
 		// 이벤트 발생
 		AddEmpDialogEvt event = new AddEmpDialogEvt(this);
@@ -269,8 +304,9 @@ public class AddEmpDialog extends JDialog {
 		jcbDayHiredate.addActionListener(event);
 
 		setTitle("입사자 추가");
+		setResizable(false);
 		setVisible(true);
-		setSize(1000, 600);
+		setSize(870, 600);
 
 	}// constructor
 

@@ -21,6 +21,9 @@ public class FileUploadDialog extends JDialog {
 	
 	public FileUploadDialog(ManageDoc md) {
 		this.md = md;
+		
+		getContentPane().setBackground(new Color(255,245,245));
+
 		//버튼 선언
 		jbtnDeleteFile=new JButton("첨부파일 삭제");
 		jbtnUpload=new JButton("업로드확인");
@@ -42,7 +45,7 @@ public class FileUploadDialog extends JDialog {
 		//레이아웃 설정
 		setLayout(null);
 		
-		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 12);
+		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 13);
 		//버튼 레이아웃 설정
 		//파일 추가 버튼
 		jbtnAddFile.setBackground(new Color(0x6D47B0));
@@ -60,7 +63,7 @@ public class FileUploadDialog extends JDialog {
 		jbtnUpload.setBounds(310,400,100,40);
 		jbtnUpload.setFont(jbtnFont);
 		//취소버튼
-		jbtnCancel.setBackground(new Color(0x6D47B0));
+		jbtnCancel.setBackground(new Color(0x5E5E5E));
 		jbtnCancel.setForeground(Color.white);
 		jbtnCancel.setBounds(440,400,100,40);
 		jbtnCancel.setFont(jbtnFont);

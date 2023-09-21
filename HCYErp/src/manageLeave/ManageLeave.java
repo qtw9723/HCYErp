@@ -1,7 +1,6 @@
 package manageLeave;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JViewport;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -62,7 +62,6 @@ public class ManageLeave extends JPanel{
 		dtmLeave.addColumn("휴가시작일");
 		dtmLeave.addColumn("휴가종료일");
 		dtmLeave.addColumn("휴가신청일");
-		
 		
 		//JTable header font설정
 		Font headerFont=new Font("맑은 고딕",Font.BOLD,15);
@@ -127,8 +126,8 @@ public class ManageLeave extends JPanel{
 		
 		jtLeaveProposal.setBackground(Color.white);
 		
-		
-		
+		//JTable 밑에 빈 공간들 색
+		jspLeave.getViewport().setBackground(new Color(0xECEBFF));
 		
 	}//Constructor
 

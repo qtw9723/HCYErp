@@ -12,47 +12,38 @@ import javax.swing.event.ListSelectionListener;
 
 public class ManageLeaveEvt extends MouseAdapter implements ActionListener {
 	private ManageLeave ml;
-	private int select;
-	
+
 	public ManageLeaveEvt(ManageLeave ml) {
-		this.ml=ml; 
-	}//Constructor
-	
+		this.ml = ml;
+	}// Constructor
+
 	@Override
 	public void mouseClicked(MouseEvent me) {
-		//리스트 클릭
-		if(me.getSource()==ml.getJtLeaveProposal()) {
+		// 리스트 클릭
+		if (me.getSource() == ml.getJtLeaveProposal() || me.getClickCount() == 2) {
 			clickLeaveList();
-		}//if
-	}//mouseClicked
-
+		} // if
+	}// mouseClicked
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==ml.getJbtnLogOut()) {
+		if (e.getSource() == ml.getJbtnLogOut()) {
 			logOut();
-		}//if
-		
-	}//actionPerformed
-	
+		} // if
+
+	}// actionPerformed
+
 	private void clickLeaveList() {
 		try {
-			if(select==(ml.getJtLeaveProposal().getSelectedRow())) {
-				try {
-					new ManageLeaveDialog(ml);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}//catch
-			} else {
-				select = ml.getJtLeaveProposal().getSelectedRow();
-			}//else
-		} catch (NullPointerException npe) {
-			select = ml.getJtLeaveProposal().getSelectedRow();
-		}//catch
-	}//clickList
+			new ManageLeaveDialog(ml);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}// catch
+	}// clickList
+
 	public void logOut() {
 		ml.getHcyE().getTabbedPane().setVisible(false);
 		ml.getHcyE().addComponent();
 		ml.getHcyE().setUser(0);
-	}//logOut
-}//class
+	}// logOut
+}// class

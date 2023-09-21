@@ -30,8 +30,10 @@ public class ResetPassDialog extends JDialog {
 
 	public ResetPassDialog() {
 
-		Border focusField = BorderFactory.createLineBorder(new Color(0xE15799),2); // Line border
+		Border focusField = BorderFactory.createLineBorder(new Color(255,72,72),2); // Line border
 		Border unfocusField = BorderFactory.createLineBorder(Color.LIGHT_GRAY); // Line border
+		
+		getContentPane().setBackground(new Color(255,245,245));
 
 		Font font = new Font("맑은 고딕", Font.BOLD, 15);
 
@@ -105,8 +107,6 @@ public class ResetPassDialog extends JDialog {
 		// 로고이미지 삽입
 		jlblLogoGrey = new JLabel(
 				new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/grey_logo_3_3cm-removebg.png"));
-		jlblBg = new JLabel(
-				new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
 
 		setLayout(null);
 		
@@ -144,6 +144,7 @@ public class ResetPassDialog extends JDialog {
 		
 		setTitle("비밀번호 초기화");
 		setVisible(true);
+		setResizable(false);
 	}// constructor
 
 	public void setJtfEmpNo(JTextField jtfEmpNo) {

@@ -16,25 +16,23 @@ import javax.swing.JTextArea;
 import manageDailyReport.ManageDailyReportDAO;
 
 public class ApproveResignationDialog extends JDialog {
-	JComboBox<String> jcbEmpNoName;
-	JTextArea jtaReason;
-	
-	JButton jbtnApprove;
-	JButton jbtnCancel;
-	
-	JLabel jlblLastDate;
-	
-	JComboBox<Integer> jcbYear;
-	JComboBox<Integer> jcbMonth;
-	JComboBox<Integer> jcbDay;
-	JLabel jlblYear;
-	JLabel jlblMonth;
-	JLabel jlblDay;
-	
 	private ManageEmpRegister mer;
+	private JComboBox<String> jcbEmpNoName;
+	private JComboBox<Integer> jcbYear;
+	private JComboBox<Integer> jcbMonth;
+	private JComboBox<Integer> jcbDay;
+	private JTextArea jtaReason;
+	private JButton jbtnApprove;
+	private JButton jbtnCancel;
+	private JLabel jlblLastDate;
+	private JLabel jlblYear;
+	private JLabel jlblMonth;
+	private JLabel jlblDay;
 	
 	public ApproveResignationDialog(ManageEmpRegister mer) {
 		this.mer=mer;
+		
+		getContentPane().setBackground(new Color(255,245,245));
 		
 		//Calendar선언
 		Calendar cal=Calendar.getInstance();
@@ -59,16 +57,15 @@ public class ApproveResignationDialog extends JDialog {
 		jtaReason.setLineWrap(true);
 		
 		//사원번호/이름 콤보박스 선언
-		jcbEmpNoName=new JComboBox<String>();
-		try {
-			List<String> empList=ManageDailyReportDAO.getInstance().selectEmp(mer.getHcyE().getUser());
-			for(String emp:empList) {
-				jcbEmpNoName.addItem(emp);
-			}//end for
-		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}//end catch
+		jcbEmpNoName = new JComboBox<String>();
+        try {
+            List<String> empList = ManageEmpRegisterDAO.getInstance().selectAbsenceResignation();
+            for (String emp : empList) {
+                jcbEmpNoName.addItem(emp);
+            } // for
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } // catch
 		
 		//현재 년 설정
 		int year=cal.get(Calendar.YEAR);
@@ -88,11 +85,17 @@ public class ApproveResignationDialog extends JDialog {
 		
 		setLayout(null);
 		
+		//콤보박스 배경색
+		jcbEmpNoName.setBackground(Color.white);
+		jcbYear.setBackground(Color.white);
+		jcbMonth.setBackground(Color.white);
+		jcbDay.setBackground(Color.white);
+		
 		//폰트
 		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 14);
 		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
 		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 15);
-		Font jtaFont = new Font("맑은 고딕", Font.PLAIN, 13);
+		Font jtaFont = new Font("맑은 고딕", Font.PLAIN, 15);
 		
 		jcbEmpNoName.setFont(jcbFont);
 		jcbYear.setFont(jcbFont);
@@ -106,6 +109,7 @@ public class ApproveResignationDialog extends JDialog {
 		jlblDay.setFont(jlblFont);
 		jtaReason.setFont(jtaFont);
 		
+		//add
 		add(jcbEmpNoName);
 		add(jbtnApprove);
 		add(jbtnCancel);
@@ -128,7 +132,7 @@ public class ApproveResignationDialog extends JDialog {
 		jlblMonth.setBounds(245,350,50,30);
 		jlblDay.setBounds(325,350,50,30 );
 		jbtnApprove.setBounds(40,410,135,40);
-		jbtnApprove.setBackground(new Color(0x8244AD));
+		jbtnApprove.setBackground(new Color(0x6D47B0));
 		jbtnApprove.setForeground(Color.white);
 		jbtnCancel.setBounds(190,410,135,40);
 		jbtnCancel.setBackground(new Color(0x5E5E5E));
@@ -142,6 +146,7 @@ public class ApproveResignationDialog extends JDialog {
 		jbtnCancel.addActionListener(event);
 		
 		setTitle("퇴사 처리");
+		setResizable(false);
 		setVisible(true);
 		setBounds(mer.getX()+150,mer.getY()+150,385,520);
 		

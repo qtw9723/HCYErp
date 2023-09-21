@@ -54,7 +54,7 @@ public class HCYErp extends JFrame {
 	private List<JPanel> list;
 	private HCYErpEvt event;
 	public HCYErp() {
-		super("마 자신있나");
+		super("HCY TRAVEL");
 		// 이벤트 객체 생성
 		event = new HCYErpEvt(this);
 		//리스트 객체 생성

@@ -240,7 +240,6 @@ public class ManageDailyReportDAO {
 			} // if
 		} // try
 		return drVO;
-
 	}// selectDailyReport
 
 }// class

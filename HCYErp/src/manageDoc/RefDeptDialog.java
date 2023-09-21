@@ -1,6 +1,7 @@
 package manageDoc;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,13 @@ public class RefDeptDialog extends JDialog {
 
 	public RefDeptDialog(ManageDoc md) {
 		this.md = md;
+		
+		//다이얼로그 배경색
+		getContentPane().setBackground(new Color(255,245,245));
+		
 		setLayout(null);
 
+		//체크박스
 		jcbList = new ArrayList<JCheckBox>();
 
 		jcbManage = new JCheckBox("경영지원");
@@ -44,6 +50,12 @@ public class RefDeptDialog extends JDialog {
 		jcbBusiness = new JCheckBox("영업");
 		jcbList.add(jcbBusiness);
 
+		// 체크박스 배경: ArrayList에 있는 모든 JCheckBox의 배경색 변경
+        Color newBackgroundColor = new Color(255,245,245); 
+        for (JCheckBox checkBox : jcbList) {
+            checkBox.setBackground(newBackgroundColor);
+        }//end for
+		
 		try {
 			List<String> fileNameList = new ArrayList<String>();
 			for (Entry<Integer, JCheckBox> entry : md.getJcheckBoxMap().entrySet()) {
@@ -56,13 +68,11 @@ public class RefDeptDialog extends JDialog {
 			for (String fileName : fileNameList) {
 				comp = ManageDocDAO.getInstance().selectDept(fileNameList.get(0));
 				Dept = ManageDocDAO.getInstance().selectDept(fileName);
-				System.out.println(Dept);
 				if (!comp.equals(Dept)) {
 					throw new Exception("다른 부서의 문서 선택");
 				} // if
 			} // for
 			for (JCheckBox jcb : jcbList) {
-				System.out.println(jcb.getText() + Dept);
 				if (jcb.getText().equals(Dept)) {
 					jcb.setSelected(true);
 					jcb.setEnabled(false);
@@ -76,9 +86,18 @@ public class RefDeptDialog extends JDialog {
 			return;
 		} // catch
 
+		//버튼
 		jbtnApproveRef = new JButton("권한 부여");
 		jbtnCancel = new JButton("취소");
 
+		//체크박스 폰트
+		Font jcbFont = new Font("맑은 고딕", Font.BOLD, 15);
+		jcbManage.setFont(jcbFont);
+		jcbLaw.setFont(jcbFont);
+		jcbProduct.setFont(jcbFont);
+		jcbService.setFont(jcbFont);
+		jcbBusiness.setFont(jcbFont);
+		
 		add(jcbManage);
 		add(jcbLaw);
 		add(jcbProduct);
@@ -87,24 +106,32 @@ public class RefDeptDialog extends JDialog {
 		add(jbtnApproveRef);
 		add(jbtnCancel);
 
-		jcbManage.setBounds(10, 10, 100, 60);
-		jcbLaw.setBounds(10, 60, 100, 60);
-		jcbProduct.setBounds(10, 110, 100, 60);
-		jcbService.setBounds(10, 160, 100, 60);
-		jcbBusiness.setBounds(10, 210, 100, 60);
+		jcbManage.setBounds(30, 20, 100, 60);
+		jcbLaw.setBounds(30, 70, 100, 60);
+		jcbProduct.setBounds(30, 120, 100, 60);
+		jcbService.setBounds(30, 170, 100, 60);
+		jcbBusiness.setBounds(30, 220, 100, 60);
+		
 
-		jbtnApproveRef.setBounds(135, 190, 120, 50);
-		jbtnApproveRef.setBackground(new Color(0x8244AD));
-		jbtnCancel.setBounds(135, 255, 120, 50);
+		//버튼 폰트
+		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		
+		jbtnApproveRef.setBounds(20, 300, 120, 40);
+		jbtnApproveRef.setFont(jbtnFont);
+		jbtnApproveRef.setBackground(new Color(0x6D47B0));
+		jbtnApproveRef.setForeground(Color.white);
+		jbtnCancel.setBounds(150, 300, 120, 40);
+		jbtnCancel.setFont(jbtnFont);
 		jbtnCancel.setBackground(new Color(0x5E5E5E));
+		jbtnCancel.setForeground(Color.white);;
 
 		RefDeptDialogEvt rdde = new RefDeptDialogEvt(this);
 
 		jbtnApproveRef.addActionListener(rdde);
 		jbtnCancel.addActionListener(rdde);
 
-		setTitle("일단은 이겅가");
-		setBounds(md.getHcyE().getX() + 400, md.getHcyE().getY() + 200, 300, 400);
+		setTitle("부서 참조");
+		setBounds(md.getHcyE().getX() + 400, md.getHcyE().getY() + 200, 305, 400);
 		setVisible(true);
 
 	}// constructor
