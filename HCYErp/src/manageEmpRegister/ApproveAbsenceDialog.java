@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import attendance.ApplyDayOffDialogEvt;
 import manageDailyReport.ManageDailyReportDAO;
 
+@SuppressWarnings("serial")
 public class ApproveAbsenceDialog extends JDialog {
 	private ManageEmpRegister mer;
 
@@ -217,9 +218,8 @@ public class ApproveAbsenceDialog extends JDialog {
 		
 		setTitle("휴직 처리");
 		setResizable(false);
-		setBounds(mer.getX()+100, mer.getY()+100, 780, 400);
+		setBounds(mer.getHcyE().getX()+200, mer.getHcyE().getY()+120, 780, 400);
 		setVisible(true);
-		
 	}// constructor
 	
 	public JComboBox<Integer> getJcbStartYear() {

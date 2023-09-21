@@ -202,6 +202,59 @@ public class ManageEmpRegisterDAO {
 	    return empList;
 	}// selectEmp
 
+	public List<String> selectCombo() throws SQLException{
+		List<String> comboList = new ArrayList<String>();
+		
+		Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    DbConn db = DbConn.getInstance();
+
+	    try {
+	        con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+	        String sql = "SELECT DNAME FROM DEPT union all select null from dual union all SELECT JOBNAME FROM JOB union all select null from dual union all SELECT LVNAME FROM JOBLEVEL";
+
+	        pstmt = con.prepareStatement(sql);
+
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            comboList.add(rs.getString(1));
+	        } // while
+	    } finally {
+	        if (db != null) {
+	            db.dbclose(rs, pstmt, con);
+	        }//if
+	    } // try
+		
+		return comboList;
+	}//selectCombo
 	
-	
+	public List<String> selectTeam(String deptName) throws SQLException{
+		List<String> teamList = new ArrayList<String>();
+		Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    DbConn db = DbConn.getInstance();
+
+	    try {
+	        con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+	        String sql = "SELECT t.TNAME FROM  TEAM t WHERE t.DEPTNO =(SELECT d.DEPTNO FROM DEPT d WHERE d.DNAME = ? )";
+
+	        pstmt = con.prepareStatement(sql);
+	        
+	        pstmt.setString(1, deptName);
+
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	        	teamList.add(rs.getString("TNAME"));
+	        } // while
+	    } finally {
+	        if (db != null) {
+	            db.dbclose(rs, pstmt, con);
+	        }//if
+	    } // try
+		return teamList;
+	}//selectTeam
 }//class

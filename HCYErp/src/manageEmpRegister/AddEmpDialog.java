@@ -2,7 +2,10 @@ package manageEmpRegister;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -10,6 +13,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class AddEmpDialog extends JDialog {
 	private ManageEmpRegister mer;
 	private JLabel jlblEname;
@@ -58,6 +62,10 @@ public class AddEmpDialog extends JDialog {
 
 	private JButton jbtnAddEmp;
 	private JButton jbtnCancel;
+	
+	private static final int DEPT = 0;
+	private static final int JOB = 1;
+	private static final int LEVEL = 2;
 
 	public AddEmpDialog(ManageEmpRegister mer) {
 		this.mer = mer;
@@ -96,6 +104,8 @@ public class AddEmpDialog extends JDialog {
 
 		// 현재 년을 설정
 		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH);
+		int date = cal.get(Calendar.DATE);
 
 		// JComboBox에 값 추가
 		for (int i = year; i < year + 2; i++) {
@@ -109,6 +119,9 @@ public class AddEmpDialog extends JDialog {
 		for (int i = 1; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
 			jcbDayHiredate.addItem(i);
 		} // end for
+		jcbYearHiredate.setSelectedItem(year);
+		jcbMonthHiredate.setSelectedItem(month+1);
+		jcbDayHiredate.setSelectedItem(date);
 
 		// JTextField선언
 		jtfEname = new JTextField();
@@ -148,6 +161,34 @@ public class AddEmpDialog extends JDialog {
 		jcbMonthHiredate.setBackground(Color.white);
 		jcbTeam.setBackground(Color.white);
 		jcbYearHiredate.setBackground(Color.white);
+		
+		// 부서 등 콤보박스 내용 추가
+		List<String> comboList = new ArrayList<String>();
+		try {
+			comboList = ManageEmpRegisterDAO.getInstance().selectCombo();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//catch
+		int flag = 0;
+		for(String name : comboList) {
+			if(name == null) {
+				flag++;
+				continue;
+			}//if
+			switch (flag) {
+			case DEPT:
+				jcbDept.addItem(name);
+				break;
+			case JOB:
+				jcbJob.addItem(name);
+				break;
+			case LEVEL:
+				jcbLevel.addItem(name);
+				break;
+			}//switch
+		}//for
+		
+		jcbTeam.addItem("--부서 먼저 선택--");
 		
 		// add
 		add(jlblEname);
@@ -302,11 +343,12 @@ public class AddEmpDialog extends JDialog {
 		jbtnCancel.addActionListener(event);
 		jcbMonthHiredate.addActionListener(event);
 		jcbDayHiredate.addActionListener(event);
-
+		jcbDept.addActionListener(event);
+		
 		setTitle("입사자 추가");
 		setResizable(false);
 		setVisible(true);
-		setSize(870, 600);
+		setBounds(mer.getHcyE().getX()+200,mer.getHcyE().getY()+80, 870, 600);
 
 	}// constructor
 
@@ -463,4 +505,24 @@ public class AddEmpDialog extends JDialog {
 		return jbtnCancel;
 	}
 
+	public JLabel getJlblHiredate() {
+		return jlblHiredate;
+	}
+
+	public JComboBox<String> getJcbDept() {
+		return jcbDept;
+	}
+
+	public JComboBox<String> getJcbTeam() {
+		return jcbTeam;
+	}
+
+	public JComboBox<String> getJcbJob() {
+		return jcbJob;
+	}
+
+	public JComboBox<String> getJcbLevel() {
+		return jcbLevel;
+	}
+	
 }// class
