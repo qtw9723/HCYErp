@@ -18,7 +18,7 @@ import java.net.UnknownHostException;
 
 public class HCYFileClient {
 	private static HCYFileClient hcyFC;
-	private String serverIp = "192.168.10.146";
+	private String serverIp = "192.168.10.145";
 
 	private HCYFileClient() {
 	}// constructor
