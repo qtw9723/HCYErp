@@ -68,7 +68,7 @@ public class ManageDoc extends JPanel {
             checkBox.setFont(checkboxFont);
         }//end for
 		
-			// 문서 목록 체크박스
+		// 문서 목록 체크박스
 		jpDoc.setLayout(new BoxLayout(jpDoc, BoxLayout.Y_AXIS));// 세로 정렬
 		jspDocList = new JScrollPane(jpDoc);
 		add(jspDocList);
@@ -77,6 +77,7 @@ public class ManageDoc extends JPanel {
 		//타이틀바 디자인
 		TitledBorder titleBorder=BorderFactory.createTitledBorder("문서 목록");
 		Font titleFont=new Font("맑은 고딕",Font.BOLD,18);
+		titleBorder.setBorder(BorderFactory.createLineBorder(new Color(0x5C1DB5)));
 		titleBorder.setTitleFont(titleFont);
 		titleBorder.setTitleJustification(titleBorder.LEFT);
 		
@@ -94,7 +95,7 @@ public class ManageDoc extends JPanel {
 		
 		// 텍스트 로고
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
-		jlblLogoTxt.setBounds(930, 450, 300, 300);
+		jlblLogoTxt.setBounds(913, 450, 300, 300);
 		add(jlblLogoTxt);
 		
 		//버튼 폰트

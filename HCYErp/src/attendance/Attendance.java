@@ -93,7 +93,7 @@ public class Attendance extends JPanel {
 
 		// 텍스트 로고
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
-		jlblLogoTxt.setBounds(930, 450, 300, 300);
+		jlblLogoTxt.setBounds(913, 450, 300, 300);
 		add(jlblLogoTxt);
 		// 이번달 근태 현황 라벨
 		jlblMonthlyAttendance = new JLabel("이번달 근태 현황");

@@ -158,7 +158,7 @@ public class ManageMonthlyAttendance extends JPanel{
 		
 		//텍스트 로고
 		jlblLogoTxt = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYTextLogo.png"));
-		jlblLogoTxt.setBounds(930,450,300,300);
+		jlblLogoTxt.setBounds(913,450,300,300);
 		add(jlblLogoTxt);
 		
 		// 배경 설정

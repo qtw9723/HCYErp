@@ -115,7 +115,7 @@ public class HCYErp extends JFrame {
 
 		// 배경 설정
 		jlblBG = new JLabel(new ImageIcon("C:/Users/user/git/HCYErp/HCYErp/src/image/HCYErp배경.png"));
-		jlblBG.setBounds(0, 0, 1200, 700);
+		jlblBG.setBounds(0, 0, 1200, 735);
 		
 		
 		addComponent();
@@ -125,7 +125,7 @@ public class HCYErp extends JFrame {
 		jpfPass.setText("1234");
 		
 		setVisible(true);
-		setBounds(400, 150, 1200, 700);
+		setBounds(400, 150, 1200, 735);
 		setResizable(false);
 	}// constructor
 

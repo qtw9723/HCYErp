@@ -2,11 +2,9 @@ package login;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Font;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -17,8 +15,6 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
@@ -129,19 +125,37 @@ public class HCYErpEvt extends MouseAdapter implements ActionListener {
 		} // if
 
 	}// login
-	class CustomTabbedPaneUI extends BasicTabbedPaneUI {
+	public class CustomTabbedPaneUI extends BasicTabbedPaneUI {
+		private int tabHeight = 40; // 원하는 탭의 위아래 넓이
+
+	    @Override
+	    public int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {
+	        return tabHeight;
+	    }//calculateTabHeight
+
+	    @Override
+	    public int calculateTabWidth(int tabPlacement, int tabIndex, FontMetrics metrics) {
+	        // 기본 넓이 계산
+	        int width = super.calculateTabWidth(tabPlacement, tabIndex, metrics);
+
+	        //탭 넓이 조절
+
+	        return width+10;
+	    }//calculateTabWidth
+	    
 	    @Override
 	    protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
 	        if (isSelected) {
-	            // 선택된 탭의 배경색을 파란색으로 설정합니다.
-	            g.setColor(new Color(0xCBD38E));
+	            // 선택된 탭 색 적용
+	            g.setColor(new Color(0x401A83));
 	            g.fillRect(x, y, w, h);
 	        } else {
 	            // 선택되지 않은 탭은 기본색을 사용합니다.
 	            super.paintTabBackground(g, tabPlacement, tabIndex, x, y, w, h, isSelected);
-	        }
-	    }
-	}
+	        }//end else
+	    }//paintTabBackground
+	    
+	}//CustomTabbedPaneUI
 	public int getSelectedIndex() {
 		return selectedIndex;
 	}
