@@ -22,16 +22,16 @@ import login.HCYErp;
 
 @SuppressWarnings("serial")
 public class ManageDoc extends JPanel {
-	private JScrollPane jspDocList;
-	private JButton jbtnFileUpload;
+	private Map<Integer, JCheckBox> jcheckBoxMap;
 	private JButton jbtnFileDownload;
 	private JButton jbtnFileDelete;
-	private JButton jbtnRef;
+	private JButton jbtnFileUpload;
+	private JScrollPane jspDocList;
 	private JButton jbtnLogOut;
 	private JLabel jlblLogoTxt;
-	private HCYErp hcyE;
+	private JButton jbtnRef;
 	private JPanel jpDoc;
-	private Map<Integer, JCheckBox> jcheckBoxMap;
+	private HCYErp hcyE;
 
 	public ManageDoc(HCYErp hcyE) {
 		this.hcyE = hcyE;
@@ -69,7 +69,7 @@ public class ManageDoc extends JPanel {
         }//end for
 		
 		// 문서 목록 체크박스
-		jpDoc.setLayout(new BoxLayout(jpDoc, BoxLayout.Y_AXIS));// 세로 정렬
+		jpDoc.setLayout(new BoxLayout(jpDoc, BoxLayout.Y_AXIS));
 		jspDocList = new JScrollPane(jpDoc);
 		add(jspDocList);
 		jspDocList.setBounds(100, 50, 800, 500);

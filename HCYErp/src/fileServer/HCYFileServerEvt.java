@@ -20,6 +20,7 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 	private ServerSocket uploadServer;
 	private ServerSocket downloadServer;
 	private ServerSocket deleteServer;
+	private ServerSocket imagesServer;
 	private Thread serverThread;
 
 	public HCYFileServerEvt(HCYFileServer hcyfs) {
@@ -95,16 +96,20 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 			uploadServer = new ServerSocket(36500);
 			downloadServer = new ServerSocket(36600);
 			deleteServer = new ServerSocket(36700);
+			imagesServer = new ServerSocket(36800);
 			FileDownloadHelper fdlh = null;
 			FileUploadHelper fulh = null;
 			FileDeleteHelper fdh = null;
+			ImagesLoadHelper ilh = null;
 			try {
 				fulh = new FileUploadHelper(uploadServer,hcyfs);
 				fdlh = new FileDownloadHelper(downloadServer,hcyfs);
 				fdh = new FileDeleteHelper(deleteServer, hcyfs);
+				ilh = new ImagesLoadHelper(imagesServer, hcyfs);
 				fulh.start();
 				fdlh.start();
 				fdh.start();
+				ilh.start();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			} // try

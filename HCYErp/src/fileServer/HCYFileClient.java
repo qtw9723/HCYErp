@@ -112,4 +112,33 @@ public class HCYFileClient {
 		} // finally
 		return flag;
 	}// deleteFile
+	
+	public void imageLoad() throws IOException {
+		Socket socket = null;
+		FileOutputStream fos = null;
+		InputStream is = null;
+		try {
+			socket = new Socket(serverIp, 36800);
+			// 이름 및 확장자 보내기
+			
+			File dir = new File("C:/Users/user/HCYErpFile/images");
+			// 폴더생성
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}//if
+
+			fos = new FileOutputStream(dir);
+			is = socket.getInputStream();
+			byte[] buffer = new byte[4096];
+			int bytesRead = 0;
+
+			while ((bytesRead = is.read(buffer)) != -1) {
+				fos.write(buffer, 0, bytesRead);
+			} // while
+		} finally {
+			if (is != null) {is.close();}//if
+			if (fos != null) {fos.close();}//if
+			if (socket != null) {socket.close();}//if
+		} // finally
+	}//imageLoad
 }// class
