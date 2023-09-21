@@ -2,13 +2,10 @@ package login;
 
 import java.awt.Color;
 import java.awt.Cursor;
-<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.Font;
-=======
 import java.awt.Font;
 import java.awt.Insets;
->>>>>>> branch 'main' of https://github.com/qtw9723/HCYErp.git
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
