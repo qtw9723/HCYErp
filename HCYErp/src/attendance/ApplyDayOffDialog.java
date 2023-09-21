@@ -1,5 +1,6 @@
 package attendance;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.util.Calendar;
 
@@ -29,11 +30,13 @@ public class ApplyDayOffDialog extends JDialog {
 
 	public ApplyDayOffDialog(Attendance ad) {
 		this.ad = ad;
+		
+		//다이얼로그 배경색
+		getContentPane().setBackground(new Color(255,245,245));
+				
 		//Calendar선언
 		Calendar cal = Calendar.getInstance();
-		//폰트 설정
-		Font periodFont=new Font("바탕체",Font.BOLD,15);
-		Font duringFont=new Font("궁서체",Font.BOLD,20);
+		
 		//콤보박스 선언
 		jcbStartMonth = new JComboBox<Integer>();
 		jcbStartYear = new JComboBox<Integer>();
@@ -63,16 +66,44 @@ public class ApplyDayOffDialog extends JDialog {
 		jtaWriteReason=new JTextArea("사유를 입력해주세요");
 		jtaWriteReason.setEditable(false);
 		
+		//폰트
+		Font jcbFont = new Font("맑은 고딕", Font.PLAIN, 15);
+		Font jlblFont = new Font("맑은 고딕", Font.BOLD, 15);
+		Font jtaFont = new Font("맑은 고딕", Font.PLAIN, 14);
+		Font jbtnFont = new Font("맑은 고딕", Font.BOLD, 15);
+		
 		//폰트설정
-		jlblStartMonth.setFont(periodFont);
-		jlblStartYear.setFont(periodFont);
-		jlblStartDay.setFont(periodFont);
-		jlblEndMonth.setFont(periodFont);
-		jlblEndYear.setFont(periodFont);
-		jlblPeriod.setFont(periodFont);
-		jlblReason.setFont(periodFont);
-		jlblEndDay.setFont(periodFont);
-		jlblDuring.setFont(duringFont);
+		jlblStartMonth.setFont(jlblFont);
+		jlblStartYear.setFont(jlblFont);
+		jlblStartDay.setFont(jlblFont);
+		jlblEndMonth.setFont(jlblFont);
+		jlblEndYear.setFont(jlblFont);
+		jlblPeriod.setFont(jlblFont);
+		jlblReason.setFont(jlblFont);
+		jlblEndDay.setFont(jlblFont);
+		jlblDuring.setFont(jlblFont);
+		
+		jcbStartYear.setFont(jcbFont);
+		jcbStartMonth.setFont(jcbFont);
+		jcbStartDay.setFont(jcbFont);
+		jcbEndYear.setFont(jcbFont);
+		jcbEndMonth.setFont(jcbFont);
+		jcbEndDay.setFont(jcbFont);
+		jcbReason.setFont(jcbFont);
+		
+		jbtnApply.setFont(jbtnFont);
+		jbtnCancel.setFont(jbtnFont);
+		
+		jtaWriteReason.setFont(jtaFont);
+		
+		//콤보박스 배경색
+		jcbStartYear.setBackground(Color.white);
+		jcbStartMonth.setBackground(Color.white);
+		jcbStartDay.setBackground(Color.white);
+		jcbEndYear.setBackground(Color.white);
+		jcbEndMonth.setBackground(Color.white);
+		jcbEndDay.setBackground(Color.white);
+		jcbReason.setBackground(Color.white);
 		
 		// 현재 년을 설정
 		int year = cal.get(Calendar.YEAR);
@@ -119,31 +150,37 @@ public class ApplyDayOffDialog extends JDialog {
 		//레이아웃 설정
 		setLayout(null);
 
+		//버튼색
+		jbtnApply.setBackground(new Color(0x6D47B0));
+		jbtnCancel.setBackground(new Color(0x5E5E5E));
+		jbtnApply.setForeground(Color.white);
+		jbtnCancel.setForeground(Color.white);
+		
 		// 컴포넌트 크기 및 위치 설정
 		//콤박
-		jcbStartYear.setBounds(120, 20, 100, 30);
-		jcbStartMonth.setBounds(270, 20, 100, 30);
-		jcbStartDay.setBounds(420, 20, 100, 30);
-		jcbEndYear.setBounds(170, 100, 100, 30);
-		jcbEndMonth.setBounds(320, 100, 100, 30);
-		jcbEndDay.setBounds(470, 100, 100, 30);
-		jcbReason.setBounds(120, 150, 120, 30);
+		jcbStartYear.setBounds(115, 20, 70, 30);
+		jcbStartMonth.setBounds(220, 20, 50, 30);
+		jcbStartDay.setBounds(305, 20, 50, 30);
+		jcbEndYear.setBounds(425, 20, 70, 30);
+		jcbEndMonth.setBounds(530, 20, 50, 30);
+		jcbEndDay.setBounds(615, 20, 50, 30);
+		jcbReason.setBounds(115, 70, 170, 30);
 		//라벨
 		jlblPeriod.setBounds(35, 20, 100, 30);
-		jlblDuring.setBounds(320, 50, 50, 50);
-		jlblReason.setBounds(35, 150, 100, 30);
+		jlblDuring.setBounds(390, 20, 50, 30);
+		jlblReason.setBounds(35, 70, 100, 30);
 		
-		jlblStartYear.setBounds(230, 20, 100, 30);
-		jlblStartMonth.setBounds(380, 20, 100, 30);
-		jlblStartDay.setBounds(530, 20, 100, 30);
-		jlblEndYear.setBounds(280, 100, 100, 30);
-		jlblEndMonth.setBounds(430, 100, 100, 30);
-		jlblEndDay.setBounds(580, 100, 100, 30);
+		jlblStartYear.setBounds(190, 20, 100, 30);
+		jlblStartMonth.setBounds(275, 20, 100, 30);
+		jlblStartDay.setBounds(360, 20, 40, 30);
+		jlblEndYear.setBounds(500, 20, 100, 30);
+		jlblEndMonth.setBounds(585, 20, 100, 30);
+		jlblEndDay.setBounds(670, 20, 100, 30);
 		//텍스트에리어
-		jtaWriteReason.setBounds(250,150,420,200);
+		jtaWriteReason.setBounds(115,120,420,200);
 		//버튼
-		jbtnApply.setBounds(80,200,100,30);
-		jbtnCancel.setBounds(80,300,100,30);
+		jbtnApply.setBounds(565,220,125,40);
+		jbtnCancel.setBounds(565,280,125,40);
 
 		// 컴포넌트 배치
 		//콤박
@@ -180,7 +217,9 @@ public class ApplyDayOffDialog extends JDialog {
 		jbtnCancel.addActionListener(event);
 		
 		//페널 설정
-		setBounds(ad.getHcyE().getX()+100, ad.getHcyE().getY()+100, 800, 400);
+		setTitle("휴가 신청");
+		setResizable(false);
+		setBounds(ad.getHcyE().getX()+100, ad.getHcyE().getY()+100, 740, 390);
 		setVisible(true);
 	}// constructor
 

@@ -304,6 +304,7 @@ public class AddEmpDialog extends JDialog {
 		jcbDayHiredate.addActionListener(event);
 
 		setTitle("입사자 추가");
+		setResizable(false);
 		setVisible(true);
 		setSize(870, 600);
 

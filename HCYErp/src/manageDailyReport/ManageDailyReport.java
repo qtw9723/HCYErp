@@ -189,7 +189,7 @@ public class ManageDailyReport extends JPanel {
 		}//for
 				
 		jspReport = new JScrollPane(jtReport);
-		jspReport.setBounds(150, 160, 800, 350);
+		jspReport.setBounds(150, 160, 800, 390);
 		//JTable 밑에 빈 공간들 색
 		jspReport.getViewport().setBackground(new Color(0xECEBFF));
 		

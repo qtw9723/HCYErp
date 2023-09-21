@@ -144,6 +144,7 @@ public class ResetPassDialog extends JDialog {
 		
 		setTitle("비밀번호 초기화");
 		setVisible(true);
+		setResizable(false);
 	}// constructor
 
 	public void setJtfEmpNo(JTextField jtfEmpNo) {
