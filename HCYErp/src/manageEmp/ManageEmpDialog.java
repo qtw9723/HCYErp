@@ -41,14 +41,14 @@ public class ManageEmpDialog extends JDialog{
 	private JButton jbtnOK;
 	private JButton jbtnCancel; 
 	private ManageEmp me;
-	
+	private EmpVO eVO;
 	public ManageEmpDialog() {
 		
 	}
 	
 	public ManageEmpDialog(ManageEmp me,EmpVO eVO) {
 		this.me=me;
-		
+		this.eVO=eVO;
 		setTitle("사원 정보");
 
 		getContentPane().setBackground(new Color(255,245,245));
@@ -387,6 +387,10 @@ public class ManageEmpDialog extends JDialog{
 
 	public ManageEmp getMe() {
 		return me;
+	}
+
+	public EmpVO geteVO() {
+		return eVO;
 	}
 
 	
