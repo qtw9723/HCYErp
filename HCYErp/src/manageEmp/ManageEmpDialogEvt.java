@@ -40,7 +40,6 @@ public class ManageEmpDialogEvt extends MouseAdapter implements ActionListener{
 		
 		//전화번호 수정
 		eVO.setTel(med.getJtfTel().getText());
-		
 		//이메일 수정
 		eVO.setEmail(med.getJtfEmail().getText());
 		
@@ -62,11 +61,7 @@ public class ManageEmpDialogEvt extends MouseAdapter implements ActionListener{
 	    eVO.setSal(Integer.parseInt(med.getJtfSal().getText()));
 	    
 	    //사원번호 수정
-	    for(String name : med.getMe().getListName()) {
-	    	if(med.getMe().getJlName().getSelectedValue().equals(name.substring(0, name.indexOf("/")))) {
-	    		eVO.setEmpNo(Integer.parseInt(name.substring(name.indexOf("/")+1)));
-	    	}
-	    }
+	    eVO.setEmpNo(med.geteVO().getEmpNo());
 	    try {
 	    	int rowCnt = ManageEmpDAO.getInstance().updateEmpModifyInfo(eVO);
 	        if (rowCnt > 0) {
