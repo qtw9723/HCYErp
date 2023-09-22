@@ -31,6 +31,39 @@ public class RefDeptDialog extends JDialog {
 	public RefDeptDialog(ManageDoc md) {
 		this.md = md;
 		
+		boolean flag = true;
+		try {
+			List<String> fileNameList = new ArrayList<String>();
+			for (Entry<Integer, JCheckBox> entry : md.getJcheckBoxMap().entrySet()) {
+				if (entry.getValue().isSelected()) {
+					flag = false;
+					fileNameList.add(entry.getValue().getText());
+				} // if
+			} // for
+			if(flag) {JOptionPane.showMessageDialog(md, "삭제할 파일을 먼저 선택해주세요!"); return;}//if
+			String Dept = "";
+			String comp = "";
+			for (String fileName : fileNameList) {
+				comp = ManageDocDAO.getInstance().selectDept(fileNameList.get(0));
+				Dept = ManageDocDAO.getInstance().selectDept(fileName);
+				if (!comp.equals(Dept)) {
+					throw new Exception("다른 부서의 문서 선택");
+				} // if
+			} // for
+			for (JCheckBox jcb : jcbList) {
+				if (jcb.getText().equals(Dept)) {
+					jcb.setSelected(true);
+					jcb.setEnabled(false);
+				} // if
+			} // for
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(md, "여러 문서에 대한 열람 권한 부여는 같은 부서에서 제작한 문서끼리만 가능합니다.");
+			dispose();
+			return;
+		} // catch
+		
 		//다이얼로그 배경색
 		getContentPane().setBackground(new Color(255,245,245));
 		
@@ -55,36 +88,6 @@ public class RefDeptDialog extends JDialog {
         for (JCheckBox checkBox : jcbList) {
             checkBox.setBackground(newBackgroundColor);
         }//end for
-		
-		try {
-			List<String> fileNameList = new ArrayList<String>();
-			for (Entry<Integer, JCheckBox> entry : md.getJcheckBoxMap().entrySet()) {
-				if (entry.getValue().isSelected()) {
-					fileNameList.add(entry.getValue().getText());
-				} // if
-			} // for
-			String Dept = "";
-			String comp = "";
-			for (String fileName : fileNameList) {
-				comp = ManageDocDAO.getInstance().selectDept(fileNameList.get(0));
-				Dept = ManageDocDAO.getInstance().selectDept(fileName);
-				if (!comp.equals(Dept)) {
-					throw new Exception("다른 부서의 문서 선택");
-				} // if
-			} // for
-			for (JCheckBox jcb : jcbList) {
-				if (jcb.getText().equals(Dept)) {
-					jcb.setSelected(true);
-					jcb.setEnabled(false);
-				} // if
-			} // for
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(md, "여러 문서에 대한 열람 권한 부여는 같은 부서에서 제작한 문서끼리만 가능합니다.");
-			dispose();
-			return;
-		} // catch
 
 		//버튼
 		jbtnApproveRef = new JButton("권한 부여");

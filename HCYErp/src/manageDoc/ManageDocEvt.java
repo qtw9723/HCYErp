@@ -32,12 +32,14 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 		if (e.getSource() == md.getJbtnFileUpload()) {
 			new FileUploadDialog(md).setBounds(md.getHcyE().getX() + 300, md.getHcyE().getY() + 150, 565, 500);
 		} // if
+		
 		try {
 			// 다운로드 버튼
 			if (e.getSource() == md.getJbtnFileDownload()) {
 				downloadFile();
 			} // if
-				// 파일 삭제 버튼
+			
+			// 파일 삭제 버튼
 			if (e.getSource() == md.getJbtnFileDelete()) {
 				deleteFile();
 			} // if
@@ -63,17 +65,20 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 	}// actionPerformed
 
 	private void deleteFile() throws UnknownHostException, IOException, SQLException {
+		boolean flag = true;
 		StringBuilder msg = new StringBuilder();
 		msg.append("다음의 파일을 선택하셨습니다!\n");
 		List<Integer> docNoList = new ArrayList<Integer>();
 		List<String> fileNameList = new ArrayList<String>();
 		for (Entry<Integer, JCheckBox> entry : md.getJcheckBoxMap().entrySet()) {
 			if (entry.getValue().isSelected()) {
+				flag = false;
 				docNoList.add(entry.getKey());
 				msg.append(entry.getValue().getText()).append("\n");
 				fileNameList.add(entry.getValue().getText());
 			} // if
 		} // for
+		if(flag) {JOptionPane.showMessageDialog(md, "삭제할 파일을 먼저 선택해주세요!"); return;}//if
 		msg.append("위의 파일들을 삭제 하시겠습니까?");
 
 		// 삭제 의사 확인
@@ -100,17 +105,20 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 	}// deleteFile
 
 	private void downloadFile() throws UnknownHostException, IOException, SQLException {
+		boolean flag = true;
 		StringBuilder msg = new StringBuilder();
 		msg.append("다음의 파일을 선택하셨습니다!\n");
 		List<Integer> docNoList = new ArrayList<Integer>();
 		List<String> fileNameList = new ArrayList<String>();
 		for (Entry<Integer, JCheckBox> entry : md.getJcheckBoxMap().entrySet()) {
 			if (entry.getValue().isSelected()) {
+				flag = false;
 				docNoList.add(entry.getKey());
 				msg.append(entry.getValue().getText()).append("\n");
 				fileNameList.add(entry.getValue().getText());
 			} // if
 		} // for
+		if(flag) {JOptionPane.showMessageDialog(md, "다운로드할 파일을 먼저 선택해주세요!"); return;}//if
 		msg.append("위의 파일들을 다운로드 하시겠습니까?");
 
 		// 삭제 의사 확인
