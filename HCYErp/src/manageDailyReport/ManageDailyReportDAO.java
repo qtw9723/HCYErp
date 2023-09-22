@@ -108,11 +108,12 @@ public class ManageDailyReportDAO {
 		try {
 			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-			String sql = "update daily_report set reportcontent=? where empno=?";
+			String sql = "update daily_report set reportcontent=? where empno=? AND REPORTDATE = ? ";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, drVO.getReportContent());
 			pstmt.setInt(2, drVO.getEmpNo());
+			pstmt.setString(3, drVO.getReportDate());
 			rowCnt = pstmt.executeUpdate();
 		} finally {
 			if (db != null) {
