@@ -50,7 +50,7 @@ public class ManageLeaveDialog extends JDialog {
 		Font jtaFont=new Font("맑은 고딕",Font.PLAIN,13);
 		jtaRejectReason.setFont(jtaFont);
 		jtaRejectReason.setBounds(400,40,340,240);
-		TitledBorder titleBorder=BorderFactory.createTitledBorder("휴가 신청 목록");
+		TitledBorder titleBorder=BorderFactory.createTitledBorder("신청 반려 사유");
 		Font titleFont=new Font("맑은 고딕",Font.BOLD,15);
 		titleBorder.setTitleFont(titleFont);
 		titleBorder.setTitleJustification(titleBorder.CENTER);
