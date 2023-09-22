@@ -236,7 +236,7 @@ public class ManageEmpDAO {
 	        try {
 	            con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
 
-	            String sql ="SELECT e.ENAME,j.JOBNAME ,l.levelno ,e.TEL ,e.EMAIL,d.DNAME,t.TNAME,t.loc,e.SAL FROM emp e,job j,dept d,team t,joblevel l WHERE e.JOBNO = j.JOBNO(+)AND t.DEPTNO = d.DEPTNO(+)AND e.TEAMNO = t.TEAMNO(+)AND e.levelno = l.levelno(+) AND empno=?";
+	            String sql ="SELECT e.ENAME,j.JOBNAME ,l.lvname ,e.TEL ,e.EMAIL,d.DNAME,t.TNAME,t.loc,e.SAL FROM emp e,job j,dept d,team t,joblevel l WHERE e.JOBNO = j.JOBNO(+)AND t.DEPTNO = d.DEPTNO(+)AND e.TEAMNO = t.TEAMNO(+)AND e.levelno = l.levelno(+) AND empno=?";
 
 	            pstmt = con.prepareStatement(sql);
 	            pstmt.setInt(1, empno);
@@ -246,7 +246,7 @@ public class ManageEmpDAO {
 	            if (rs.next()) {
 	                empVO = new EmpVO();
 	                empVO.setEname(rs.getString("ename"));
-	                empVO.setLevel(rs.getString("levelno"));
+	                empVO.setLevel(rs.getString("lvname"));
 	                empVO.setTel(rs.getString("tel"));
 	                empVO.setEmail(rs.getString("email"));
 	                empVO.setJob(rs.getString("JOBNAME"));
