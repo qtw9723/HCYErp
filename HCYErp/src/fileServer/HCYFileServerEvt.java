@@ -52,7 +52,7 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 		//버전 업데이트 버튼
 		if(ae.getSource()==hcyfs.getJbtnVersionUpdate()) {
 			try {
-				ServerDAO.getInstance().insertVersion();
+				versionUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}//catch
@@ -73,6 +73,12 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 	public void windowClosed(WindowEvent e) {
 		System.exit(0);
 	}// windowClosed
+	
+	private void versionUpdate() throws SQLException {
+		ServerDAO.getInstance().insertVersion();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		hcyfs.getJtaConnectList().append(sdf.format(new Date()) + "에 버전이 업데이트 되었습니다.\n");
+	}//versionUpdate
 	
 	public void openServer() throws IOException, SQLException {
 		// 폴더가 존재하지 않으면 폴더 생성
