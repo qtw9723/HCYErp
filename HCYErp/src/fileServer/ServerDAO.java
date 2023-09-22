@@ -14,9 +14,6 @@ public class ServerDAO {
 	private static ServerDAO sDAO;
 	
 	private ServerDAO() {
-		
-		
-		
 	}//class
 	
 	public static ServerDAO getInstance() {
@@ -25,6 +22,28 @@ public class ServerDAO {
 		}//if
 		return sDAO;
 	}//getInstance
+	
+	public void insertVersion() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		DbConn db = DbConn.getInstance();
+
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql = "INSERT INTO HCY_VERSION(VERNO, UPDATE_DATE) VALUES (DEFAULT,DEFAULT)";
+
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.execute();
+
+		} finally {
+			if (db != null) {
+				db.dbclose(null, pstmt, con);
+			} // if
+		} // try
+	}// insertVersion
 	
 	public void synchronize(File[] files) throws SQLException {
 		Connection con = null;
@@ -40,7 +59,6 @@ public class ServerDAO {
 			String sql = "select docname from doc";
 
 			pstmt = con.prepareStatement(sql);
-			
 
 			rs = pstmt.executeQuery();
 			List<String> removeFile = new ArrayList<String>();
@@ -74,7 +92,6 @@ public class ServerDAO {
 			}//for
 			deleteSql.append(")");
 			
-			
 			pstmt = con.prepareStatement(deleteSql.toString());
 			
 			if(removeFile.size()!=0) {
@@ -86,8 +103,8 @@ public class ServerDAO {
 
 			pstmt.close();
 			}//if
-			//데이터 없는 실파일 데이터에 추가
 			
+			//데이터 없는 실파일 데이터에 추가
 			sql = "INSERT INTO DOC(DEPTNO, DOCNAME) VALUES ( ? , ? )";
 			
 			pstmt = con.prepareStatement(sql);

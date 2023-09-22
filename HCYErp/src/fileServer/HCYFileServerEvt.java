@@ -29,6 +29,7 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		//서버열기 버튼
 		if (ae.getSource() == hcyfs.getJbtnOpenServer()) {
 			try {
 				openServer();
@@ -38,6 +39,8 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 				e.printStackTrace();
 			}//catch
 		} // if
+		
+		//서버 닫기 버튼
 		if (ae.getSource() == hcyfs.getJbtnCloseServer()) {
 			try {
 				closeServer();
@@ -45,6 +48,15 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 				e.printStackTrace();
 			} // catch
 		} // if
+		
+		//버전 업데이트 버튼
+		if(ae.getSource()==hcyfs.getJbtnVersionUpdate()) {
+			try {
+				ServerDAO.getInstance().insertVersion();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}//catch
+		}//if
 	}// actionPerformed
 
 	@Override
@@ -59,7 +71,7 @@ public class HCYFileServerEvt extends WindowAdapter implements ActionListener, R
 
 	@Override
 	public void windowClosed(WindowEvent e) {
-		System.exit(JFrame.ABORT);
+		System.exit(0);
 	}// windowClosed
 	
 	public void openServer() throws IOException, SQLException {

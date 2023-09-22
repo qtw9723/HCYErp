@@ -2,6 +2,11 @@ package login;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,6 +31,7 @@ import attendance.Attendance;
 import attendance.AttendanceDAO;
 import dailyReport.DailyReport;
 import fileServer.HCYFileClient;
+import fileServer.ServerDAO;
 import manageAttendance.ManageMonthlyAttendance;
 import manageAttendance.ManagePersonalAttendance;
 import manageDailyReport.ManageDailyReport;
@@ -55,15 +61,44 @@ public class HCYErp extends JFrame {
 	private boolean attendFlag = false;
 	private List<JPanel> list;
 	private HCYErpEvt event;
-	public HCYErp() {
+	public HCYErp() throws IOException, SQLException {
 		super("HCY TRAVEL");
 		//이미지 다운로드
+		DataOutputStream dos = null;
+		DataInputStream dis = null;
 		try {
-			HCYFileClient.getInstance().imageLoad();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}//catch
+			//버전 폴더 확인
+			File versionFile = new File("C:/Users/user/HCYErpFile/version");
+			if(!versionFile.exists()) {
+				if(!versionFile.mkdirs()) {JOptionPane.showMessageDialog(jbtnLogIn, "버전 폴더 생성 실패"); return;}// if
+			}//if
+			
+			//IO스트림
+			String versionPath=versionFile.getAbsolutePath();
+			versionPath+= File.separator+"version.bat";
+			versionFile = new File(versionPath);
+			if(versionFile.exists()) {
+				dis = new DataInputStream(new FileInputStream(versionFile));
+				int oldVersion = Integer.parseInt(dis.readUTF());
+
+				int curVersion = HCYErpDAO.getInstance().checkVersion();
+				if(!(curVersion == oldVersion)) {
+					HCYFileClient.getInstance().imageLoad();
+					dos = new DataOutputStream(new FileOutputStream(versionFile));
+					dos.writeUTF(Integer.toString(curVersion));
+					JOptionPane.showMessageDialog(jbtnLogIn, "버전 업데이트를 진행하였습니다! 현재 버전 : "+curVersion);
+				}//if
+			}else {
+				HCYFileClient.getInstance().imageLoad();
+				dos = new DataOutputStream(new FileOutputStream(versionFile));
+				int curVersion = HCYErpDAO.getInstance().checkVersion();
+				dos.writeUTF(Integer.toString(curVersion));
+				JOptionPane.showMessageDialog(jbtnLogIn, "버전 업데이트를 진행하였습니다! 현재 버전 : "+curVersion);
+			}//else
+		}finally {
+			if(dis!=null) {dis.close();}
+			if(dos!=null) {dos.close();}
+		}// finally
 		
 		// 이벤트 객체 생성
 		event = new HCYErpEvt(this);

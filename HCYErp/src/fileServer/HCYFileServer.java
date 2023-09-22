@@ -13,6 +13,7 @@ public class HCYFileServer extends JFrame {
 	private JScrollPane jspJtaConnectListClient;
 	private JButton jbtnOpenServer;
 	private JButton jbtnCloseServer;
+	private JButton jbtnVersionUpdate;
 
 	
 	
@@ -27,11 +28,13 @@ public class HCYFileServer extends JFrame {
 		
 		jbtnOpenServer=new JButton("서버실행");
 		jbtnCloseServer=new JButton("종료");
+		jbtnVersionUpdate = new JButton("버전 업데이트");
 		
 		JPanel jpSouth=new JPanel();
 		
 		jpSouth.add( jbtnOpenServer );
 		jpSouth.add( jbtnCloseServer );
+		jpSouth.add( jbtnVersionUpdate );
 		
 		add("Center", jspJtaConnectListClient);
 		add("South",jpSouth);
@@ -39,41 +42,31 @@ public class HCYFileServer extends JFrame {
 		
 		jbtnCloseServer.addActionListener(event);
 		jbtnOpenServer.addActionListener(event);
+		jbtnVersionUpdate.addActionListener(event);
 		addWindowListener(event);
 		
 		setBounds(100, 100, 400, 500);
 		setVisible(true);
 	}//constructor
 
-
-
 	public static void main(String[] args) {
 		new HCYFileServer();
 	}//main
 	
-
-
-
+	
 	public JTextArea getJtaConnectList() {
 		return jtaConnectList;
 	}
-
-
-
 	public JButton getJbtnOpenServer() {
 		return jbtnOpenServer;
 	}
-
-
 	public JButton getJbtnCloseServer() {
 		return jbtnCloseServer;
 	}
-
-
-
 	public JScrollPane getJspJtaConnectListClient() {
 		return jspJtaConnectListClient;
 	}
-
-	
+	public JButton getJbtnVersionUpdate() {
+		return jbtnVersionUpdate;
+	}
 }//class
