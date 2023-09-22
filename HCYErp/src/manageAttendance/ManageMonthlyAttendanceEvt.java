@@ -42,6 +42,9 @@ public class ManageMonthlyAttendanceEvt extends MouseAdapter implements ActionLi
 	}// logOut
 
 	private void searchAttendanceDate() throws SQLException {
+		if(ma.getDtmMonthlyAttend().getRowCount()>0&&ma.getDtmMonthlyAttend().getColumnCount()>0) {
+			ma.getDtmMonthlyAttend().setRowCount(0);
+		}
 		for (int i = 0; i < ma.getDtmMonthlyAttend().getRowCount(); i++) {
 			ma.getDtmMonthlyAttend().removeRow(i);
 		} // for
