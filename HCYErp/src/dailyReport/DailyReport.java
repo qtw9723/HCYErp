@@ -2,6 +2,7 @@ package dailyReport;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,7 +28,12 @@ public class DailyReport extends JPanel {
 		setLayout(null);
 		
 		//업무일지 에리어
-		jtaReport = new JTextArea("2023-00-00 사원명\n\n\n업무내용\n-\n-\n-");
+		Calendar cal = Calendar.getInstance();
+		String month = Integer.toString(cal.get(Calendar.MONTH)+1);
+		String date = Integer.toString(cal.get(Calendar.DATE));
+		if(month.length()==1) {month="0"+month;}
+		if(date.length()==1) {date="0"+date;}
+		jtaReport = new JTextArea(cal.get(Calendar.YEAR)+"-"+month+"-"+cal.get(Calendar.DATE)+" 사원명\n\n\n업무내용\n-\n-\n-");
 		jtaReport.setBounds(190,100,800,350);
 		jtaReport.setBorder(new TitledBorder(""));
 		Font jtaFont = new Font("맑은 고딕", Font.PLAIN, 15);
