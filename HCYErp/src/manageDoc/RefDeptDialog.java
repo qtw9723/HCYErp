@@ -30,7 +30,21 @@ public class RefDeptDialog extends JDialog {
 
 	public RefDeptDialog(ManageDoc md) {
 		this.md = md;
-		
+
+		//체크박스
+		jcbList = new ArrayList<JCheckBox>();
+
+		jcbManage = new JCheckBox("경영지원");
+		jcbList.add(jcbManage);
+		jcbLaw = new JCheckBox("법무지원");
+		jcbList.add(jcbLaw);
+		jcbProduct = new JCheckBox("상품");
+		jcbList.add(jcbProduct);
+		jcbService = new JCheckBox("서비스");
+		jcbList.add(jcbService);
+		jcbBusiness = new JCheckBox("영업");
+		jcbList.add(jcbBusiness);
+
 		boolean flag = true;
 		try {
 			List<String> fileNameList = new ArrayList<String>();
@@ -58,6 +72,12 @@ public class RefDeptDialog extends JDialog {
 			} // for
 		} catch (SQLException e) {
 			e.printStackTrace();
+			dispose();
+			return;
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+			dispose();
+			return;
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(md, "여러 문서에 대한 열람 권한 부여는 같은 부서에서 제작한 문서끼리만 가능합니다.");
 			dispose();
@@ -68,20 +88,6 @@ public class RefDeptDialog extends JDialog {
 		getContentPane().setBackground(new Color(255,245,245));
 		
 		setLayout(null);
-
-		//체크박스
-		jcbList = new ArrayList<JCheckBox>();
-
-		jcbManage = new JCheckBox("경영지원");
-		jcbList.add(jcbManage);
-		jcbLaw = new JCheckBox("법무지원");
-		jcbList.add(jcbLaw);
-		jcbProduct = new JCheckBox("상품");
-		jcbList.add(jcbProduct);
-		jcbService = new JCheckBox("서비스");
-		jcbList.add(jcbService);
-		jcbBusiness = new JCheckBox("영업");
-		jcbList.add(jcbBusiness);
 
 		// 체크박스 배경: ArrayList에 있는 모든 JCheckBox의 배경색 변경
         Color newBackgroundColor = new Color(255,245,245); 

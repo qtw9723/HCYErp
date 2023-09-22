@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import DB.DbConn;
+import VO.DailyReportVO;
 import VO.DayOffApplyVO;
 import VO.EmpVO;
 
@@ -388,4 +389,34 @@ public class AttendanceDAO {
 		} // try
 		return flag;
 	}// selectWorkingFlag
+	
+	public boolean selectDailyReport(DailyReportVO drVO) throws SQLException {
+		boolean flag = false;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		DbConn db = DbConn.getInstance();
+
+		try {
+			con = db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+
+			String sql = "SELECT 1 FROM DAILY_REPORT WHERE EMPNO = ? and REPORTDATE = ?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, drVO.getEmpNo());
+			pstmt.setString(2, drVO.getReportDate());
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				flag = true;
+			} // if
+		} finally {
+			if (db != null) {
+				db.dbclose(rs, pstmt, con);
+			} // if
+		} // try
+		return flag;
+	}// selectDailyReport
 }// class

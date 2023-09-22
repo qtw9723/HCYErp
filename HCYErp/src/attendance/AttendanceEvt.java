@@ -9,6 +9,8 @@ import java.util.Calendar;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import VO.DailyReportVO;
+
 public class AttendanceEvt extends MouseAdapter implements ActionListener {
 
 	private Attendance ad;
@@ -104,7 +106,15 @@ public class AttendanceEvt extends MouseAdapter implements ActionListener {
 
 	private void getOff() throws SQLException {
 		// 업무 일지 작성했을 때만 퇴근 가능
-		if (!ad.getHcyE().isGetOffFlag()) {
+		DailyReportVO drVo = new DailyReportVO();
+		drVo.setEmpNo(ad.getHcyE().getUser());
+		Calendar cal = Calendar.getInstance();
+		String month = Integer.toString((cal.get(Calendar.MONTH)+1));
+		String date = Integer.toString(cal.get(Calendar.DATE));
+		if(month.length()==1) {month = "0"+month;}
+		if(date.length()==1) {date = "0"+date;}
+		drVo.setReportDate(cal.get(Calendar.YEAR)+"-"+month+"-"+date);
+		if (!AttendanceDAO.getInstance().selectDailyReport(drVo)) {
 			JOptionPane.showMessageDialog(ad, "업무일지를 작성해주세요.","업무일지",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		} // if

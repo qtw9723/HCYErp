@@ -42,7 +42,7 @@ public class DailyReportEvt extends MouseAdapter implements ActionListener {
 	}//actionPerformed
 
 	public void submitReport() throws SQLException {
-		if( !dr.getHcyE().isAttendFlag() ) {
+		if( !DailyReportDAO.getInstance().selectAttendance(dr.getHcyE().getUser()) ) {
 			JOptionPane.showMessageDialog(dr, "출근 후 업무일지를 작성할 수 있습니다.");
 			return;
 		}//if
@@ -52,7 +52,7 @@ public class DailyReportEvt extends MouseAdapter implements ActionListener {
 		drVO.setReportContent(dr.getJtaReport().getText());
 			
 		DailyReportDAO.getInstance().insertDailyReport(drVO);
-					
+		
 		JOptionPane.showMessageDialog(dr, "오늘의 업무일지 등록이 완료되었습니다.");
 		
 		dr.getHcyE().setGetOffFlag(true);

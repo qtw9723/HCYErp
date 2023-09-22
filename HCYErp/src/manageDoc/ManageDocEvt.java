@@ -15,6 +15,7 @@ import java.util.Map.Entry;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.filechooser.FileSystemView;
 
 import fileServer.HCYFileClient;
@@ -151,6 +152,8 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 			break;
 		default:
 		}// switch
+		JOptionPane.showMessageDialog(md, "다운로드가 성공적으로 완료되었습니다.");
+		refresh(md.getHcyE().getEvent().getSelectedIndex());
 	}// downloadFile
 
 	public void logOut() {
