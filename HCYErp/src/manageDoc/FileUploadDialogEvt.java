@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -170,11 +169,7 @@ public class FileUploadDialogEvt extends MouseAdapter implements ActionListener 
 			dVO.setDeptNo(fud.getMd().getHcyE().getUser());
 			mdDAO.insertDoc(dVO);
 			refresh(fud.getMd().getHcyE().getEvent().getSelectedIndex());
-//			fud.getMd().getJpDoc().add(new JCheckBox(docName));
-//			fud.getMd().getJcheckBoxMap().put(dVO.getDocNo(), new JCheckBox(docName));
-//			fud.getMd().revalidate();
-//			fud.getMd().repaint();
-//			fud.repaint();
+			fud.dispose();
 		} // for
 		JOptionPane.showMessageDialog(fud, "파일 업로드를 성공적으로 종료했습니다.");
 	}// uploadFile

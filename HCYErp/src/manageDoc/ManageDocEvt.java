@@ -1,6 +1,5 @@
 package manageDoc;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,7 +14,6 @@ import java.util.Map.Entry;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import javax.swing.filechooser.FileSystemView;
 
 import fileServer.HCYFileClient;
@@ -142,9 +140,7 @@ public class ManageDocEvt extends MouseAdapter implements ActionListener {
 			for (int i = 0; i < docNoList.size(); i++) {
 				if (!(HCYFileClient.getInstance().downloadFile(path + File.separator + fileNameList.get(i)))) {
 					failList.append(fileNameList.get(i)).append("\n");
-				} else {
-					ManageDocDAO.getInstance().deleteDoc(docNoList.get(i));
-				} // else
+				}// if
 			} // for
 			if (!failList.toString().isEmpty()) {
 				JOptionPane.showMessageDialog(md, failList.toString() + "파일 다운로드에 실패했습니다.");

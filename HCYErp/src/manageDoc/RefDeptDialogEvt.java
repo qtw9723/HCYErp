@@ -28,6 +28,20 @@ public class RefDeptDialogEvt extends MouseAdapter implements ActionListener {
 			}//windowClosing
 		});//addWindowListener
 	}//constructor
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==rdd.getJbtnApproveRef()) {
+			try {
+				approveRef();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}//catch
+		}//if
+		if(e.getSource()==rdd.getJbtnCancel()) {
+			rdd.dispose();
+		}//if
+	}//actionPerformed
 
 	public void approveRef() throws SQLException {//권한 부여
 		int mdCnt = 0;
@@ -63,19 +77,8 @@ public class RefDeptDialogEvt extends MouseAdapter implements ActionListener {
 		ManageDocDAO.getInstance().deleteDocPermission(docNoList);
 		ManageDocDAO.getInstance().insertDocPermission(dpVOList);
 		JOptionPane.showMessageDialog(rdd, "전체 파일 권한부여에 성공했습니다.");
+		rdd.dispose();
 	}//approveRef
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==rdd.getJbtnApproveRef()) {
-			try {
-				approveRef();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}//catch
-		}//if
-		if(e.getSource()==rdd.getJbtnCancel()) {
-			rdd.dispose();
-		}//if
-	}//actionPerformed
+
 }//class
