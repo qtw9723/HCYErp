@@ -47,6 +47,7 @@ public class ManageDailyReportDialogEvt extends MouseAdapter implements ActionLi
 		DailyReportVO drVO=new DailyReportVO();
 	
 		//내용추가
+		if(mdrd.getMdr().getDtmReport().getValueAt(mdrd.getMdr().getJtReport().getSelectedRow(), 0).toString()==String.valueOf(mdrd.getMdr().getHcyE().getUser())) {
 		StringBuilder sbContent=new StringBuilder();
 		drVO.setReportContent(sbContent.append(mdrd.getJtaDailyReport().getText()).toString());
 		
@@ -65,6 +66,9 @@ public class ManageDailyReportDialogEvt extends MouseAdapter implements ActionLi
 		refresh(mdrd.getMdr().getHcyE().getEvent().getSelectedIndex());
 		
 		cancel();
+		}else {
+			JOptionPane.showMessageDialog(mdrd, "다른사원의 업무일지는 변경할 수 없습니다!");
+		}
 	}//modifyReport
 	
 	public void cancel() {
