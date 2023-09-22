@@ -168,6 +168,8 @@ public class HCYErp extends JFrame {
 		setVisible(true);
 		setBounds(400, 150, 1200, 735);
 		setResizable(false);
+		
+
 	}// constructor
 
 	public void removeComponent() {

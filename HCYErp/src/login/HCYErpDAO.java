@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import DB.DbConn;
 import VO.EmpVO;
@@ -110,6 +112,54 @@ public class HCYErpDAO {
 	        db.dbclose(null, pstmt, con);
 	    }//finally
 	}//updatePassword
+	
+	public List<String> selectMSG(int empno) throws SQLException{
+		List<String> msgList = new ArrayList<String>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		DbConn db=DbConn.getInstance();
+		
+		try {
+			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+			
+			String sql="SELECT MSGCONTENT FROM MSG WHERE EMPNO = ? and MSGCHECK ='N'";
+			
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setInt(1, empno);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+			msgList.add(rs.getString("MSGCONTENT"));
+			}//while
+		} finally {
+			db.dbclose(rs, pstmt, con);
+		}//finally
+		return msgList;
+	}// selectMSG
+	
+	public void updateMSG(int empno) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		DbConn db=DbConn.getInstance();
+		
+		try {
+			con=db.getConnection("192.168.10.145", "hcytravel", "boramsangjo");
+			
+			String sql="UPDATE MSG SET  MSGCHECK = 'Y' WHERE MSGNO in (SELECT MSGNO FROM MSG WHERE EMPNO = ? and MSGCHECK ='N')";
+			
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setInt(1, empno);
+			
+			int cnt = pstmt.executeUpdate();
+		} finally {
+			db.dbclose(null, pstmt, con);
+		}//finally
+	}// updateMSG
 
 	public EmpVO geteVO() {
 		return eVO;

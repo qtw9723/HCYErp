@@ -12,11 +12,13 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import login.HCYErp;
+import login.HCYErpDAO;
 
 @SuppressWarnings("serial")
 public class Attendance extends JPanel {
@@ -207,6 +209,21 @@ public class Attendance extends JPanel {
 		jlblBG.setBounds(0, 0, 1200, 700);
 		add(jlblBG);
 
+		
+		List<String> msgList = new ArrayList<String>();
+		
+		try {
+			msgList = HCYErpDAO.getInstance().selectMSG(hcyE.getUser());
+			HCYErpDAO.getInstance().updateMSG(hcyE.getUser());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//catch
+		if(msgList.size()!=0) {
+			JOptionPane.showMessageDialog(jlblBG, msgList.size()+"개의 메세지가 도착했습니다.");
+		for(String msg : msgList) {
+			JOptionPane.showMessageDialog(jlblBG, msg);
+		}//for
+		}//if
 	}// constructor
 
 	public JLabel getJlblMonthlyAttendance() {
