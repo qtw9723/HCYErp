@@ -121,6 +121,28 @@ public class AddEmpDialogEvt extends MouseAdapter implements ActionListener, Key
 		ManageEmpRegisterDAO.getInstance().insertEmp(eVO);
 
 		JOptionPane.showMessageDialog(aed, "입사자 추가가 성공적으로 되었습니다.");
+		aed.getJtfEname().setText("");
+		aed.getJtfStartEmail().setText("");
+		aed.getJtfEndEmail().setText("");
+		aed.getJtfAddr().setText("");
+		aed.getJtfStartSsn().setText("");
+		aed.getJcbDept().setSelectedIndex(0);
+//		aed.getJcbTeam().setSelectedIndex(0);
+		aed.getJcbTeam().removeAllItems();
+		aed.getJcbTeam().addItem("--부서 먼저 선택--");
+		aed.getJcbJob().setSelectedIndex(0);
+		aed.getJtfTelF().setText("");
+		aed.getJtfTelS().setText("");
+		aed.getJtfTelT().setText("");
+		aed.getJtfJobTelF().setText("");
+		aed.getJtfJobTelS().setText("");
+		aed.getJtfJobTelT().setText("");
+		aed.getJcbLevel().setSelectedIndex(0);
+		aed.getJcbYearHiredate().setSelectedItem(Calendar.getInstance().get(Calendar.YEAR));
+		aed.getJcbMonthHiredate().setSelectedItem(Calendar.getInstance().get(Calendar.MONTH)+1);
+		aed.getJcbDayHiredate().setSelectedItem(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+		aed.getJtfSal().setText("");
+		aed.getJtfLoc().setText("");
 		refresh(aed.getMer().getHcyE().getEvent().getSelectedIndex());
 	}// okAdd
 
